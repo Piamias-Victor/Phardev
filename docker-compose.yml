@@ -24,7 +24,7 @@ services:
     networks:
       - phardev
     depends_on:
-      - caddy
+      - nginx
 
 networks:
   phardev:

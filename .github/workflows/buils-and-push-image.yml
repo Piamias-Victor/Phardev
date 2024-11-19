@@ -41,14 +41,6 @@ jobs:
     needs: build-and-push-image
     runs-on: self-hosted
     steps:
-      # Authenticate with GitHub Container Registry
-      - name: Authenticate with GitHub Container Registry
-        run: echo ${{ secrets.PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      # Pull the latest Docker image
-      - name: Pull the latest Docker image
-        run: docker pull ghcr.io/${{ github.repository }}/phardev:latest
-
       # Checkout repository to get docker-compose.yml
       - name: Checkout code
         uses: actions/checkout@v4
@@ -63,8 +55,21 @@ jobs:
           echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
           echo "ENV=PROD" >> .env
 
-      # Run Docker Compose
-      - name: Run Docker Compose
+      - name: docker compose down
+        run: docker compose down
+
+      - name: Remove existing container
+        run: docker container prune -f
+
+      - name: Clean up the Docker environment
+        run: docker system prune -f
+
+      - name: Enable memory overcommit
         run: |
-          docker-compose down
-          docker-compose up -d --build
+          sudo sysctl vm.overcommit_memory=1
+
+      - name: Authenticate with GitHub Container Registry
+        run: echo ${{ secrets.PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Run docker compose
+        run: docker compose up -d --force-recreate --pull always

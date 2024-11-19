@@ -10,12 +10,13 @@ jobs:
   build-and-push-image:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     steps:
-      # Checkout repository
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # Create .env file for Docker build
+      - uses: actions/checkout@v4
       - name: Create .env file
         run: |
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
@@ -29,6 +30,7 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
+          context: .
           image-name: 'bcome-ai-prod-backend:latest'
           password: ${{ secrets.GITHUB_TOKEN }}
           username: ${{ github.actor }}

@@ -14,18 +14,19 @@ services:
       - ./media:/app/media
     depends_on:
       - django
+    networks:
+      - phardev
+
 
   django:
-    build:
-      context: .
+    image: ghcr.io/phardev
     container_name: django
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    expose:
-      - "8000"
-
+    ports:
+      - "8000:8000"
+    networks:
+      - phardev
+    depends_on:
+      - caddy
 
 #certbot:
 #    image: certbot/certbot

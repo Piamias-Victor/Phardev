@@ -29,9 +29,9 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ github.repository }}/phardev:latest
+          image-name: 'bcome-ai-prod-backend:latest'
+          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.actor }}
 
 
   deploy-to-ec2:
@@ -50,7 +50,6 @@ jobs:
       # Checkout repository to get docker-compose.yml
       - name: Checkout code
         uses: actions/checkout@v4
-
 
       # Create .env file for Docker Compose
       - name: Create .env file for Docker Compose

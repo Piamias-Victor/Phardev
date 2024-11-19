@@ -1,0 +1,69 @@
+name: CI/CD Workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push-image:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Create .env file for Docker build
+      - name: Create .env file
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "ENV=PROD" >> .env
+
+      # Build and push Docker image to GitHub Container Registry
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}/phardev:latest
+
+
+  deploy-to-ec2:
+    name: Deploy to EC2
+    needs: build-and-push-image
+    runs-on: self-hosted
+    steps:
+      # Authenticate with GitHub Container Registry
+      - name: Authenticate with GitHub Container Registry
+        run: echo ${{ secrets.PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      # Pull the latest Docker image
+      - name: Pull the latest Docker image
+        run: docker pull ghcr.io/${{ github.repository }}/phardev:latest
+
+      # Checkout repository to get docker-compose.yml
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      # Create .env file for Docker Compose
+      - name: Create .env file for Docker Compose
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "ENV=PROD" >> .env
+
+      # Run Docker Compose
+      - name: Run Docker Compose
+        run: |
+          docker-compose down
+          docker-compose up -d --build

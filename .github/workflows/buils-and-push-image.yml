@@ -34,12 +34,12 @@ jobs:
       # Construire l'image Docker
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/mysteriousbaboon/${{ github.repository }}:latest .
+          docker build -t ghcr.io/mysteriousbaboon/phardev:latest .
 
       # Pousser l'image sur GHCR
       - name: Push Docker image to GHCR
         run: |
-          docker push ghcr.io/mysteriousbaboon/${{ github.repository }}:latest
+          docker push ghcr.io/mysteriousbaboon/phardev:latest
 
 
 

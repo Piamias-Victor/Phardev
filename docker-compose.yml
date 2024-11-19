@@ -19,7 +19,7 @@ services:
 
 
   django:
-    image: ghcr.io/phardev
+    image: ghcr.io/mysteriousbaboon/phardev:latest
     container_name: django
     ports:
       - "8000:8000"

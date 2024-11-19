@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          image-name: 'phardev:latest'
+          image-name: 'ghcr.io/${{ github.repository_owner }}/phardev:latest'
           password: ${{ secrets.GITHUB_TOKEN }}
           username: ${{ github.actor }}
 

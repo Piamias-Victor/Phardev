@@ -26,14 +26,21 @@ jobs:
           echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
           echo "ENV=PROD" >> .env
 
-      # Build and push Docker image to GitHub Container Registry
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          image-name: 'ghcr.io/${{ github.repository_owner }}/phardev:latest'
-          password: ${{ secrets.GITHUB_TOKEN }}
-          username: ${{ github.actor }}
+
+      # Se connecter à GHCR
+      - name: Authenticate with GitHub Container Registry
+        run: echo ${{ secrets.PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      # Construire l'image Docker
+      - name: Build Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest .
+
+      # Pousser l'image sur GHCR
+      - name: Push Docker image to GHCR
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
+
 
 
   deploy-to-ec2:

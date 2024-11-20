@@ -93,7 +93,7 @@ else:
 # Allowed hosts and CORS settings
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
-    '*'
+    'http://ec2-35-180-186-231.eu-west-3.compute.amazonaws.com'
 ]
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 

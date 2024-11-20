@@ -16,7 +16,6 @@ ENV = os.getenv("ENV", "DEV")  # Default to 'DEV' if ENV is not set
 # AWS credentials
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-
 # Database and email credentials
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
@@ -27,7 +26,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 AWS_STORAGE_BUCKET_NAME = "phardev"
 AWS_S3_REGION_NAME = "eu-west-3"
 AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = "public-read"
+AWS_DEFAULT_ACL = None
 AWS_S3_VERIFY = True
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
@@ -93,7 +92,7 @@ else:
 # Allowed hosts and CORS settings
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    '*'
 ]
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 

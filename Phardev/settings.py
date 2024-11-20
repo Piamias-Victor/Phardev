@@ -63,10 +63,10 @@ else:
     }
 
     #TODO put in true when domain is parametered
-    SECURE_SSL_REDIRECT = False
+    SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
     LOGGING = {
         "version": 1,
@@ -93,7 +93,7 @@ else:
 # Allowed hosts and CORS settings
 ALLOWED_HOSTS = ["*"]
 CORS_ALLOWED_ORIGINS = [
-    'http://ec2-35-180-186-231.eu-west-3.compute.amazonaws.com'
+    'api.phardev.fr'
 ]
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 

@@ -62,9 +62,7 @@ else:
         },
     }
 
-    #TODO put in true when domain is parametered
     SECURE_SSL_REDIRECT = True
-    USE_X_FORWARDED_HOST = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -94,7 +92,8 @@ else:
 # Allowed hosts and CORS settings
 ALLOWED_HOSTS = ['api.phardev.fr', 'localhost', '127.0.0.1']
 CORS_ALLOWED_ORIGINS = [
-    'api.phardev.fr'
+    'https://api.phardev.fr',
+    'http://localhost', 'http://127.0.0.1'
 ]
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 

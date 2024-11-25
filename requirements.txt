@@ -20,3 +20,5 @@ pandas
 openpyxl
 xlsxwriter
 xlrd
+
+tqdm

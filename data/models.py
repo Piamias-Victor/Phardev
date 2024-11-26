@@ -85,7 +85,7 @@ class ProductOrder(models.Model):
     qte = models.IntegerField(verbose_name="Quantité")
     qte_r = models.IntegerField(verbose_name="Quantité Réceptionnée")
     qte_a = models.IntegerField(verbose_name="Quantité Attendue")
-    qte_ug = models.IntegerField(verbose_name="Quantité Unité de Gestion")
+    qte_ug = models.IntegerField(verbose_name="Quantité Unité Gratuite")
     qte_ec = models.IntegerField(verbose_name="Quantité en Écart")
     qte_ar = models.IntegerField(verbose_name="Quantité à Réceptionner")
 

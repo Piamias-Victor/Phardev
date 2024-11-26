@@ -27,7 +27,7 @@ class SupplierAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     # Variable or functions to show as columns
-    list_display = ("internal_id", "pharmacy", "name", "code_13_ref", "stock", "price_with_tax")
+    list_display = ("internal_id", "pharmacy", "name", "code_13_ref", "stock", "price_with_tax", "weighted_average_price")
     search_fields = ["code_13_ref", 'name']
     readonly_fields = ('created_at', 'updated_at', )
     list_filter = ["pharmacy__name",]

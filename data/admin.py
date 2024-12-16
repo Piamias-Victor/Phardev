@@ -3,7 +3,9 @@ from django.contrib import admin
 from data.models import (
     Pharmacy,
     Supplier,
-    Product,
+    GlobalProduct,
+    InternalProduct,
+    InventorySnapshot,
     Order,
     ProductOrder,
     Sales
@@ -24,13 +26,33 @@ class SupplierAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at', )
 
 
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+@admin.register(GlobalProduct)
+class GlobalProductAdmin(admin.ModelAdmin):
     # Variable or functions to show as columns
-    list_display = ("internal_id", "pharmacy", "name", "code_13_ref", "stock", "price_with_tax", "weighted_average_price")
+    list_display = ("code_13_ref", "name", "brand_lab", "lab_distributor", "universe", "category", "sub_category")
     search_fields = ["code_13_ref", 'name']
     readonly_fields = ('created_at', 'updated_at', )
+    list_filter = ["brand_lab", "universe"]
+
+
+@admin.register(InternalProduct)
+class InternalProductAdmin(admin.ModelAdmin):
+    # Variable or functions to show as columns
+    list_display = ("internal_id", "pharmacy", "name", "code_13_ref", "TVA")
+    search_fields = ["code_13_ref__code_13_ref", 'name']
+    readonly_fields = ('created_at', 'updated_at', )
     list_filter = ["pharmacy__name",]
+
+
+@admin.register(InventorySnapshot)
+class InventorySnapshotAdmin(admin.ModelAdmin):
+    # Variable or functions to show as columns
+    list_display = ("product", "date", "stock", "price_with_tax", "weighted_average_price")
+    search_fields = ["product__name"]
+    ordering = ('product__name', '-date')
+    list_filter = ["product__pharmacy__name",]
+
+    readonly_fields = ('created_at', 'updated_at', )
 
 
 @admin.register(Order)
@@ -38,7 +60,7 @@ class OrderAdmin(admin.ModelAdmin):
     # Variable or functions to show as columns
     list_display = ('internal_id', "pharmacy", "step", "sent_date", "delivery_date")
 
-    search_fields = ["id", 'username', 'pharmacy']
+    search_fields = ["internal_id",]
     list_filter = ["pharmacy__name", 'step', 'supplier', ]
     ordering = ('-delivery_date',)
     readonly_fields = ('created_at', 'updated_at', )
@@ -49,15 +71,14 @@ class ProductOrderAdmin(admin.ModelAdmin):
     list_display = ('order__internal_id', "order__pharmacy", 'product', 'qte', 'qte_r', 'qte_a', 'qte_ug', 'qte_ec', 'qte_ar')
 
     search_fields = ['order__internal_id', 'pharmacy']
-    list_filter = ["order__pharmacy__name", 'product']
+    list_filter = ["order__pharmacy__name",]
 
     readonly_fields = ('created_at', 'updated_at', )
 
 
 @admin.register(Sales)
 class SalesAdmin(admin.ModelAdmin):
-    list_display = ("product", 'pharmacy__name', "quantity", "time")
+    list_display = ("product", "quantity", "time")
 
     search_fields = ["product"]
     readonly_fields = ('created_at', 'updated_at', )
-    list_filter = ["pharmacy__name"]

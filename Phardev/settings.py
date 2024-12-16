@@ -153,6 +153,7 @@ DATABASES = {
         "PASSWORD": DB_PASSWORD,
         "HOST": DB_HOST,
         "PORT": 5432,
+        # "OPTIONS": {"options": "-c search_path=dev"},
     }
 }
 

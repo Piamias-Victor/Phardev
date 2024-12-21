@@ -39,7 +39,7 @@ class GlobalProductAdmin(admin.ModelAdmin):
 class InternalProductAdmin(admin.ModelAdmin):
     # Variable or functions to show as columns
     list_display = ("internal_id", "pharmacy", "name", "code_13_ref", "TVA")
-    search_fields = ["code_13_ref__code_13_ref", 'name']
+    search_fields = ["code_13_ref__code_13_ref", 'name',  'internal_id']
     readonly_fields = ('created_at', 'updated_at', )
     list_filter = ["pharmacy__name",]
 
@@ -48,7 +48,7 @@ class InternalProductAdmin(admin.ModelAdmin):
 class InventorySnapshotAdmin(admin.ModelAdmin):
     # Variable or functions to show as columns
     list_display = ("product", "date", "stock", "price_with_tax", "weighted_average_price")
-    search_fields = ["product__name"]
+    search_fields = ["product__name",]
     ordering = ('product__name', '-date')
     list_filter = ["product__pharmacy__name",]
 

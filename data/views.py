@@ -28,8 +28,10 @@ def winpharma_create_product(request):
     try:
         process_product_winpharma(pharmacy, request.data)
     except Exception as e:
-        # Logguer l'erreur et collecter l'objet problématique
         print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
 
     return Response({
         "message": "Processing completed",
@@ -46,8 +48,10 @@ def winpharma_create_order(request):
     try:
         process_order_winpharma(pharmacy, request.data)
     except Exception as e:
-        # Logguer l'erreur et collecter l'objet problématique
         print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
 
     return Response({
         "message": "Processing completed",
@@ -64,8 +68,10 @@ def winpharma_create_sales(request):
     try:
         process_sales_winpharma(pharmacy, request.data)
     except Exception as e:
-        # Logguer l'erreur et collecter l'objet problématique
         print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
 
     return Response({
         "message": "Processing completed",
@@ -84,6 +90,9 @@ def dexter_create_stock(request):
         process_stock_dexter(pharmacy, request.data['produits'], orga['date_fichier'])
     except Exception as e:
         print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
 
     return Response({
         "message": "Processing completed",
@@ -103,6 +112,9 @@ def dexter_create_achat(request):
         process_achat_dexter(pharmacy, request.data['achats'])
     except Exception as e:
         print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
 
     return Response({
         "message": "Processing completed",
@@ -121,8 +133,10 @@ def dexter_create_vente(request):
     try:
         process_vente_dexter(pharmacy, request.data['ventes'])
     except Exception as e:
-        # Logguer l'erreur et collecter l'objet problématique
         print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
 
     return Response({
         "message": "Processing completed",

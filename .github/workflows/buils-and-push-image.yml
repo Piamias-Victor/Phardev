@@ -62,6 +62,9 @@ jobs:
           echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
           echo "ENV=PROD" >> .env
 
+      - name: Check current user
+        run: whoami
+
       - name: docker compose down
         run: docker compose down
 

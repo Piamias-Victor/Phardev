@@ -333,7 +333,7 @@ def process_sales_winpharma(pharmacy, data):
                 {gp.code_13_ref: gp for gp in GlobalProduct.objects.filter(code_13_ref__in=missing_refs)})
 
     # Préparer un ensemble des IDs des produits à traiter
-    product_ids = {obj['prodId'] for obj in data}
+    product_ids = {str(obj['prodId']) for obj in data}
 
     # Récupérer les produits existants pour la pharmacie
     existing_products = InternalProduct.objects.filter(pharmacy_id=pharmacy.id, internal_id__in=product_ids)

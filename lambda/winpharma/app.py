@@ -43,4 +43,4 @@ def handler(event, context, full_dump=False):
             print(f"Connexion Error: {e}")
 
 
-# handler(1, 1, True)
+handler(1, 1, True)

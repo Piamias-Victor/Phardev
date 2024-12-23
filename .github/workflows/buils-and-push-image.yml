@@ -26,15 +26,20 @@ jobs:
           echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
           echo "ENV=PROD" >> .env
 
-
       # Se connecter à GHCR
       - name: Authenticate with GitHub Container Registry
         run: echo ${{ secrets.PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      # Construire l'image Docker
-      - name: Build Docker image
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Build Docker image for ARM
+      - name: Build Docker Image for ARM64
         run: |
-          docker build -t ghcr.io/mysteriousbaboon/phardev:latest .
+          docker buildx build \
+            --platform linux/arm64 \
+            -t ghcr.io/mysteriousbaboon/phardev:latest \
+            --push .
 
       # Pousser l'image sur GHCR
       - name: Push Docker image to GHCR

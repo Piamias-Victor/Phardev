@@ -1,27 +1,33 @@
-# Utiliser l'image de base Ubuntu
-FROM ubuntu:latest
+# Utiliser l'image officielle Python 3.12 comme base
+FROM python:3.12-slim
 
-# Set the working directory
+# Définir le répertoire de travail
 WORKDIR /app
 
+# Copier le code source dans le conteneur
 COPY . /app
 COPY .env ./
 
-# Install any needed packages specified in requirements.txt
-RUN apt update && apt install -y software-properties-common
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN apt update && apt install -y build-essential libssl-dev libffi-dev python3.12 python3-pip python3.12-venv python3-dev cron
-RUN apt install nano
+# Installer les dépendances système nécessaires
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    cron \
+    nano \
+    --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
-RUN python3.12 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+# Mettre à jour pip et setuptools
+RUN pip install --upgrade pip setuptools
 
-RUN pip3 install --upgrade pip setuptools
-RUN pip3 install --no-cache-dir -r requirements.txt
+# Installer les dépendances Python
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Collect static files
-#RUN python3 manage.py collectstatic --noinput
+# Collecter les fichiers statiques (désactivé ici, décommentez si nécessaire)
+#RUN python manage.py collectstatic --noinput
 
-# Make port 8000 available to the world outside this container
+# Exposer le port 8000 pour l'accès au serveur
 EXPOSE 8000
+
+# Commande de démarrage du conteneur
 CMD ["daphne", "-u", "/tmp/daphne.sock", "-b", "0.0.0.0", "-p", "8000", "Phardev.asgi:application"]

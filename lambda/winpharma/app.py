@@ -17,8 +17,8 @@ SERVER_URL = os.environ.get('SERVER_URL')
 
 def handler(event, context, full_dump=False):
     endpoints = {
-        # 'produits': 'products',
-        # 'commandes': 'orders',
+        'produits': 'products',
+        'commandes': 'orders',
         'ventes': 'sales'
     }
 
@@ -29,8 +29,10 @@ def handler(event, context, full_dump=False):
             url = f"{url}?after={last_week_datetime}"
 
         try:
+            print(in_endpoint)
             response = requests.get(url, auth=HTTPBasicAuth(api_key, api_password))
-            print(response.json()[0])
+            print(len(response.json()))
+
             x = requests.post(f"{SERVER_URL}/winpharma/create/{out_endpoint}", json=response.json(),
                               headers={'Pharmacy-id': id_nat})
 
@@ -41,4 +43,4 @@ def handler(event, context, full_dump=False):
             print(f"Connexion Error: {e}")
 
 
-handler(1, 1, True)
+# handler(1, 1, True)

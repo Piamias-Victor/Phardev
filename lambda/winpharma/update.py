@@ -11,7 +11,7 @@ lambda_names = ['20b1ef4767d6160386bb4daa8ffac8f2', '817c337a912b93c2195e80283e5
                     '21b301d285606a9740e6ba8551e8d2a7', '904208ae52f690d61e342a4841764304',
                     '865ecc0d8dd4330a1e342a4841764304', '21ae4d39476607068123b91bdf385fc1',
                     'b30cc7edf420d76708034557df8638ba', '873ffb64f1921335f145c2e01644eeef',
-                    '01e5ead18aad2271195e80283e59bfdb', '21b301d285606a9740e6ba8551e8d2a7']
+                    '01e5ead18aad2271195e80283e59bfdb']
 
 ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
 SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')

@@ -322,7 +322,6 @@ def process_sales_winpharma(pharmacy, data):
      """
     # Collect unique product IDs from the data
 
-    # Récupérer et créer les `GlobalProduct` en une seule étape
     code_13_refs = {obj.get('code13Ref') for obj in data if obj.get('code13Ref')}
     with transaction.atomic():
         global_products_map = {gp.code_13_ref: gp for gp in GlobalProduct.objects.filter(code_13_ref__in=code_13_refs)}
@@ -348,7 +347,7 @@ def process_sales_winpharma(pharmacy, data):
     # Ajouter les produits existants à la liste (sans modification)
     for product in existing_products:
         internal_product_data.append({
-            'internal_id': product.internal_id,
+            'internal_id': str(product.internal_id),
             'pharmacy_id': pharmacy.id,
             'name': product.name,  # Garder le nom existant
             'code_13_ref': product.code_13_ref,  # Garder la référence 13
@@ -363,7 +362,7 @@ def process_sales_winpharma(pharmacy, data):
 
             internal_product_data.append({
                 'pharmacy_id': pharmacy.id,
-                'internal_id': obj['prodId'],
+                'internal_id': str(obj['prodId']),
                 'code_13_ref': global_product_instance,
                 'name': obj.get('nom', ''),  # Si 'nom' est vide, prendre une chaîne vide
                 'TVA': obj.get('TVA', 0.0),  # Prendre la TVA, sinon 0.0
@@ -378,11 +377,11 @@ def process_sales_winpharma(pharmacy, data):
     )
 
     # Créer un mapping des produits créés/mis à jour
-    products_map = {product.internal_id: product for product in products}
+    products_map = {str(product.internal_id): product for product in products}
 
     sales_data = []
     for obj in data:
-        snapshot = products_map[obj['prodId']].snapshot_history.order_by('-created_at').first()
+        snapshot = products_map[str(obj['prodId'])].snapshot_history.order_by('-created_at').first()
         if snapshot:
             sales_data.append({'product': snapshot, 'time': parse_date(obj['heure']), 'operator_code': obj['codeOperateur'],
                                'quantity': obj['qte']})

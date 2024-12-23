@@ -30,6 +30,7 @@ def handler(event, context, full_dump=False):
 
         try:
             print(in_endpoint)
+            print(url)
             response = requests.get(url, auth=HTTPBasicAuth(api_key, api_password))
             print(len(response.json()))
 
@@ -43,4 +44,4 @@ def handler(event, context, full_dump=False):
             print(f"Connexion Error: {e}")
 
 
-handler(1, 1, True)
+# handler(1, 1, True)

@@ -44,7 +44,6 @@ def winpharma_create_order(request):
     Endpoint for creating or updating orders linked to a pharmacy.
     """
     pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
-    Order.objects.all().delete()
     try:
         process_order_winpharma(pharmacy, request.data)
     except Exception as e:
@@ -64,7 +63,6 @@ def winpharma_create_sales(request):
     Endpoint for creating or updating orders linked to a pharmacy.
     """
     pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
-    Order.objects.all().delete()
     try:
         process_sales_winpharma(pharmacy, request.data)
     except Exception as e:

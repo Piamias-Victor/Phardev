@@ -343,6 +343,7 @@ def process_sales_winpharma(pharmacy, data):
 
     # Préparer les données des produits internes
     internal_product_data = []
+    seen_products = set()  # Set pour éviter les doublons de produits
 
     # Ajouter les produits existants à la liste (sans modification)
     for product in existing_products:
@@ -353,10 +354,11 @@ def process_sales_winpharma(pharmacy, data):
             'code_13_ref': product.code_13_ref,  # Garder la référence 13
             'TVA': product.TVA  # Garder la TVA
         })
+        seen_products.add(str(product.internal_id))
 
     # Ajouter les produits non existants avec 'empty' comme nom
     for obj in data:
-        if str(obj['prodId']) not in existing_product_ids:
+        if str(obj['prodId']) not in seen_products:
             code_13_ref = obj.get('code13Ref') or None
             global_product_instance = global_products_map.get(code_13_ref)
 
@@ -367,28 +369,53 @@ def process_sales_winpharma(pharmacy, data):
                 'name': obj.get('nom', ''),  # Si 'nom' est vide, prendre une chaîne vide
                 'TVA': obj.get('TVA', 0.0),  # Prendre la TVA, sinon 0.0
             })
+            seen_products.add(str(obj['prodId']))  # Marquer comme vu
 
     # Créer ou mettre à jour les produits internes
-    products = bulk_process(
-        model=InternalProduct,
-        data=internal_product_data,
-        unique_fields=['pharmacy_id', 'internal_id'],
-        update_fields=['code_13_ref', 'name', 'TVA']
-    )
+    try:
+        products = bulk_process(
+            model=InternalProduct,
+            data=internal_product_data,
+            unique_fields=['pharmacy_id', 'internal_id'],
+            update_fields=['code_13_ref', 'name', 'TVA']
+        )
+    except Exception as e:
+        logger.error(f"Erreur lors du traitement des produits internes: {e}")
+        raise
 
     # Créer un mapping des produits créés/mis à jour
     products_map = {str(product.internal_id): product for product in products}
 
     sales_data = []
+    sales_seen = set()  # Set pour éviter les doublons de ventes
+
     for obj in data:
-        snapshot = products_map[str(obj['prodId'])].snapshot_history.order_by('-created_at').first()
+        product_id = str(obj['prodId'])
+        snapshot = products_map.get(product_id).snapshot_history.order_by('-created_at').first()
+
         if snapshot:
-            sales_data.append({'product': snapshot, 'time': parse_date(obj['heure']), 'operator_code': obj['codeOperateur'],
-                               'quantity': obj['qte']})
+            sale_key = (snapshot.id, parse_date(obj['heure']), obj['codeOperateur'])  # Clé unique pour la vente
+
+            # Vérifier si cette vente existe déjà
+            if sale_key in sales_seen:
+                continue  # Ignorer si la vente est déjà présente
+
+            sales_seen.add(sale_key)
+
+            sales_data.append({
+                'product': snapshot,
+                'time': parse_date(obj['heure']),
+                'operator_code': obj['codeOperateur'],
+                'quantity': obj['qte']
+            })
 
     # Process sales in chunks
-    bulk_process(model=Sales, data=sales_data, unique_fields=['product', 'time', 'operator_code'],
-                 update_fields=['quantity'])
+    try:
+        bulk_process(model=Sales, data=sales_data, unique_fields=['product', 'time', 'operator_code'],
+                     update_fields=['quantity'])
+    except Exception as e:
+        logger.error(f"Erreur lors du traitement des ventes: {e}")
+        raise
 
 
 def process_stock_dexter(pharmacy, data, date):

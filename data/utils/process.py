@@ -356,7 +356,7 @@ def process_sales_winpharma(pharmacy, data):
 
     # Ajouter les produits non existants avec 'empty' comme nom
     for obj in data:
-        if obj['prodId'] not in existing_product_ids:
+        if str(obj['prodId']) not in existing_product_ids:
             code_13_ref = obj.get('code13Ref') or None
             global_product_instance = global_products_map.get(code_13_ref)
 

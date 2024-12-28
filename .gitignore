@@ -10,7 +10,6 @@ venv
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-*.pkl
-*.faiss
 temp
 /scripts/CODES PRODUITS OFFICIELS SANS NUMEROTATION 2.xlsx
+*.csv

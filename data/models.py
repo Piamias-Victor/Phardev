@@ -74,7 +74,7 @@ class InternalProduct(models.Model):
     TVA = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.internal_id} {self.name}"
 
     class Meta:
         constraints = [

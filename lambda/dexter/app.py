@@ -21,7 +21,7 @@ bucket_name = 'phardev'
 subfolder_prefix = 'Dexter/'
 
 
-def handler(event, context, full_dump=False):
+def handler(event, context):
     s3_client = boto3.client('s3')
     bucket_name = 'phardev'
     subfolder_prefix = 'Dexter/'
@@ -47,7 +47,6 @@ def handler(event, context, full_dump=False):
                         file_type = parts[0].lower()  # Stock, Achat, Vente
                         cip_code = parts[1]  # Code CIP Pharmagest
                         gers_code = parts[2]  # Code GERS
-                        start_date_str = parts[4]  # Date de début de la période
                         end_date_str = parts[5]  # Date de fin de la période
 
                         # Convertir les dates
@@ -99,4 +98,4 @@ def handler(event, context, full_dump=False):
         }
 
 
-# handler(1, 1, True)
+handler(1, 1)

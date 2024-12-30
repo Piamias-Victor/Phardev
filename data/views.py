@@ -1,19 +1,9 @@
-import logging
 import traceback
-import json
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.http import JsonResponse
 
-from rest_framework import status
-from django.utils import timezone
-from tqdm import tqdm
-from data.models import (GlobalProduct, InternalProduct, InventorySnapshot, Pharmacy, Order,
-                         Sales,
-                         Supplier, ProductOrder)
-from django.db import transaction
-from django.db.models import Model
+from data.models import (Pharmacy)
 from data.utils.process import (process_product_winpharma, process_order_winpharma, process_sales_winpharma,
                                 process_stock_dexter, process_achat_dexter, process_vente_dexter)
 
@@ -60,7 +50,7 @@ def winpharma_create_order(request):
 @api_view(['POST'])
 def winpharma_create_sales(request):
     """
-    Endpoint for creating or updating orders linked to a pharmacy.
+    Endpoint for creating or updating sales linked to a pharmacy.
     """
     pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
     try:
@@ -100,7 +90,7 @@ def dexter_create_stock(request):
 @api_view(['POST'])
 def dexter_create_achat(request):
     """
-    Endpoint for creating or updating products linked to a pharmacy.
+    Endpoint for creating or updating orders linked to a pharmacy.
     """
     orga = request.data['organization']
     pharmacy, _ = Pharmacy.objects.update_or_create(id_nat=orga['id_national'],
@@ -122,7 +112,7 @@ def dexter_create_achat(request):
 @api_view(['POST'])
 def dexter_create_vente(request):
     """
-    Endpoint for creating or updating products linked to a pharmacy.
+    Endpoint for creating or updating sales linked to a pharmacy.
     """
     orga = request.data['organization']
     pharmacy, _ = Pharmacy.objects.update_or_create(id_nat=orga['id_national'],

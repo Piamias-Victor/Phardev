@@ -1,9 +1,11 @@
 import os
+import re
+from decimal import Decimal, InvalidOperation
+
+import django
 import pandas as pd
 from tqdm import tqdm
-from decimal import Decimal, InvalidOperation
-import django
-import re
+
 from data.models import GlobalProduct
 
 # Configuration Django

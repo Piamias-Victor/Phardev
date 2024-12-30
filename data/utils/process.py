@@ -1,15 +1,18 @@
-import traceback
-from datetime import datetime, date
+from datetime import date
 from decimal import Decimal, ROUND_HALF_UP
 from uuid import UUID
 import logging
-from decimal import Decimal, ROUND_HALF_UP
-from django.db.models import OuterRef, Subquery, Max, F
-from datetime import datetime
-from django.db import transaction
-from django.db.models import OuterRef, Subquery
 
-from data.models import GlobalProduct, InternalProduct, ProductOrder, InventorySnapshot, Supplier, Order, Sales, InventorySnapshot
+import dateutil.parser
+from django.db import transaction
+from django.db.models import OuterRef, Subquery, F, Window
+from django.db.models.functions import RowNumber
+from django.utils import timezone
+from tqdm import tqdm
+import pytz
+
+from data.models import GlobalProduct, InternalProduct, ProductOrder, Supplier, Order, Sales, InventorySnapshot
+
 logger = logging.getLogger(__name__)
 
 
@@ -20,106 +23,93 @@ def chunked_iterable(iterable, chunk_size):
 
 def parse_date(date_str, is_datetime=True):
     """
-    Converts a date string into a datetime object or returns None if the string is empty or poorly formatted.
+    Converts a date string into a timezone-aware datetime object or a date object.
+
+    Args:
+        date_str (str): The date string to parse.
+        is_datetime (bool): Whether to parse as datetime (True) or date (False).
+
+    Returns:
+        datetime.datetime or datetime.date or None: Parsed datetime/date object or None if parsing fails.
     """
     if not date_str:
         return None
 
-    formats = ["%Y-%m-%dT%H:%M:%S.%f",  # ISO 8601 with microseconds
-               "%Y-%m-%dT%H:%M:%S",  # ISO 8601 without microseconds
-               "%Y-%m-%d %H:%M:%S.%f",  # Space separator with microseconds
-               "%Y-%m-%d %H:%M:%S",  # Space separator without microseconds
-               "%Y-%m-%d"  # Simplified date format
-               ]
+    try:
+        parsed_date = dateutil.parser.parse(date_str)
 
-    for fmt in formats:
-        try:
-            if is_datetime:
-                return datetime.strptime(date_str, fmt).strftime("%Y-%m-%d %H:%M:%S.%f")
+        if is_datetime:
+            if timezone.is_naive(parsed_date):
+                parsed_date = timezone.make_aware(parsed_date, pytz.UTC)
             else:
-                return datetime.strptime(date_str, fmt).date()
-        except ValueError:
-            continue  # Try the next format
+                parsed_date = parsed_date.astimezone(pytz.UTC)
+            return parsed_date
 
-    # If all formats fail, return None
-    return None
+        else:
+            return parsed_date.date()
+    except (ValueError, TypeError) as e:
+        logger.warning(f"Error parsing date '{date_str}': {e}")
+        return None
 
 
 def bulk_process(model, data, unique_fields, update_fields, chunk_size=1000):
     """
-    Processes a batch of objects to create or update them in the database efficiently.
+    Efficiently creates or updates a batch of objects in the database.
 
-    :param model: The Django model (e.g., MyModel)
-    :param data: List of dictionaries representing the objects to be processed
-    :param unique_fields: List of fields that uniquely identify an object
-    :param update_fields: List of fields to update if the object already exists
-    :param chunk_size: Size of the chunks to process at a time
-    :return: A combined list of created, updated, and unchanged objects
+    Args:
+        model: Django model to operate on (e.g., MyModel).
+        data: List of dictionaries representing the objects to process.
+        unique_fields: Fields that uniquely identify each object.
+        update_fields: Fields to update for existing objects.
+        chunk_size: Number of objects to process per batch (default: 1000).
+
+    Returns:
+        List of all created and updated objects.
+
+    Raises:
+        ValueError: If the number of processed objects doesn't match the input data.
     """
-
-    # Prepare filters to find existing objects in the database
-    filters = {}
-    for field in unique_fields:
-        field_values = [item[field] for item in data]
-        filters[f"{field}__in"] = field_values
+    # Build filters to identify existing objects
+    filters = {
+        f"{field}__in": [item[field] for item in data]
+        for field in unique_fields
+    }
 
     def normalize_value(value):
-        """Normalize values for consistent comparisons."""
+        """Convert values to a consistent format for comparison."""
         if isinstance(value, UUID):
             return str(value)
         elif isinstance(value, Decimal):
             return round(value, 2)
-        return str(value)  # Convertir tous les autres types en string
+        return str(value)
 
-    # Fetch all existing objects based on the filters
+    # Retrieve existing objects based on unique fields
     existing_objects = model.objects.filter(**filters)
 
-    # Map existing objects using their unique key
-    existing_objects_map = {tuple(normalize_value(getattr(obj, field)) for field in unique_fields): obj for obj in
-                            existing_objects}
+    # Create a mapping of unique keys to existing objects
+    existing_objects_map = {
+        tuple(normalize_value(getattr(obj, field)) for field in unique_fields): obj
+        for obj in existing_objects
+    }
 
-    # Separate objects into categories: to update, to create, or unchanged
     objects_to_update = []
     objects_to_create = []
-    objects_unchanged = []
 
-    for item in data:
-        # Generate a lookup key for the current item
+    for item in tqdm(data, desc=f"Processing data {model}"):
+        # Generate a unique key for the current item
         lookup_key = tuple(normalize_value(item.get(field)) for field in unique_fields)
-
         if lookup_key in existing_objects_map:
-            # Existing object: check for changes and update if needed
-            existing_obj = existing_objects_map[lookup_key]
-            update_needed = False
-
-            for field in update_fields:
-                current_value = getattr(existing_obj, field)
-                new_value = item[field]
-
-                if isinstance(current_value, Decimal):
-                    # Compare decimals with precision rounding
-                    current_value = current_value.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-                    new_value = Decimal(new_value).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-
-                if current_value != new_value:
-                    setattr(existing_obj, field, new_value)
-                    update_needed = True
-
-            if update_needed:
-                objects_to_update.append(existing_obj)
-            else:
-                objects_unchanged.append(existing_obj)
+            objects_to_update.append(existing_objects_map[lookup_key])
         else:
-            # New object: create an instance
             objects_to_create.append(model(**item))
 
-    all_objects = []  # Combined list of all processed objects
+    all_objects = []
 
     # Bulk create new objects in chunks
     for chunk in chunked_iterable(objects_to_create, chunk_size):
         with transaction.atomic():
-            created_objects_chunk = model.objects.bulk_create(chunk)
-            all_objects.extend(created_objects_chunk)
+            created = model.objects.bulk_create(chunk)
+            all_objects.extend(created)
 
     # Bulk update existing objects in chunks
     for chunk in chunked_iterable(objects_to_update, chunk_size):
@@ -127,14 +117,10 @@ def bulk_process(model, data, unique_fields, update_fields, chunk_size=1000):
             model.objects.bulk_update(chunk, fields=update_fields)
             all_objects.extend(chunk)
 
-    # Add unchanged objects to the final list
-    all_objects.extend(objects_unchanged)
-
-    # Ensure data integrity: the number of processed objects should match input data
     if len(all_objects) != len(data):
         raise ValueError("Mismatch between input data and processed objects count.")
 
-    print(f"Created: {len(objects_to_create)}, Updated: {len(objects_to_update)}, Unchanged: {len(objects_unchanged)}")
+    print(f"Created: {len(objects_to_create)}, Updated: {len(objects_to_update)}")
 
     return all_objects
 
@@ -143,154 +129,284 @@ def process_product_winpharma(pharmacy, data):
     """
     Process WinPharma product data to create or update global products, internal products, and inventory snapshots.
 
-    :param pharmacy: Pharmacy instance associated with the data
-    :param data: List of dictionaries representing product data
+    Args:
+        pharmacy: Pharmacy instance associated with the data.
+        data: List of dictionaries representing product data.
+
+    Returns:
+        A dictionary containing lists of created products and snapshots.
     """
+    preprocessed_data = []
+    for obj in data:
+        try:
+            code_13_ref = obj.get('code13Ref') or None
+            nom = obj.get('nom', '')
+            tva = float(obj.get('TVA', 0.0))
+            stock = int(obj.get('stock', 0))
+            prix_ttc = Decimal(obj.get('prixTtc', 0)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+            prix_mp = Decimal(obj.get('prixMP', 0)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
 
-    # Collect unique `GlobalProduct` references
-    code_13_refs = {obj.get('code13Ref') for obj in data if obj.get('code13Ref')}
+            # Cap prices to a maximum value
+            prix_ttc = min(prix_ttc, Decimal('99999999.99'))
+            prix_mp = min(prix_mp, Decimal('99999999.99'))
 
-    # Retrieve or create missing `GlobalProduct` entries
+            preprocessed_data.append({
+                'id': str(obj.get('id')),
+                'code13Ref': code_13_ref,
+                'nom': nom,
+                'TVA': tva,
+                'stock': stock,
+                'prixTtc': prix_ttc,
+                'prixMP': prix_mp,
+            })
+        except (ValueError, TypeError) as e:
+            logger.warning(f"Error preprocessing data for product {obj.get('id', 'unknown')}: {e}")
+            continue
+
+    # Collect unique GlobalProduct references
+    code_13_refs = {obj['code13Ref'] for obj in preprocessed_data if obj['code13Ref']}
+
+    # Retrieve existing GlobalProduct instances
     with transaction.atomic():
-        global_products_map = {gp.code_13_ref: gp for gp in GlobalProduct.objects.filter(code_13_ref__in=code_13_refs)}
+        existing_global_products = GlobalProduct.objects.filter(code_13_ref__in=code_13_refs).only('code_13_ref', 'name')
+        global_products_map = {gp.code_13_ref: gp for gp in existing_global_products}
 
+        # Identify missing references and create them
         missing_refs = code_13_refs - global_products_map.keys()
         if missing_refs:
             GlobalProduct.objects.bulk_create(
-                [GlobalProduct(code_13_ref=ref, name='Default Name') for ref in missing_refs])
-            global_products_map.update(
-                {gp.code_13_ref: gp for gp in GlobalProduct.objects.filter(code_13_ref__in=missing_refs)})
+                [GlobalProduct(code_13_ref=ref, name='Default Name') for ref in missing_refs]
+            )
+            # Update the map with newly created GlobalProducts
+            new_global_products = GlobalProduct.objects.filter(code_13_ref__in=missing_refs)
+            global_products_map.update({gp.code_13_ref: gp for gp in new_global_products})
 
-    # Prepare data for `InternalProduct`
-    internal_products_data = []
-    for obj in data:
-        code_13_ref = obj.get('code13Ref') or None
-        global_product_instance = global_products_map.get(code_13_ref)
+    # Prepare data for InternalProduct
+    internal_products_data = [
+        {
+            'pharmacy_id': pharmacy.id,
+            'internal_id': obj['id'],
+            'code_13_ref': global_products_map.get(obj['code13Ref']),
+            'name': obj['nom'],
+            'TVA': obj['TVA'],
+        }
+        for obj in preprocessed_data
+    ]
 
-        internal_products_data.append(
-            {'pharmacy_id': pharmacy.id, 'internal_id': obj['id'], 'code_13_ref': global_product_instance,
-             'name': obj.get('nom', ''), 'TVA': obj.get('TVA', 0.0), })
+    # Create or update InternalProduct instances
+    products = bulk_process(
+        model=InternalProduct,
+        data=internal_products_data,
+        unique_fields=['pharmacy_id', 'internal_id'],
+        update_fields=['code_13_ref', 'name', 'TVA']
+    )
 
-    # Create or update `InternalProduct`
-    products = bulk_process(model=InternalProduct, data=internal_products_data,
-                            unique_fields=['pharmacy_id', 'internal_id'], update_fields=['code_13_ref', 'name', 'TVA'])
+    # Map InternalProduct instances by internal_id
+    products_map = {str(product.internal_id): product for product in products}
+    product_ids = [product.id for product in products]
 
-    # Create a mapping of `InternalProduct` by their IDs
-    products_map = {product.internal_id: product for product in products}
+    # Retrieve the latest InventorySnapshot for each product
+    latest_snapshots = InventorySnapshot.objects.filter(product_id__in=product_ids).annotate(
+        row_number=Window(
+            expression=RowNumber(),
+            partition_by=F('product_id'),
+            order_by=F('date').desc()
+        )
+    ).filter(row_number=1).values('product_id', 'stock', 'price_with_tax', 'weighted_average_price')
+    latest_snapshots_map = {snapshot['product_id']: snapshot for snapshot in latest_snapshots}
 
-    # Retrieve the latest `InventorySnapshot` for each product
-    latest_snapshots = InventorySnapshot.objects.filter(product_id__in=[product.id for product in products]).values(
-        'product_id', 'product__internal_id').annotate(latest_date=Subquery(
-        InventorySnapshot.objects.filter(product_id=OuterRef('product_id')).order_by('-date').values('date')[:1]),
-        latest_stock=Subquery(
-            InventorySnapshot.objects.filter(product_id=OuterRef('product_id')).order_by('-date').values('stock')[:1]),
-        latest_price_with_tax=Subquery(
-            InventorySnapshot.objects.filter(product_id=OuterRef('product_id')).order_by('-date').values(
-                'price_with_tax')[:1]), latest_weighted_average_price=Subquery(
-            InventorySnapshot.objects.filter(product_id=OuterRef('product_id')).order_by('-date').values(
-                'weighted_average_price')[:1]))
+    # Prepare InventorySnapshot data
+    inventory_snapshots_to_create = []
+    for obj in preprocessed_data:
+        internal_id = obj['id']
+        product = products_map.get(internal_id)
+        if not product:
+            continue
 
-    # Map latest snapshots by `InternalProduct` ID
-    latest_snapshots_map = {snapshot['product__internal_id']: snapshot for snapshot in latest_snapshots}
+        last_snapshot = latest_snapshots_map.get(product.id)
+        needs_update = (
+            not last_snapshot or
+            last_snapshot['stock'] != obj['stock'] or
+            last_snapshot['price_with_tax'] != obj['prixTtc'] or
+            last_snapshot['weighted_average_price'] != obj['prixMP']
+        )
 
-    # Prepare data for `InventorySnapshot`
-    inventory_snapshots_data = []
-    for obj in data:
-        stock = int(obj.get('stock', 0))
-        price_with_tax = Decimal(obj.get('prixTtc', 0)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-        weighted_average_price = Decimal(obj.get('prixMP', 0)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        if needs_update:
+            inventory_snapshots_to_create.append({
+                'product_id': product.id,
+                'stock': obj['stock'],
+                'price_with_tax': obj['prixTtc'],
+                'weighted_average_price': obj['prixMP'],
+                'date': date.today()
+            })
 
-        # Cap prices to a maximum value
-        price_with_tax = min(price_with_tax, Decimal('99999999.99'))
-        weighted_average_price = min(weighted_average_price, Decimal('99999999.99'))
+    # Bulk create InventorySnapshot instances
+    if inventory_snapshots_to_create:
+        bulk_process(
+            model=InventorySnapshot,
+            data=inventory_snapshots_to_create,
+            unique_fields=['product_id', 'date'],
+            update_fields=['stock', 'price_with_tax', 'weighted_average_price']
+        )
 
-        last_snapshot = latest_snapshots_map.get(obj['id'])
-
-        # Check for changes against the latest snapshot
-        if not last_snapshot or (
-                last_snapshot['latest_stock'] != stock or last_snapshot['latest_price_with_tax'] != price_with_tax or
-                last_snapshot['latest_weighted_average_price'] != weighted_average_price):
-            inventory_snapshots_data.append(
-                {'product_id': products_map[obj['id']].id, 'stock': stock, 'price_with_tax': price_with_tax,
-                 'weighted_average_price': weighted_average_price, 'date': date.today()})
-
-    # Create or update `InventorySnapshot`
-    bulk_process(model=InventorySnapshot, data=inventory_snapshots_data, unique_fields=['product_id', 'date'],
-                 update_fields=['stock', 'price_with_tax', 'weighted_average_price'])
+    return {
+        "created_products": list(products_map.values()),
+        "created_snapshots": inventory_snapshots_to_create
+    }
 
 
 def process_order_winpharma(pharmacy, data):
     """
     Process WinPharma order data to create or update suppliers, products, and orders in the database.
 
-    :param pharmacy: Pharmacy instance associated with the data
-    :param data: List of dictionaries representing order data
-    """
+    Args:
+        pharmacy: Pharmacy instance associated with the data.
+        data: List of dictionaries representing order data.
 
-    # Collect unique supplier codes and IDs
+    Returns:
+        None
+    """
+    preprocessed_data = []
+    for obj in data:
+        try:
+            # Clean and validate order data
+            id_cmd = obj.get('idCmd')
+            if isinstance(id_cmd, str):
+                internal_id = int(id_cmd.split('-')[0])
+            else:
+                internal_id = int(id_cmd)
+
+            code_fourn = obj.get('codeFourn')
+            if not code_fourn:
+                raise ValueError("Missing 'codeFourn'")
+
+            nom_fourn = obj.get('nomFourn', obj.get('code_supplier', ''))
+
+            etape = obj.get('etape', '')
+            envoi = parse_date(obj.get('envoi'))
+            date_livraison = parse_date(obj.get('dateLivraison'), False)
+
+            produits = obj.get('produits', [])
+            if not isinstance(produits, list):
+                raise TypeError("'produits' should be a list")
+
+            cleaned_produits = []
+            for line in produits:
+                try:
+                    prod_id = line['prodId']
+                    qte = int(line.get('qte', 0))
+                    qte_ug = int(line.get('qteUG', 0))
+                    qte_a = int(line.get('qteA', 0))
+                    qte_r = int(line.get('qteR', 0))
+                    qte_ar = int(line.get('qteAReceptionner', 0))
+                    qte_ec = int(line.get('qteEC', 0))
+
+                    cleaned_produits.append({
+                        'prodId': prod_id,
+                        'qte': qte,
+                        'qteUG': qte_ug,
+                        'qteA': qte_a,
+                        'qteR': qte_r,
+                        'qteAReceptionner': qte_ar,
+                        'qteEC': qte_ec
+                    })
+                except (ValueError, TypeError, KeyError) as e:
+                    logger.warning(f"Error preprocessing product in order {id_cmd}: {e}")
+                    continue
+
+            preprocessed_data.append({
+                'idCmd': internal_id,
+                'codeFourn': code_fourn,
+                'nomFourn': nom_fourn,
+                'etape': etape,
+                'envoi': envoi,
+                'dateLivraison': date_livraison,
+                'produits': cleaned_produits
+            })
+        except (ValueError, TypeError) as e:
+            logger.warning(f"Error preprocessing order {obj.get('idCmd', 'unknown')}: {e}")
+            continue
+
+    # Collect unique supplier codes and prepare supplier data
     supplier_data = []
     seen_suppliers = set()
 
-    for obj in data:
-        supplier_name = obj.get('nomFourn', obj.get('code_supplier', ''))
+    for obj in preprocessed_data:
         supplier_key = (pharmacy.id, obj['codeFourn'])
-
         if supplier_key not in seen_suppliers:
-            supplier_data.append({'pharmacy_id': pharmacy.id, 'code_supplier': obj['codeFourn'], 'name': supplier_name})
+            supplier_data.append({
+                'pharmacy_id': pharmacy.id,
+                'code_supplier': obj['codeFourn'],
+                'name': obj['nomFourn']
+            })
             seen_suppliers.add(supplier_key)
 
     # Create or update suppliers
-    suppliers = bulk_process(model=Supplier, data=supplier_data, unique_fields=['pharmacy_id', 'code_supplier'],
-                             update_fields=['name'])
+    suppliers = bulk_process(
+        model=Supplier,
+        data=supplier_data,
+        unique_fields=['pharmacy_id', 'code_supplier'],
+        update_fields=['name']
+    )
 
-    # Create a mapping of suppliers by their codes
+    # Map suppliers by their codes for easy access
     suppliers_map = {supplier.code_supplier: supplier for supplier in suppliers}
 
     # Extract all product IDs from the order lines
-    product_ids = {line['prodId'] for obj in data for line in obj['produits']}
+    product_ids = {line['prodId'] for obj in data for line in obj.get('produits', [])}
 
-    # Récupérer les IDs des produits existants pour la pharmacie
-    existing_products = InternalProduct.objects.filter(pharmacy_id=pharmacy.id, internal_id__in=product_ids)
+    # Retrieve existing InternalProduct instances for the pharmacy
+    existing_products = InternalProduct.objects.filter(
+        pharmacy_id=pharmacy.id,
+        internal_id__in=product_ids
+    )
 
-    # Préparer les données des produits internes
-    internal_product_data = []
-
-    # Pour les produits existants, conserver les valeurs sans modification
-    for product in existing_products:
-        internal_product_data.append({
+    # Prepare data for InternalProduct
+    internal_product_data = [
+        {
             'internal_id': product.internal_id,
             'pharmacy_id': pharmacy.id,
-            'name': product.name  # Garder le nom existant
-        })
+            'name': product.name  # Retain existing name
+        }
+        for product in existing_products
+    ]
 
-    # Pour les produits non existants, attribuer 'empty' comme nom
-    new_product_ids = set(product_ids) - set(existing_products.values_list('internal_id', flat=True))
-
-    for product_id in new_product_ids:
-        internal_product_data.append({
+    # Identify and prepare data for new products
+    new_product_ids = product_ids - set(existing_products.values_list('internal_id', flat=True))
+    internal_product_data.extend([
+        {
             'internal_id': product_id,
             'pharmacy_id': pharmacy.id,
-            'name': 'empty'  # Attribuer 'empty' pour les nouveaux produits
-        })
+            'name': 'empty'  # Assign default name to new products
+        }
+        for product_id in new_product_ids
+    ])
 
-    # Create or update internal products
-    internal_products = bulk_process(model=InternalProduct, data=internal_product_data,
-                                     unique_fields=['pharmacy_id', 'internal_id'],
-                                     update_fields=['name'])
+    # Create or update InternalProduct instances
+    products = bulk_process(
+        model=InternalProduct,
+        data=internal_product_data,
+        unique_fields=['pharmacy_id', 'internal_id'],
+        update_fields=['name']
+    )
 
-    # Create a mapping of internal products by their IDs
-    internal_products_map = {product.internal_id: product for product in internal_products}
+    # Map InternalProduct instances by their internal_id for easy access
+    internal_products_map = {product.internal_id: product for product in products}
 
-    # Prepare order data
-    order_data = []
-    for obj in data:
-        internal_id = int(obj['idCmd'].split('-')[0]) if isinstance(obj['idCmd'], str) else obj['idCmd']
-        order_data.append(
-            {'pharmacy_id': pharmacy.id, 'supplier_id': suppliers_map[obj['codeFourn']].id, 'internal_id': internal_id,
-             'step': obj.get('etape'), 'sent_date': parse_date(obj.get('envoi')),
-             'delivery_date': parse_date(obj.get('dateLivraison'), False), })
+    # Prepare order data for bulk processing
+    order_data = [
+        {
+            'pharmacy_id': pharmacy.id,
+            'supplier_id': suppliers_map[obj['codeFourn']].id,
+            'internal_id': obj['idCmd'],
+            'step': obj['etape'],
+            'sent_date': obj['envoi'],
+            'delivery_date': obj['dateLivraison'],
+        }
+        for obj in preprocessed_data
+    ]
 
-    # Create or update orders
+    # Create or update Order instances
     orders = bulk_process(
         model=Order,
         data=order_data,
@@ -298,80 +414,131 @@ def process_order_winpharma(pharmacy, data):
         update_fields=['supplier_id', 'step', 'sent_date', 'delivery_date']
     )
 
-    # Create a mapping of orders by their internal IDs
+    # Map Order instances by their internal_id for easy access
     order_map = {order.internal_id: order for order in orders}
 
-    # Prepare product-order mapping data
+    # Prepare ProductOrder data for bulk processing
     product_order_data = []
-    for obj in data:
-        internal_id = int(obj['idCmd'].split('-')[0]) if isinstance(obj['idCmd'], str) else obj['idCmd']
+    for obj in preprocessed_data:
+        internal_id = obj['idCmd']
         for line in obj['produits']:
-            product_order_data.append(
-                {'product': internal_products_map[line['prodId']], 'order': order_map[internal_id], 'qte': line['qte'],
-                 'qte_ug': line['qteUG'], 'qte_a': line['qteA'], 'qte_r': line['qteR'],
-                 'qte_ar': line['qteAReceptionner'], 'qte_ec': line['qteEC']})
+            product = internal_products_map.get(line['prodId'])
+            order = order_map.get(internal_id)
+            if not product or not order:
+                continue
 
-    # Create or update product orders
-    bulk_process(model=ProductOrder, data=product_order_data, unique_fields=['product', 'order'],
-                 update_fields=['qte', 'qte_r', 'qte_a', 'qte_ug', 'qte_ec', 'qte_ar'])
+            product_order_data.append({
+                'product': product,
+                'order': order,
+                'qte': line['qte'],
+                'qte_ug': line['qteUG'],
+                'qte_a': line['qteA'],
+                'qte_r': line['qteR'],
+                'qte_ar': line['qteAReceptionner'],
+                'qte_ec': line['qteEC']
+            })
+
+    # Create or update ProductOrder instances
+    bulk_process(
+        model=ProductOrder,
+        data=product_order_data,
+        unique_fields=['product', 'order'],
+        update_fields=['qte', 'qte_r', 'qte_a', 'qte_ug', 'qte_ec', 'qte_ar']
+    )
 
 
 def process_sales_winpharma(pharmacy, data):
     """
-     Process sales records for a pharmacy and its products.
-     """
-    # Collect unique product IDs from the data
+    Process sales records for a pharmacy and its products.
 
-    code_13_refs = {obj.get('code13Ref') for obj in data if obj.get('code13Ref')}
+    Args:
+        pharmacy: Pharmacy instance associated with the data.
+        data: List of dictionaries representing sales data.
+
+    Returns:
+        None
+    """
+    preprocessed_data = []
+    for obj in data:
+        try:
+            # Clean and validate sales data
+            code_13_ref = obj.get('code13Ref', None)
+
+            prod_id = str(obj['prodId'])
+            heure = parse_date(obj.get('heure'))
+            code_operateur = obj.get('codeOperateur')
+            qte = int(obj.get('qte', 0))
+
+            preprocessed_data.append({
+                'code13Ref': code_13_ref,
+                'prodId': prod_id,
+                'heure': heure,
+                'codeOperateur': code_operateur,
+                'qte': qte
+            })
+        except (ValueError, TypeError, KeyError) as e:
+            logger.warning(f"Error preprocessing sale record {obj.get('prodId', 'unknown')}: {e}")
+            continue
+
+    # Collect unique product references
+    code_13_refs = {obj['code13Ref'] for obj in preprocessed_data if obj['code13Ref']}
+
     with transaction.atomic():
-        global_products_map = {gp.code_13_ref: gp for gp in GlobalProduct.objects.filter(code_13_ref__in=code_13_refs)}
+        # Retrieve existing GlobalProduct instances
+        global_products_map = {
+            gp.code_13_ref: gp for gp in GlobalProduct.objects.filter(code_13_ref__in=code_13_refs).only('code_13_ref', 'name')
+        }
+
+        # Identify missing references and create them
         missing_refs = code_13_refs - global_products_map.keys()
         if missing_refs:
             GlobalProduct.objects.bulk_create(
-                [GlobalProduct(code_13_ref=ref, name='Default Name') for ref in missing_refs])
-            global_products_map.update(
-                {gp.code_13_ref: gp for gp in GlobalProduct.objects.filter(code_13_ref__in=missing_refs)})
+                [GlobalProduct(code_13_ref=ref, name='Default Name') for ref in missing_refs]
+            )
+            # Update the map with newly created GlobalProducts
+            new_global_products = GlobalProduct.objects.filter(code_13_ref__in=missing_refs).only('code_13_ref', 'name')
+            global_products_map.update({gp.code_13_ref: gp for gp in new_global_products})
 
-    # Préparer un ensemble des IDs des produits à traiter
-    product_ids = {str(obj['prodId']) for obj in data}
+    # Prepare a set of product IDs to process
+    product_ids = {obj['prodId'] for obj in preprocessed_data}
 
-    # Récupérer les produits existants pour la pharmacie
-    existing_products = InternalProduct.objects.filter(pharmacy_id=pharmacy.id, internal_id__in=product_ids)
+    # Retrieve existing InternalProduct instances for the pharmacy
+    existing_products = InternalProduct.objects.filter(
+        pharmacy_id=pharmacy.id,
+        internal_id__in=product_ids
+    ).only('internal_id', 'name', 'code_13_ref', 'TVA')
 
-    # Récupérer les IDs des produits existants
-    existing_product_ids = set(existing_products.values_list('internal_id', flat=True))
-
-    # Préparer les données des produits internes
+    # Prepare data for InternalProduct
     internal_product_data = []
-    seen_products = set()  # Set pour éviter les doublons de produits
+    seen_products = set()  # Set to avoid duplicate products
 
-    # Ajouter les produits existants à la liste (sans modification)
+    # Add existing products to the list (without modification)
     for product in existing_products:
         internal_product_data.append({
             'internal_id': str(product.internal_id),
             'pharmacy_id': pharmacy.id,
-            'name': product.name,  # Garder le nom existant
-            'code_13_ref': product.code_13_ref,  # Garder la référence 13
-            'TVA': product.TVA  # Garder la TVA
+            'name': product.name,  # Retain existing name
+            'code_13_ref': product.code_13_ref,  # Retain code_13_ref
+            'TVA': product.TVA  # Retain TVA
         })
         seen_products.add(str(product.internal_id))
 
-    # Ajouter les produits non existants avec 'empty' comme nom
-    for obj in data:
-        if str(obj['prodId']) not in seen_products:
+    # Add non-existing products with 'empty' as the name
+    for obj in preprocessed_data:
+        if obj['prodId'] not in seen_products:
             code_13_ref = obj.get('code13Ref') or None
             global_product_instance = global_products_map.get(code_13_ref)
 
             internal_product_data.append({
                 'pharmacy_id': pharmacy.id,
-                'internal_id': str(obj['prodId']),
+                'internal_id': obj['prodId'],
                 'code_13_ref': global_product_instance,
-                'name': obj.get('nom', ''),  # Si 'nom' est vide, prendre une chaîne vide
-                'TVA': obj.get('TVA', 0.0),  # Prendre la TVA, sinon 0.0
+                'name': obj.get('nom', ''),
+                'TVA': float(obj.get('TVA', 0.0)),
             })
-            seen_products.add(str(obj['prodId']))  # Marquer comme vu
+            seen_products.add(obj['prodId'])
 
-    # Créer ou mettre à jour les produits internes
+    # Create or update InternalProduct instances
     try:
         products = bulk_process(
             model=InternalProduct,
@@ -380,151 +547,268 @@ def process_sales_winpharma(pharmacy, data):
             update_fields=['code_13_ref', 'name', 'TVA']
         )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des produits internes: {e}")
+        logger.error(f"Error processing internal products: {e}")
         raise
 
-    # Créer un mapping des produits créés/mis à jour
+    # Create a mapping of created/updated InternalProduct instances
     products_map = {str(product.internal_id): product for product in products}
 
+    latest_snapshots = (
+        InventorySnapshot.objects
+        .filter(product=OuterRef('id'))
+        .order_by('-created_at')
+        .values('id')[:1])
+
+    internal_products = InternalProduct.objects.filter(pharmacy=pharmacy, internal_id__in=product_ids).annotate(
+        latest_snapshot_id=Subquery(latest_snapshots)
+    )
+    internal_products_map = {str(product.internal_id): product.latest_snapshot_id for product in internal_products}
+
     sales_data = []
-    sales_seen = set()  # Set pour éviter les doublons de ventes
+    sales_seen = set()  # Set to avoid duplicate sales
 
-    for obj in data:
-        product_id = str(obj['prodId'])
-        snapshot = products_map.get(product_id).snapshot_history.order_by('-created_at').first()
+    for obj in preprocessed_data:
+        product_id = obj['prodId']
+        product = products_map.get(product_id)
+        if not product:
+            logger.warning(f"Product with internal_id {product_id} not found.")
+            continue
 
-        if snapshot:
-            sale_key = (snapshot.id, parse_date(obj['heure']), obj['codeOperateur'])  # Clé unique pour la vente
+        # Retrieve the latest stock snapshot for the product
+        snapshot_id = internal_products_map.get(obj['prodId'])
 
-            # Vérifier si cette vente existe déjà
-            if sale_key in sales_seen:
-                continue  # Ignorer si la vente est déjà présente
+        if not snapshot_id:
+            logger.warning(f"No snapshot found for product {product_id}.")
+            continue
 
-            sales_seen.add(sale_key)
+        # Check if this sale already exists
+        sale_key = (snapshot_id, obj['heure'], obj['codeOperateur'])  # Unique key for the sale
+        if sale_key in sales_seen:
+            continue
+        sales_seen.add(sale_key)
 
-            sales_data.append({
-                'product': snapshot,
-                'time': parse_date(obj['heure']),
-                'operator_code': obj['codeOperateur'],
-                'quantity': obj['qte']
-            })
+        sales_data.append({
+            'product_id': snapshot_id,
+            'time': str(obj['heure']),
+            'operator_code': obj['codeOperateur'],
+            'quantity': obj['qte']
+        })
 
-    # Process sales in chunks
+    # Process sales in bulk
     try:
-        bulk_process(model=Sales, data=sales_data, unique_fields=['product', 'time', 'operator_code'],
-                     update_fields=['quantity'])
+        sales = bulk_process(
+            model=Sales,
+            data=sales_data,
+            unique_fields=['time'],
+            update_fields=['quantity']
+        )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des ventes: {e}")
+        logger.error(f"Error processing sales: {e}")
         raise
 
 
-def process_stock_dexter(pharmacy, data, date):
+def process_stock_dexter(pharmacy, data, date_str):
     """
-    Crée ou met à jour des produits et leurs snapshots en utilisant bulk_process.
-    """
-    internal_products_data = []
-    for obj in data:
-        produit_id = str(obj['produit_id'])
-        libelle_produit = str(obj['libelle_produit']) if obj['libelle_produit'] else ""
-        tva = float(obj['taux_Tva']) if obj.get('taux_Tva') is not None else 0.0
+    Creates or updates products and their inventory snapshots using bulk_process.
 
-        internal_products_data.append({
-            'pharmacy_id': pharmacy.id,
-            'internal_id': produit_id,
-            'name': libelle_produit,
-            'TVA': tva
+    Args:
+        pharmacy: Pharmacy instance associated with the data.
+        data: List of dictionaries representing stock data.
+        date_str (str): Date string representing the snapshot date.
+
+    Returns:
+        None
+    """
+    preprocessed_data = []
+    for obj in data:
+        try:
+            # Clean and validate stock data
+            produit_id = str(obj['produit_id'])
+            libelle_produit = str(obj['libelle_produit']) if obj.get('libelle_produit') else ""
+            tva = float(obj['taux_Tva']) if obj.get('taux_Tva') is not None else 0.0
+            prix_achat = float(obj['px_achat_PMP_HT']) if obj.get('px_achat_PMP_HT') else 0.0
+            stock = int(obj['qte_stock']) if obj.get('qte_stock') else 0
+            price_with_tax = Decimal(obj['px_vte_TTC']).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP) if obj.get(
+                'px_vte_TTC') else Decimal('0.00')
+        except (ValueError, TypeError) as e:
+            logger.warning(f"Error preprocessing data for product {obj.get('produit_id', 'unknown')}: {e}")
+            continue
+
+        preprocessed_data.append({
+            'produit_id': produit_id,
+            'libelle_produit': libelle_produit,
+            'tva': tva,
+            'prix_achat': prix_achat,
+            'stock': stock,
+            'price_with_tax': price_with_tax,
         })
 
-    # Créer ou mettre à jour les produits
+    # Prepare data for InternalProduct
+    internal_products_data = [
+        {
+            'pharmacy_id': pharmacy.id,
+            'internal_id': obj['produit_id'],
+            'name': obj['libelle_produit'],
+            'TVA': obj['tva'],
+        }
+        for obj in preprocessed_data
+    ]
+
+    # Create or update InternalProduct instances
     try:
-        products = bulk_process(model=InternalProduct, data=internal_products_data,
-                                unique_fields=['pharmacy_id', 'internal_id'], update_fields=['name', 'TVA'])
+        products = bulk_process(
+            model=InternalProduct,
+            data=internal_products_data,
+            unique_fields=['pharmacy_id', 'internal_id'],
+            update_fields=['name', 'TVA']
+        )
     except Exception as e:
         logger.error(f"Error during bulk process of products: {e}")
         raise
 
-    # Récupérer les produits créés/mis à jour pour lier aux snapshots
+    # Map created/updated InternalProduct instances by internal_id
     products_map = {str(product.internal_id): product for product in products}
-    date = parse_date(date, False)
 
-    # Optimisation des requêtes pour obtenir les derniers snapshots
+    # Parse the snapshot date
+    snapshot_date = parse_date(date_str, is_datetime=False)
+
+    # Optimize queries to get the latest snapshots for each product
     latest_snapshots = InventorySnapshot.objects.filter(
         product_id__in=[product.id for product in products]
-    ).values(
-        'product_id', 'product__internal_id'
     ).annotate(
-        latest_date=Max('date'),
-        latest_stock=F('stock'),
-        latest_price_with_tax=F('price_with_tax'),
-        latest_weighted_average_price=F('weighted_average_price')
-    )
+        row_number=Window(
+            expression=RowNumber(),
+            partition_by=F('product_id'),
+            order_by=F('date').desc()
+        )
+    ).filter(row_number=1).values('product_id', 'stock', 'price_with_tax', 'weighted_average_price')
 
-    # Créer un mapping des derniers snapshots par produit
-    latest_snapshots_map = {snapshot['product__internal_id']: snapshot for snapshot in latest_snapshots}
+    # Create a mapping of the latest snapshots by internal_id
+    latest_snapshots_map = {snapshot['product_id']: snapshot for snapshot in latest_snapshots}
 
-    # Préparer les données pour InventorySnapshot
+    # Prepare data for InventorySnapshot
     inventory_snapshots_data = []
-    for obj in data:
-        # Récupération des valeurs depuis les données
-        prix_achat = obj.get('px_achat_PMP_HT', 0.0)  # Convertir en flottant
-        if prix_achat is None or prix_achat == '':
-            prix_achat = 0.0  # ou assignez une autre valeur par défaut si nécessaire
-        try:
-            stock = int(obj['qte_stock']) if obj.get('qte_stock') else 0
-        except ValueError:
-            stock = 0
-            logger.warning(f"Invalid stock value for product {obj['produit_id']}: {obj['qte_stock']}")
+    for obj in preprocessed_data:
+        produit_id = obj['produit_id']
+        product = products_map.get(produit_id)
+        if not product:
+            logger.warning(f"InternalProduct with internal_id {produit_id} not found.")
+            continue
 
-        price_with_tax = Decimal(obj['px_vte_TTC']).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP) if obj.get('px_vte_TTC') else Decimal('0.00')
-        weighted_average_price = Decimal(prix_achat).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        # Retrieve the latest snapshot for this product
+        last_snapshot = latest_snapshots_map.get(produit_id)
 
-        # Récupérer le dernier snapshot pour ce produit
-        last_snapshot = latest_snapshots_map.get(str(obj['produit_id']))
+        # Determine if a new snapshot is needed
+        needs_update = False
+        if not last_snapshot:
+            needs_update = True
+        else:
+            if (
+                last_snapshot['stock'] != obj['stock'] or
+                last_snapshot['price_with_tax'] != obj['price_with_tax'] or
+                last_snapshot['weighted_average_price'] != Decimal(obj['prix_achat']).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+            ):
+                needs_update = True
 
-        # Vérifier les changements par rapport au dernier snapshot
-        if not last_snapshot or (
-                last_snapshot['latest_stock'] != stock or last_snapshot['latest_price_with_tax'] != price_with_tax or
-                last_snapshot['latest_weighted_average_price'] != weighted_average_price):
-            # Ajouter un nouveau snapshot dans les données à créer
-            inventory_snapshots_data.append(
-                {'product_id': products_map[str(obj['produit_id'])].id, 'stock': stock,
-                 'price_with_tax': price_with_tax,
-                 'weighted_average_price': weighted_average_price, 'date': date})
+        if needs_update:
+            inventory_snapshots_data.append({
+                'product_id': product.id,
+                'stock': obj['stock'],
+                'price_with_tax': obj['price_with_tax'],
+                'weighted_average_price': Decimal(obj['prix_achat']).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP),
+                'date': snapshot_date
+            })
 
-    # Créer ou mettre à jour les snapshots
+    # Create or update InventorySnapshot instances
     try:
-        bulk_process(model=InventorySnapshot, data=inventory_snapshots_data, unique_fields=['product_id', 'date'],
-                     update_fields=['stock', 'price_with_tax', 'weighted_average_price'])
+        bulk_process(
+            model=InventorySnapshot,
+            data=inventory_snapshots_data,
+            unique_fields=['product_id', 'date'],
+            update_fields=['stock', 'price_with_tax', 'weighted_average_price']
+        )
     except Exception as e:
         logger.error(f"Error during bulk process of inventory snapshots: {e}")
         raise
 
+    return {
+        "created_products": list(products_map.values()),
+        "created_snapshots": inventory_snapshots_data
+    }
+
 
 def process_achat_dexter(pharmacy, data):
     """
-    Create or update orders and their associated product lines using bulk_process.
+    Creates or updates orders and their associated product lines using bulk_process.
 
-    :param pharmacy: Pharmacy instance to associate with the data
-    :param data: List of dictionaries representing Dexter order data
+    Args:
+        pharmacy: Pharmacy instance to associate with the data.
+        data: List of dictionaries representing Dexter order data.
+
+    Returns:
+        dict: A dictionary containing lists of created suppliers, products, orders, and product-order associations.
     """
-    # Step 1: Prepare supplier data and identify duplicates
+    preprocessed_data = []
+    for obj in data:
+        try:
+            # Clean and validate order data
+            commande_id = str(obj['commande_id'])
+            id_fournisseur = str(obj['id_fournisseur'])
+            libelle_fournisseur = str(obj.get('libelle_fournisseur', obj.get('id_fournisseur', '')))
+            etat_commande = str(obj.get('etat_commande', ''))
+            date_transmission = parse_date(obj.get('date_transmission'))
+            date_reception = parse_date(obj.get('date_reception'), is_datetime=False)
+
+            lignes = obj.get('lignes', [])
+            if not isinstance(lignes, list):
+                raise TypeError("'lignes' should be a list")
+
+            cleaned_lignes = []
+            for line in lignes:
+                try:
+                    produit_id = str(line['produit_id'])
+                    qte_cde = int(line.get('qte_cde', 0))
+                    total_recu = int(line.get('total_recu', 0))
+                    total_ug_liv = int(line.get('total_ug_liv', 0))
+
+                    cleaned_lignes.append({
+                        'produit_id': produit_id,
+                        'qte_cde': qte_cde,
+                        'total_recu': total_recu,
+                        'total_ug_liv': total_ug_liv
+                    })
+                except (ValueError, TypeError, KeyError) as e:
+                    logger.warning(f"Error preprocessing product line in order {commande_id}: {e}")
+                    continue
+
+            preprocessed_data.append({
+                'commande_id': commande_id,
+                'id_fournisseur': id_fournisseur,
+                'libelle_fournisseur': libelle_fournisseur,
+                'etat_commande': etat_commande,
+                'date_transmission': date_transmission,
+                'date_reception': date_reception,
+                'lignes': cleaned_lignes
+            })
+        except (ValueError, TypeError, KeyError) as e:
+            logger.warning(f"Error preprocessing order {obj.get('commande_id', 'unknown')}: {e}")
+            continue
+
+    # Step 1: Collect unique supplier codes and prepare supplier data
     supplier_data = []
     seen_suppliers = set()
 
-    for obj in data:
-        supplier_name = obj.get('libelle_fournisseur', obj.get('id_fournisseur', ''))
+    for obj in preprocessed_data:
         supplier_key = (pharmacy.id, obj['id_fournisseur'])
-
-        # Check for duplicate suppliers
         if supplier_key not in seen_suppliers:
             supplier_data.append({
                 'pharmacy_id': pharmacy.id,
-                'code_supplier': str(obj['id_fournisseur']),
-                'name': str(supplier_name)  # Ensure name is a string
+                'code_supplier': obj['id_fournisseur'],
+                'name': obj['libelle_fournisseur']
             })
             seen_suppliers.add(supplier_key)
 
-    # Create or update suppliers in the database
+    # Create or update suppliers
     try:
         suppliers = bulk_process(
             model=Supplier,
@@ -533,66 +817,70 @@ def process_achat_dexter(pharmacy, data):
             update_fields=['name']
         )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des fournisseurs: {e}")
+        logger.error(f"Error processing suppliers: {e}")
         raise
 
     # Map suppliers for quick lookup
-    supplier_map = {str(supplier.code_supplier): supplier for supplier in suppliers}
+    suppliers_map = {supplier.code_supplier: supplier for supplier in suppliers}
 
-    # Step 2: Extract and prepare internal product data
-    product_ids = {str(line['produit_id']) for obj in data for line in obj['lignes']}
+    # Extract and prepare internal product data
+    product_ids = {line['produit_id'] for obj in preprocessed_data for line in obj['lignes']}
 
-    existing_products = InternalProduct.objects.filter(pharmacy_id=pharmacy.id, internal_id__in=product_ids)
-    internal_product_data = []
-
-    # Process existing products
-    for product in existing_products:
-        internal_product_data.append({
-            'internal_id': str(product.internal_id),
+    existing_products = InternalProduct.objects.filter(
+        pharmacy_id=pharmacy.id,
+        internal_id__in=product_ids
+    )
+    internal_product_data = [
+        {
+            'internal_id': product.internal_id,
             'pharmacy_id': pharmacy.id,
-            'name': product.name  # Keep existing name
-        })
+            'name': product.name  # Retain existing name
+        }
+        for product in existing_products
+    ]
 
-    # Process new products
-    new_product_ids = set(product_ids) - set(existing_products.values_list('internal_id', flat=True))
-    for product_id in new_product_ids:
-        internal_product_data.append({
-            'internal_id': str(product_id),
+    # Identify and prepare data for new products
+    new_product_ids = product_ids - set(existing_products.values_list('internal_id', flat=True))
+    internal_product_data.extend([
+        {
+            'internal_id': product_id,
             'pharmacy_id': pharmacy.id,
-            'name': 'empty'
-        })
+            'name': 'empty'  # Assign default name to new products
+        }
+        for product_id in new_product_ids
+    ])
 
     # Create or update internal products
     try:
-        internal_products = bulk_process(
+        products = bulk_process(
             model=InternalProduct,
             data=internal_product_data,
             unique_fields=['pharmacy_id', 'internal_id'],
             update_fields=['name']
         )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des produits internes: {e}")
+        logger.error(f"Error processing internal products: {e}")
         raise
 
-    internal_products_map = {str(product.internal_id): product for product in internal_products}
+    internal_products_map = {product.internal_id: product for product in products}
 
-    # Step 3: Prepare order data
+    # Step 2: Prepare order data
     order_data = []
-    for obj in data:
+    for obj in preprocessed_data:
         try:
             order_data.append({
-                'internal_id': str(obj['commande_id']),
+                'internal_id': obj['commande_id'],
                 'pharmacy_id': pharmacy.id,
-                'supplier_id': supplier_map[str(obj['id_fournisseur'])].id,
-                'step': str(obj['etat_commande']),  # Ensure step is a string
-                'sent_date': parse_date(obj.get('date_transmission')),
-                'delivery_date': parse_date(obj.get('date_reception'), False)
+                'supplier_id': suppliers_map[obj['id_fournisseur']].id,
+                'step': obj['etat_commande'],
+                'sent_date': obj['date_transmission'],
+                'delivery_date': obj['date_reception'],
             })
         except KeyError as e:
-            logger.warning(f"Clé manquante dans la commande {obj['commande_id']}: {e}")
+            logger.warning(f"Missing key in order {obj['commande_id']}: {e}")
             continue
         except Exception as e:
-            logger.error(f"Erreur lors du traitement de la commande {obj['commande_id']}: {e}")
+            logger.error(f"Error processing order {obj['commande_id']}: {e}")
             continue
 
     # Create or update orders
@@ -604,46 +892,58 @@ def process_achat_dexter(pharmacy, data):
             update_fields=['supplier_id', 'step', 'sent_date', 'delivery_date']
         )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des commandes: {e}")
+        logger.error(f"Error processing orders: {e}")
         raise
 
     # Map orders for quick lookup
-    order_map = {str(order.internal_id): order for order in orders}  # Forcer les IDs en chaîne
+    order_map = {order.internal_id: order for order in orders}
 
-    # Étape 4 : Préparer les données d'association produit-commande
+    # Step 3: Prepare product-order association data
     product_order_data = []
-    existing_associations = set()  # Un set pour garder les associations existantes
+    existing_associations = set()  # Set to keep track of existing associations
 
-    for obj in data:
+    for obj in preprocessed_data:
+        internal_id = obj['commande_id']
+        order = order_map.get(internal_id)
+        if not order:
+            logger.warning(f"Order with internal_id {internal_id} not found.")
+            continue
+
         for line in obj['lignes']:
-            # Assurez-vous que les quantités sont des entiers
-            quantity_ordered = int(line.get('qte_cde', 0))
-            quantity_received = int(line.get("total_recu", 0))
+            product_id = line['produit_id']
+            product = internal_products_map.get(product_id)
+            if not product:
+                logger.warning(f"InternalProduct with internal_id {product_id} not found.")
+                continue
 
-            # Création d'une clé unique (order_id, product_id)
-            order_id = str(obj['commande_id'])
-            product_id = str(line['produit_id'])
+            # Ensure quantities are integers
+            qte = line.get('qte_cde', 0)
+            qte_a = line.get('qte_cde', 0)
+            qte_ug = line.get('total_ug_liv', 0)
+            qte_r = line.get('total_recu', 0)
+            qte_ec = line.get('qte_cde', 0) - line.get('total_recu', 0)
+            qte_ar = line.get('qte_cde', 0) - line.get('total_recu', 0)
 
-            # Vérifiez si cette combinaison existe déjà
-            if (order_id, product_id) in existing_associations:
-                continue  # Si l'association existe déjà, ignorer cette entrée
+            # Create a unique key for the association
+            association_key = (order.id, product.id)
+            if association_key in existing_associations:
+                continue  # Skip if association already exists
 
-            # Ajouter l'association à la liste et au set
-            existing_associations.add((order_id, product_id))
+            # Add to the list and mark as seen
+            existing_associations.add(association_key)
 
-            # Calculer les quantités restantes et autres quantités associées
             product_order_data.append({
-                'product': internal_products_map[product_id],
-                'order': order_map[order_id],
-                'qte': quantity_ordered,
-                'qte_a': quantity_ordered,
-                'qte_ug': line['total_ug_liv'],
-                'qte_r': quantity_received,
-                'qte_ec': quantity_ordered - quantity_received,
-                'qte_ar': quantity_ordered - quantity_received
+                'product': product,
+                'order': order,
+                'qte': qte,
+                'qte_a': qte_a,
+                'qte_ug': qte_ug,
+                'qte_r': qte_r,
+                'qte_ec': qte_ec,
+                'qte_ar': qte_ar
             })
 
-    # Créer ou mettre à jour les associations produit-commande
+    # Step 4: Create or update ProductOrder instances
     try:
         bulk_process(
             model=ProductOrder,
@@ -652,93 +952,127 @@ def process_achat_dexter(pharmacy, data):
             update_fields=['qte', 'qte_r', 'qte_a', 'qte_ug', 'qte_ec', 'qte_ar']
         )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des associations produit-commande: {e}")
+        logger.error(f"Error processing product-order associations: {e}")
         raise
+
+    return {
+        "created_suppliers": [supplier for supplier in suppliers if supplier.pk is not None],
+        "created_products": [product for product in products if product.pk is not None],
+        "created_orders": [order for order in orders if order.pk is not None],
+        "created_product_orders": product_order_data
+    }
 
 
 def process_vente_dexter(pharmacy, data):
     """
-    Crée ou met à jour les ventes et leurs produits associés en utilisant bulk_process.
+    Creates or updates sales and their associated product lines using bulk_process.
+
+    Args:
+        pharmacy: Pharmacy instance to associate with the data.
+        data: List of dictionaries representing Dexter sales data.
+        snapshot_date_str (str): Date string representing the snapshot date.
+
+    Returns:
+        dict: A dictionary containing lists of created products, sales, and product-order associations.
     """
-
-    # Extraire tous les IDs des produits à partir des lignes de commande
-    internal_product_data = []
-    seen_products = set()  # Utilisé pour éviter les doublons
-
+    preprocessed_data = []
     for obj in data:
-        for invoice in obj['factures']:
-            for line in invoice['lignes_de_facture']:
-                # Vérifier que 'produit_id' est valide
-                if not line.get('produit_id'):
-                    continue  # Ignorer les lignes sans produit_id
+        try:
+            # Extract and validate sales data
+            for invoice in obj.get('factures', []):
+                for line in invoice.get('lignes_de_facture', []):
+                    produit_id = line.get('produit_id')
+                    if not produit_id:
+                        logger.warning(f"Missing 'produit_id' in invoice line: {line}")
+                        continue  # Skip lines without produit_id
 
-                # Crée une clé unique basée sur 'produit_id' et 'pharmacy_id'
-                unique_key = (str(line['produit_id']), pharmacy.id)
-
-                # Ajouter uniquement si la clé n'a pas encore été vue
-                if unique_key not in seen_products:
-                    seen_products.add(unique_key)
-                    internal_product_data.append({
-                        'internal_id': str(line['produit_id']),
-                        'pharmacy_id': pharmacy.id,
-                        'name': line['libelle_produit'] if line.get('libelle_produit') else 'Unknown'
+                    preprocessed_data.append({
+                        'produit_id': str(produit_id),
+                        'libelle_produit': str(line.get('libelle_produit', 'Unknown')),
+                        'quantite': int(line.get('quantite', 0)),
+                        'date_acte': obj.get('date_acte'),
+                        'code_operateur': str(obj.get('code_operateur', ''))
                     })
+        except (ValueError, TypeError, KeyError) as e:
+            logger.warning(f"Error preprocessing sales data for object {obj.get('commande_id', 'unknown')}: {e}")
+            continue
 
-    # Vous pouvez aussi ajouter d'autres informations comme 'name', 'TVA', etc.
+    # Step 1: Collect unique product IDs and prepare InternalProduct data
+    internal_product_data = []
+    seen_products = set()  # Used to avoid duplicates
+    for record in preprocessed_data:
+        produit_id = record['produit_id']
+        unique_key = (produit_id, pharmacy.id)
+        if unique_key not in seen_products:
+            seen_products.add(unique_key)
+            internal_product_data.append({
+                'internal_id': produit_id,
+                'pharmacy_id': pharmacy.id,
+                'name': record['libelle_produit']
+            })
+
+    # Create or update InternalProduct instances
     try:
-        internal_products = bulk_process(
+        products = bulk_process(
             model=InternalProduct,
             data=internal_product_data,
             unique_fields=['pharmacy_id', 'internal_id'],
-            update_fields=['name']  # Ajouter des champs supplémentaires si nécessaire
+            update_fields=['name']
         )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des produits internes: {e}")
+        logger.error(f"Error processing internal products: {e}")
         raise
 
-    product_ids = [product.id for product in internal_products]
+    # Create a mapping of InternalProduct instances for quick lookup
+    product_ids = [product.id for product in products]
 
+    # Step 2: Retrieve the latest InventorySnapshot for each product
     latest_snapshots = (
         InventorySnapshot.objects
-        .filter(product=OuterRef('id'))  # Relation correcte avec le modèle InventorySnapshot
+        .filter(product=OuterRef('id'))
         .order_by('-created_at')
-        .values('id')[:1]  # Sélectionne uniquement le dernier ID
-    )
+        .values('id')[:1])
 
-    internal_products = InternalProduct.objects.filter(id__in=product_ids).annotate(
+    internal_products = InternalProduct.objects.filter(pharmacy=pharmacy, id__in=product_ids).annotate(
         latest_snapshot_id=Subquery(latest_snapshots)
     )
-
     # Créer un mapping des produits internes pour les associer rapidement aux lignes de commande
     internal_products_map = {str(product.internal_id): product.latest_snapshot_id for product in internal_products}
 
     sales_data = []
-    for obj in data:
-        for invoice in obj['factures']:
-            for line in invoice['lignes_de_facture']:
-                if not line.get('produit_id'):
-                    continue  # Ignorer les lignes sans produit_id
+    sales_seen = set()  # Set to keep track of existing sales to avoid duplicates
 
-                # Si le produit n'a pas de snapshot associé, ignorer
-                snapshot_id = internal_products_map.get(str(line['produit_id']))
-                if not snapshot_id:
-                    continue
+    for record in preprocessed_data:
+        produit_id = record['produit_id']
+        snapshot_id = internal_products_map.get(produit_id)
 
-                # Assurez-vous que la quantité est un entier
-                try:
-                    quantity = int(line.get('quantite', 0))
-                except ValueError:
-                    quantity = 0  # Si la quantité est invalide, la considérer comme 0
+        if not snapshot_id:
+            logger.warning(f"No snapshot found for product {produit_id}. Skipping sale record.")
+            continue  # Skip if there's no snapshot associated
 
-                # Ajouter les données de vente
-                sales_data.append({
-                    'product_id': snapshot_id,
-                    'quantity': quantity,
-                    'time': parse_date(obj['date_acte']),
-                    'operator_code': str(obj['code_operateur'])
-                })
+        # Create a unique key for the sale to prevent duplicates
+        sale_key = (snapshot_id, record['date_acte'], record['code_operateur'])
+        if sale_key in sales_seen:
+            continue  # Skip if sale has already been processed
 
-    # Process sales in chunks
+        sales_seen.add(sale_key)
+
+        # Ensure quantity is a valid integer
+        try:
+            quantity = int(record['quantite'])
+        except ValueError:
+            logger.warning(f"Invalid quantity '{record['quantite']}' for product {produit_id}. Setting quantity to 0.")
+            quantity = 0
+
+        # Append the sale record
+        sales_data.append({
+            'product_id': snapshot_id,
+            'quantity': quantity,
+            'time': parse_date(record['date_acte']),
+            'operator_code': record['code_operateur']
+        })
+
+    # Step 4: Create or update Sales instances
     try:
         bulk_process(
             model=Sales,
@@ -747,5 +1081,10 @@ def process_vente_dexter(pharmacy, data):
             update_fields=['quantity']
         )
     except Exception as e:
-        logger.error(f"Erreur lors du traitement des ventes: {e}")
+        logger.error(f"Error processing sales: {e}")
         raise
+
+    return {
+        "created_products": [product for product in products if product.pk is not None],
+        "created_sales": sales_data
+    }

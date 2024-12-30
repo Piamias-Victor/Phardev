@@ -1,12 +1,13 @@
-import json
-import botocore
-import boto3
-from dotenv import load_dotenv
-import requests
-import os
-from io import BytesIO
 import gzip
+import json
+import os
 from datetime import datetime
+from io import BytesIO
+
+import boto3
+import botocore
+import requests
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -98,4 +99,4 @@ def handler(event, context):
         }
 
 
-handler(1, 1)
+# handler(1, 1)

@@ -1,9 +1,9 @@
 import os
+import re
+from decimal import Decimal, InvalidOperation
+
 import django
 import pandas as pd
-import re
-from tqdm import tqdm
-from decimal import Decimal, InvalidOperation
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Phardev.settings'
 django.setup()

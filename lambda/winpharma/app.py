@@ -1,11 +1,10 @@
-import traceback
-import requests
-from requests.auth import HTTPBasicAuth
-import os
-import random
 import json
-from dotenv import load_dotenv
+import os
 from datetime import datetime, timedelta
+
+import requests
+from dotenv import load_dotenv
+from requests.auth import HTTPBasicAuth
 
 load_dotenv()
 
@@ -29,16 +28,14 @@ def handler(event, context, full_dump=False):
             url = f"{url}?after={last_week_datetime}"
 
         try:
-            print(in_endpoint)
             print(url)
             response = requests.get(url, auth=HTTPBasicAuth(api_key, api_password))
             print(len(response.json()))
-
             x = requests.post(f"{SERVER_URL}/winpharma/create/{out_endpoint}", json=response.json(),
                               headers={'Pharmacy-id': id_nat})
 
-            if response.status_code != 200:
-                print(f"Error: {response.status_code}: {response.text}")
+            if x.status_code != 200:
+                print(f"Error: {x.status_code}: {x.text}")
 
         except requests.exceptions.RequestException as e:
             print(f"Connexion Error: {e}")

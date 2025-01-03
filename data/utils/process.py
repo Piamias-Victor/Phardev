@@ -630,6 +630,13 @@ def process_stock_dexter(pharmacy, data, date_str):
             stock = int(obj['qte_stock']) if obj.get('qte_stock') else 0
             price_with_tax = Decimal(obj['px_vte_TTC']).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP) if obj.get(
                 'px_vte_TTC') else Decimal('0.00')
+            code_13_ref = None
+            if isinstance(obj.get('code_produit'), list):
+                for code in obj['code_produit']:
+                    if code.get('referent'):
+                        code_13_ref = code.get('code')
+                        break
+
         except (ValueError, TypeError) as e:
             logger.warning(f"Error preprocessing data for product {obj.get('produit_id', 'unknown')}: {e}")
             continue
@@ -641,7 +648,28 @@ def process_stock_dexter(pharmacy, data, date_str):
             'prix_achat': prix_achat,
             'stock': stock,
             'price_with_tax': price_with_tax,
+            'code13Ref': code_13_ref or "",
+
         })
+
+    # Collect unique GlobalProduct references
+    code_13_refs = {obj['code13Ref'] for obj in preprocessed_data if obj['code13Ref']}
+
+    # Retrieve existing GlobalProduct instances
+    with transaction.atomic():
+        existing_global_products = GlobalProduct.objects.filter(code_13_ref__in=code_13_refs).only('code_13_ref',
+                                                                                                   'name')
+        global_products_map = {gp.code_13_ref: gp for gp in existing_global_products}
+
+        # Identify missing references and create them
+        missing_refs = code_13_refs - global_products_map.keys()
+        if missing_refs:
+            GlobalProduct.objects.bulk_create(
+                [GlobalProduct(code_13_ref=ref, name='Default Name') for ref in missing_refs]
+            )
+            # Update the map with newly created GlobalProducts
+            new_global_products = GlobalProduct.objects.filter(code_13_ref__in=missing_refs)
+            global_products_map.update({gp.code_13_ref: gp for gp in new_global_products})
 
     # Prepare data for InternalProduct
     internal_products_data = [
@@ -650,6 +678,8 @@ def process_stock_dexter(pharmacy, data, date_str):
             'internal_id': obj['produit_id'],
             'name': obj['libelle_produit'],
             'TVA': obj['tva'],
+            'code_13_ref': global_products_map.get(obj['code13Ref'], None),
+
         }
         for obj in preprocessed_data
     ]

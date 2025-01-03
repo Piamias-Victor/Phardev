@@ -99,4 +99,4 @@ def handler(event, context):
         }
 
 
-# handler(1, 1)
+handler(1, 1)

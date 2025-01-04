@@ -237,7 +237,6 @@ def process_product_winpharma(pharmacy, data):
         )
 
         if needs_update:
-            print(product.id)
             inventory_snapshots_data.append({
                 'product_id': product.id,
                 'stock': obj['stock'],
@@ -254,11 +253,6 @@ def process_product_winpharma(pharmacy, data):
             unique_fields=['product_id', 'date'],
             update_fields=['stock', 'price_with_tax', 'weighted_average_price']
         )
-
-    return {
-        "created_products": list(products_map.values()),
-        "created_snapshots": inventory_snapshots_data
-    }
 
 
 def process_order_winpharma(pharmacy, data):
@@ -462,12 +456,6 @@ def process_order_winpharma(pharmacy, data):
         logger.error(f"Error processing product-order associations: {e}")
         raise
 
-    return {
-        "created_suppliers": [supplier for supplier in suppliers if supplier.pk is not None],
-        "created_products": [product for product in products if product.pk is not None],
-        "created_orders": [order for order in orders if order.pk is not None],
-        "created_product_orders": product_order_data
-    }
 
 
 def process_sales_winpharma(pharmacy, data):
@@ -681,11 +669,6 @@ def process_stock_dexter(pharmacy, data, date_str):
             unique_fields=['product_id', 'date'],
             update_fields=['stock', 'price_with_tax', 'weighted_average_price']
         )
-
-    return {
-        "created_products": list(products_map.values()),
-        "created_snapshots": inventory_snapshots_data
-    }
 
 
 def process_achat_dexter(pharmacy, data):
@@ -906,13 +889,6 @@ def process_achat_dexter(pharmacy, data):
         logger.error(f"Error processing product-order associations: {e}")
         raise
 
-    return {
-        "created_suppliers": [supplier for supplier in suppliers if supplier.pk is not None],
-        "created_products": [product for product in products if product.pk is not None],
-        "created_orders": [order for order in orders if order.pk is not None],
-        "created_product_orders": product_order_data
-    }
-
 
 def process_vente_dexter(pharmacy, data):
     """
@@ -933,7 +909,6 @@ def process_vente_dexter(pharmacy, data):
                 for line in invoice.get('lignes_de_facture', []):
                     product_id = line.get('produit_id')
                     if not product_id:
-                        logger.warning(f"Missing 'produit_id' in invoice line: {line}")
                         continue
 
                     preprocessed_data.append({
@@ -971,7 +946,8 @@ def process_vente_dexter(pharmacy, data):
     sales_data = []
     for key, value in aggregated_sales.items():
         snapshot_id = internal_products_map.get(key)
-
+        if not snapshot_id:
+            continue
         sales_data.append({
             'product_id': snapshot_id,
             'quantity': value[1],

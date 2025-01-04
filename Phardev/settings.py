@@ -112,7 +112,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "daphne",
-    "debug_toolbar",
     "django.contrib.staticfiles",
     'storages',
     "data",
@@ -121,8 +120,6 @@ INSTALLED_APPS = [
 # Middleware configuration
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

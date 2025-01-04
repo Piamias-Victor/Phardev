@@ -75,7 +75,6 @@ def handler(event, context):
 
                 response = requests.post(f"{SERVER_URL}/dexter/create/{file_type}", json=json_content)
                 print(f"Response status for {obj['Key']}: {response.status_code}")
-                exit()
                 if response.status_code == 200:
                     new_key = obj['Key'].replace(subfolder_prefix, 'Dexter_history/')
                     s3_client.copy_object(

@@ -14,7 +14,7 @@ id_nat = os.environ.get('IDNAT')
 SERVER_URL = os.environ.get('SERVER_URL')
 
 
-def handler(event, context, full_dump=False):
+def handler(event, context, full_dump=True):
     endpoints = {
         'produits': 'products',
         'commandes': 'orders',
@@ -39,6 +39,3 @@ def handler(event, context, full_dump=False):
 
         except requests.exceptions.RequestException as e:
             print(f"Connexion Error: {e}")
-
-
-# handler(1, 1, True)

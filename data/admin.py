@@ -43,6 +43,7 @@ class InternalProductAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at', )
     list_filter = ["pharmacy__name",]
     list_per_page = 25
+    raw_id_fields = ('code_13_ref',)
 
 
 @admin.register(InventorySnapshot)
@@ -84,7 +85,7 @@ class ProductOrderAdmin(admin.ModelAdmin):
 
 @admin.register(Sales)
 class SalesAdmin(admin.ModelAdmin):
-    list_display = ("product", "quantity", "time")
+    list_display = ("product", "quantity", "date")
 
     search_fields = ["product"]
     readonly_fields = ('created_at', 'updated_at', )

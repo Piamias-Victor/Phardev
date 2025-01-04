@@ -1,4 +1,5 @@
 import uuid
+from django.core.validators import MinValueValidator
 
 from django.db import models
 from django.db.models import UniqueConstraint
@@ -26,7 +27,7 @@ class Supplier(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     pharmacy = models.ForeignKey(Pharmacy, on_delete=models.CASCADE)
-    code_supplier = models.CharField(max_length=255)
+    code_supplier = models.CharField(max_length=255, db_index=True)
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -44,11 +45,11 @@ class GlobalProduct(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     name = models.TextField(verbose_name="Produit")
-    year = models.PositiveSmallIntegerField(verbose_name="Date" , null=True, blank=True)
+    year = models.PositiveSmallIntegerField(verbose_name="Date", null=True, blank=True)
 
     universe = models.CharField(max_length=255, verbose_name="Univers")
-    category = models.CharField(max_length=255, verbose_name="Catégorie")
-    sub_category = models.CharField(max_length=255, verbose_name="Sous catégorie")
+    category = models.CharField(max_length=255, null=True, blank=True, verbose_name="Catégorie")
+    sub_category = models.CharField(max_length=255, null=True, blank=True, verbose_name="Sous catégorie")
     brand_lab = models.CharField(max_length=255, blank=True, null=True, verbose_name="Marque - Labo")
     lab_distributor = models.CharField(max_length=255, blank=True, null=True, verbose_name="Laboratoire - Distributeur")
     range_name = models.CharField(max_length=255, blank=True, null=True, verbose_name="Gamme")
@@ -64,7 +65,7 @@ class GlobalProduct(models.Model):
 
 class InternalProduct(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    internal_id = models.BigIntegerField()
+    internal_id = models.PositiveIntegerField()
     code_13_ref = models.ForeignKey(GlobalProduct, null=True, blank=True, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -72,7 +73,14 @@ class InternalProduct(models.Model):
 
     pharmacy = models.ForeignKey(Pharmacy, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    TVA = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+    TVA = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(0)],
+        verbose_name="TVA"
+    )
 
     def __str__(self):
         return f"{self.internal_id} {self.name}"
@@ -84,19 +92,26 @@ class InternalProduct(models.Model):
 
 
 class InventorySnapshot(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    #TODO Partitioning
+    id = models.BigAutoField(primary_key=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    product = models.ForeignKey(InternalProduct, null=True, blank=True, on_delete=models.CASCADE, related_name="snapshot_history")
+    product = models.ForeignKey(InternalProduct, on_delete=models.CASCADE, related_name="snapshot_history")
     date = models.DateField()
 
-    stock = models.IntegerField(default=0, verbose_name="Stock")
+    stock = models.SmallIntegerField(default=0, verbose_name="Stock")
     price_with_tax = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     weighted_average_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True, blank=True)
 
     class Meta:
         constraints = [
-            UniqueConstraint(fields=['product', 'date',], name='unique_snapshot_constraint')
+            UniqueConstraint(fields=['product', 'date'], name='unique_snapshot_constraint')
+        ]
+        indexes = [
+            models.Index(fields=['product', 'date']),
+            models.Index(fields=['date']),
+            models.Index(fields=['product']),
         ]
 
 
@@ -105,8 +120,8 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     internal_id = models.PositiveBigIntegerField()
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-    pharmacy = models.ForeignKey(Pharmacy, on_delete=models.CASCADE)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name="orders")
+    pharmacy = models.ForeignKey(Pharmacy, on_delete=models.CASCADE, related_name="orders")
 
     step = models.PositiveSmallIntegerField()
     sent_date = models.DateTimeField(blank=True, null=True)
@@ -125,31 +140,53 @@ class ProductOrder(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    product = models.ForeignKey(InternalProduct, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        InternalProduct,
+        on_delete=models.CASCADE,
+        related_name="product_orders",
+        verbose_name="Product"
+    )
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name="product_orders",
+        verbose_name="Order"
+    )
 
-    qte = models.IntegerField(verbose_name="Quantité")
-    qte_r = models.IntegerField(verbose_name="Quantité Réceptionnée")
-    qte_a = models.IntegerField(verbose_name="Quantité Attendue")
-    qte_ug = models.IntegerField(verbose_name="Quantité Unité Gratuite")
-    qte_ec = models.IntegerField(verbose_name="Quantité en Écart")
-    qte_ar = models.IntegerField(verbose_name="Quantité à Réceptionner")
+    qte = models.PositiveSmallIntegerField(verbose_name="Quantité")
+    qte_r = models.PositiveSmallIntegerField(verbose_name="Quantité Réceptionnée")
+    qte_a = models.SmallIntegerField(verbose_name="Quantité Attendue")
+    qte_ug = models.PositiveSmallIntegerField(verbose_name="Quantité Unité Gratuite")
+    qte_ec = models.SmallIntegerField(verbose_name="Quantité en Écart")
+    qte_ar = models.SmallIntegerField(verbose_name="Quantité à Réceptionner")
 
     class Meta:
         constraints = [
             UniqueConstraint(fields=['order', 'product'], name='unique_productorder_constraint')
         ]
+        verbose_name = "Product Order"
+        verbose_name_plural = "Product Orders"
 
 
 class Sales(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.BigAutoField(primary_key=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    product = models.ForeignKey(InventorySnapshot, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        InventorySnapshot,
+        on_delete=models.CASCADE,
+        related_name="sales_history",
+        verbose_name="Inventory Snapshot"
+    )
 
-    quantity = models.IntegerField()
-    time = models.DateTimeField()
-    operator_code = models.CharField(max_length=25)
+    quantity = models.SmallIntegerField()
+    date = models.DateField(db_index=True, verbose_name="Date")
 
     def __str__(self):
-        return f"{self.quantity} Sales"
+        return f"{self.quantity} Sales for {self.product} on {self.date}"
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['date', 'product'], name='unique_dateproductsale_constraint')
+        ]

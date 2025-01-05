@@ -153,7 +153,7 @@ def process_product_winpharma(pharmacy, data):
                 'name': obj.get('nom', ''),
                 'code_13_ref': obj.get('code13Ref') or None,
                 'TVA': float(obj.get('TVA', 0.0)),
-                'stock': int(obj.get('stock', 0)),
+                'stock': clamp(int(obj.get('stock', 0)), -32768, 32767),
                 'price_with_tax': min(Decimal(obj.get('prixTtc', 0)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP),
                                       Decimal('99999999.99')),
                 'weighted_average_price': min(
@@ -564,7 +564,7 @@ def process_stock_dexter(pharmacy, data, date_str):
                 'name': str(obj['libelle_produit']) if obj.get('libelle_produit') else "",
                 'code_13_ref': code_13_ref or "",
                 'TVA': float(obj['taux_Tva']) if obj.get('taux_Tva') is not None else 0.0,
-                'stock': int(obj['qte_stock']) if obj.get('qte_stock') else 0,
+                'stock': clamp(int(obj['qte_stock']) if obj.get('qte_stock') else 0, -32768, 32767),
                 'price_with_tax': Decimal(str(obj['px_achat_PMP_HT'])).quantize(Decimal('0.01'),
                                                                                 rounding=ROUND_HALF_UP) if obj.get(
                     'px_achat_PMP_HT') else Decimal('0.00'),

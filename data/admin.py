@@ -15,7 +15,7 @@ from data.models import (
 @admin.register(Pharmacy)
 class PharmacyAdmin(admin.ModelAdmin):
     # Variable or functions to show as columns
-    list_display = ("id", 'name')
+    list_display = ("id", 'name', 'id_nat')
     readonly_fields = ('created_at', 'updated_at', )
 
 

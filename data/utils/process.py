@@ -17,6 +17,10 @@ from data.models import GlobalProduct, InternalProduct, ProductOrder, Supplier, 
 logger = logging.getLogger(__name__)
 
 
+def clamp(value, min_value, max_value):
+    return max(min_value, min(value, max_value))
+
+
 def chunked_iterable(iterable, chunk_size):
     for i in range(0, len(iterable), chunk_size):
         yield iterable[i:i + chunk_size]
@@ -288,12 +292,12 @@ def process_order_winpharma(pharmacy, data):
                         continue
 
                     product_id = str(line['prodId'])
-                    qte = int(line.get('qte', 0))
-                    qte_ug = int(line.get('qteUG', 0))
-                    qte_a = int(line.get('qteA', 0))
-                    qte_r = int(line.get('qteR', 0))
-                    qte_ar = int(line.get('qteAReceptionner', 0))
-                    qte_ec = int(line.get('qteEC', 0))
+                    qte = clamp(int(line.get('qte', 0)), -32768, 32767)  # SmallIntegerField
+                    qte_r = clamp(int(line.get('qteR', 0)), -32768, 32767)  # SmallIntegerField
+                    qte_a = clamp(int(line.get('qteA', 0)), -32768, 32767)  # SmallIntegerField
+                    qte_ug = clamp(int(line.get('qteUG', 0)), -32768, 32767)  # SmallIntegerField
+                    qte_ec = clamp(int(line.get('qteEC', 0)), -32768, 32767)  # SmallIntegerField
+                    qte_ar = clamp(int(line.get('qteAReceptionner', 0)), -32768, 32767)  # SmallIntegerField
 
                     products.append({
                         'product_id': product_id,
@@ -509,11 +513,13 @@ def process_sales_winpharma(pharmacy, data):
 
     sales_data = []
     for key, value in aggregated_sales.items():
-        snapshot_id = internal_products_map.get(key)
 
+        snapshot_id = internal_products_map.get(key)
+        if not snapshot_id:
+            continue
         sales_data.append({
             'product_id': snapshot_id,
-            'quantity': value[1],
+            'quantity': clamp(int(value[1]), -32768, 32767),
             'date': parse_date(value[0], False),
         })
 
@@ -851,12 +857,14 @@ def process_achat_dexter(pharmacy, data):
                 continue
 
             # Ensure quantities are integers
-            qte = line.get('qte_cde', 0)
-            qte_a = line.get('qte_cde', 0)
-            qte_ug = line.get('total_ug_liv', 0)
-            qte_r = line.get('total_recu', 0)
-            qte_ec = line.get('qte_cde', 0) - line.get('total_recu', 0)
-            qte_ar = line.get('qte_cde', 0) - line.get('total_recu', 0)
+            qte = clamp(int(line.get('qte_cde', 0)), -32768, 32767)  # SmallIntegerField
+            qte_a = clamp(int(line.get('qte_cde', 0)), -32768, 32767)  # SmallIntegerField
+            qte_ug = clamp(int(line.get('total_ug_liv', 0)), -32768, 32767)  # SmallIntegerField
+            qte_r = clamp(int(line.get('total_recu', 0)), -32768, 32767)  # SmallIntegerField
+
+            # Calcul des valeurs et clamping
+            qte_ec = clamp(qte - qte_r, -32768, 32767)  # Écart entre commandé et reçu
+            qte_ar = clamp(qte - qte_r, -32768, 32767)  # Quantité à réceptionner
 
             # Create a unique key for the association
             association_key = (order.id, product.id)
@@ -948,9 +956,11 @@ def process_vente_dexter(pharmacy, data):
         snapshot_id = internal_products_map.get(key)
         if not snapshot_id:
             continue
+        if value[1] > 10000:
+            print(value)
         sales_data.append({
             'product_id': snapshot_id,
-            'quantity': value[1],
+            'quantity': clamp(value[1], -32768, 32767),
             'date': parse_date(value[0], False),
         })
 

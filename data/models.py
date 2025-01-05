@@ -153,10 +153,10 @@ class ProductOrder(models.Model):
         verbose_name="Order"
     )
 
-    qte = models.PositiveSmallIntegerField(verbose_name="Quantité")
-    qte_r = models.PositiveSmallIntegerField(verbose_name="Quantité Réceptionnée")
+    qte = models.SmallIntegerField(verbose_name="Quantité")
+    qte_r = models.SmallIntegerField(verbose_name="Quantité Réceptionnée")
     qte_a = models.SmallIntegerField(verbose_name="Quantité Attendue")
-    qte_ug = models.PositiveSmallIntegerField(verbose_name="Quantité Unité Gratuite")
+    qte_ug = models.SmallIntegerField(verbose_name="Quantité Unité Gratuite")
     qte_ec = models.SmallIntegerField(verbose_name="Quantité en Écart")
     qte_ar = models.SmallIntegerField(verbose_name="Quantité à Réceptionner")
 

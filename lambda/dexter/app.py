@@ -74,7 +74,7 @@ def handler(event, context):
                 print(f"Processing {obj['Key']}")
 
                 response = requests.post(f"{SERVER_URL}/dexter/create/{file_type}", json=json_content)
-                print(f"Response status for {obj['Key']}: {response.status_code}")
+                print(f"{response.status_code}")
                 if response.status_code == 200:
                     new_key = obj['Key'].replace(subfolder_prefix, 'Dexter_history/')
                     s3_client.copy_object(
@@ -83,7 +83,7 @@ def handler(event, context):
                         Key=new_key
                     )
                     s3_client.delete_object(Bucket=bucket_name, Key=obj['Key'])
-                    print(f"File {obj['Key']} moved to {new_key}.")
+                    print(f"File {obj['Key']} moved.")
                 else:
                     print(f"POST failed for {obj['Key']}: {response.status_code}")
 

@@ -1,124 +1,82 @@
 import os
+import sys
+import re
 import django
+import pandas as pd
+from tqdm import tqdm
+from decimal import Decimal, InvalidOperation
+from django.db import transaction
 
+# 1. Configuration Django
+# -----------------------------------------------------------------------------
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Phardev.settings')
 django.setup()
 
-import re
-import sys
-from decimal import Decimal, InvalidOperation
-
-import pandas as pd
-from tqdm import tqdm
-
+# 2. Imports Django
+# -----------------------------------------------------------------------------
 from data.models import GlobalProduct
 
-# Configure Django settings
 
-
+# 3. Fonctions utilitaires pour le nettoyage des données
+# -----------------------------------------------------------------------------
 def extract_year(value):
     """
-    Extracts the first occurrence of digits in a string and returns it as an integer.
-    Returns None if no digits are found.
+    Tente d'extraire une année valide (entre 1900 et 2100) à partir d'une valeur donnée.
+    Retourne l'année en tant qu'entier ou None si la conversion échoue.
     """
-    match = re.search(r'\d+', str(value))
-    if match:
-        return int(match.group())
-    return None
-
-
-def clean_decimal(value):
-    """
-    Cleans a string by removing '%' and non-numeric characters, then converts it to Decimal.
-    Returns None if conversion fails.
-    """
-    if pd.isna(value):
-        return None
     try:
-        # Remove '%' and any non-digit characters except '.' and '-'
-        value = re.sub(r'[^\d\.-]', '', str(value)).strip()
-        return Decimal(value)
-    except (InvalidOperation, ValueError):
+        if pd.isna(value):
+            return None
+        value_str = str(value).strip()
+        digits = ''.join(filter(str.isdigit, value_str))
+        if digits:
+            year = int(digits)
+            if 1900 <= year <= 2100:
+                return year
+        return None
+    except Exception:
         return None
 
 
 def clean_code_13_ref(code_13):
     """
-    Cleans the 'code_13_ref' by removing non-digit characters and ensuring it's 13 digits.
+    Nettoie la référence EAN13.
+    - Supprime les espaces et caractères non numériques.
+    - Tronque à 13 caractères pour éviter les dépassements.
+    Retourne None si la valeur initiale est NaN.
     """
     if pd.isna(code_13):
         return None
-    code_13 = str(code_13).replace(' ', '').strip()  # Remove non-breaking spaces and strip
-    # Remove any other non-digit characters
+    # Supprime les espaces et caractères non numériques
+    code_13 = str(code_13).replace(' ', '').strip()
     code_13 = re.sub(r'\D', '', code_13)
-    return code_13 if len(code_13) == 13 else code_13[:13]  # Ensure it's at most 13 digits
+    # Tronque à 13 caractères maximum
+    return code_13[:13]
 
 
-
-def import_data_in_batches(df, batch_size=10000):
+def clean_decimal(value):
     """
-    Imports data from a pandas DataFrame into the GlobalProduct model in batches.
+    Nettoie et convertit une valeur en Decimal.
+    Retourne None si la conversion échoue ou si la valeur est vide/NaN.
     """
-    # Pre-clean the DataFrame to optimize row processing
-    df['code_13_ref'] = df["GENCOD13=EAN13"].apply(clean_code_13_ref)
-    df['year'] = df["DATE"].apply(extract_year)
-    df['tva_percentage'] = df["% TVA"].apply(clean_decimal)
-    df['free_access'] = df["LIBRE ACCES"].apply(lambda x: bool(x) if not pd.isna(x) else None)
-
-    # Replace NaNs with None for nullable fields
-    nullable_fields = ["MARQUE - LABO", "LABORATOIRE - DISTRIBUTEUR", "GAMME",
-                       "SPECIFICITE", "FAMILLE", "SOUS FAMILLE"]
-    for field in nullable_fields:
-        df[field] = df[field].where(~df[field].isna(), None)
-
-    # Optionally, clean the 'PRODUIT' column by stripping whitespace
-    df['PRODUIT'] = df['PRODUIT'].astype(str).str.strip()
-
-    # Initialize batch list
-    model_instances = []
-
-    # Iterate using itertuples for better performance
-    for row in tqdm(df.itertuples(index=False), total=df.shape[0], desc="Importing"):
-        instance = GlobalProduct(
-            code_13_ref=row.code_13_ref,
-            name=row.PRODUIT,
-            year=None if pd.isna(row.year) else row.year,
-            universe=row.UNIVERS,
-            category=row.CATÉGORIE,
-            sub_category=row._asdict().get("SOUS CATÉGORIE"),
-            brand_lab=row._asdict().get("MARQUE_-_LABO"),
-            lab_distributor=row._asdict().get("LABORATOIRE_-_DISTRIBUTEUR"),
-            range_name=row.GAMME,
-            specificity=row.SPECIFICITE,
-            family=row.FAMILLE,
-            sub_family=row._asdict().get('SOUS_FAMILLE'),
-            tva_percentage=row.tva_percentage,
-            free_access=row.free_access,
-        )
-        model_instances.append(instance)
-
-        # Insert in batches
-        if len(model_instances) >= batch_size:
-            GlobalProduct.objects.bulk_create(model_instances,
-            ignore_conflicts = True  # Ignore les conflits liés aux clés uniques (code_13_ref)
-            )
-            model_instances = []
-
-    # Insert any remaining instances
-    if model_instances:
-        GlobalProduct.objects.bulk_create(model_instances,
-                                          ignore_conflicts=True
-                                          # Ignore les conflits liés aux clés uniques (code_13_ref)
-                                          )
-
-    print("Importation terminée avec succès.")
+    try:
+        if pd.isna(value) or value == '':
+            return None
+        return Decimal(str(value).strip())
+    except (InvalidOperation, ValueError, TypeError):
+        return None
 
 
+# 4. Fonction principale d'import
+# -----------------------------------------------------------------------------
 def main():
-    # Path to the Excel file
+    """
+    Lit un fichier Excel, nettoie les données et les insère (ou met à jour)
+    dans la base via le modèle GlobalProduct, par lots (batch).
+    """
+    # 4.1. Lecture du fichier Excel
     excel_file = "CODES PRODUITS OFFICIELS SANS NUMEROTATION 2.xlsx"
 
-    # Read the Excel file
     try:
         df = pd.read_excel(excel_file)
     except FileNotFoundError:
@@ -128,13 +86,325 @@ def main():
         print(f"Erreur lors de la lecture du fichier Excel: {e}")
         sys.exit(1)
 
-    # Optionnel : Supprimer les objets existants
-    # Décommentez la ligne suivante si vous souhaitez supprimer tous les enregistrements existants
-    GlobalProduct.objects.all().delete()
+    # 4.2. Renommage des colonnes pour simplifier l'accès
+    df.rename(
+        columns={
+            "GENCOD13=EAN13": "code_13_ref_raw",
+            "DATE": "date",
+            "UNIVERS": "universe",
+            "CATÉGORIE": "category",
+            "SOUS CATÉGORIE": "sub_category",
+            "MARQUE - LABO": "brand_lab",
+            "LABORATOIRE - DISTRIBUTEUR": "lab_distributor",
+            "GAMME": "range_name",
+            "SPECIFICITE": "specificity",
+            "FAMILLE": "family",
+            "SOUS FAMILLE": "sub_family",
+            "% TVA": "tva_percentage",
+            "LIBRE ACCES": "free_access",
+            "PRODUIT": "product_name",
+        },
+        inplace=True
+    )
 
-    # Import data
-    import_data_in_batches(df, batch_size=10000)
+    # 4.3. Nettoyage et prétraitement du DataFrame
+    # -------------------------------------------------------------------------
+    # Nettoyage du code EAN13
+    df["code_13_ref"] = df["code_13_ref_raw"].apply(clean_code_13_ref)
+    df.drop(columns=["code_13_ref_raw"], inplace=True)
+
+    # Nettoyage des pourcentages TVA
+    df["tva_percentage"] = df["tva_percentage"].apply(clean_decimal)
+
+    # Remplacer les NaNs par None pour certains champs nullable
+    nullable_fields = ["brand_lab", "lab_distributor", "range_name",
+                       "specificity", "family", "sub_family"]
+    df[nullable_fields] = df[nullable_fields].where(~df[nullable_fields].isna(), None)
+
+    # Nettoyage de la colonne 'product_name'
+    df["product_name"] = df["product_name"].astype(str).str.strip()
+
+    # Extraction de l'année (champ year)
+    df["year"] = df["date"].apply(extract_year)
+    df["year"] = df["year"].astype("Int64")  # Gère les valeurs nulles
+
+    # 4.4. Traitement par lots (batch)
+    # -------------------------------------------------------------------------
+    batch_size = 1000
+    total_rows = df.shape[0]
+
+    for start in tqdm(range(0, total_rows, batch_size), desc="Processing Batches"):
+        end = min(start + batch_size, total_rows)
+        batch_df = df.iloc[start:end]
+
+        # Récupérer la liste des codes EAN13 dans ce batch
+        batch_codes = batch_df["code_13_ref"].tolist()
+
+        # Sélectionner les GlobalProduct existants correspondant aux codes
+        existing_products = GlobalProduct.objects.filter(code_13_ref__in=batch_codes)
+        existing_products_dict = {prod.code_13_ref: prod for prod in existing_products}
+
+        # Listes pour la création et la mise à jour
+        products_to_create = []
+        products_to_update = []
+
+        # 4.4.1. Préparation des objets à créer ou mettre à jour
+        # ---------------------------------------------------------------------
+        for row in batch_df.itertuples(index=False):
+            product_data = {
+                "name": row.product_name,
+                "year": row.year if not pd.isna(row.year) else None,
+                "universe": row.universe,
+                "category": row.category,
+                "sub_category": row.sub_category,
+                "brand_lab": row.brand_lab,
+                "lab_distributor": row.lab_distributor,
+                "range_name": row.range_name,
+                "specificity": row.specificity,
+                "family": row.family,
+                "sub_family": row.sub_family,
+                "tva_percentage": Decimal(row.tva_percentage) if pd.notna(row.tva_percentage) else None,
+                "free_access": bool(row.free_access) if pd.notna(row.free_access) else False,
+            }
+
+            code = row.code_13_ref
+            if code in existing_products_dict:
+                # Mise à jour
+                obj = existing_products_dict[code]
+                for key, value in product_data.items():
+                    setattr(obj, key, value)
+                products_to_update.append(obj)
+            else:
+                # Création
+                new_product = GlobalProduct(code_13_ref=code, **product_data)
+                products_to_create.append(new_product)
+
+        # 4.4.2. Exécution des opérations en base
+        # ---------------------------------------------------------------------
+        with transaction.atomic():
+            if products_to_create:
+                GlobalProduct.objects.bulk_create(products_to_create, ignore_conflicts=True)
+            if products_to_update:
+                GlobalProduct.objects.bulk_update(
+                    products_to_update,
+                    fields=[
+                        "name", "year", "universe", "category", "sub_category",
+                        "brand_lab", "lab_distributor", "range_name", "specificity",
+                        "family", "sub_family", "tva_percentage", "free_access"
+                    ]
+                )
+
+        # 4.4.3. Journalisation du batch traité
+        # ---------------------------------------------------------------------
+        print(f"Batch {start // batch_size + 1} processed: {end - start} records.")
 
 
-if __name__ == '__main__':
+# 5. Point d'entrée du script
+# -----------------------------------------------------------------------------
+if __name__ == "__main__":
+    main()
+import os
+import sys
+import re
+import django
+import pandas as pd
+from tqdm import tqdm
+from decimal import Decimal, InvalidOperation
+from django.db import transaction
+
+# 1. Configuration Django
+# -----------------------------------------------------------------------------
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Phardev.settings')
+django.setup()
+
+# 2. Imports Django
+# -----------------------------------------------------------------------------
+from data.models import GlobalProduct
+
+
+# 3. Fonctions utilitaires pour le nettoyage des données
+# -----------------------------------------------------------------------------
+def extract_year(value):
+    """
+    Tente d'extraire une année valide (entre 1900 et 2100) à partir d'une valeur donnée.
+    Retourne l'année en tant qu'entier ou None si la conversion échoue.
+    """
+    try:
+        if pd.isna(value):
+            return None
+        value_str = str(value).strip()
+        digits = ''.join(filter(str.isdigit, value_str))
+        if digits:
+            year = int(digits)
+            if 1900 <= year <= 2100:
+                return year
+        return None
+    except Exception:
+        return None
+
+
+def clean_code_13_ref(code_13):
+    """
+    Nettoie la référence EAN13.
+    - Supprime les espaces et caractères non numériques.
+    - Tronque à 13 caractères pour éviter les dépassements.
+    Retourne None si la valeur initiale est NaN.
+    """
+    if pd.isna(code_13):
+        return None
+    # Supprime les espaces et caractères non numériques
+    code_13 = str(code_13).replace(' ', '').strip()
+    code_13 = re.sub(r'\D', '', code_13)
+    # Tronque à 13 caractères maximum
+    return code_13[:13]
+
+
+def clean_decimal(value):
+    """
+    Nettoie et convertit une valeur en Decimal.
+    Retourne None si la conversion échoue ou si la valeur est vide/NaN.
+    """
+    try:
+        if pd.isna(value) or value == '':
+            return None
+        return Decimal(str(value).strip())
+    except (InvalidOperation, ValueError, TypeError):
+        return None
+
+
+# 4. Fonction principale d'import
+# -----------------------------------------------------------------------------
+def main():
+    """
+    Lit un fichier Excel, nettoie les données et les insère (ou met à jour)
+    dans la base via le modèle GlobalProduct, par lots (batch).
+    """
+    # 4.1. Lecture du fichier Excel
+    excel_file = "CODES PRODUITS OFFICIELS SANS NUMEROTATION 2.xlsx"
+
+    try:
+        df = pd.read_excel(excel_file)
+    except FileNotFoundError:
+        print(f"Fichier {excel_file} non trouvé.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Erreur lors de la lecture du fichier Excel: {e}")
+        sys.exit(1)
+
+    # 4.2. Renommage des colonnes pour simplifier l'accès
+    df.rename(
+        columns={
+            "GENCOD13=EAN13": "code_13_ref_raw",
+            "DATE": "date",
+            "UNIVERS": "universe",
+            "CATÉGORIE": "category",
+            "SOUS CATÉGORIE": "sub_category",
+            "MARQUE - LABO": "brand_lab",
+            "LABORATOIRE - DISTRIBUTEUR": "lab_distributor",
+            "GAMME": "range_name",
+            "SPECIFICITE": "specificity",
+            "FAMILLE": "family",
+            "SOUS FAMILLE": "sub_family",
+            "% TVA": "tva_percentage",
+            "LIBRE ACCES": "free_access",
+            "PRODUIT": "product_name",
+        },
+        inplace=True
+    )
+
+    # 4.3. Nettoyage et prétraitement du DataFrame
+    # -------------------------------------------------------------------------
+    # Nettoyage du code EAN13
+    df["code_13_ref"] = df["code_13_ref_raw"].apply(clean_code_13_ref)
+    df.drop(columns=["code_13_ref_raw"], inplace=True)
+
+    # Nettoyage des pourcentages TVA
+    df["tva_percentage"] = df["tva_percentage"].apply(clean_decimal)
+
+    # Remplacer les NaNs par None pour certains champs nullable
+    nullable_fields = ["brand_lab", "lab_distributor", "range_name",
+                       "specificity", "family", "sub_family"]
+    df[nullable_fields] = df[nullable_fields].where(~df[nullable_fields].isna(), None)
+
+    # Nettoyage de la colonne 'product_name'
+    df["product_name"] = df["product_name"].astype(str).str.strip()
+
+    # Extraction de l'année (champ year)
+    df["year"] = df["date"].apply(extract_year)
+    df["year"] = df["year"].astype("Int64")  # Gère les valeurs nulles
+
+    # 4.4. Traitement par lots (batch)
+    # -------------------------------------------------------------------------
+    batch_size = 1000
+    total_rows = df.shape[0]
+
+    for start in tqdm(range(0, total_rows, batch_size), desc="Processing Batches"):
+        end = min(start + batch_size, total_rows)
+        batch_df = df.iloc[start:end]
+
+        # Récupérer la liste des codes EAN13 dans ce batch
+        batch_codes = batch_df["code_13_ref"].tolist()
+
+        # Sélectionner les GlobalProduct existants correspondant aux codes
+        existing_products = GlobalProduct.objects.filter(code_13_ref__in=batch_codes)
+        existing_products_dict = {prod.code_13_ref: prod for prod in existing_products}
+
+        # Listes pour la création et la mise à jour
+        products_to_create = []
+        products_to_update = []
+
+        # 4.4.1. Préparation des objets à créer ou mettre à jour
+        # ---------------------------------------------------------------------
+        for row in batch_df.itertuples(index=False):
+            product_data = {
+                "name": row.product_name,
+                "year": row.year if not pd.isna(row.year) else None,
+                "universe": row.universe,
+                "category": row.category,
+                "sub_category": row.sub_category,
+                "brand_lab": row.brand_lab,
+                "lab_distributor": row.lab_distributor,
+                "range_name": row.range_name,
+                "specificity": row.specificity,
+                "family": row.family,
+                "sub_family": row.sub_family,
+                "tva_percentage": Decimal(row.tva_percentage) if pd.notna(row.tva_percentage) else None,
+                "free_access": bool(row.free_access) if pd.notna(row.free_access) else False,
+            }
+
+            code = row.code_13_ref
+            if code in existing_products_dict:
+                # Mise à jour
+                obj = existing_products_dict[code]
+                for key, value in product_data.items():
+                    setattr(obj, key, value)
+                products_to_update.append(obj)
+            else:
+                # Création
+                new_product = GlobalProduct(code_13_ref=code, **product_data)
+                products_to_create.append(new_product)
+
+        # 4.4.2. Exécution des opérations en base
+        # ---------------------------------------------------------------------
+        with transaction.atomic():
+            if products_to_create:
+                GlobalProduct.objects.bulk_create(products_to_create, ignore_conflicts=True)
+            if products_to_update:
+                GlobalProduct.objects.bulk_update(
+                    products_to_update,
+                    fields=[
+                        "name", "year", "universe", "category", "sub_category",
+                        "brand_lab", "lab_distributor", "range_name", "specificity",
+                        "family", "sub_family", "tva_percentage", "free_access"
+                    ]
+                )
+
+        # 4.4.3. Journalisation du batch traité
+        # ---------------------------------------------------------------------
+        print(f"Batch {start // batch_size + 1} processed: {end - start} records.")
+
+
+# 5. Point d'entrée du script
+# -----------------------------------------------------------------------------
+if __name__ == "__main__":
     main()

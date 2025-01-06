@@ -565,10 +565,10 @@ def process_stock_dexter(pharmacy, data, date_str):
                 'code_13_ref': code_13_ref or "",
                 'TVA': float(obj['taux_Tva']) if obj.get('taux_Tva') is not None else 0.0,
                 'stock': clamp(int(obj['qte_stock']) if obj.get('qte_stock') else 0, -32768, 32767),
-                'price_with_tax': Decimal(str(obj['px_achat_PMP_HT'])).quantize(Decimal('0.01'),
+                'weighted_average_price': Decimal(str(obj['px_achat_PMP_HT'])).quantize(Decimal('0.01'),
                                                                                 rounding=ROUND_HALF_UP) if obj.get(
                     'px_achat_PMP_HT') else Decimal('0.00'),
-                'weighted_average_price': Decimal(str(obj['px_vte_TTC'])).quantize(Decimal('0.01'),
+                'price_with_tax': Decimal(str(obj['px_vte_TTC'])).quantize(Decimal('0.01'),
                                                                                    rounding=ROUND_HALF_UP) if obj.get(
                     'px_vte_TTC') else Decimal('0.00')
             })

@@ -39,3 +39,5 @@ def handler(event, context, full_dump=True):
 
         except requests.exceptions.RequestException as e:
             print(f"Connexion Error: {e}")
+
+handler(1,1)

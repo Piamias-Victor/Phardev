@@ -50,7 +50,7 @@ class InternalProductAdmin(admin.ModelAdmin):
 class InventorySnapshotAdmin(admin.ModelAdmin):
     # Variable or functions to show as columns
     list_display = ("product", "date", "stock", "price_with_tax", "weighted_average_price")
-    search_fields = ["product__name",]
+    search_fields = ["product__name", "product__code_13_ref__code_13_ref"]
     ordering = ('product__name', '-date')
     list_filter = ["product__pharmacy__name",]
 

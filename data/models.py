@@ -1,5 +1,5 @@
 import uuid
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from django.db import models
 from django.db.models import UniqueConstraint
@@ -78,7 +78,7 @@ class InternalProduct(models.Model):
         decimal_places=2,
         null=True,
         blank=True,
-        validators=[MinValueValidator(0)],
+        validators=[MinValueValidator(0), MaxValueValidator(1)],
         verbose_name="TVA"
     )
 

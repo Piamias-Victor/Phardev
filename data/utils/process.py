@@ -146,13 +146,18 @@ def process_product_winpharma(pharmacy, data):
         try:
             if int(obj.get('id')) < 0:
                 continue
+            tva_value = float(obj.get('TVA', 0.0))
+            if tva_value > 1:
+                tva_converted = Decimal(tva_value / 100)
+            else:
+                tva_converted = Decimal(tva_value)
 
             # Cap prices to a maximum value
             preprocessed_data.append({
                 'product_id': str(obj.get('id')),
                 'name': obj.get('nom', ''),
                 'code_13_ref': obj.get('code13Ref') or None,
-                'TVA': float(obj.get('TVA', 0.0)),
+                'TVA': tva_converted,
                 'stock': clamp(int(obj.get('stock', 0)), -32768, 32767),
                 'price_with_tax': min(Decimal(obj.get('prixTtc', 0)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP),
                                       Decimal('99999999.99')),
@@ -461,7 +466,6 @@ def process_order_winpharma(pharmacy, data):
         raise
 
 
-
 def process_sales_winpharma(pharmacy, data):
     """
     Process sales records for a pharmacy and its products.
@@ -559,17 +563,23 @@ def process_stock_dexter(pharmacy, data, date_str):
                     code_13_ref = code.get('code')
                     break
 
+            tva_value = float(obj['taux_Tva']) if obj.get('taux_Tva') is not None else 0.0
+            if tva_value > 1:
+                tva_converted = Decimal(tva_value / 100)
+            else:
+                tva_converted = Decimal(tva_value)
+
             preprocessed_data.append({
                 'product_id': str(obj['produit_id']),
                 'name': str(obj['libelle_produit']) if obj.get('libelle_produit') else "",
                 'code_13_ref': code_13_ref or "",
-                'TVA': float(obj['taux_Tva']) if obj.get('taux_Tva') is not None else 0.0,
+                'TVA': tva_converted,
                 'stock': clamp(int(obj['qte_stock']) if obj.get('qte_stock') else 0, -32768, 32767),
                 'weighted_average_price': Decimal(str(obj['px_achat_PMP_HT'])).quantize(Decimal('0.01'),
-                                                                                rounding=ROUND_HALF_UP) if obj.get(
+                                                                                        rounding=ROUND_HALF_UP) if obj.get(
                     'px_achat_PMP_HT') else Decimal('0.00'),
                 'price_with_tax': Decimal(str(obj['px_vte_TTC'])).quantize(Decimal('0.01'),
-                                                                                   rounding=ROUND_HALF_UP) if obj.get(
+                                                                           rounding=ROUND_HALF_UP) if obj.get(
                     'px_vte_TTC') else Decimal('0.00')
             })
 

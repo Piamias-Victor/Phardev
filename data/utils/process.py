@@ -827,10 +827,10 @@ def process_achat_dexter(pharmacy, data):
                 'delivery_date': obj['delivery_date'],
             })
         except KeyError as e:
-            logger.warning(f"Missing key in order {obj['commande_id']}: {e}")
+            logger.warning(f"Missing key in order {obj}: {e}")
             continue
         except Exception as e:
-            logger.error(f"Error processing order {obj['commande_id']}: {e}")
+            logger.error(f"Error processing order {obj}: {e}")
             continue
 
     # Create or update orders
@@ -954,24 +954,24 @@ def process_vente_dexter(pharmacy, data):
     aggregated_sales = {}
     for obj in preprocessed_data:
         product_id = obj['product_id']
-        if product_id not in aggregated_sales:
-            aggregated_sales[product_id] = (obj['date'], obj['qte'])
+        day = parse_date(obj['date'], is_datetime=False)
+        key = (product_id, day)
+        if key not in aggregated_sales:
+            aggregated_sales[key] = obj['qte']
         else:
-            old = aggregated_sales[product_id]
-            new = (old[0], old[1] + obj['qte'])
-            aggregated_sales[product_id] = new
+            aggregated_sales[key] += obj['qte']
 
     sales_data = []
-    for key, value in aggregated_sales.items():
-        snapshot_id = internal_products_map.get(key)
+    for (product_id, day), total_qte in aggregated_sales.items():
+        snapshot_id = internal_products_map.get(product_id)
         if not snapshot_id:
             continue
-        if value[1] > 10000:
-            print(value)
+        if total_qte > 10000:
+            print(f"Quantité élevée le {day} pour produit {product_id}: {total_qte}")
         sales_data.append({
             'product_id': snapshot_id,
-            'quantity': clamp(value[1], -32768, 32767),
-            'date': parse_date(value[0], False),
+            'quantity': clamp(total_qte, -32768, 32767),
+            'date': day,
         })
 
     # Process sales in bulk

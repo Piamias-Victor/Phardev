@@ -8,6 +8,7 @@ import boto3
 import botocore
 import requests
 from dotenv import load_dotenv
+from tqdm import tqdm
 
 load_dotenv()
 
@@ -18,8 +19,6 @@ endpoint_priority = {
     'achat': 1,
     'vente': 2
 }
-bucket_name = 'phardev'
-subfolder_prefix = 'Dexter/'
 
 
 def handler(event, context):
@@ -39,7 +38,7 @@ def handler(event, context):
 
                     try:
                         key = obj['Key']
-                        filename = key.split('Dexter/')[1].split('.json.gz')[0]
+                        filename = key.split(subfolder_prefix)[1].split('.json.gz')[0]
                         parts = filename.split('_')
 
                         if len(parts) < 6:
@@ -63,7 +62,7 @@ def handler(event, context):
         all_files.sort(key=lambda x: (x[0], x[1], x[2], endpoint_priority[x[3]]))
 
         # Traitement des fichiers triés
-        for cip_code, gers_code, start_date, file_type, obj in all_files:
+        for cip_code, gers_code, start_date, file_type, obj in tqdm(all_files):
             try:
                 response = s3_client.get_object(Bucket=bucket_name, Key=obj['Key'])
                 compressed_body = response['Body'].read()
@@ -75,8 +74,9 @@ def handler(event, context):
 
                 response = requests.post(f"{SERVER_URL}/dexter/create/{file_type}", json=json_content)
                 print(f"{response.status_code}")
+
                 if response.status_code == 200:
-                    new_key = obj['Key'].replace(subfolder_prefix, 'Dexter_history/')
+                    new_key = obj['Key'].replace(subfolder_prefix, 'History_dexter/')
                     s3_client.copy_object(
                         Bucket=bucket_name,
                         CopySource={'Bucket': bucket_name, 'Key': obj['Key']},
@@ -86,7 +86,6 @@ def handler(event, context):
                     print(f"File {obj['Key']} moved.")
                 else:
                     print(f"POST failed for {obj['Key']}: {response.status_code}")
-
             except Exception as e:
                 print(f"Failed to process file {obj['Key']}: {e}")
 
@@ -96,6 +95,3 @@ def handler(event, context):
             'statusCode': 500,
             'body': json.dumps('Error listing objects')
         }
-
-
-handler(1, 1)

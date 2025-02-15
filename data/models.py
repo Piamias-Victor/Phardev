@@ -120,7 +120,7 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     internal_id = models.PositiveBigIntegerField()
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name="orders")
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name="orders", null=True, blank=True)
     pharmacy = models.ForeignKey(Pharmacy, on_delete=models.CASCADE, related_name="orders")
 
     step = models.PositiveSmallIntegerField()

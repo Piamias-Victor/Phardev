@@ -87,7 +87,9 @@ class ProductOrderAdmin(admin.ModelAdmin):
 class SalesAdmin(admin.ModelAdmin):
     list_display = ("product", "quantity", "date")
 
-    search_fields = ["product"]
+    search_fields = ["product__product__internal_id", "product__id"]
+    list_filter = ["product__product__pharmacy__name",]
+
     readonly_fields = ('created_at', 'updated_at', )
     list_per_page = 25
     raw_id_fields = ('product',)

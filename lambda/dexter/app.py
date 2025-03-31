@@ -24,7 +24,7 @@ endpoint_priority = {
 def handler(event, context):
     s3_client = boto3.client('s3')
     bucket_name = 'phardev'
-    subfolder_prefix = 'Dexter/'
+    subfolder_prefix = 'Dexter_history/'
 
     try:
         paginator = s3_client.get_paginator('list_objects_v2')
@@ -95,3 +95,6 @@ def handler(event, context):
             'statusCode': 500,
             'body': json.dumps('Error listing objects')
         }
+
+
+handler(1, 1)

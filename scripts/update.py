@@ -18,11 +18,9 @@ from django.db.models import Sum
 # -----------------------------------------------------------------------------
 from data.models import Pharmacy, GlobalProduct,Sales, InventorySnapshot, InternalProduct
 
-pharmacies = Pharmacy.objects.filter(name__isnull=False)
+pharmacies = Pharmacy.objects.filter(name__isnull=False, id_nat__isnull=True)
+print(pharmacies.count())
 for pharma in pharmacies:
-
-    print(Sales.objects.filter(product__product__pharmacy=pharma).delete())
-    print(InventorySnapshot.objects.filter(product__pharmacy=pharma).delete())
-    print(InternalProduct.objects.filter(pharmacy=pharma).delete())
-
     print(pharma.delete())
+
+

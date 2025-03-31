@@ -47,7 +47,7 @@ class GlobalProduct(models.Model):
     name = models.TextField(verbose_name="Produit")
     year = models.PositiveSmallIntegerField(verbose_name="Date", null=True, blank=True)
 
-    universe = models.CharField(max_length=255, verbose_name="Univers")
+    universe = models.CharField(max_length=255, null=True, blank=True, verbose_name="Univers")
     category = models.CharField(max_length=255, null=True, blank=True, verbose_name="Catégorie")
     sub_category = models.CharField(max_length=255, null=True, blank=True, verbose_name="Sous catégorie")
     brand_lab = models.CharField(max_length=255, blank=True, null=True, verbose_name="Marque - Labo")
@@ -65,7 +65,7 @@ class GlobalProduct(models.Model):
 
 class InternalProduct(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    internal_id = models.PositiveIntegerField()
+    internal_id = models.PositiveBigIntegerField()
     code_13_ref = models.ForeignKey(GlobalProduct, null=True, blank=True, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)

@@ -20,8 +20,8 @@ Pour chaque type de logiciel partenaire (Dexter et Winpharma), il existe une vue
 5. Vue pour créer une vente (Dexter)
 6. Vue pour créer une vente (Winpharma)
 
-### 2. **Dossier `utils`**
-Le dossier `utils` contient un fichier nommé `process.py` qui regroupe la logique d'insertion dans la base de données. Ce fichier est utilisé pour effectuer des opérations d'insertion de données dans la base, avec une gestion spécifique à chaque type de logiciel partenaire.
+### 2. **Dossier `services`**
+Le dossier `services` contient les fichiers qui regroupent la logique d'insertion dans la base de données. Ces fichiers sont utilisé pour effectuer des opérations d'insertion de données dans la base, avec une gestion spécifique à chaque type de logiciel partenaire.
 
 ## Fonctionnalités
 - **Vérification de l'inventaire :** Permet de vérifier les niveaux de stock pour les logiciels Dexter et Winpharma.

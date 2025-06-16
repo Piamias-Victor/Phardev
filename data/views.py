@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from data.models import (Pharmacy)
-from data.services import dexter, winpharma
+from data.services import dexter, winpharma, winpharma_2
 
 
 @api_view(['POST'])
@@ -129,3 +129,60 @@ def dexter_create_vente(request):
         "message": "Processing completed",
     }, status=200)
 
+
+@api_view(['POST'])
+def winpharma_2_create_product(request):
+    """
+    Endpoint for creating or updating products linked to a pharmacy.
+    """
+    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+
+    try:
+        winpharma_2.process_product(pharmacy, request.data)
+    except Exception as e:
+        print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
+
+    return Response({
+        "message": "Processing completed",
+    }, status=200)
+
+
+@api_view(['POST'])
+def winpharma_2_create_order(request):
+    """
+    Endpoint for creating or updating orders linked to a pharmacy.
+    """
+    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+    try:
+        winpharma_2.process_order(pharmacy, request.data)
+    except Exception as e:
+        print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
+
+    return Response({
+        "message": "Processing completed",
+    }, status=200)
+
+
+@api_view(['POST'])
+def winpharma_2_create_sales(request):
+    """
+    Endpoint for creating or updating sales linked to a pharmacy.
+    """
+    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+    try:
+        winpharma_2.process_sales(pharmacy, request.data)
+    except Exception as e:
+        print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
+
+    return Response({
+        "message": "Processing completed",
+    }, status=200)

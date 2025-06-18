@@ -173,179 +173,318 @@ def process_order(pharmacy, data):
     Returns:
         dict: A dictionary containing lists of created suppliers, products, orders, and product-order associations.
     """
-    preprocessed_data = []
-    for block in data:
-        for achat in block.get("achats", []):
+    try:
+        logger.info(f"Début du traitement des commandes pour la pharmacie {pharmacy.id}")
+        logger.info(f"Nombre de blocs de données: {len(data)}")
+        
+        preprocessed_data = []
+        for block_idx, block in enumerate(data):
             try:
-                order_id_raw = achat.get("id")
-                order_id = int(order_id_raw) if order_id_raw is not None else None
-                if order_id is None:
-                    raise ValueError("Champ 'id' manquant")
-
-                supplier_id = achat.get("codeFourn")
-                if not supplier_id:
-                    raise ValueError("Champ 'codeFourn' manquant")
-                supplier_name = achat.get("nomFourn", supplier_id)
-
-                step = achat.get("channel", "")  # plus de champ 'etape'
-                sent_date = common.parse_date(achat.get("dateEnvoi"))
-                delivery_date = common.parse_date(achat.get("dateLivraison"), False)
-
-                # -------- lignes produits --------------------------------
-                products: List[Dict[str, Any]] = []
-                for line in achat.get("lignes", []):
+                # Log des informations du bloc
+                logger.info(f"Traitement du bloc {block_idx+1}/{len(data)}")
+                logger.info(f"Clés du bloc: {list(block.keys())}")
+                
+                if 'achats' not in block:
+                    logger.warning(f"Clé 'achats' non trouvée dans le bloc {block_idx+1}")
+                    continue
+                
+                achats = block.get("achats", [])
+                logger.info(f"Nombre d'achats dans le bloc: {len(achats)}")
+                
+                for achat_idx, achat in enumerate(achats):
                     try:
-                        prod_id = int(line.get("prodId"))
-                        if prod_id < 0:
-                            # Id négatif = placeholder, on ignore
+                        # Log détaillé pour le débogage
+                        logger.info(f"Traitement de l'achat {achat_idx+1}/{len(achats)}")
+                        
+                        # Validation de l'ID
+                        order_id_raw = achat.get("id")
+                        logger.info(f"ID brut: {order_id_raw} (type: {type(order_id_raw).__name__})")
+                        
+                        try:
+                            order_id = int(order_id_raw) if order_id_raw is not None else None
+                            logger.info(f"ID converti: {order_id}")
+                        except (ValueError, TypeError) as err:
+                            logger.error(f"Erreur de conversion de l'ID {order_id_raw}: {err}")
+                            continue
+                            
+                        if order_id is None:
+                            logger.warning("Champ 'id' manquant")
                             continue
 
-                        product_id = str(prod_id)
-                        qte_c = common.clamp(int(line.get("qteC", 0)), -32768, 32767)
-                        qte_r = common.clamp(int(line.get("qteR", 0)), -32768, 32767)
-                        qte_ug = common.clamp(int(line.get("qteUG", 0)), -32768, 32767)
-                        qte_ec = common.clamp(int(line.get("qteEC", 0)), -32768, 32767)
+                        # Validation du fournisseur
+                        supplier_id = achat.get("codeFourn")
+                        logger.info(f"Code fournisseur: {supplier_id}")
+                        
+                        if not supplier_id:
+                            logger.warning("Champ 'codeFourn' manquant")
+                            continue
+                            
+                        supplier_name = achat.get("nomFourn", supplier_id)
+                        logger.info(f"Nom fournisseur: {supplier_name}")
 
-                        products.append({
-                            "product_id": product_id,
-                            "qte": qte_c,  # commandée
-                            "qteUG": qte_ug,
-                            "qteA": qte_c,  # champ supprimé – valeur alignée
-                            "qteR": qte_r,  # reçue
-                            "qteAReceptionner": 0,  # non fourni dans ce flux
-                            "qteEC": qte_ec,
+                        # Autres champs
+                        step = achat.get("channel", "")
+                        sent_date = common.parse_date(achat.get("dateEnvoi"))
+                        delivery_date = common.parse_date(achat.get("dateLivraison"), False)
+                        
+                        logger.info(f"Step: {step}, Date envoi: {sent_date}, Date livraison: {delivery_date}")
+
+                        # Traitement des lignes
+                        if 'lignes' not in achat:
+                            logger.warning(f"Champ 'lignes' manquant dans l'achat {order_id}")
+                            continue
+                            
+                        lignes = achat.get("lignes", [])
+                        logger.info(f"Nombre de lignes: {len(lignes)}")
+                        
+                        products = []
+                        for line_idx, line in enumerate(lignes):
+                            try:
+                                logger.info(f"Traitement de la ligne {line_idx+1}/{len(lignes)}")
+                                
+                                # Validation de prodId
+                                prod_id_raw = line.get("prodId")
+                                if prod_id_raw is None:
+                                    logger.warning(f"Champ 'prodId' manquant dans la ligne {line_idx+1}")
+                                    continue
+                                
+                                try:
+                                    prod_id = int(prod_id_raw)
+                                    if prod_id < 0:
+                                        logger.info(f"ID négatif ignoré: {prod_id}")
+                                        continue
+                                except (ValueError, TypeError) as err:
+                                    logger.error(f"Erreur de conversion du prodId {prod_id_raw}: {err}")
+                                    continue
+
+                                product_id = str(prod_id)
+                                
+                                # Validation des quantités
+                                try:
+                                    qte_c = common.clamp(int(line.get("qteC", 0) or 0), -32768, 32767)
+                                except (ValueError, TypeError) as err:
+                                    logger.warning(f"Erreur de conversion qteC: {err}, valeur par défaut utilisée")
+                                    qte_c = 0
+                                    
+                                try:
+                                    qte_r = common.clamp(int(line.get("qteR", 0) or 0), -32768, 32767)
+                                except (ValueError, TypeError) as err:
+                                    logger.warning(f"Erreur de conversion qteR: {err}, valeur par défaut utilisée")
+                                    qte_r = 0
+                                    
+                                try:
+                                    qte_ug = common.clamp(int(line.get("qteUG", 0) or 0), -32768, 32767)
+                                except (ValueError, TypeError) as err:
+                                    logger.warning(f"Erreur de conversion qteUG: {err}, valeur par défaut utilisée")
+                                    qte_ug = 0
+                                    
+                                try:
+                                    qte_ec = common.clamp(int(line.get("qteEC", 0) or 0), -32768, 32767)
+                                except (ValueError, TypeError) as err:
+                                    logger.warning(f"Erreur de conversion qteEC: {err}, valeur par défaut utilisée")
+                                    qte_ec = 0
+
+                                products.append({
+                                    "product_id": product_id,
+                                    "qte": qte_c,  # commandée
+                                    "qteUG": qte_ug,
+                                    "qteA": qte_c,  # champ supprimé – valeur alignée
+                                    "qteR": qte_r,  # reçue
+                                    "qteAReceptionner": 0,  # non fourni dans ce flux
+                                    "qteEC": qte_ec,
+                                })
+                            except Exception as err:
+                                logger.error(f"Erreur lors du traitement de la ligne {line_idx+1}: {err}")
+                                import traceback
+                                logger.error(traceback.format_exc())
+                                continue
+
+                        preprocessed_data.append({
+                            "order_id": order_id,
+                            "supplier_id": supplier_id,
+                            "supplier_name": supplier_name,
+                            "step": step,
+                            "sent_date": sent_date,
+                            "delivery_date": delivery_date,
+                            "products": products,
                         })
-                    except (ValueError, TypeError, KeyError) as err:
-                        logger.warning("Produit ignoré dans commande %s : %s", order_id, err)
+                    except Exception as err:
+                        logger.error(f"Erreur lors du traitement de l'achat {achat_idx+1}: {err}")
+                        import traceback
+                        logger.error(traceback.format_exc())
                         continue
-
-                preprocessed_data.append({
-                    "order_id": order_id,
-                    "supplier_id": supplier_id,
-                    "supplier_name": supplier_name,
-                    "step": step,
-                    "sent_date": sent_date,
-                    "delivery_date": delivery_date,
-                    "products": products,
-                })
-            except (ValueError, TypeError) as err:
-                logger.warning("Commande ignorée (%s) : %s", achat.get("id", "?"), err)
+            except Exception as err:
+                logger.error(f"Erreur lors du traitement du bloc {block_idx+1}: {err}")
+                import traceback
+                logger.error(traceback.format_exc())
                 continue
+
+        # Vérifier si des données ont été préprocessées
+        logger.info(f"Nombre de commandes préprocessées: {len(preprocessed_data)}")
+        if not preprocessed_data:
+            logger.warning("Aucune donnée préprocessée")
+            return {
+                "suppliers": [],
+                "products": [],
+                "orders": [],
+                "product_orders": [],
+            }
 
         # ------------------------------------------------------------------
         # 2. Fournisseurs ----------------------------------------------------
         # ------------------------------------------------------------------
-    supplier_data: List[Dict[str, Any]] = []
-    seen_suppliers: Set[tuple[int, str]] = set()
+        logger.info("Traitement des fournisseurs")
+        supplier_data = []
+        seen_suppliers = set()
 
-    for obj in preprocessed_data:
-        key = (pharmacy.id, obj["supplier_id"])
-        if key not in seen_suppliers:
-            supplier_data.append({
-                "pharmacy_id": pharmacy.id,
-                "code_supplier": obj["supplier_id"],
-                "name": obj["supplier_name"],
-            })
-            seen_suppliers.add(key)
+        for obj in preprocessed_data:
+            key = (pharmacy.id, obj["supplier_id"])
+            if key not in seen_suppliers:
+                supplier_data.append({
+                    "pharmacy_id": pharmacy.id,
+                    "code_supplier": obj["supplier_id"],
+                    "name": obj["supplier_name"],
+                })
+                seen_suppliers.add(key)
 
-    suppliers = common.bulk_process(
-        model=Supplier,
-        data=supplier_data,
-        unique_fields=["pharmacy_id", "code_supplier"],
-        update_fields=["name"],
-    )
-    suppliers_map = {s.code_supplier: s for s in suppliers}
+        logger.info(f"Nombre de fournisseurs à traiter: {len(supplier_data)}")
+        suppliers = common.bulk_process(
+            model=Supplier,
+            data=supplier_data,
+            unique_fields=["pharmacy_id", "code_supplier"],
+            update_fields=["name"],
+        )
+        logger.info(f"Nombre de fournisseurs traités: {len(suppliers)}")
+        suppliers_map = {s.code_supplier: s for s in suppliers}
 
-    # ------------------------------------------------------------------
-    # 3. Produits internes ----------------------------------------------
-    # ------------------------------------------------------------------
-    product_ids = {line["product_id"] for obj in preprocessed_data for line in obj["products"]}
+        # ------------------------------------------------------------------
+        # 3. Produits internes ----------------------------------------------
+        # ------------------------------------------------------------------
+        logger.info("Traitement des produits internes")
+        product_ids = {line["product_id"] for obj in preprocessed_data for line in obj["products"]}
+        logger.info(f"Nombre de produits uniques: {len(product_ids)}")
 
-    existing_products = InternalProduct.objects.filter(
-        pharmacy_id=pharmacy.id,
-        internal_id__in=product_ids,
-    )
+        existing_products = InternalProduct.objects.filter(
+            pharmacy_id=pharmacy.id,
+            internal_id__in=product_ids,
+        )
+        logger.info(f"Nombre de produits existants: {len(existing_products)}")
 
-    internal_product_data = [{
-        "internal_id": p.internal_id,
-        "pharmacy_id": pharmacy.id,
-        "name": p.name,
-    } for p in existing_products]
+        internal_product_data = [{
+            "internal_id": p.internal_id,
+            "pharmacy_id": pharmacy.id,
+            "name": p.name,
+        } for p in existing_products]
 
-    new_ids = product_ids - set(existing_products.values_list("internal_id", flat=True))
-    internal_product_data.extend({
-                                     "internal_id": pid,
-                                     "pharmacy_id": pharmacy.id,
-                                     "name": "empty",
-                                 } for pid in new_ids)
+        new_ids = product_ids - set(existing_products.values_list("internal_id", flat=True))
+        logger.info(f"Nombre de nouveaux produits: {len(new_ids)}")
+        
+        internal_product_data.extend({
+            "internal_id": pid,
+            "pharmacy_id": pharmacy.id,
+            "name": "empty",
+        } for pid in new_ids)
 
-    products = cast(List[InternalProduct], common.bulk_process(
-        model=InternalProduct,
-        data=internal_product_data,
-        unique_fields=["pharmacy_id", "internal_id"],
-        update_fields=["name"],
-    ))
-    products_map = {p.internal_id: p for p in products}
-    # ------------------------------------------------------------------
-    # 4. Commandes -------------------------------------------------------
-    # ------------------------------------------------------------------
-    order_rows = [{
-        "internal_id": obj["order_id"],
-        "pharmacy_id": pharmacy.id,
-        "supplier_id": suppliers_map[obj["supplier_id"]].id,
-        "step": obj["step"],
-        "sent_date": obj["sent_date"],
-        "delivery_date": obj["delivery_date"],
-    } for obj in preprocessed_data]
-
-    orders = common.bulk_process(
-        model=Order,
-        data=order_rows,
-        unique_fields=["internal_id", "pharmacy_id"],
-        update_fields=["supplier_id", "step", "sent_date", "delivery_date"],
-    )
-    orders_map = {o.internal_id: o for o in orders}
-
-    # ------------------------------------------------------------------
-    # 5. Liaisons produit‑commande --------------------------------------
-    # ------------------------------------------------------------------
-    product_order_rows: List[Dict[str, Any]] = []
-
-    for obj in preprocessed_data:
-        order = orders_map.get(obj["order_id"])
-        if not order:
-            continue
-        for line in obj["products"]:
-            product = products_map.get(line["product_id"])
-            if not product:
+        products = cast(List[InternalProduct], common.bulk_process(
+            model=InternalProduct,
+            data=internal_product_data,
+            unique_fields=["pharmacy_id", "internal_id"],
+            update_fields=["name"],
+        ))
+        logger.info(f"Nombre de produits traités: {len(products)}")
+        products_map = {p.internal_id: p for p in products}
+        
+        # ------------------------------------------------------------------
+        # 4. Commandes -------------------------------------------------------
+        # ------------------------------------------------------------------
+        logger.info("Traitement des commandes")
+        order_rows = []
+        
+        for obj in preprocessed_data:
+            # Vérifier si le fournisseur existe dans la map
+            if obj["supplier_id"] not in suppliers_map:
+                logger.warning(f"Fournisseur {obj['supplier_id']} non trouvé dans la map")
                 continue
-            product_order_rows.append({
-                "product": product,
-                "order": order,
-                "qte": line["qte"],
-                "qte_r": line["qteR"],
-                "qte_a": line["qteA"],
-                "qte_ug": line["qteUG"],
-                "qte_ec": line["qteEC"],
-                "qte_ar": line["qteAReceptionner"],
+                
+            order_rows.append({
+                "internal_id": obj["order_id"],
+                "pharmacy_id": pharmacy.id,
+                "supplier_id": suppliers_map[obj["supplier_id"]].id,
+                "step": obj["step"],
+                "sent_date": obj["sent_date"],
+                "delivery_date": obj["delivery_date"],
             })
 
-    common.bulk_process(
-        model=ProductOrder,
-        data=product_order_rows,
-        unique_fields=["order", "product"],
-        update_fields=["qte", "qte_r", "qte_a", "qte_ug", "qte_ec", "qte_ar"],
-    )
+        logger.info(f"Nombre de commandes à traiter: {len(order_rows)}")
+        orders = common.bulk_process(
+            model=Order,
+            data=order_rows,
+            unique_fields=["internal_id", "pharmacy_id"],
+            update_fields=["supplier_id", "step", "sent_date", "delivery_date"],
+        )
+        logger.info(f"Nombre de commandes traitées: {len(orders)}")
+        orders_map = {o.internal_id: o for o in orders}
 
-    # ------------------------------------------------------------------
-    # 6. Résumé ----------------------------------------------------------
-    # ------------------------------------------------------------------
-    return {
-        "suppliers": suppliers,
-        "products": products,
-        "orders": orders,
-        "product_orders": product_order_rows,
-    }
+        # ------------------------------------------------------------------
+        # 5. Liaisons produit‑commande --------------------------------------
+        # ------------------------------------------------------------------
+        logger.info("Traitement des liaisons produit-commande")
+        product_order_rows = []
+
+        for obj_idx, obj in enumerate(preprocessed_data):
+            order = orders_map.get(obj["order_id"])
+            if not order:
+                logger.warning(f"Commande {obj['order_id']} non trouvée dans la map")
+                continue
+                
+            for line_idx, line in enumerate(obj["products"]):
+                product = products_map.get(line["product_id"])
+                if not product:
+                    logger.warning(f"Produit {line['product_id']} non trouvé dans la map")
+                    continue
+                    
+                product_order_rows.append({
+                    "product": product,
+                    "order": order,
+                    "qte": line["qte"],
+                    "qte_r": line["qteR"],
+                    "qte_a": line["qteA"],
+                    "qte_ug": line["qteUG"],
+                    "qte_ec": line["qteEC"],
+                    "qte_ar": line["qteAReceptionner"],
+                })
+
+        logger.info(f"Nombre de liaisons produit-commande à traiter: {len(product_order_rows)}")
+        product_orders = common.bulk_process(
+            model=ProductOrder,
+            data=product_order_rows,
+            unique_fields=["order", "product"],
+            update_fields=["qte", "qte_r", "qte_a", "qte_ug", "qte_ec", "qte_ar"],
+        )
+        logger.info(f"Nombre de liaisons produit-commande traitées: {len(product_orders)}")
+
+        # ------------------------------------------------------------------
+        # 6. Résumé ----------------------------------------------------------
+        # ------------------------------------------------------------------
+        logger.info("Traitement terminé avec succès")
+        return {
+            "suppliers": suppliers,
+            "products": products,
+            "orders": orders,
+            "product_orders": product_order_rows,
+        }
+    except Exception as err:
+        logger.error(f"Erreur globale dans process_order: {err}")
+        import traceback
+        logger.error(traceback.format_exc())
+        # Retourner un résultat vide plutôt que de laisser l'erreur se propager
+        return {
+            "suppliers": [],
+            "products": [],
+            "orders": [],
+            "product_orders": [],
+            "error": str(err)
+        }
 
 
 def process_sales(pharmacy, data):

@@ -1,0 +1,434 @@
+[
+  {
+    "cip_pharma": "832011373",
+    "achats": [
+      {
+        "id": 185200,
+        "dateLivraison": "2025-06-16T00:00:00",
+        "codeFourn": "R7",
+        "nomFourn": "BOIRON REPARTITEUR",
+        "typeFourn": 5,
+        "dateEnvoi": "2025-06-13T00:00:00",
+        "channel": "pml",
+        "lignes": [
+          {
+            "prodId": 62107,
+            "code13Ref": "3400300628169",
+            "extraCodes": [
+              "3400300628169",
+              "0062107"
+            ],
+            "nomProduit": "APIS MELLIFICA 9CH TG BOI",
+            "qteR": 2,
+            "qteC": 2,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 2,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 75179,
+            "code13Ref": "3400300752451",
+            "extraCodes": [
+              "3400300752451",
+              "0075179"
+            ],
+            "nomProduit": "ARNICA MONTANA 9CH DO GL BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.69,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 108105,
+            "code13Ref": "3400301088160",
+            "extraCodes": [
+              "3400301088160",
+              "0108105"
+            ],
+            "nomProduit": "BELLADONNA 9CH TG BOI",
+            "qteR": 6,
+            "qteC": 6,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 6,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 138075,
+            "code13Ref": "3400301388123",
+            "extraCodes": [
+              "3400301388123",
+              "0138075"
+            ],
+            "nomProduit": "BRYONIA 5CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 430077,
+            "code13Ref": "3400304308128",
+            "extraCodes": [
+              "3400304308128",
+              "0430077"
+            ],
+            "nomProduit": "LEDUM PALUSTRE 5CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 511108,
+            "code13Ref": "3400305118160",
+            "extraCodes": [
+              "3400305118160",
+              "0511108"
+            ],
+            "nomProduit": "NATRUM MUR. 9CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 384124,
+            "code13Ref": "3400303847932",
+            "extraCodes": [
+              "3400303847932",
+              "0384124"
+            ],
+            "nomProduit": "IGNATIA AMARA 15CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 412139,
+            "code13Ref": "3400304128108",
+            "extraCodes": [
+              "3400304128108",
+              "0412139"
+            ],
+            "nomProduit": "LAC CANINUM 30CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 633136,
+            "code13Ref": "3400306338109",
+            "extraCodes": [
+              "3400306338109",
+              "0633136"
+            ],
+            "nomProduit": "RICINUS COMMUNIS 30CH TG BOI",
+            "qteR": 3,
+            "qteC": 3,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 3,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 633248,
+            "code13Ref": "3400306332398",
+            "extraCodes": [
+              "3400306332398",
+              "0633248"
+            ],
+            "nomProduit": "RICINUS COMMUNIS 30CH DO GL BOI",
+            "qteR": 3,
+            "qteC": 3,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 3,
+            "prix": 1.69,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 667098,
+            "code13Ref": "3400306678144",
+            "extraCodes": [
+              "3400306678144",
+              "0667098"
+            ],
+            "nomProduit": "SECALE CORNUTUM 7CH TG BOI",
+            "qteR": 2,
+            "qteC": 2,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 2,
+            "prix": 3.22,
+            "remiseFinal": 0.0
+          },
+          {
+            "prodId": 193020611,
+            "code13Ref": "3400930206119",
+            "extraCodes": [
+              "3400930206119",
+              "3020611"
+            ],
+            "nomProduit": "ACIDUM PHOSP COMP BOIR GRLS4G1",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 32106,
+            "code13Ref": "3400300328168",
+            "extraCodes": [
+              "3400300328168",
+              "0032106"
+            ],
+            "nomProduit": "ALLIUM CEPA 9CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 221103,
+            "code13Ref": "3400302218160",
+            "extraCodes": [
+              "3400302218160",
+              "0221103"
+            ],
+            "nomProduit": "COCCULUS INDICUS 9CH TG BOI",
+            "qteR": 3,
+            "qteC": 3,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 3,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 407109,
+            "code13Ref": "3400304078168",
+            "extraCodes": [
+              "3400304078168",
+              "0407109"
+            ],
+            "nomProduit": "KALIUM PHOS. 9CH TG BOI",
+            "qteR": 20,
+            "qteC": 20,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 20,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 430108,
+            "code13Ref": "3400304308166",
+            "extraCodes": [
+              "3400304308166",
+              "0430108"
+            ],
+            "nomProduit": "LEDUM PALUSTRE 9CH TG BOI",
+            "qteR": 51,
+            "qteC": 51,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 51,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 511114,
+            "code13Ref": "3400305117903",
+            "extraCodes": [
+              "3400305117903",
+              "0511114"
+            ],
+            "nomProduit": "NATRUM MUR. 12CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 3.22,
+            "remiseFinal": 0.0
+          },
+          {
+            "prodId": 735115,
+            "code13Ref": "3400307357901",
+            "extraCodes": [
+              "3400307357901",
+              "0735115"
+            ],
+            "nomProduit": "THUYA OCCIDENT. 12CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 3.22,
+            "remiseFinal": 0.0
+          },
+          {
+            "prodId": 1062121,
+            "code13Ref": "3400300627933",
+            "extraCodes": [
+              "3400300627933",
+              "1062121"
+            ],
+            "nomProduit": "APIS MELLIFICA 15CH TG BOI",
+            "qteR": 50,
+            "qteC": 50,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 50,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 1363101,
+            "code13Ref": "3400303638165",
+            "extraCodes": [
+              "3400303638165",
+              "1363101"
+            ],
+            "nomProduit": "HEPAR SULF.CALC. 9CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 1491201,
+            "code13Ref": "3400304912226",
+            "extraCodes": [
+              "3400304912226",
+              "1491201"
+            ],
+            "nomProduit": "MONILIA ALBICANS 15CH DO GL BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.69,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 1729051,
+            "code13Ref": "3400307298112",
+            "extraCodes": [
+              "3400307298112",
+              "1729051"
+            ],
+            "nomProduit": "THALLIUM ACETIC. 4CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 3.22,
+            "remiseFinal": 0.0
+          },
+          {
+            "prodId": 62099,
+            "code13Ref": "3400300628145",
+            "extraCodes": [
+              "3400300628145",
+              "0062099"
+            ],
+            "nomProduit": "APIS MELLIFICA 7CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 401101,
+            "code13Ref": "3400304018164",
+            "extraCodes": [
+              "3400304018164",
+              "0401101"
+            ],
+            "nomProduit": "KALIUM BICHROM. 9CH TG BOI",
+            "qteR": 2,
+            "qteC": 2,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 2,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 595105,
+            "code13Ref": "3400305958162",
+            "extraCodes": [
+              "3400305958162",
+              "0595105"
+            ],
+            "nomProduit": "POUMON HISTAMINE 9CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          },
+          {
+            "prodId": 735109,
+            "code13Ref": "3400307358168",
+            "extraCodes": [
+              "3400307358168",
+              "0735109"
+            ],
+            "nomProduit": "THUYA OCCIDENT. 9CH TG BOI",
+            "qteR": 1,
+            "qteC": 1,
+            "qteUG": 0,
+            "qteEC": 0,
+            "totalR": 1,
+            "prix": 1.93,
+            "remiseFinal": 40.0
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,138 @@
+{
+  "timestamp": "20250630_070352",
+  "analysis": {
+    "total_products_analyzed": 100,
+    "with_prices_count": 96,
+    "without_prices_count": 4
+  },
+  "products_with_prices": [
+    {
+      "ProdId": 9053,
+      "Code13Ref": "3400300098115",
+      "Nom": "MILLEFOLIUM 4CH TG BOI",
+      "ExtraCodes": "0009053",
+      "Stock": 0,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    },
+    {
+      "ProdId": 11073,
+      "Code13Ref": "3400300118127",
+      "Nom": "ACONITUM NAPEL. 5CH TG BOI",
+      "ExtraCodes": "0011073",
+      "Stock": 0,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    },
+    {
+      "ProdId": 13072,
+      "Code13Ref": "3400300138125",
+      "Nom": "ACTAEA RACEMOSA 5CH TG BOI",
+      "ExtraCodes": "0013072",
+      "Stock": 1,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    },
+    {
+      "ProdId": 13095,
+      "Code13Ref": "3400300138149",
+      "Nom": "ACTAEA RACEMOSA 7CH TG BOI",
+      "ExtraCodes": "0013095",
+      "Stock": 0,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    },
+    {
+      "ProdId": 24070,
+      "Code13Ref": "3400300248121",
+      "Nom": "AGRAPHIS NUTANS 5CH TG BOI",
+      "ExtraCodes": "0024070",
+      "Stock": 3,
+      "PrixTTC": 3.54,
+      "PrixMP": 2.79
+    },
+    {
+      "ProdId": 32106,
+      "Code13Ref": "3400300328168",
+      "Nom": "ALLIUM CEPA 9CH TG BOI",
+      "ExtraCodes": "0032106",
+      "Stock": 1,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    },
+    {
+      "ProdId": 33985,
+      "Code13Ref": "0033984023154",
+      "Nom": "SOLGAR PSYLLIUM 500MG 200GEL",
+      "ExtraCodes": "0033985",
+      "Stock": 2,
+      "PrixTTC": 24.05,
+      "PrixMP": 17.59
+    },
+    {
+      "ProdId": 49070,
+      "Code13Ref": "3400300498120",
+      "Nom": "AMYLIUM NITROSUM 5CH TG BOI",
+      "ExtraCodes": "0049070",
+      "Stock": 1,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    },
+    {
+      "ProdId": 62099,
+      "Code13Ref": "3400300628145",
+      "Nom": "APIS MELLIFICA 7CH TG BOI",
+      "ExtraCodes": "0062099",
+      "Stock": 1,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    },
+    {
+      "ProdId": 72100,
+      "Code13Ref": "3400300728166",
+      "Nom": "ARGENTUM NITRIC. 9CH TG BOI",
+      "ExtraCodes": "0072100",
+      "Stock": 1,
+      "PrixTTC": 3.54,
+      "PrixMP": 1.93
+    }
+  ],
+  "products_without_prices": [
+    {
+      "ProdId": 2,
+      "Code13Ref": "3070942303170",
+      "Nom": "INVENTAIRE IMPORT CODE : 2",
+      "ExtraCodes": "",
+      "Stock": -4,
+      "PrixTTC": 0.0,
+      "PrixMP": 0.0
+    },
+    {
+      "ProdId": 4,
+      "Code13Ref": "",
+      "Nom": "COPIE D’ORDONNANCES",
+      "ExtraCodes": "4",
+      "Stock": -3,
+      "PrixTTC": 0.0,
+      "PrixMP": 0.0
+    },
+    {
+      "ProdId": 1,
+      "Code13Ref": "",
+      "Nom": "VACCINATION GRIPPE PHARMACIEN",
+      "ExtraCodes": "1,VGP",
+      "Stock": -983,
+      "PrixTTC": 0.0,
+      "PrixMP": 0.0
+    },
+    {
+      "ProdId": 10,
+      "Code13Ref": "",
+      "Nom": "PREPA. ALLOPATHIQUE 15%",
+      "ExtraCodes": "10",
+      "Stock": -9,
+      "PrixTTC": 0.0,
+      "PrixMP": 0.0
+    }
+  ]
+}

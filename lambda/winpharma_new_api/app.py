@@ -14,7 +14,7 @@ PHARMACY_ID = os.environ.get('PHARMACY_ID')  # ex: 832011373
 SERVER_URL = os.environ.get('SERVER_URL')
 BASE_URL = "https://grpstat.winpharma.com/ApiWp"
 
-def handler(event, context, full_dump=True):
+def handler(event, context, full_dump=False):  # Forcer False par défaut
     """
     Handler principal pour la nouvelle API WinPharma
     

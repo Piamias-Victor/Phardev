@@ -1,0 +1,23 @@
+{
+  "timestamp": "20250630_070352",
+  "api_url": "https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/produits",
+  "pharmacy_id": "832011373",
+  "response_structure": {
+    "type": "<class 'list'>",
+    "length": 1,
+    "pharmacy_data_keys": [
+      "cip_pharma",
+      "produits"
+    ],
+    "total_products": 24613,
+    "sample_product_keys": [
+      "ProdId",
+      "Code13Ref",
+      "Nom",
+      "ExtraCodes",
+      "Stock",
+      "PrixTTC",
+      "PrixMP"
+    ]
+  }
+}

@@ -9,6 +9,9 @@ from rest_framework.response import Response
 from data.models import Pharmacy
 from data.services import dexter, winpharma, winpharma_2, winpharma_new_api
 
+from data.services import dexter, winpharma, winpharma_2, winpharma_historical
+
+
 logger = logging.getLogger(__name__)
 
 # Credentials de test pour nouvelle API
@@ -517,3 +520,75 @@ def test_new_api_summary(request):
             "error": f"Error: {str(e)}",
             "traceback": traceback.format_exc()
         }, status=500)
+
+# ========================================
+# AJOUT DANS data/views.py
+# ========================================
+
+# Ajouter cet import en haut du fichier
+
+# Ajouter ces 3 nouvelles vues à la fin du fichier
+
+@api_view(['POST'])
+def winpharma_historical_create_product(request):
+    """
+    Endpoint for creating or updating products linked to a pharmacy - HISTORICAL IMPORT VERSION.
+    """
+    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+
+    try:
+        winpharma_historical.process_product(pharmacy, request.data)
+    except Exception as e:
+        print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
+
+    return Response({
+        "message": "Processing completed",
+    }, status=200)
+
+
+@api_view(['POST'])
+def winpharma_historical_create_order(request):
+    """
+    Endpoint for creating or updating orders linked to a pharmacy - HISTORICAL IMPORT VERSION.
+    """
+    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+    try:
+        winpharma_historical.process_order(pharmacy, request.data)
+    except Exception as e:
+        print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
+
+    return Response({
+        "message": "Processing completed",
+    }, status=200)
+
+
+@api_view(['POST'])
+def winpharma_historical_create_sales(request):
+    """
+    Endpoint for creating or updating sales linked to a pharmacy - HISTORICAL IMPORT VERSION.
+    """
+    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+    try:
+        winpharma_historical.process_sales(pharmacy, request.data)
+    except Exception as e:
+        print(traceback.format_exc())
+        return Response({
+            "message": "Processing error",
+        }, status=500)
+
+    return Response({
+        "message": "Processing completed",
+    }, status=200)
+
+
+# ========================================
+# AJOUT DANS data/urls.py 
+# ========================================
+
+# Ajouter ces 3 nouvelles routes dans la liste urlpatterns

@@ -48,4 +48,5 @@ path('winpharma_historical/create/products', views.winpharma_historical_create_p
 path('winpharma_historical/create/orders', views.winpharma_historical_create_order, name='winpharma_historical_create_order'),
 path('winpharma_historical/create/sales', views.winpharma_historical_create_sales, name='winpharma_historical_create_sales'),
 
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,7 +2,7 @@
 """
 Script de récupération historique des données Winpharma 2
 Période : Janvier 2024 -> Mai 2025
-Pharmacie : 832011373
+Pharmacie : 
 """
 
 import requests

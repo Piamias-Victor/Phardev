@@ -39,12 +39,11 @@ def process_product(pharmacy, data):
             if not prod_id or int(prod_id) < 0:
                 continue
                 
-            # Note: No TVA field in new API, will be set to None
+            # Note: TVA will be retrieved from GlobalProduct
             preprocessed_data.append({
                 'product_id': str(prod_id),
                 'name': obj.get('Nom', ''),
                 'code_13_ref': obj.get('Code13Ref') or None,
-                'TVA': None,  # Not available in new API
                 'stock': common.clamp(int(obj.get('Stock', 0)), -32768, 32767),
                 'price_with_tax': min(
                     Decimal(str(obj.get('PrixTTC', 0))).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP),
@@ -83,16 +82,23 @@ def process_product(pharmacy, data):
             global_products_map.update({gp.code_13_ref: gp for gp in new_global_products})
 
     # Prepare data for InternalProduct
-    internal_products_data = [
-        {
+    internal_products_data = []
+    for obj in preprocessed_data:
+        global_product = global_products_map.get(obj['code_13_ref'])
+        
+        # 🔧 RÉCUPÉRER LA TVA DEPUIS GlobalProduct
+        tva_value = None
+        if global_product and global_product.tva_percentage:
+            # Convertir le pourcentage en décimal (19.6% → 0.196)
+            tva_value = global_product.tva_percentage / 100
+        
+        internal_products_data.append({
             'pharmacy_id': pharmacy.id,
             'internal_id': obj['product_id'],
-            'code_13_ref': global_products_map.get(obj['code_13_ref'], None),
+            'code_13_ref': global_product,
             'name': obj['name'],
-            'TVA': obj['TVA'],  # Will be None for new API
-        }
-        for obj in preprocessed_data
-    ]
+            'TVA': tva_value,  # ✅ TVA récupérée depuis GlobalProduct
+        })
 
     # Create or update InternalProduct instances
     try:

@@ -24,7 +24,7 @@ def test_local():
     # Variables d'environnement pour test
     os.environ['API_URL'] = 'YXBvdGhpY2Fs'
     os.environ['API_PASSWORD'] = 'cGFzczE'
-    os.environ['PHARMACY_ID'] = '832011373'
+    os.environ['PHARMACY_ID'] = '692037567'
     os.environ['SERVER_URL'] = 'http://localhost:8000'  # Serveur local
     
     print(f"🔧 Config:")

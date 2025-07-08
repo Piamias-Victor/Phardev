@@ -629,3 +629,4 @@ def process_sales(pharmacy, finess: str):
     except Exception as e:
         logger.error(f"Erreur traitement ventes Apothical: {e}")
         raise
+        

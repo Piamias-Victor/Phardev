@@ -25,8 +25,9 @@ class ApothicalAPIClient:
     
     def __init__(self):
         self.base_url = "https://www.pharmanuage.fr/data-api/v2"
-        self.username = os.environ.get('APOTHICAL_USERNAME')
-        self.password = os.environ.get('APOTHICAL_PASSWORD')
+        # Variables en dur temporairement (à remplacer par des secrets)
+        self.username = os.environ.get('APOTHICAL_USERNAME') or 'APOTHICAL'
+        self.password = os.environ.get('APOTHICAL_PASSWORD') or 'Cerisier2024!'
         self.token = None
         self.token_expires = None
     

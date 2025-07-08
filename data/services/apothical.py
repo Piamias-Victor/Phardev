@@ -106,12 +106,36 @@ class ApothicalAPIClient:
                 if response.status_code == 200:
                     data = response.json()
                     
-                    if isinstance(data, list):
-                        if not data:  # Page vide = fin
+                    # L'API Apothical retourne un format paginé avec _embedded
+                    if isinstance(data, dict) and '_embedded' in data:
+                        # Extraire les données de _embedded selon l'endpoint
+                        if endpoint == 'products' and 'products' in data['_embedded']:
+                            page_data = data['_embedded']['products']
+                        elif endpoint == 'orders' and 'orders' in data['_embedded']:
+                            page_data = data['_embedded']['orders']
+                        elif endpoint == 'sales' and 'sales' in data['_embedded']:
+                            page_data = data['_embedded']['sales']
+                        else:
+                            logger.warning(f"Structure _embedded inattendue pour {endpoint}")
+                            break
+                        
+                        if not page_data:  # Page vide = fin
+                            break
+                        
+                        all_data.extend(page_data)
+                        
+                        if len(page_data) < page_size:  # Dernière page
+                            break
+                        
+                        page += 1
+                        
+                    elif isinstance(data, list):
+                        # Format liste directe (fallback)
+                        if not data:
                             break
                         all_data.extend(data)
                         
-                        if len(data) < page_size:  # Dernière page
+                        if len(data) < page_size:
                             break
                         
                         page += 1

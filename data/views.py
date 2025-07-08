@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 # Credentials de test pour nouvelle API
 API_URL = "YXBvdGhpY2Fs"
 API_PASSWORD = "cGFzczE"
-IDNAT_TEST = "832011373"
+IDNAT_TEST = "832002810"
 BASE_URL = "https://grpstat.winpharma.com/ApiWp"
 
 

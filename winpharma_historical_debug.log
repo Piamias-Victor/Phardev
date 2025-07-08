@@ -1,0 +1,435 @@
+2025-07-08 05:59:30,272 - INFO - 🔧 Configuration chargée:
+2025-07-08 05:59:30,273 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 05:59:30,273 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 05:59:30,273 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 05:59:30,273 - INFO - 🚀 Début de la récupération historique Winpharma
+2025-07-08 05:59:30,273 - INFO - Pharmacie: 832002810
+2025-07-08 05:59:30,273 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 05:59:32,738 - INFO - 🧪 MODE TEST - Diagnostic des endpoints
+2025-07-08 05:59:32,739 - INFO - 
+==================================================
+2025-07-08 05:59:32,739 - INFO - 🔍 TEST: produits
+2025-07-08 05:59:32,739 - INFO - ==================================================
+2025-07-08 05:59:32,739 - INFO - 🔍 TEST: produits - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/produits?password=cGFzczE&Idnats=832002810
+2025-07-08 05:59:37,656 - INFO - 📊 Status Code: 200
+2025-07-08 05:59:37,658 - INFO - 📋 Headers: {'Transfer-Encoding': 'chunked', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Encoding': 'gzip', 'Vary': 'Accept-Encoding', 'Server': 'Microsoft-IIS/10.0', 'X-Powered-By': 'ASP.NET', 'Date': 'Tue, 08 Jul 2025 03:59:37 GMT'}
+2025-07-08 05:59:37,686 - INFO - ✅ JSON parsé avec succès
+2025-07-08 05:59:37,687 - INFO - 📈 Structure: <class 'list'>
+2025-07-08 05:59:37,687 - INFO - 📋 Premier élément: ['cip_pharma', 'produits', 'status', 'status_detail']
+2025-07-08 05:59:37,687 - INFO - 📊 Nombre d'enregistrements: 16408
+2025-07-08 05:59:37,687 - INFO - 🚀 Test envoi vers Django: products
+2025-07-08 05:59:37,687 - INFO - 🔍 DIAGNOSTIC ENVOI:
+2025-07-08 05:59:37,687 - INFO -    URL: https://api.phardev.fr/winpharma_historical/create/products
+2025-07-08 05:59:37,687 - INFO -    Headers: {'Pharmacy-id': '832002810', 'Content-Type': 'application/json'}
+2025-07-08 05:59:37,687 - INFO -    Data type: <class 'list'>
+2025-07-08 05:59:37,710 - INFO -    Data size: 2717598 chars
+2025-07-08 05:59:37,710 - INFO -    Structure: ['cip_pharma', 'produits', 'status', 'status_detail']
+2025-07-08 05:59:59,301 - INFO - 📊 Server response: 200
+2025-07-08 05:59:59,302 - INFO - ✅ Données products envoyées avec succès
+2025-07-08 05:59:59,304 - INFO - ✅ produits -> products : OK
+2025-07-08 05:59:59,304 - INFO - 
+==================================================
+2025-07-08 05:59:59,304 - INFO - 🔍 TEST: ventes
+2025-07-08 05:59:59,304 - INFO - ==================================================
+2025-07-08 05:59:59,304 - INFO - 🔍 TEST: ventes - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/ventes?password=cGFzczE&Idnats=832002810&dt1=2025-05-20&dt2=2025-05-24
+2025-07-08 06:00:01,044 - INFO - 📊 Status Code: 200
+2025-07-08 06:00:01,045 - INFO - 📋 Headers: {'Transfer-Encoding': 'chunked', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Encoding': 'gzip', 'Vary': 'Accept-Encoding', 'Server': 'Microsoft-IIS/10.0', 'X-Powered-By': 'ASP.NET', 'Date': 'Tue, 08 Jul 2025 04:00:00 GMT'}
+2025-07-08 06:00:01,097 - INFO - ✅ JSON parsé avec succès
+2025-07-08 06:00:01,097 - INFO - 📈 Structure: <class 'list'>
+2025-07-08 06:00:01,097 - INFO - 📋 Premier élément: ['cip_pharma', 'ventes', 'status', 'status_detail']
+2025-07-08 06:00:01,097 - INFO - 📊 Nombre d'enregistrements: 5002
+2025-07-08 06:00:01,102 - INFO - 🚀 Test envoi vers Django: sales
+2025-07-08 06:00:01,102 - INFO - 🔍 DIAGNOSTIC ENVOI:
+2025-07-08 06:00:01,102 - INFO -    URL: https://api.phardev.fr/winpharma_historical/create/sales
+2025-07-08 06:00:01,102 - INFO -    Headers: {'Pharmacy-id': '832002810', 'Content-Type': 'application/json'}
+2025-07-08 06:00:01,102 - INFO -    Data type: <class 'list'>
+2025-07-08 06:00:01,148 - INFO -    Data size: 5311015 chars
+2025-07-08 06:00:01,148 - INFO -    Structure: ['cip_pharma', 'ventes', 'status', 'status_detail']
+2025-07-08 06:00:03,564 - INFO - 📊 Server response: 200
+2025-07-08 06:00:03,564 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:00:03,566 - INFO - ✅ ventes -> sales : OK
+2025-07-08 06:00:03,566 - INFO - 
+==================================================
+2025-07-08 06:00:03,566 - INFO - 🔍 TEST: achats
+2025-07-08 06:00:03,566 - INFO - ==================================================
+2025-07-08 06:00:03,566 - INFO - 🔍 TEST: achats - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/achats?password=cGFzczE&Idnats=832002810&dt1=2025-05-20&dt2=2025-05-24
+2025-07-08 06:00:05,006 - INFO - 📊 Status Code: 200
+2025-07-08 06:00:05,007 - INFO - 📋 Headers: {'Transfer-Encoding': 'chunked', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Encoding': 'gzip', 'Vary': 'Accept-Encoding', 'Server': 'Microsoft-IIS/10.0', 'X-Powered-By': 'ASP.NET', 'Date': 'Tue, 08 Jul 2025 04:00:04 GMT'}
+2025-07-08 06:00:05,012 - INFO - ✅ JSON parsé avec succès
+2025-07-08 06:00:05,012 - INFO - 📈 Structure: <class 'list'>
+2025-07-08 06:00:05,012 - INFO - 📋 Premier élément: ['cip_pharma', 'achats', 'status', 'status_detail']
+2025-07-08 06:00:05,012 - INFO - 📊 Nombre d'enregistrements: 179
+2025-07-08 06:00:05,022 - INFO - 🚀 Test envoi vers Django: orders
+2025-07-08 06:00:05,022 - INFO - 🔍 DIAGNOSTIC ENVOI:
+2025-07-08 06:00:05,022 - INFO -    URL: https://api.phardev.fr/winpharma_historical/create/orders
+2025-07-08 06:00:05,022 - INFO -    Headers: {'Pharmacy-id': '832002810', 'Content-Type': 'application/json'}
+2025-07-08 06:00:05,022 - INFO -    Data type: <class 'list'>
+2025-07-08 06:00:05,027 - INFO -    Data size: 470893 chars
+2025-07-08 06:00:05,027 - INFO -    Structure: ['cip_pharma', 'achats', 'status', 'status_detail']
+2025-07-08 06:00:06,973 - INFO - 📊 Server response: 200
+2025-07-08 06:00:06,974 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:00:06,974 - INFO - ✅ achats -> orders : OK
+2025-07-08 06:02:51,890 - INFO - 🔧 Configuration chargée:
+2025-07-08 06:02:51,891 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 06:02:51,891 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 06:02:51,891 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 06:02:51,891 - INFO - 🚀 Début de la récupération historique Winpharma
+2025-07-08 06:02:51,891 - INFO - Pharmacie: 832002810
+2025-07-08 06:02:51,891 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 06:02:52,877 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 06:02:52,878 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 06:02:52,878 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 06:02:52,878 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 06:02:52,878 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 06:02:52,879 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 06:02:52,879 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 06:02:52,879 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 06:02:52,879 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 06:02:52,879 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 06:02:52,879 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 06:02:52,879 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 06:02:52,879 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 06:02:52,879 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 06:02:52,880 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 06:02:52,880 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 06:02:52,880 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 06:02:52,880 - INFO - 📅 17 périodes à traiter
+2025-07-08 06:02:52,880 - INFO - 
+==================================================
+2025-07-08 06:02:52,880 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 06:02:52,880 - INFO - ==================================================
+2025-07-08 06:02:52,880 - INFO - Requête: produits du  au 
+2025-07-08 06:02:59,450 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 06:03:11,669 - INFO - 📊 Server response: 200
+2025-07-08 06:03:11,670 - INFO - ✅ Données products envoyées avec succès
+2025-07-08 06:03:11,672 - INFO - ✅ Produits traités avec succès
+2025-07-08 06:03:11,672 - INFO - 
+==================================================
+2025-07-08 06:03:11,672 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 06:03:11,672 - INFO - ==================================================
+2025-07-08 06:03:11,672 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:03:11,672 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 06:03:22,118 - INFO - ✅ ventes 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 06:03:31,714 - INFO - 📊 Server response: 200
+2025-07-08 06:03:31,715 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:03:31,719 - INFO - ✅ Ventes 2024-01-01-2024-01-31 traitées
+2025-07-08 06:03:31,719 - INFO - Progress: 1/34 requêtes
+2025-07-08 06:03:31,719 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:03:31,719 - INFO - Requête: achats du 2024-01-01 au 2024-01-31
+2025-07-08 06:03:36,950 - INFO - ✅ achats 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 06:03:47,940 - INFO - 📊 Server response: 200
+2025-07-08 06:03:47,941 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:03:47,943 - INFO - ✅ Achats 2024-01-01-2024-01-31 traités
+2025-07-08 06:03:47,943 - INFO - Progress: 2/34 requêtes
+2025-07-08 06:03:47,943 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:03:49,945 - INFO - 
+==================================================
+2025-07-08 06:03:49,945 - INFO - 📊 PÉRIODE 2/17: 2024-02-01 -> 2024-02-29
+2025-07-08 06:03:49,945 - INFO - ==================================================
+2025-07-08 06:03:49,946 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:03:49,946 - INFO - Requête: ventes du 2024-02-01 au 2024-02-29
+2025-07-08 06:04:10,681 - INFO - ✅ ventes 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 06:04:20,179 - INFO - 📊 Server response: 200
+2025-07-08 06:04:20,181 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:04:20,183 - INFO - ✅ Ventes 2024-02-01-2024-02-29 traitées
+2025-07-08 06:04:20,183 - INFO - Progress: 3/34 requêtes
+2025-07-08 06:04:20,183 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:04:20,183 - INFO - Requête: achats du 2024-02-01 au 2024-02-29
+2025-07-08 06:04:24,141 - INFO - ✅ achats 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 06:04:35,955 - INFO - 📊 Server response: 200
+2025-07-08 06:04:35,956 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:04:35,958 - INFO - ✅ Achats 2024-02-01-2024-02-29 traités
+2025-07-08 06:04:35,958 - INFO - Progress: 4/34 requêtes
+2025-07-08 06:04:35,958 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:04:37,958 - INFO - 
+==================================================
+2025-07-08 06:04:37,958 - INFO - 📊 PÉRIODE 3/17: 2024-03-01 -> 2024-03-31
+2025-07-08 06:04:37,958 - INFO - ==================================================
+2025-07-08 06:04:37,959 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:04:37,959 - INFO - Requête: ventes du 2024-03-01 au 2024-03-31
+2025-07-08 06:04:47,241 - INFO - ✅ ventes 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 06:04:56,833 - INFO - 📊 Server response: 200
+2025-07-08 06:04:56,834 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:04:56,835 - INFO - ✅ Ventes 2024-03-01-2024-03-31 traitées
+2025-07-08 06:04:56,835 - INFO - Progress: 5/34 requêtes
+2025-07-08 06:04:56,836 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:04:56,836 - INFO - Requête: achats du 2024-03-01 au 2024-03-31
+2025-07-08 06:05:03,612 - INFO - ✅ achats 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 06:05:14,855 - INFO - 📊 Server response: 200
+2025-07-08 06:05:14,857 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:05:14,858 - INFO - ✅ Achats 2024-03-01-2024-03-31 traités
+2025-07-08 06:05:14,858 - INFO - Progress: 6/34 requêtes
+2025-07-08 06:05:14,858 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:05:16,859 - INFO - 
+==================================================
+2025-07-08 06:05:16,859 - INFO - 📊 PÉRIODE 4/17: 2024-04-01 -> 2024-04-30
+2025-07-08 06:05:16,859 - INFO - ==================================================
+2025-07-08 06:05:16,860 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:05:16,860 - INFO - Requête: ventes du 2024-04-01 au 2024-04-30
+2025-07-08 06:05:27,026 - INFO - ✅ ventes 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 06:05:36,866 - INFO - 📊 Server response: 200
+2025-07-08 06:05:36,867 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:05:36,870 - INFO - ✅ Ventes 2024-04-01-2024-04-30 traitées
+2025-07-08 06:05:36,870 - INFO - Progress: 7/34 requêtes
+2025-07-08 06:05:36,871 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:05:36,871 - INFO - Requête: achats du 2024-04-01 au 2024-04-30
+2025-07-08 06:05:39,679 - INFO - ✅ achats 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 06:05:52,032 - INFO - 📊 Server response: 200
+2025-07-08 06:05:52,033 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:05:52,034 - INFO - ✅ Achats 2024-04-01-2024-04-30 traités
+2025-07-08 06:05:52,034 - INFO - Progress: 8/34 requêtes
+2025-07-08 06:05:52,034 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:05:54,039 - INFO - 
+==================================================
+2025-07-08 06:05:54,040 - INFO - 📊 PÉRIODE 5/17: 2024-05-01 -> 2024-05-31
+2025-07-08 06:05:54,040 - INFO - ==================================================
+2025-07-08 06:05:54,040 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:05:54,040 - INFO - Requête: ventes du 2024-05-01 au 2024-05-31
+2025-07-08 06:06:14,015 - INFO - ✅ ventes 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 06:06:23,334 - INFO - 📊 Server response: 200
+2025-07-08 06:06:23,335 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:06:23,337 - INFO - ✅ Ventes 2024-05-01-2024-05-31 traitées
+2025-07-08 06:06:23,337 - INFO - Progress: 9/34 requêtes
+2025-07-08 06:06:23,337 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:06:23,337 - INFO - Requête: achats du 2024-05-01 au 2024-05-31
+2025-07-08 06:06:27,787 - INFO - ✅ achats 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 06:06:38,231 - INFO - 📊 Server response: 200
+2025-07-08 06:06:38,232 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:06:38,233 - INFO - ✅ Achats 2024-05-01-2024-05-31 traités
+2025-07-08 06:06:38,233 - INFO - Progress: 10/34 requêtes
+2025-07-08 06:06:38,233 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:06:40,239 - INFO - 
+==================================================
+2025-07-08 06:06:40,239 - INFO - 📊 PÉRIODE 6/17: 2024-06-01 -> 2024-06-30
+2025-07-08 06:06:40,239 - INFO - ==================================================
+2025-07-08 06:06:40,239 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:06:40,239 - INFO - Requête: ventes du 2024-06-01 au 2024-06-30
+2025-07-08 06:06:51,694 - INFO - ✅ ventes 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 06:07:01,175 - INFO - 📊 Server response: 200
+2025-07-08 06:07:01,176 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:07:01,178 - INFO - ✅ Ventes 2024-06-01-2024-06-30 traitées
+2025-07-08 06:07:01,178 - INFO - Progress: 11/34 requêtes
+2025-07-08 06:07:01,178 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:07:01,178 - INFO - Requête: achats du 2024-06-01 au 2024-06-30
+2025-07-08 06:07:02,337 - INFO - ✅ achats 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 06:07:13,481 - INFO - 📊 Server response: 200
+2025-07-08 06:07:13,482 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:07:13,483 - INFO - ✅ Achats 2024-06-01-2024-06-30 traités
+2025-07-08 06:07:13,483 - INFO - Progress: 12/34 requêtes
+2025-07-08 06:07:13,483 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:07:15,485 - INFO - 
+==================================================
+2025-07-08 06:07:15,486 - INFO - 📊 PÉRIODE 7/17: 2024-07-01 -> 2024-07-31
+2025-07-08 06:07:15,487 - INFO - ==================================================
+2025-07-08 06:07:15,487 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:07:15,488 - INFO - Requête: ventes du 2024-07-01 au 2024-07-31
+2025-07-08 06:07:25,062 - INFO - ✅ ventes 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 06:07:35,426 - INFO - 📊 Server response: 200
+2025-07-08 06:07:35,427 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:07:35,429 - INFO - ✅ Ventes 2024-07-01-2024-07-31 traitées
+2025-07-08 06:07:35,429 - INFO - Progress: 13/34 requêtes
+2025-07-08 06:07:35,429 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:07:35,429 - INFO - Requête: achats du 2024-07-01 au 2024-07-31
+2025-07-08 06:07:37,811 - INFO - ✅ achats 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 06:07:49,645 - INFO - 📊 Server response: 200
+2025-07-08 06:07:49,645 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:07:49,646 - INFO - ✅ Achats 2024-07-01-2024-07-31 traités
+2025-07-08 06:07:49,646 - INFO - Progress: 14/34 requêtes
+2025-07-08 06:07:49,646 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:07:51,651 - INFO - 
+==================================================
+2025-07-08 06:07:51,652 - INFO - 📊 PÉRIODE 8/17: 2024-08-01 -> 2024-08-31
+2025-07-08 06:07:51,652 - INFO - ==================================================
+2025-07-08 06:07:51,652 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:07:51,653 - INFO - Requête: ventes du 2024-08-01 au 2024-08-31
+2025-07-08 06:07:58,610 - INFO - ✅ ventes 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 06:08:08,282 - INFO - 📊 Server response: 200
+2025-07-08 06:08:08,283 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:08:08,285 - INFO - ✅ Ventes 2024-08-01-2024-08-31 traitées
+2025-07-08 06:08:08,285 - INFO - Progress: 15/34 requêtes
+2025-07-08 06:08:08,285 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:08:08,285 - INFO - Requête: achats du 2024-08-01 au 2024-08-31
+2025-07-08 06:08:11,030 - INFO - ✅ achats 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 06:08:20,290 - INFO - 📊 Server response: 200
+2025-07-08 06:08:20,290 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:08:20,291 - INFO - ✅ Achats 2024-08-01-2024-08-31 traités
+2025-07-08 06:08:20,291 - INFO - Progress: 16/34 requêtes
+2025-07-08 06:08:20,291 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:08:22,297 - INFO - 
+==================================================
+2025-07-08 06:08:22,298 - INFO - 📊 PÉRIODE 9/17: 2024-09-01 -> 2024-09-30
+2025-07-08 06:08:22,298 - INFO - ==================================================
+2025-07-08 06:08:22,298 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:08:22,298 - INFO - Requête: ventes du 2024-09-01 au 2024-09-30
+2025-07-08 06:08:32,920 - INFO - ✅ ventes 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 06:08:42,461 - INFO - 📊 Server response: 200
+2025-07-08 06:08:42,463 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:08:42,465 - INFO - ✅ Ventes 2024-09-01-2024-09-30 traitées
+2025-07-08 06:08:42,465 - INFO - Progress: 17/34 requêtes
+2025-07-08 06:08:42,465 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:08:42,465 - INFO - Requête: achats du 2024-09-01 au 2024-09-30
+2025-07-08 06:08:44,553 - INFO - ✅ achats 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 06:08:54,706 - INFO - 📊 Server response: 200
+2025-07-08 06:08:54,706 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:08:54,708 - INFO - ✅ Achats 2024-09-01-2024-09-30 traités
+2025-07-08 06:08:54,708 - INFO - Progress: 18/34 requêtes
+2025-07-08 06:08:54,708 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:08:56,709 - INFO - 
+==================================================
+2025-07-08 06:08:56,710 - INFO - 📊 PÉRIODE 10/17: 2024-10-01 -> 2024-10-31
+2025-07-08 06:08:56,710 - INFO - ==================================================
+2025-07-08 06:08:56,710 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:08:56,710 - INFO - Requête: ventes du 2024-10-01 au 2024-10-31
+2025-07-08 06:09:15,557 - INFO - ✅ ventes 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 06:09:25,939 - INFO - 📊 Server response: 200
+2025-07-08 06:09:25,939 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:09:25,942 - INFO - ✅ Ventes 2024-10-01-2024-10-31 traitées
+2025-07-08 06:09:25,942 - INFO - Progress: 19/34 requêtes
+2025-07-08 06:09:25,942 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:09:25,942 - INFO - Requête: achats du 2024-10-01 au 2024-10-31
+2025-07-08 06:09:27,597 - INFO - ✅ achats 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 06:09:39,384 - INFO - 📊 Server response: 200
+2025-07-08 06:09:39,385 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:09:39,386 - INFO - ✅ Achats 2024-10-01-2024-10-31 traités
+2025-07-08 06:09:39,386 - INFO - Progress: 20/34 requêtes
+2025-07-08 06:09:39,386 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:09:41,391 - INFO - 
+==================================================
+2025-07-08 06:09:41,392 - INFO - 📊 PÉRIODE 11/17: 2024-11-01 -> 2024-11-30
+2025-07-08 06:09:41,392 - INFO - ==================================================
+2025-07-08 06:09:41,393 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:09:41,393 - INFO - Requête: ventes du 2024-11-01 au 2024-11-30
+2025-07-08 06:09:53,584 - INFO - ✅ ventes 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 06:10:03,332 - INFO - 📊 Server response: 200
+2025-07-08 06:10:03,333 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:10:03,337 - INFO - ✅ Ventes 2024-11-01-2024-11-30 traitées
+2025-07-08 06:10:03,337 - INFO - Progress: 21/34 requêtes
+2025-07-08 06:10:03,337 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:10:03,337 - INFO - Requête: achats du 2024-11-01 au 2024-11-30
+2025-07-08 06:10:07,391 - INFO - ✅ achats 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 06:10:18,952 - INFO - 📊 Server response: 200
+2025-07-08 06:10:18,954 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:10:18,955 - INFO - ✅ Achats 2024-11-01-2024-11-30 traités
+2025-07-08 06:10:18,955 - INFO - Progress: 22/34 requêtes
+2025-07-08 06:10:18,955 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:10:20,960 - INFO - 
+==================================================
+2025-07-08 06:10:20,961 - INFO - 📊 PÉRIODE 12/17: 2024-12-01 -> 2024-12-31
+2025-07-08 06:10:20,961 - INFO - ==================================================
+2025-07-08 06:10:20,961 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:10:20,961 - INFO - Requête: ventes du 2024-12-01 au 2024-12-31
+2025-07-08 06:10:32,148 - INFO - ✅ ventes 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 06:10:42,641 - INFO - 📊 Server response: 200
+2025-07-08 06:10:42,642 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:10:42,645 - INFO - ✅ Ventes 2024-12-01-2024-12-31 traitées
+2025-07-08 06:10:42,645 - INFO - Progress: 23/34 requêtes
+2025-07-08 06:10:42,645 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:10:42,645 - INFO - Requête: achats du 2024-12-01 au 2024-12-31
+2025-07-08 06:10:43,486 - INFO - ✅ achats 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 06:10:50,243 - INFO - 📊 Server response: 200
+2025-07-08 06:10:50,243 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:10:50,244 - INFO - ✅ Achats 2024-12-01-2024-12-31 traités
+2025-07-08 06:10:50,244 - INFO - Progress: 24/34 requêtes
+2025-07-08 06:10:50,244 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:10:52,249 - INFO - 
+==================================================
+2025-07-08 06:10:52,250 - INFO - 📊 PÉRIODE 13/17: 2025-01-01 -> 2025-01-31
+2025-07-08 06:10:52,250 - INFO - ==================================================
+2025-07-08 06:10:52,250 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:10:52,250 - INFO - Requête: ventes du 2025-01-01 au 2025-01-31
+2025-07-08 06:10:56,880 - INFO - ✅ ventes 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 06:11:07,707 - INFO - 📊 Server response: 200
+2025-07-08 06:11:07,709 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:11:07,711 - INFO - ✅ Ventes 2025-01-01-2025-01-31 traitées
+2025-07-08 06:11:07,711 - INFO - Progress: 25/34 requêtes
+2025-07-08 06:11:07,711 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:11:07,711 - INFO - Requête: achats du 2025-01-01 au 2025-01-31
+2025-07-08 06:11:10,378 - INFO - ✅ achats 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 06:11:16,808 - INFO - 📊 Server response: 200
+2025-07-08 06:11:16,808 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:11:16,809 - INFO - ✅ Achats 2025-01-01-2025-01-31 traités
+2025-07-08 06:11:16,809 - INFO - Progress: 26/34 requêtes
+2025-07-08 06:11:16,809 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:11:18,811 - INFO - 
+==================================================
+2025-07-08 06:11:18,811 - INFO - 📊 PÉRIODE 14/17: 2025-02-01 -> 2025-02-28
+2025-07-08 06:11:18,811 - INFO - ==================================================
+2025-07-08 06:11:18,811 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:11:18,811 - INFO - Requête: ventes du 2025-02-01 au 2025-02-28
+2025-07-08 06:11:35,791 - INFO - ✅ ventes 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 06:11:45,258 - INFO - 📊 Server response: 200
+2025-07-08 06:11:45,258 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:11:45,260 - INFO - ✅ Ventes 2025-02-01-2025-02-28 traitées
+2025-07-08 06:11:45,260 - INFO - Progress: 27/34 requêtes
+2025-07-08 06:11:45,261 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:11:45,261 - INFO - Requête: achats du 2025-02-01 au 2025-02-28
+2025-07-08 06:11:48,550 - INFO - ✅ achats 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 06:11:55,243 - INFO - 📊 Server response: 200
+2025-07-08 06:11:55,244 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:11:55,244 - INFO - ✅ Achats 2025-02-01-2025-02-28 traités
+2025-07-08 06:11:55,245 - INFO - Progress: 28/34 requêtes
+2025-07-08 06:11:55,245 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:11:57,250 - INFO - 
+==================================================
+2025-07-08 06:11:57,251 - INFO - 📊 PÉRIODE 15/17: 2025-03-01 -> 2025-03-31
+2025-07-08 06:11:57,251 - INFO - ==================================================
+2025-07-08 06:11:57,251 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:11:57,251 - INFO - Requête: ventes du 2025-03-01 au 2025-03-31
+2025-07-08 06:12:04,603 - INFO - ✅ ventes 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 06:12:15,355 - INFO - 📊 Server response: 200
+2025-07-08 06:12:15,355 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:12:15,358 - INFO - ✅ Ventes 2025-03-01-2025-03-31 traitées
+2025-07-08 06:12:15,358 - INFO - Progress: 29/34 requêtes
+2025-07-08 06:12:15,358 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:12:15,358 - INFO - Requête: achats du 2025-03-01 au 2025-03-31
+2025-07-08 06:12:18,254 - INFO - ✅ achats 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 06:12:25,697 - INFO - 📊 Server response: 200
+2025-07-08 06:12:25,697 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:12:25,698 - INFO - ✅ Achats 2025-03-01-2025-03-31 traités
+2025-07-08 06:12:25,699 - INFO - Progress: 30/34 requêtes
+2025-07-08 06:12:25,699 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:12:27,702 - INFO - 
+==================================================
+2025-07-08 06:12:27,703 - INFO - 📊 PÉRIODE 16/17: 2025-04-01 -> 2025-04-30
+2025-07-08 06:12:27,703 - INFO - ==================================================
+2025-07-08 06:12:27,703 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:12:27,703 - INFO - Requête: ventes du 2025-04-01 au 2025-04-30
+2025-07-08 06:12:31,473 - INFO - ✅ ventes 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 06:12:42,072 - INFO - 📊 Server response: 200
+2025-07-08 06:12:42,072 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:12:42,074 - INFO - ✅ Ventes 2025-04-01-2025-04-30 traitées
+2025-07-08 06:12:42,074 - INFO - Progress: 31/34 requêtes
+2025-07-08 06:12:42,074 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:12:42,075 - INFO - Requête: achats du 2025-04-01 au 2025-04-30
+2025-07-08 06:12:43,138 - INFO - ✅ achats 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 06:12:51,782 - INFO - 📊 Server response: 200
+2025-07-08 06:12:51,782 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:12:51,783 - INFO - ✅ Achats 2025-04-01-2025-04-30 traités
+2025-07-08 06:12:51,783 - INFO - Progress: 32/34 requêtes
+2025-07-08 06:12:51,783 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:12:53,783 - INFO - 
+==================================================
+2025-07-08 06:12:53,785 - INFO - 📊 PÉRIODE 17/17: 2025-05-01 -> 2025-05-31
+2025-07-08 06:12:53,785 - INFO - ==================================================
+2025-07-08 06:12:53,785 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:12:53,785 - INFO - Requête: ventes du 2025-05-01 au 2025-05-31
+2025-07-08 06:12:56,751 - INFO - ✅ ventes 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 06:13:07,935 - INFO - 📊 Server response: 200
+2025-07-08 06:13:07,936 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:13:07,939 - INFO - ✅ Ventes 2025-05-01-2025-05-31 traitées
+2025-07-08 06:13:07,939 - INFO - Progress: 33/34 requêtes
+2025-07-08 06:13:07,939 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:13:07,939 - INFO - Requête: achats du 2025-05-01 au 2025-05-31
+2025-07-08 06:13:10,657 - INFO - ✅ achats 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 06:13:26,517 - INFO - 📊 Server response: 200
+2025-07-08 06:13:26,517 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:13:26,518 - INFO - ✅ Achats 2025-05-01-2025-05-31 traités
+2025-07-08 06:13:26,518 - INFO - Progress: 34/34 requêtes
+2025-07-08 06:13:26,518 - INFO - 
+==================================================
+2025-07-08 06:13:26,519 - INFO - 📊 STATISTIQUES FINALES
+2025-07-08 06:13:26,519 - INFO - ==================================================
+2025-07-08 06:13:26,519 - INFO - PRODUCTS: 1/1 succès (100.0%)
+2025-07-08 06:13:26,519 - INFO - SALES: 17/17 succès (100.0%)
+2025-07-08 06:13:26,519 - INFO - ORDERS: 17/17 succès (100.0%)
+2025-07-08 06:13:26,519 - INFO - ✅ 34 requêtes effectuées

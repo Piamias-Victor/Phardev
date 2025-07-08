@@ -13,7 +13,7 @@ load_dotenv()
 SERVER_URL = os.environ.get('SERVER_URL')
 API_URL = os.environ.get('API_URL')     # YXBvdGhpY2Fs (Base64 pour "apothical")
 API_PASSWORD = os.environ.get('API_PASSWORD')  # cGFzczE (Base64 pour "pass1")
-IDNATS = os.environ.get('IDNATS', '832011373')
+IDNATS = os.environ.get('IDNATS', '832002810')
 
 
 def handler(event, context, full_dump=True):
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     if not os.environ.get('API_PASSWORD'):
         os.environ['API_PASSWORD'] = "cGFzczE"  # Valeur par défaut
     if not os.environ.get('IDNATS'):
-        os.environ['IDNATS'] = "832011373"  # Valeur par défaut
+        os.environ['IDNATS'] = "832002810"  # Valeur par défaut
     
     # Mode de test (full_dump = False pour récupérer seulement les dernières 24h)
     full_dump = input("Exécuter en mode full dump? (o/n): ").lower() == 'o'

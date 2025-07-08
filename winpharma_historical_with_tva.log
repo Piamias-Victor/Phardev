@@ -1,0 +1,1278 @@
+2025-07-08 06:50:25,152 - INFO - 🔧 Configuration chargée:
+2025-07-08 06:50:25,152 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 06:50:25,152 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 06:50:25,152 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 06:50:25,152 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 06:50:25,152 - INFO - Pharmacie: 832002810
+2025-07-08 06:50:25,152 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 06:50:31,776 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 06:50:31,777 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 06:50:31,777 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 06:50:31,777 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 06:50:31,777 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 06:50:31,777 - INFO - 📅 17 périodes à traiter
+2025-07-08 06:50:31,777 - INFO - 
+==================================================
+2025-07-08 06:50:31,777 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 06:50:31,778 - INFO - ==================================================
+2025-07-08 06:50:31,778 - INFO - Requête: produits du  au 
+2025-07-08 06:50:39,426 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 06:51:22,383 - INFO - 📊 Server response: 200
+2025-07-08 06:51:22,385 - INFO - ✅ Données products envoyées avec succès
+2025-07-08 06:51:22,386 - INFO - ✅ Produits traités avec succès
+2025-07-08 06:51:22,386 - INFO - 
+==================================================
+2025-07-08 06:51:22,386 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 06:51:22,386 - INFO - ==================================================
+2025-07-08 06:51:22,386 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:51:22,386 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 06:51:26,303 - INFO - 🔍 TVA présente dans 5/5 lignes (100.0%)
+2025-07-08 06:51:26,303 - INFO - ✅ ventes 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 06:51:26,347 - INFO - 🔍 TVA cette période: 75322 lignes, 9516 produits
+2025-07-08 06:51:35,643 - INFO - 📊 Server response: 200
+2025-07-08 06:51:35,645 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:51:35,645 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:51:35,647 - INFO - ✅ Ventes 2024-01-01-2024-01-31 traitées
+2025-07-08 06:51:35,647 - INFO - Progress: 1/34 requêtes
+2025-07-08 06:51:35,647 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:51:35,647 - INFO - Requête: achats du 2024-01-01 au 2024-01-31
+2025-07-08 06:51:40,814 - INFO - ✅ achats 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 06:51:53,638 - INFO - 📊 Server response: 200
+2025-07-08 06:51:53,639 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:51:53,640 - INFO - ✅ Achats 2024-01-01-2024-01-31 traités
+2025-07-08 06:51:53,640 - INFO - Progress: 2/34 requêtes
+2025-07-08 06:51:53,640 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:51:55,646 - INFO - 
+==================================================
+2025-07-08 06:51:55,646 - INFO - 📊 PÉRIODE 2/17: 2024-02-01 -> 2024-02-29
+2025-07-08 06:51:55,646 - INFO - ==================================================
+2025-07-08 06:51:55,647 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:51:55,647 - INFO - Requête: ventes du 2024-02-01 au 2024-02-29
+2025-07-08 06:52:00,416 - INFO - 🔍 TVA présente dans 19/19 lignes (100.0%)
+2025-07-08 06:52:00,416 - INFO - ✅ ventes 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 06:52:00,496 - INFO - 🔍 TVA cette période: 73574 lignes, 9656 produits
+2025-07-08 06:52:10,055 - INFO - 📊 Server response: 200
+2025-07-08 06:52:10,056 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:52:10,056 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:52:10,059 - INFO - ✅ Ventes 2024-02-01-2024-02-29 traitées
+2025-07-08 06:52:10,059 - INFO - Progress: 3/34 requêtes
+2025-07-08 06:52:10,059 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:52:10,059 - INFO - Requête: achats du 2024-02-01 au 2024-02-29
+2025-07-08 06:52:11,976 - INFO - ✅ achats 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 06:52:23,730 - INFO - 📊 Server response: 200
+2025-07-08 06:52:23,730 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:52:23,731 - INFO - ✅ Achats 2024-02-01-2024-02-29 traités
+2025-07-08 06:52:23,731 - INFO - Progress: 4/34 requêtes
+2025-07-08 06:52:23,732 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:52:25,736 - INFO - 
+==================================================
+2025-07-08 06:52:25,737 - INFO - 📊 PÉRIODE 3/17: 2024-03-01 -> 2024-03-31
+2025-07-08 06:52:25,737 - INFO - ==================================================
+2025-07-08 06:52:25,737 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:52:25,737 - INFO - Requête: ventes du 2024-03-01 au 2024-03-31
+2025-07-08 06:52:29,464 - INFO - 🔍 TVA présente dans 20/20 lignes (100.0%)
+2025-07-08 06:52:29,464 - INFO - ✅ ventes 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 06:52:29,533 - INFO - 🔍 TVA cette période: 71945 lignes, 9688 produits
+2025-07-08 06:52:39,035 - INFO - 📊 Server response: 200
+2025-07-08 06:52:39,036 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:52:39,036 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:52:39,038 - INFO - ✅ Ventes 2024-03-01-2024-03-31 traitées
+2025-07-08 06:52:39,038 - INFO - Progress: 5/34 requêtes
+2025-07-08 06:52:39,038 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:52:39,038 - INFO - Requête: achats du 2024-03-01 au 2024-03-31
+2025-07-08 06:52:40,490 - INFO - ✅ achats 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 06:52:51,759 - INFO - 📊 Server response: 200
+2025-07-08 06:52:51,760 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:52:51,762 - INFO - ✅ Achats 2024-03-01-2024-03-31 traités
+2025-07-08 06:52:51,762 - INFO - Progress: 6/34 requêtes
+2025-07-08 06:52:51,762 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:52:53,766 - INFO - 
+==================================================
+2025-07-08 06:52:53,766 - INFO - 📊 PÉRIODE 4/17: 2024-04-01 -> 2024-04-30
+2025-07-08 06:52:53,767 - INFO - ==================================================
+2025-07-08 06:52:53,767 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:52:53,767 - INFO - Requête: ventes du 2024-04-01 au 2024-04-30
+2025-07-08 06:52:59,798 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 06:52:59,799 - INFO - ✅ ventes 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 06:52:59,982 - INFO - 🔍 TVA cette période: 72752 lignes, 9725 produits
+2025-07-08 06:53:09,745 - INFO - 📊 Server response: 200
+2025-07-08 06:53:09,747 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:53:09,747 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:53:09,749 - INFO - ✅ Ventes 2024-04-01-2024-04-30 traitées
+2025-07-08 06:53:09,749 - INFO - Progress: 7/34 requêtes
+2025-07-08 06:53:09,749 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:53:09,749 - INFO - Requête: achats du 2024-04-01 au 2024-04-30
+2025-07-08 06:53:12,178 - INFO - ✅ achats 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 06:53:24,469 - INFO - 📊 Server response: 200
+2025-07-08 06:53:24,471 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:53:24,473 - INFO - ✅ Achats 2024-04-01-2024-04-30 traités
+2025-07-08 06:53:24,473 - INFO - Progress: 8/34 requêtes
+2025-07-08 06:53:24,473 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:53:26,478 - INFO - 
+==================================================
+2025-07-08 06:53:26,478 - INFO - 📊 PÉRIODE 5/17: 2024-05-01 -> 2024-05-31
+2025-07-08 06:53:26,478 - INFO - ==================================================
+2025-07-08 06:53:26,479 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:53:26,479 - INFO - Requête: ventes du 2024-05-01 au 2024-05-31
+2025-07-08 06:53:29,005 - INFO - 🔍 TVA présente dans 5/5 lignes (100.0%)
+2025-07-08 06:53:29,005 - INFO - ✅ ventes 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 06:53:29,133 - INFO - 🔍 TVA cette période: 68277 lignes, 9582 produits
+2025-07-08 06:53:38,370 - INFO - 📊 Server response: 200
+2025-07-08 06:53:38,370 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:53:38,371 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:53:38,373 - INFO - ✅ Ventes 2024-05-01-2024-05-31 traitées
+2025-07-08 06:53:38,373 - INFO - Progress: 9/34 requêtes
+2025-07-08 06:53:38,373 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:53:38,373 - INFO - Requête: achats du 2024-05-01 au 2024-05-31
+2025-07-08 06:53:40,313 - INFO - ✅ achats 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 06:53:50,795 - INFO - 📊 Server response: 200
+2025-07-08 06:53:50,796 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:53:50,799 - INFO - ✅ Achats 2024-05-01-2024-05-31 traités
+2025-07-08 06:53:50,799 - INFO - Progress: 10/34 requêtes
+2025-07-08 06:53:50,799 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:53:52,802 - INFO - 
+==================================================
+2025-07-08 06:53:52,803 - INFO - 📊 PÉRIODE 6/17: 2024-06-01 -> 2024-06-30
+2025-07-08 06:53:52,803 - INFO - ==================================================
+2025-07-08 06:53:52,804 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:53:52,804 - INFO - Requête: ventes du 2024-06-01 au 2024-06-30
+2025-07-08 06:53:56,532 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 06:53:56,532 - INFO - ✅ ventes 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 06:53:56,671 - INFO - 🔍 TVA cette période: 68938 lignes, 9654 produits
+2025-07-08 06:54:07,074 - INFO - 📊 Server response: 200
+2025-07-08 06:54:07,075 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:54:07,076 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:54:07,077 - INFO - ✅ Ventes 2024-06-01-2024-06-30 traitées
+2025-07-08 06:54:07,077 - INFO - Progress: 11/34 requêtes
+2025-07-08 06:54:07,078 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:54:07,078 - INFO - Requête: achats du 2024-06-01 au 2024-06-30
+2025-07-08 06:54:08,347 - INFO - ✅ achats 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 06:54:19,194 - INFO - 📊 Server response: 200
+2025-07-08 06:54:19,195 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:54:19,196 - INFO - ✅ Achats 2024-06-01-2024-06-30 traités
+2025-07-08 06:54:19,196 - INFO - Progress: 12/34 requêtes
+2025-07-08 06:54:19,196 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:54:21,199 - INFO - 
+==================================================
+2025-07-08 06:54:21,199 - INFO - 📊 PÉRIODE 7/17: 2024-07-01 -> 2024-07-31
+2025-07-08 06:54:21,200 - INFO - ==================================================
+2025-07-08 06:54:21,200 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:54:21,200 - INFO - Requête: ventes du 2024-07-01 au 2024-07-31
+2025-07-08 06:54:25,143 - INFO - 🔍 TVA présente dans 15/15 lignes (100.0%)
+2025-07-08 06:54:25,144 - INFO - ✅ ventes 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 06:54:25,228 - INFO - 🔍 TVA cette période: 75845 lignes, 9675 produits
+2025-07-08 06:54:35,651 - INFO - 📊 Server response: 200
+2025-07-08 06:54:35,652 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:54:35,652 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:54:35,654 - INFO - ✅ Ventes 2024-07-01-2024-07-31 traitées
+2025-07-08 06:54:35,654 - INFO - Progress: 13/34 requêtes
+2025-07-08 06:54:35,654 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:54:35,654 - INFO - Requête: achats du 2024-07-01 au 2024-07-31
+2025-07-08 06:54:37,321 - INFO - ✅ achats 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 06:54:50,270 - INFO - 📊 Server response: 200
+2025-07-08 06:54:50,271 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:54:50,272 - INFO - ✅ Achats 2024-07-01-2024-07-31 traités
+2025-07-08 06:54:50,272 - INFO - Progress: 14/34 requêtes
+2025-07-08 06:54:50,272 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:54:52,278 - INFO - 
+==================================================
+2025-07-08 06:54:52,278 - INFO - 📊 PÉRIODE 8/17: 2024-08-01 -> 2024-08-31
+2025-07-08 06:54:52,278 - INFO - ==================================================
+2025-07-08 06:54:52,279 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:54:52,279 - INFO - Requête: ventes du 2024-08-01 au 2024-08-31
+2025-07-08 06:54:58,816 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 06:54:58,816 - INFO - ✅ ventes 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 06:54:58,949 - INFO - 🔍 TVA cette période: 69100 lignes, 9265 produits
+2025-07-08 06:55:08,436 - INFO - 📊 Server response: 200
+2025-07-08 06:55:08,437 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:55:08,437 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:55:08,440 - INFO - ✅ Ventes 2024-08-01-2024-08-31 traitées
+2025-07-08 06:55:08,440 - INFO - Progress: 15/34 requêtes
+2025-07-08 06:55:08,440 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:55:08,440 - INFO - Requête: achats du 2024-08-01 au 2024-08-31
+2025-07-08 06:55:12,460 - INFO - ✅ achats 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 06:55:22,406 - INFO - 📊 Server response: 200
+2025-07-08 06:55:22,407 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:55:22,409 - INFO - ✅ Achats 2024-08-01-2024-08-31 traités
+2025-07-08 06:55:22,409 - INFO - Progress: 16/34 requêtes
+2025-07-08 06:55:22,409 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:55:24,414 - INFO - 
+==================================================
+2025-07-08 06:55:24,414 - INFO - 📊 PÉRIODE 9/17: 2024-09-01 -> 2024-09-30
+2025-07-08 06:55:24,415 - INFO - ==================================================
+2025-07-08 06:55:24,415 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:55:24,415 - INFO - Requête: ventes du 2024-09-01 au 2024-09-30
+2025-07-08 06:55:28,283 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 06:55:28,283 - INFO - ✅ ventes 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 06:55:28,412 - INFO - 🔍 TVA cette période: 66869 lignes, 9301 produits
+2025-07-08 06:55:37,961 - INFO - 📊 Server response: 200
+2025-07-08 06:55:37,961 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:55:37,961 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:55:37,963 - INFO - ✅ Ventes 2024-09-01-2024-09-30 traitées
+2025-07-08 06:55:37,963 - INFO - Progress: 17/34 requêtes
+2025-07-08 06:55:37,964 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:55:37,964 - INFO - Requête: achats du 2024-09-01 au 2024-09-30
+2025-07-08 06:55:39,717 - INFO - ✅ achats 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 06:55:50,601 - INFO - 📊 Server response: 200
+2025-07-08 06:55:50,601 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:55:50,604 - INFO - ✅ Achats 2024-09-01-2024-09-30 traités
+2025-07-08 06:55:50,604 - INFO - Progress: 18/34 requêtes
+2025-07-08 06:55:50,604 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:55:52,610 - INFO - 
+==================================================
+2025-07-08 06:55:52,611 - INFO - 📊 PÉRIODE 10/17: 2024-10-01 -> 2024-10-31
+2025-07-08 06:55:52,611 - INFO - ==================================================
+2025-07-08 06:55:52,611 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:55:52,611 - INFO - Requête: ventes du 2024-10-01 au 2024-10-31
+2025-07-08 06:55:57,112 - INFO - 🔍 TVA présente dans 16/16 lignes (100.0%)
+2025-07-08 06:55:57,112 - INFO - ✅ ventes 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 06:55:57,176 - INFO - 🔍 TVA cette période: 75382 lignes, 9519 produits
+2025-07-08 06:56:07,418 - INFO - 📊 Server response: 200
+2025-07-08 06:56:07,420 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:56:07,421 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:56:07,423 - INFO - ✅ Ventes 2024-10-01-2024-10-31 traitées
+2025-07-08 06:56:07,423 - INFO - Progress: 19/34 requêtes
+2025-07-08 06:56:07,423 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:56:07,423 - INFO - Requête: achats du 2024-10-01 au 2024-10-31
+2025-07-08 06:56:09,984 - INFO - ✅ achats 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 06:56:21,149 - INFO - 📊 Server response: 200
+2025-07-08 06:56:21,150 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:56:21,150 - INFO - ✅ Achats 2024-10-01-2024-10-31 traités
+2025-07-08 06:56:21,151 - INFO - Progress: 20/34 requêtes
+2025-07-08 06:56:21,151 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:56:23,157 - INFO - 
+==================================================
+2025-07-08 06:56:23,158 - INFO - 📊 PÉRIODE 11/17: 2024-11-01 -> 2024-11-30
+2025-07-08 06:56:23,158 - INFO - ==================================================
+2025-07-08 06:56:23,158 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:56:23,159 - INFO - Requête: ventes du 2024-11-01 au 2024-11-30
+2025-07-08 06:56:26,985 - INFO - 🔍 TVA présente dans 16/16 lignes (100.0%)
+2025-07-08 06:56:26,985 - INFO - ✅ ventes 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 06:56:27,062 - INFO - 🔍 TVA cette période: 67906 lignes, 9220 produits
+2025-07-08 06:56:36,645 - INFO - 📊 Server response: 200
+2025-07-08 06:56:36,646 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:56:36,646 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:56:36,648 - INFO - ✅ Ventes 2024-11-01-2024-11-30 traitées
+2025-07-08 06:56:36,648 - INFO - Progress: 21/34 requêtes
+2025-07-08 06:56:36,648 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:56:36,648 - INFO - Requête: achats du 2024-11-01 au 2024-11-30
+2025-07-08 06:56:37,707 - INFO - ✅ achats 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 06:56:48,767 - INFO - 📊 Server response: 200
+2025-07-08 06:56:48,767 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:56:48,768 - INFO - ✅ Achats 2024-11-01-2024-11-30 traités
+2025-07-08 06:56:48,768 - INFO - Progress: 22/34 requêtes
+2025-07-08 06:56:48,768 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:56:50,774 - INFO - 
+==================================================
+2025-07-08 06:56:50,775 - INFO - 📊 PÉRIODE 12/17: 2024-12-01 -> 2024-12-31
+2025-07-08 06:56:50,775 - INFO - ==================================================
+2025-07-08 06:56:50,775 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:56:50,775 - INFO - Requête: ventes du 2024-12-01 au 2024-12-31
+2025-07-08 06:56:53,557 - INFO - 🔍 TVA présente dans 5/5 lignes (100.0%)
+2025-07-08 06:56:53,557 - INFO - ✅ ventes 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 06:56:53,639 - INFO - 🔍 TVA cette période: 74813 lignes, 9543 produits
+2025-07-08 06:57:04,042 - INFO - 📊 Server response: 200
+2025-07-08 06:57:04,043 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:57:04,044 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:57:04,046 - INFO - ✅ Ventes 2024-12-01-2024-12-31 traitées
+2025-07-08 06:57:04,047 - INFO - Progress: 23/34 requêtes
+2025-07-08 06:57:04,047 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:57:04,047 - INFO - Requête: achats du 2024-12-01 au 2024-12-31
+2025-07-08 06:57:04,931 - INFO - ✅ achats 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 06:57:11,646 - INFO - 📊 Server response: 200
+2025-07-08 06:57:11,646 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:57:11,647 - INFO - ✅ Achats 2024-12-01-2024-12-31 traités
+2025-07-08 06:57:11,648 - INFO - Progress: 24/34 requêtes
+2025-07-08 06:57:11,648 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:57:13,653 - INFO - 
+==================================================
+2025-07-08 06:57:13,653 - INFO - 📊 PÉRIODE 13/17: 2025-01-01 -> 2025-01-31
+2025-07-08 06:57:13,654 - INFO - ==================================================
+2025-07-08 06:57:13,654 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:57:13,654 - INFO - Requête: ventes du 2025-01-01 au 2025-01-31
+2025-07-08 06:57:16,709 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 06:57:16,710 - INFO - ✅ ventes 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 06:57:16,793 - INFO - 🔍 TVA cette période: 77735 lignes, 9527 produits
+2025-07-08 06:57:27,438 - INFO - 📊 Server response: 200
+2025-07-08 06:57:27,439 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:57:27,439 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:57:27,441 - INFO - ✅ Ventes 2025-01-01-2025-01-31 traitées
+2025-07-08 06:57:27,441 - INFO - Progress: 25/34 requêtes
+2025-07-08 06:57:27,441 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:57:27,441 - INFO - Requête: achats du 2025-01-01 au 2025-01-31
+2025-07-08 06:57:28,268 - INFO - ✅ achats 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 06:57:34,589 - INFO - 📊 Server response: 200
+2025-07-08 06:57:34,590 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:57:34,591 - INFO - ✅ Achats 2025-01-01-2025-01-31 traités
+2025-07-08 06:57:34,591 - INFO - Progress: 26/34 requêtes
+2025-07-08 06:57:34,591 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:57:36,592 - INFO - 
+==================================================
+2025-07-08 06:57:36,592 - INFO - 📊 PÉRIODE 14/17: 2025-02-01 -> 2025-02-28
+2025-07-08 06:57:36,593 - INFO - ==================================================
+2025-07-08 06:57:36,593 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:57:36,593 - INFO - Requête: ventes du 2025-02-01 au 2025-02-28
+2025-07-08 06:57:39,632 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 06:57:39,632 - INFO - ✅ ventes 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 06:57:39,694 - INFO - 🔍 TVA cette période: 66565 lignes, 9309 produits
+2025-07-08 06:57:49,416 - INFO - 📊 Server response: 200
+2025-07-08 06:57:49,417 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:57:49,417 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:57:49,419 - INFO - ✅ Ventes 2025-02-01-2025-02-28 traitées
+2025-07-08 06:57:49,420 - INFO - Progress: 27/34 requêtes
+2025-07-08 06:57:49,420 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:57:49,420 - INFO - Requête: achats du 2025-02-01 au 2025-02-28
+2025-07-08 06:57:50,196 - INFO - ✅ achats 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 06:57:56,723 - INFO - 📊 Server response: 200
+2025-07-08 06:57:56,723 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:57:56,725 - INFO - ✅ Achats 2025-02-01-2025-02-28 traités
+2025-07-08 06:57:56,725 - INFO - Progress: 28/34 requêtes
+2025-07-08 06:57:56,726 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:57:58,731 - INFO - 
+==================================================
+2025-07-08 06:57:58,731 - INFO - 📊 PÉRIODE 15/17: 2025-03-01 -> 2025-03-31
+2025-07-08 06:57:58,731 - INFO - ==================================================
+2025-07-08 06:57:58,731 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:57:58,732 - INFO - Requête: ventes du 2025-03-01 au 2025-03-31
+2025-07-08 06:58:03,045 - INFO - 🔍 TVA présente dans 23/23 lignes (100.0%)
+2025-07-08 06:58:03,046 - INFO - ✅ ventes 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 06:58:03,105 - INFO - 🔍 TVA cette période: 72732 lignes, 9911 produits
+2025-07-08 06:58:13,853 - INFO - 📊 Server response: 200
+2025-07-08 06:58:13,853 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:58:13,853 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:58:13,855 - INFO - ✅ Ventes 2025-03-01-2025-03-31 traitées
+2025-07-08 06:58:13,855 - INFO - Progress: 29/34 requêtes
+2025-07-08 06:58:13,856 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:58:13,856 - INFO - Requête: achats du 2025-03-01 au 2025-03-31
+2025-07-08 06:58:14,997 - INFO - ✅ achats 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 06:58:22,306 - INFO - 📊 Server response: 200
+2025-07-08 06:58:22,308 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:58:22,309 - INFO - ✅ Achats 2025-03-01-2025-03-31 traités
+2025-07-08 06:58:22,309 - INFO - Progress: 30/34 requêtes
+2025-07-08 06:58:22,309 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:58:24,314 - INFO - 
+==================================================
+2025-07-08 06:58:24,315 - INFO - 📊 PÉRIODE 16/17: 2025-04-01 -> 2025-04-30
+2025-07-08 06:58:24,315 - INFO - ==================================================
+2025-07-08 06:58:24,315 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:58:24,315 - INFO - Requête: ventes du 2025-04-01 au 2025-04-30
+2025-07-08 06:58:33,105 - INFO - 🔍 TVA présente dans 14/14 lignes (100.0%)
+2025-07-08 06:58:33,106 - INFO - ✅ ventes 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 06:58:33,176 - INFO - 🔍 TVA cette période: 71122 lignes, 9903 produits
+2025-07-08 06:58:44,181 - INFO - 📊 Server response: 200
+2025-07-08 06:58:44,181 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:58:44,181 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:58:44,184 - INFO - ✅ Ventes 2025-04-01-2025-04-30 traitées
+2025-07-08 06:58:44,184 - INFO - Progress: 31/34 requêtes
+2025-07-08 06:58:44,184 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:58:44,184 - INFO - Requête: achats du 2025-04-01 au 2025-04-30
+2025-07-08 06:58:45,102 - INFO - ✅ achats 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 06:58:53,537 - INFO - 📊 Server response: 200
+2025-07-08 06:58:53,539 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:58:53,540 - INFO - ✅ Achats 2025-04-01-2025-04-30 traités
+2025-07-08 06:58:53,540 - INFO - Progress: 32/34 requêtes
+2025-07-08 06:58:53,540 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 06:58:55,544 - INFO - 
+==================================================
+2025-07-08 06:58:55,544 - INFO - 📊 PÉRIODE 17/17: 2025-05-01 -> 2025-05-31
+2025-07-08 06:58:55,545 - INFO - ==================================================
+2025-07-08 06:58:55,545 - INFO - 💰 Récupération des ventes...
+2025-07-08 06:58:55,545 - INFO - Requête: ventes du 2025-05-01 au 2025-05-31
+2025-07-08 06:58:59,721 - INFO - 🔍 TVA présente dans 5/5 lignes (100.0%)
+2025-07-08 06:58:59,722 - INFO - ✅ ventes 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 06:58:59,780 - INFO - 🔍 TVA cette période: 68267 lignes, 9714 produits
+2025-07-08 06:59:10,451 - INFO - 📊 Server response: 200
+2025-07-08 06:59:10,453 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 06:59:10,453 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 06:59:10,455 - INFO - ✅ Ventes 2025-05-01-2025-05-31 traitées
+2025-07-08 06:59:10,455 - INFO - Progress: 33/34 requêtes
+2025-07-08 06:59:10,455 - INFO - 🛒 Récupération des achats...
+2025-07-08 06:59:10,455 - INFO - Requête: achats du 2025-05-01 au 2025-05-31
+2025-07-08 06:59:11,735 - INFO - ✅ achats 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 06:59:18,711 - INFO - 📊 Server response: 200
+2025-07-08 06:59:18,711 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 06:59:18,713 - INFO - ✅ Achats 2025-05-01-2025-05-31 traités
+2025-07-08 06:59:18,713 - INFO - Progress: 34/34 requêtes
+2025-07-08 06:59:18,713 - INFO - 
+==================================================
+2025-07-08 06:59:18,713 - INFO - 📊 STATISTIQUES FINALES
+2025-07-08 06:59:18,713 - INFO - ==================================================
+2025-07-08 06:59:18,713 - INFO - PRODUCTS: 1/1 succès (100.0%)
+2025-07-08 06:59:18,713 - INFO - SALES: 17/17 succès (100.0%)
+2025-07-08 06:59:18,713 - INFO - ORDERS: 17/17 succès (100.0%)
+2025-07-08 06:59:18,713 - INFO - ✅ 34 requêtes effectuées
+2025-07-08 06:59:18,713 - INFO - 
+📊 STATISTIQUES TVA GLOBALES:
+2025-07-08 06:59:18,713 - INFO -    - Périodes avec TVA: 17/17
+2025-07-08 06:59:18,713 - INFO -    - Produits uniques avec TVA: 20027
+2025-07-08 06:59:18,713 - INFO -    - Valeurs TVA trouvées: 5
+2025-07-08 06:59:18,713 - INFO -    📋 Top 10 des TVA les plus fréquentes:
+2025-07-08 06:59:18,713 - INFO -      TVA 2.1%: 613568 occurrences
+2025-07-08 06:59:18,713 - INFO -      TVA 20.0%: 342729 occurrences
+2025-07-08 06:59:18,713 - INFO -      TVA 5.5%: 141665 occurrences
+2025-07-08 06:59:18,713 - INFO -      TVA 10.0%: 114083 occurrences
+2025-07-08 06:59:18,713 - INFO -      TVA 0.0%: 5099 occurrences
+2025-07-08 07:17:14,655 - INFO - 🔧 Configuration chargée:
+2025-07-08 07:17:14,655 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 07:17:14,656 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 07:17:14,656 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 07:17:14,656 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 07:17:14,656 - INFO - Pharmacie: 832002810
+2025-07-08 07:17:14,656 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 07:17:17,082 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 07:17:17,082 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 07:17:17,083 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 07:17:17,084 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 07:17:17,084 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 07:17:17,084 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 07:17:17,084 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 07:17:17,084 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 07:17:17,084 - INFO - 📅 17 périodes à traiter
+2025-07-08 07:17:17,084 - INFO - 
+==================================================
+2025-07-08 07:17:17,084 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 07:17:17,084 - INFO - ==================================================
+2025-07-08 07:17:17,084 - INFO - Requête: produits du  au 
+2025-07-08 07:17:21,265 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 07:17:47,516 - INFO - 📊 Server response: 200
+2025-07-08 07:17:47,517 - INFO - ✅ Données products envoyées avec succès
+2025-07-08 07:17:47,518 - INFO - ✅ Produits traités avec succès
+2025-07-08 07:17:47,518 - INFO - 
+==================================================
+2025-07-08 07:17:47,518 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 07:17:47,518 - INFO - ==================================================
+2025-07-08 07:17:47,518 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:17:47,518 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 07:17:53,106 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 07:17:53,107 - INFO - ✅ ventes 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 07:17:53,148 - INFO - 🔍 TVA cette période: 75322 lignes, 9516 produits
+2025-07-08 07:18:02,691 - INFO - 📊 Server response: 200
+2025-07-08 07:18:02,692 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:18:02,692 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:18:02,694 - INFO - ✅ Ventes 2024-01-01-2024-01-31 traitées
+2025-07-08 07:18:02,694 - INFO - Progress: 1/34 requêtes
+2025-07-08 07:18:02,695 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:18:02,695 - INFO - Requête: achats du 2024-01-01 au 2024-01-31
+2025-07-08 07:18:04,023 - INFO - ✅ achats 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 07:18:13,455 - INFO - 📊 Server response: 200
+2025-07-08 07:18:13,455 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:18:13,456 - INFO - ✅ Achats 2024-01-01-2024-01-31 traités
+2025-07-08 07:18:13,456 - INFO - Progress: 2/34 requêtes
+2025-07-08 07:18:13,456 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:18:15,462 - INFO - 
+==================================================
+2025-07-08 07:18:15,462 - INFO - 📊 PÉRIODE 2/17: 2024-02-01 -> 2024-02-29
+2025-07-08 07:18:15,462 - INFO - ==================================================
+2025-07-08 07:18:15,462 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:18:15,463 - INFO - Requête: ventes du 2024-02-01 au 2024-02-29
+2025-07-08 07:18:18,252 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 07:18:18,252 - INFO - ✅ ventes 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 07:18:18,309 - INFO - 🔍 TVA cette période: 73574 lignes, 9656 produits
+2025-07-08 07:18:27,641 - INFO - 📊 Server response: 200
+2025-07-08 07:18:27,642 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:18:27,642 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:18:27,644 - INFO - ✅ Ventes 2024-02-01-2024-02-29 traitées
+2025-07-08 07:18:27,644 - INFO - Progress: 3/34 requêtes
+2025-07-08 07:18:27,644 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:18:27,644 - INFO - Requête: achats du 2024-02-01 au 2024-02-29
+2025-07-08 07:18:29,151 - INFO - ✅ achats 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 07:18:38,872 - INFO - 📊 Server response: 200
+2025-07-08 07:18:38,873 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:18:38,873 - INFO - ✅ Achats 2024-02-01-2024-02-29 traités
+2025-07-08 07:18:38,874 - INFO - Progress: 4/34 requêtes
+2025-07-08 07:18:38,874 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:18:40,879 - INFO - 
+==================================================
+2025-07-08 07:18:40,879 - INFO - 📊 PÉRIODE 3/17: 2024-03-01 -> 2024-03-31
+2025-07-08 07:18:40,880 - INFO - ==================================================
+2025-07-08 07:18:40,880 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:18:40,880 - INFO - Requête: ventes du 2024-03-01 au 2024-03-31
+2025-07-08 07:18:42,957 - INFO - 🔍 TVA présente dans 18/18 lignes (100.0%)
+2025-07-08 07:18:42,957 - INFO - ✅ ventes 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 07:18:43,016 - INFO - 🔍 TVA cette période: 71945 lignes, 9688 produits
+2025-07-08 07:18:52,604 - INFO - 📊 Server response: 200
+2025-07-08 07:18:52,605 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:18:52,605 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:18:52,608 - INFO - ✅ Ventes 2024-03-01-2024-03-31 traitées
+2025-07-08 07:18:52,608 - INFO - Progress: 5/34 requêtes
+2025-07-08 07:18:52,608 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:18:52,608 - INFO - Requête: achats du 2024-03-01 au 2024-03-31
+2025-07-08 07:18:53,528 - INFO - ✅ achats 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 07:19:03,580 - INFO - 📊 Server response: 200
+2025-07-08 07:19:03,581 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:19:03,583 - INFO - ✅ Achats 2024-03-01-2024-03-31 traités
+2025-07-08 07:19:03,583 - INFO - Progress: 6/34 requêtes
+2025-07-08 07:19:03,583 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:19:05,585 - INFO - 
+==================================================
+2025-07-08 07:19:05,586 - INFO - 📊 PÉRIODE 4/17: 2024-04-01 -> 2024-04-30
+2025-07-08 07:19:05,586 - INFO - ==================================================
+2025-07-08 07:19:05,586 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:19:05,586 - INFO - Requête: ventes du 2024-04-01 au 2024-04-30
+2025-07-08 07:19:08,027 - INFO - 🔍 TVA présente dans 14/14 lignes (100.0%)
+2025-07-08 07:19:08,027 - INFO - ✅ ventes 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 07:19:08,142 - INFO - 🔍 TVA cette période: 72752 lignes, 9725 produits
+2025-07-08 07:19:17,834 - INFO - 📊 Server response: 200
+2025-07-08 07:19:17,835 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:19:17,836 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:19:17,838 - INFO - ✅ Ventes 2024-04-01-2024-04-30 traitées
+2025-07-08 07:19:17,838 - INFO - Progress: 7/34 requêtes
+2025-07-08 07:19:17,838 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:19:17,838 - INFO - Requête: achats du 2024-04-01 au 2024-04-30
+2025-07-08 07:19:19,007 - INFO - ✅ achats 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 07:19:31,474 - INFO - 📊 Server response: 200
+2025-07-08 07:19:31,474 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:19:31,475 - INFO - ✅ Achats 2024-04-01-2024-04-30 traités
+2025-07-08 07:19:31,475 - INFO - Progress: 8/34 requêtes
+2025-07-08 07:19:31,476 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:19:33,481 - INFO - 
+==================================================
+2025-07-08 07:19:33,482 - INFO - 📊 PÉRIODE 5/17: 2024-05-01 -> 2024-05-31
+2025-07-08 07:19:33,482 - INFO - ==================================================
+2025-07-08 07:19:33,483 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:19:33,483 - INFO - Requête: ventes du 2024-05-01 au 2024-05-31
+2025-07-08 07:19:35,371 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 07:19:35,371 - INFO - ✅ ventes 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 07:19:35,428 - INFO - 🔍 TVA cette période: 68277 lignes, 9582 produits
+2025-07-08 07:19:44,895 - INFO - 📊 Server response: 200
+2025-07-08 07:19:44,896 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:19:44,896 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:19:44,898 - INFO - ✅ Ventes 2024-05-01-2024-05-31 traitées
+2025-07-08 07:19:44,898 - INFO - Progress: 9/34 requêtes
+2025-07-08 07:19:44,898 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:19:44,898 - INFO - Requête: achats du 2024-05-01 au 2024-05-31
+2025-07-08 07:19:46,040 - INFO - ✅ achats 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 07:19:56,173 - INFO - 📊 Server response: 200
+2025-07-08 07:19:56,174 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:19:56,175 - INFO - ✅ Achats 2024-05-01-2024-05-31 traités
+2025-07-08 07:19:56,176 - INFO - Progress: 10/34 requêtes
+2025-07-08 07:19:56,176 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:19:58,181 - INFO - 
+==================================================
+2025-07-08 07:19:58,182 - INFO - 📊 PÉRIODE 6/17: 2024-06-01 -> 2024-06-30
+2025-07-08 07:19:58,182 - INFO - ==================================================
+2025-07-08 07:19:58,182 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:19:58,182 - INFO - Requête: ventes du 2024-06-01 au 2024-06-30
+2025-07-08 07:20:00,137 - INFO - 🔍 TVA présente dans 10/10 lignes (100.0%)
+2025-07-08 07:20:00,137 - INFO - ✅ ventes 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 07:20:00,211 - INFO - 🔍 TVA cette période: 68938 lignes, 9654 produits
+2025-07-08 07:20:09,773 - INFO - 📊 Server response: 200
+2025-07-08 07:20:09,774 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:20:09,774 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:20:09,776 - INFO - ✅ Ventes 2024-06-01-2024-06-30 traitées
+2025-07-08 07:20:09,776 - INFO - Progress: 11/34 requêtes
+2025-07-08 07:20:09,777 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:20:09,777 - INFO - Requête: achats du 2024-06-01 au 2024-06-30
+2025-07-08 07:20:10,911 - INFO - ✅ achats 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 07:20:21,881 - INFO - 📊 Server response: 200
+2025-07-08 07:20:21,881 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:20:21,882 - INFO - ✅ Achats 2024-06-01-2024-06-30 traités
+2025-07-08 07:20:21,883 - INFO - Progress: 12/34 requêtes
+2025-07-08 07:20:21,883 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:20:23,886 - INFO - 
+==================================================
+2025-07-08 07:20:23,887 - INFO - 📊 PÉRIODE 7/17: 2024-07-01 -> 2024-07-31
+2025-07-08 07:20:23,887 - INFO - ==================================================
+2025-07-08 07:20:23,887 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:20:23,887 - INFO - Requête: ventes du 2024-07-01 au 2024-07-31
+2025-07-08 07:20:26,033 - INFO - 🔍 TVA présente dans 16/16 lignes (100.0%)
+2025-07-08 07:20:26,033 - INFO - ✅ ventes 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 07:20:26,156 - INFO - 🔍 TVA cette période: 75845 lignes, 9675 produits
+2025-07-08 07:20:36,546 - INFO - 📊 Server response: 200
+2025-07-08 07:20:36,548 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:20:36,548 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:20:36,550 - INFO - ✅ Ventes 2024-07-01-2024-07-31 traitées
+2025-07-08 07:20:36,550 - INFO - Progress: 13/34 requêtes
+2025-07-08 07:20:36,550 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:20:36,550 - INFO - Requête: achats du 2024-07-01 au 2024-07-31
+2025-07-08 07:20:37,633 - INFO - ✅ achats 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 07:20:49,405 - INFO - 📊 Server response: 200
+2025-07-08 07:20:49,407 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:20:49,407 - INFO - ✅ Achats 2024-07-01-2024-07-31 traités
+2025-07-08 07:20:49,407 - INFO - Progress: 14/34 requêtes
+2025-07-08 07:20:49,407 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:20:51,413 - INFO - 
+==================================================
+2025-07-08 07:20:51,413 - INFO - 📊 PÉRIODE 8/17: 2024-08-01 -> 2024-08-31
+2025-07-08 07:20:51,413 - INFO - ==================================================
+2025-07-08 07:20:51,414 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:20:51,414 - INFO - Requête: ventes du 2024-08-01 au 2024-08-31
+2025-07-08 07:20:53,417 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 07:20:53,417 - INFO - ✅ ventes 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 07:20:53,506 - INFO - 🔍 TVA cette période: 69100 lignes, 9265 produits
+2025-07-08 07:21:03,075 - INFO - 📊 Server response: 200
+2025-07-08 07:21:03,076 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:21:03,076 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:21:03,078 - INFO - ✅ Ventes 2024-08-01-2024-08-31 traitées
+2025-07-08 07:21:03,078 - INFO - Progress: 15/34 requêtes
+2025-07-08 07:21:03,079 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:21:03,079 - INFO - Requête: achats du 2024-08-01 au 2024-08-31
+2025-07-08 07:21:03,999 - INFO - ✅ achats 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 07:21:12,997 - INFO - 📊 Server response: 200
+2025-07-08 07:21:12,998 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:21:12,999 - INFO - ✅ Achats 2024-08-01-2024-08-31 traités
+2025-07-08 07:21:12,999 - INFO - Progress: 16/34 requêtes
+2025-07-08 07:21:12,999 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:21:15,004 - INFO - 
+==================================================
+2025-07-08 07:21:15,005 - INFO - 📊 PÉRIODE 9/17: 2024-09-01 -> 2024-09-30
+2025-07-08 07:21:15,005 - INFO - ==================================================
+2025-07-08 07:21:15,006 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:21:15,006 - INFO - Requête: ventes du 2024-09-01 au 2024-09-30
+2025-07-08 07:21:17,146 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 07:21:17,146 - INFO - ✅ ventes 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 07:21:17,202 - INFO - 🔍 TVA cette période: 66869 lignes, 9301 produits
+2025-07-08 07:21:26,562 - INFO - 📊 Server response: 200
+2025-07-08 07:21:26,562 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:21:26,562 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:21:26,564 - INFO - ✅ Ventes 2024-09-01-2024-09-30 traitées
+2025-07-08 07:21:26,564 - INFO - Progress: 17/34 requêtes
+2025-07-08 07:21:26,564 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:21:26,564 - INFO - Requête: achats du 2024-09-01 au 2024-09-30
+2025-07-08 07:21:27,582 - INFO - ✅ achats 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 07:21:37,947 - INFO - 📊 Server response: 200
+2025-07-08 07:21:37,949 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:21:37,950 - INFO - ✅ Achats 2024-09-01-2024-09-30 traités
+2025-07-08 07:21:37,950 - INFO - Progress: 18/34 requêtes
+2025-07-08 07:21:37,950 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:21:39,955 - INFO - 
+==================================================
+2025-07-08 07:21:39,956 - INFO - 📊 PÉRIODE 10/17: 2024-10-01 -> 2024-10-31
+2025-07-08 07:21:39,956 - INFO - ==================================================
+2025-07-08 07:21:39,956 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:21:39,956 - INFO - Requête: ventes du 2024-10-01 au 2024-10-31
+2025-07-08 07:21:42,094 - INFO - 🔍 TVA présente dans 10/10 lignes (100.0%)
+2025-07-08 07:21:42,095 - INFO - ✅ ventes 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 07:21:42,165 - INFO - 🔍 TVA cette période: 75382 lignes, 9519 produits
+2025-07-08 07:21:52,556 - INFO - 📊 Server response: 200
+2025-07-08 07:21:52,557 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:21:52,557 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:21:52,560 - INFO - ✅ Ventes 2024-10-01-2024-10-31 traitées
+2025-07-08 07:21:52,560 - INFO - Progress: 19/34 requêtes
+2025-07-08 07:21:52,560 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:21:52,560 - INFO - Requête: achats du 2024-10-01 au 2024-10-31
+2025-07-08 07:21:53,508 - INFO - ✅ achats 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 07:22:04,084 - INFO - 📊 Server response: 200
+2025-07-08 07:22:04,085 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:22:04,087 - INFO - ✅ Achats 2024-10-01-2024-10-31 traités
+2025-07-08 07:22:04,087 - INFO - Progress: 20/34 requêtes
+2025-07-08 07:22:04,087 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:22:06,092 - INFO - 
+==================================================
+2025-07-08 07:22:06,092 - INFO - 📊 PÉRIODE 11/17: 2024-11-01 -> 2024-11-30
+2025-07-08 07:22:06,092 - INFO - ==================================================
+2025-07-08 07:22:06,093 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:22:06,093 - INFO - Requête: ventes du 2024-11-01 au 2024-11-30
+2025-07-08 07:22:08,261 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 07:22:08,262 - INFO - ✅ ventes 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 07:22:08,398 - INFO - 🔍 TVA cette période: 67906 lignes, 9220 produits
+2025-07-08 07:22:18,055 - INFO - 📊 Server response: 200
+2025-07-08 07:22:18,057 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:22:18,057 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:22:18,061 - INFO - ✅ Ventes 2024-11-01-2024-11-30 traitées
+2025-07-08 07:22:18,065 - INFO - Progress: 21/34 requêtes
+2025-07-08 07:22:18,065 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:22:18,065 - INFO - Requête: achats du 2024-11-01 au 2024-11-30
+2025-07-08 07:22:19,228 - INFO - ✅ achats 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 07:22:29,694 - INFO - 📊 Server response: 200
+2025-07-08 07:22:29,697 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:22:29,699 - INFO - ✅ Achats 2024-11-01-2024-11-30 traités
+2025-07-08 07:22:29,700 - INFO - Progress: 22/34 requêtes
+2025-07-08 07:22:29,700 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:22:31,704 - INFO - 
+==================================================
+2025-07-08 07:22:31,704 - INFO - 📊 PÉRIODE 12/17: 2024-12-01 -> 2024-12-31
+2025-07-08 07:22:31,704 - INFO - ==================================================
+2025-07-08 07:22:31,704 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:22:31,704 - INFO - Requête: ventes du 2024-12-01 au 2024-12-31
+2025-07-08 07:22:33,781 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 07:22:33,781 - INFO - ✅ ventes 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 07:22:33,862 - INFO - 🔍 TVA cette période: 74813 lignes, 9543 produits
+2025-07-08 07:22:44,255 - INFO - 📊 Server response: 200
+2025-07-08 07:22:44,256 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:22:44,256 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:22:44,259 - INFO - ✅ Ventes 2024-12-01-2024-12-31 traitées
+2025-07-08 07:22:44,260 - INFO - Progress: 23/34 requêtes
+2025-07-08 07:22:44,260 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:22:44,260 - INFO - Requête: achats du 2024-12-01 au 2024-12-31
+2025-07-08 07:22:45,356 - INFO - ✅ achats 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 07:22:51,748 - INFO - 📊 Server response: 200
+2025-07-08 07:22:51,751 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:22:51,754 - INFO - ✅ Achats 2024-12-01-2024-12-31 traités
+2025-07-08 07:22:51,754 - INFO - Progress: 24/34 requêtes
+2025-07-08 07:22:51,755 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:22:53,757 - INFO - 
+==================================================
+2025-07-08 07:22:53,758 - INFO - 📊 PÉRIODE 13/17: 2025-01-01 -> 2025-01-31
+2025-07-08 07:22:53,758 - INFO - ==================================================
+2025-07-08 07:22:53,758 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:22:53,759 - INFO - Requête: ventes du 2025-01-01 au 2025-01-31
+2025-07-08 07:22:56,234 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 07:22:56,234 - INFO - ✅ ventes 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 07:22:56,323 - INFO - 🔍 TVA cette période: 77735 lignes, 9527 produits
+2025-07-08 07:23:07,206 - INFO - 📊 Server response: 200
+2025-07-08 07:23:07,207 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:23:07,207 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:23:07,209 - INFO - ✅ Ventes 2025-01-01-2025-01-31 traitées
+2025-07-08 07:23:07,209 - INFO - Progress: 25/34 requêtes
+2025-07-08 07:23:07,209 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:23:07,209 - INFO - Requête: achats du 2025-01-01 au 2025-01-31
+2025-07-08 07:23:08,090 - INFO - ✅ achats 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 07:23:14,191 - INFO - 📊 Server response: 200
+2025-07-08 07:23:14,192 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:23:14,196 - INFO - ✅ Achats 2025-01-01-2025-01-31 traités
+2025-07-08 07:23:14,196 - INFO - Progress: 26/34 requêtes
+2025-07-08 07:23:14,196 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:23:16,201 - INFO - 
+==================================================
+2025-07-08 07:23:16,201 - INFO - 📊 PÉRIODE 14/17: 2025-02-01 -> 2025-02-28
+2025-07-08 07:23:16,202 - INFO - ==================================================
+2025-07-08 07:23:16,202 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:23:16,202 - INFO - Requête: ventes du 2025-02-01 au 2025-02-28
+2025-07-08 07:23:18,016 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 07:23:18,016 - INFO - ✅ ventes 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 07:23:18,076 - INFO - 🔍 TVA cette période: 66565 lignes, 9309 produits
+2025-07-08 07:23:27,826 - INFO - 📊 Server response: 200
+2025-07-08 07:23:27,827 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:23:27,827 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:23:27,829 - INFO - ✅ Ventes 2025-02-01-2025-02-28 traitées
+2025-07-08 07:23:27,829 - INFO - Progress: 27/34 requêtes
+2025-07-08 07:23:27,829 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:23:27,829 - INFO - Requête: achats du 2025-02-01 au 2025-02-28
+2025-07-08 07:23:28,582 - INFO - ✅ achats 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 07:23:34,799 - INFO - 📊 Server response: 200
+2025-07-08 07:23:34,799 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:23:34,800 - INFO - ✅ Achats 2025-02-01-2025-02-28 traités
+2025-07-08 07:23:34,800 - INFO - Progress: 28/34 requêtes
+2025-07-08 07:23:34,800 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:23:36,806 - INFO - 
+==================================================
+2025-07-08 07:23:36,807 - INFO - 📊 PÉRIODE 15/17: 2025-03-01 -> 2025-03-31
+2025-07-08 07:23:36,807 - INFO - ==================================================
+2025-07-08 07:23:36,807 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:23:36,807 - INFO - Requête: ventes du 2025-03-01 au 2025-03-31
+2025-07-08 07:23:39,291 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 07:23:39,292 - INFO - ✅ ventes 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 07:23:39,346 - INFO - 🔍 TVA cette période: 72732 lignes, 9911 produits
+2025-07-08 07:23:50,203 - INFO - 📊 Server response: 200
+2025-07-08 07:23:50,204 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:23:50,204 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:23:50,206 - INFO - ✅ Ventes 2025-03-01-2025-03-31 traitées
+2025-07-08 07:23:50,206 - INFO - Progress: 29/34 requêtes
+2025-07-08 07:23:50,206 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:23:50,207 - INFO - Requête: achats du 2025-03-01 au 2025-03-31
+2025-07-08 07:23:51,114 - INFO - ✅ achats 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 07:23:58,176 - INFO - 📊 Server response: 200
+2025-07-08 07:23:58,176 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:23:58,177 - INFO - ✅ Achats 2025-03-01-2025-03-31 traités
+2025-07-08 07:23:58,177 - INFO - Progress: 30/34 requêtes
+2025-07-08 07:23:58,177 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:24:00,180 - INFO - 
+==================================================
+2025-07-08 07:24:00,184 - INFO - 📊 PÉRIODE 16/17: 2025-04-01 -> 2025-04-30
+2025-07-08 07:24:00,187 - INFO - ==================================================
+2025-07-08 07:24:00,187 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:24:00,187 - INFO - Requête: ventes du 2025-04-01 au 2025-04-30
+2025-07-08 07:24:02,310 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 07:24:02,310 - INFO - ✅ ventes 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 07:24:02,373 - INFO - 🔍 TVA cette période: 71122 lignes, 9903 produits
+2025-07-08 07:24:12,967 - INFO - 📊 Server response: 200
+2025-07-08 07:24:12,967 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:24:12,967 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:24:12,969 - INFO - ✅ Ventes 2025-04-01-2025-04-30 traitées
+2025-07-08 07:24:12,969 - INFO - Progress: 31/34 requêtes
+2025-07-08 07:24:12,969 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:24:12,970 - INFO - Requête: achats du 2025-04-01 au 2025-04-30
+2025-07-08 07:24:13,807 - INFO - ✅ achats 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 07:24:22,499 - INFO - 📊 Server response: 200
+2025-07-08 07:24:22,501 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:24:22,502 - INFO - ✅ Achats 2025-04-01-2025-04-30 traités
+2025-07-08 07:24:22,502 - INFO - Progress: 32/34 requêtes
+2025-07-08 07:24:22,502 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:24:24,503 - INFO - 
+==================================================
+2025-07-08 07:24:24,504 - INFO - 📊 PÉRIODE 17/17: 2025-05-01 -> 2025-05-31
+2025-07-08 07:24:24,504 - INFO - ==================================================
+2025-07-08 07:24:24,504 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:24:24,504 - INFO - Requête: ventes du 2025-05-01 au 2025-05-31
+2025-07-08 07:24:28,050 - INFO - 🔍 TVA présente dans 10/10 lignes (100.0%)
+2025-07-08 07:24:28,050 - INFO - ✅ ventes 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 07:24:28,111 - INFO - 🔍 TVA cette période: 68267 lignes, 9714 produits
+2025-07-08 07:24:38,986 - INFO - 📊 Server response: 200
+2025-07-08 07:24:38,987 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:24:38,987 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:24:38,989 - INFO - ✅ Ventes 2025-05-01-2025-05-31 traitées
+2025-07-08 07:24:38,989 - INFO - Progress: 33/34 requêtes
+2025-07-08 07:24:38,989 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:24:38,989 - INFO - Requête: achats du 2025-05-01 au 2025-05-31
+2025-07-08 07:24:39,884 - INFO - ✅ achats 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 07:24:47,162 - INFO - 📊 Server response: 200
+2025-07-08 07:24:47,163 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:24:47,163 - INFO - ✅ Achats 2025-05-01-2025-05-31 traités
+2025-07-08 07:24:47,164 - INFO - Progress: 34/34 requêtes
+2025-07-08 07:24:47,164 - INFO - 
+==================================================
+2025-07-08 07:24:47,164 - INFO - 📊 STATISTIQUES FINALES
+2025-07-08 07:24:47,164 - INFO - ==================================================
+2025-07-08 07:24:47,164 - INFO - PRODUCTS: 1/1 succès (100.0%)
+2025-07-08 07:24:47,164 - INFO - SALES: 17/17 succès (100.0%)
+2025-07-08 07:24:47,164 - INFO - ORDERS: 17/17 succès (100.0%)
+2025-07-08 07:24:47,164 - INFO - ✅ 34 requêtes effectuées
+2025-07-08 07:24:47,165 - INFO - 
+📊 STATISTIQUES TVA GLOBALES:
+2025-07-08 07:24:47,165 - INFO -    - Périodes avec TVA: 17/17
+2025-07-08 07:24:47,165 - INFO -    - Produits uniques avec TVA: 20027
+2025-07-08 07:24:47,165 - INFO -    - Valeurs TVA trouvées: 5
+2025-07-08 07:24:47,165 - INFO -    📋 Top 10 des TVA les plus fréquentes:
+2025-07-08 07:24:47,165 - INFO -      TVA 2.1%: 613568 occurrences
+2025-07-08 07:24:47,165 - INFO -      TVA 20.0%: 342729 occurrences
+2025-07-08 07:24:47,165 - INFO -      TVA 5.5%: 141665 occurrences
+2025-07-08 07:24:47,165 - INFO -      TVA 10.0%: 114083 occurrences
+2025-07-08 07:24:47,165 - INFO -      TVA 0.0%: 5099 occurrences
+2025-07-08 07:48:15,563 - INFO - 🔧 Configuration chargée:
+2025-07-08 07:48:15,564 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 07:48:15,564 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 07:48:15,564 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 07:48:15,564 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 07:48:15,564 - INFO - Pharmacie: 832002810
+2025-07-08 07:48:15,564 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 07:48:18,181 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 07:48:18,182 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 07:48:18,182 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 07:48:18,182 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 07:48:18,182 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 07:48:18,182 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 07:48:18,183 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 07:48:18,183 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 07:48:18,183 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 07:48:18,183 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 07:48:18,183 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 07:48:18,183 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 07:48:18,183 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 07:48:18,184 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 07:48:18,184 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 07:48:18,184 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 07:48:18,184 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 07:48:18,184 - INFO - 📅 17 périodes à traiter
+2025-07-08 07:48:18,184 - INFO - 
+==================================================
+2025-07-08 07:48:18,184 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 07:48:18,184 - INFO - ==================================================
+2025-07-08 07:48:18,184 - INFO - Requête: produits du  au 
+2025-07-08 07:48:24,790 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 07:48:57,600 - INFO - 📊 Server response: 200
+2025-07-08 07:48:57,603 - INFO - ✅ Données products envoyées avec succès
+2025-07-08 07:48:57,604 - INFO - ✅ Produits traités avec succès
+2025-07-08 07:48:57,604 - INFO - 
+==================================================
+2025-07-08 07:48:57,604 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 07:48:57,604 - INFO - ==================================================
+2025-07-08 07:48:57,604 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:48:57,604 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 07:49:04,631 - INFO - 🔍 TVA présente dans 8/8 lignes (100.0%)
+2025-07-08 07:49:04,632 - INFO - ✅ ventes 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 07:49:04,673 - INFO - 🔍 TVA cette période: 75322 lignes, 9516 produits
+2025-07-08 07:49:14,089 - INFO - 📊 Server response: 200
+2025-07-08 07:49:14,090 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:49:14,091 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:49:14,094 - INFO - ✅ Ventes 2024-01-01-2024-01-31 traitées
+2025-07-08 07:49:14,094 - INFO - Progress: 1/34 requêtes
+2025-07-08 07:49:14,095 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:49:14,095 - INFO - Requête: achats du 2024-01-01 au 2024-01-31
+2025-07-08 07:49:20,762 - INFO - ✅ achats 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 07:49:31,451 - INFO - 📊 Server response: 200
+2025-07-08 07:49:31,454 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:49:31,455 - INFO - ✅ Achats 2024-01-01-2024-01-31 traités
+2025-07-08 07:49:31,455 - INFO - Progress: 2/34 requêtes
+2025-07-08 07:49:31,455 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:49:33,461 - INFO - 
+==================================================
+2025-07-08 07:49:33,461 - INFO - 📊 PÉRIODE 2/17: 2024-02-01 -> 2024-02-29
+2025-07-08 07:49:33,461 - INFO - ==================================================
+2025-07-08 07:49:33,462 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:49:33,462 - INFO - Requête: ventes du 2024-02-01 au 2024-02-29
+2025-07-08 07:49:36,490 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 07:49:36,490 - INFO - ✅ ventes 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 07:49:36,646 - INFO - 🔍 TVA cette période: 73574 lignes, 9656 produits
+2025-07-08 07:49:46,307 - INFO - 📊 Server response: 200
+2025-07-08 07:49:46,307 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:49:46,307 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:49:46,310 - INFO - ✅ Ventes 2024-02-01-2024-02-29 traitées
+2025-07-08 07:49:46,310 - INFO - Progress: 3/34 requêtes
+2025-07-08 07:49:46,310 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:49:46,310 - INFO - Requête: achats du 2024-02-01 au 2024-02-29
+2025-07-08 07:49:48,067 - INFO - ✅ achats 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 07:49:58,270 - INFO - 📊 Server response: 200
+2025-07-08 07:49:58,273 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:49:58,275 - INFO - ✅ Achats 2024-02-01-2024-02-29 traités
+2025-07-08 07:49:58,275 - INFO - Progress: 4/34 requêtes
+2025-07-08 07:49:58,275 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:50:00,278 - INFO - 
+==================================================
+2025-07-08 07:50:00,278 - INFO - 📊 PÉRIODE 3/17: 2024-03-01 -> 2024-03-31
+2025-07-08 07:50:00,278 - INFO - ==================================================
+2025-07-08 07:50:00,279 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:50:00,279 - INFO - Requête: ventes du 2024-03-01 au 2024-03-31
+2025-07-08 07:50:02,553 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 07:50:02,553 - INFO - ✅ ventes 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 07:50:02,676 - INFO - 🔍 TVA cette période: 71945 lignes, 9688 produits
+2025-07-08 07:50:13,346 - INFO - 📊 Server response: 200
+2025-07-08 07:50:13,347 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:50:13,348 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:50:13,356 - INFO - ✅ Ventes 2024-03-01-2024-03-31 traitées
+2025-07-08 07:50:13,356 - INFO - Progress: 5/34 requêtes
+2025-07-08 07:50:13,356 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:50:13,356 - INFO - Requête: achats du 2024-03-01 au 2024-03-31
+2025-07-08 07:50:14,310 - INFO - ✅ achats 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 07:50:24,549 - INFO - 📊 Server response: 200
+2025-07-08 07:50:24,550 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:50:24,551 - INFO - ✅ Achats 2024-03-01-2024-03-31 traités
+2025-07-08 07:50:24,551 - INFO - Progress: 6/34 requêtes
+2025-07-08 07:50:24,551 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:50:26,555 - INFO - 
+==================================================
+2025-07-08 07:50:26,555 - INFO - 📊 PÉRIODE 4/17: 2024-04-01 -> 2024-04-30
+2025-07-08 07:50:26,555 - INFO - ==================================================
+2025-07-08 07:50:26,556 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:50:26,556 - INFO - Requête: ventes du 2024-04-01 au 2024-04-30
+2025-07-08 07:50:28,427 - INFO - 🔍 TVA présente dans 10/10 lignes (100.0%)
+2025-07-08 07:50:28,427 - INFO - ✅ ventes 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 07:50:28,505 - INFO - 🔍 TVA cette période: 72752 lignes, 9725 produits
+2025-07-08 07:50:38,401 - INFO - 📊 Server response: 200
+2025-07-08 07:50:38,401 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:50:38,402 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:50:38,404 - INFO - ✅ Ventes 2024-04-01-2024-04-30 traitées
+2025-07-08 07:50:38,404 - INFO - Progress: 7/34 requêtes
+2025-07-08 07:50:38,404 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:50:38,404 - INFO - Requête: achats du 2024-04-01 au 2024-04-30
+2025-07-08 07:50:39,480 - INFO - ✅ achats 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 07:50:50,866 - INFO - 📊 Server response: 200
+2025-07-08 07:50:50,867 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:50:50,870 - INFO - ✅ Achats 2024-04-01-2024-04-30 traités
+2025-07-08 07:50:50,870 - INFO - Progress: 8/34 requêtes
+2025-07-08 07:50:50,871 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:50:52,876 - INFO - 
+==================================================
+2025-07-08 07:50:52,876 - INFO - 📊 PÉRIODE 5/17: 2024-05-01 -> 2024-05-31
+2025-07-08 07:50:52,876 - INFO - ==================================================
+2025-07-08 07:50:52,877 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:50:52,877 - INFO - Requête: ventes du 2024-05-01 au 2024-05-31
+2025-07-08 07:50:57,943 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 07:50:57,944 - INFO - ✅ ventes 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 07:50:58,027 - INFO - 🔍 TVA cette période: 68277 lignes, 9582 produits
+2025-07-08 07:51:07,552 - INFO - 📊 Server response: 200
+2025-07-08 07:51:07,554 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:51:07,554 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:51:07,558 - INFO - ✅ Ventes 2024-05-01-2024-05-31 traitées
+2025-07-08 07:51:07,558 - INFO - Progress: 9/34 requêtes
+2025-07-08 07:51:07,558 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:51:07,558 - INFO - Requête: achats du 2024-05-01 au 2024-05-31
+2025-07-08 07:51:08,836 - INFO - ✅ achats 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 07:51:18,703 - INFO - 📊 Server response: 200
+2025-07-08 07:51:18,704 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:51:18,705 - INFO - ✅ Achats 2024-05-01-2024-05-31 traités
+2025-07-08 07:51:18,705 - INFO - Progress: 10/34 requêtes
+2025-07-08 07:51:18,705 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:51:20,708 - INFO - 
+==================================================
+2025-07-08 07:51:20,708 - INFO - 📊 PÉRIODE 6/17: 2024-06-01 -> 2024-06-30
+2025-07-08 07:51:20,709 - INFO - ==================================================
+2025-07-08 07:51:20,709 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:51:20,709 - INFO - Requête: ventes du 2024-06-01 au 2024-06-30
+2025-07-08 07:51:22,646 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 07:51:22,646 - INFO - ✅ ventes 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 07:51:22,720 - INFO - 🔍 TVA cette période: 68938 lignes, 9654 produits
+2025-07-08 07:51:32,737 - INFO - 📊 Server response: 200
+2025-07-08 07:51:32,738 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:51:32,738 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:51:32,742 - INFO - ✅ Ventes 2024-06-01-2024-06-30 traitées
+2025-07-08 07:51:32,742 - INFO - Progress: 11/34 requêtes
+2025-07-08 07:51:32,742 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:51:32,742 - INFO - Requête: achats du 2024-06-01 au 2024-06-30
+2025-07-08 07:51:33,884 - INFO - ✅ achats 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 07:51:44,293 - INFO - 📊 Server response: 200
+2025-07-08 07:51:44,294 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:51:44,295 - INFO - ✅ Achats 2024-06-01-2024-06-30 traités
+2025-07-08 07:51:44,296 - INFO - Progress: 12/34 requêtes
+2025-07-08 07:51:44,296 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:51:46,301 - INFO - 
+==================================================
+2025-07-08 07:51:46,302 - INFO - 📊 PÉRIODE 7/17: 2024-07-01 -> 2024-07-31
+2025-07-08 07:51:46,302 - INFO - ==================================================
+2025-07-08 07:51:46,302 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:51:46,302 - INFO - Requête: ventes du 2024-07-01 au 2024-07-31
+2025-07-08 07:51:48,349 - INFO - 🔍 TVA présente dans 15/15 lignes (100.0%)
+2025-07-08 07:51:48,349 - INFO - ✅ ventes 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 07:51:48,427 - INFO - 🔍 TVA cette période: 75845 lignes, 9675 produits
+2025-07-08 07:51:58,526 - INFO - 📊 Server response: 200
+2025-07-08 07:51:58,527 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:51:58,527 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:51:58,531 - INFO - ✅ Ventes 2024-07-01-2024-07-31 traitées
+2025-07-08 07:51:58,531 - INFO - Progress: 13/34 requêtes
+2025-07-08 07:51:58,531 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:51:58,531 - INFO - Requête: achats du 2024-07-01 au 2024-07-31
+2025-07-08 07:51:59,405 - INFO - ✅ achats 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 07:52:10,837 - INFO - 📊 Server response: 200
+2025-07-08 07:52:10,837 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:52:10,838 - INFO - ✅ Achats 2024-07-01-2024-07-31 traités
+2025-07-08 07:52:10,838 - INFO - Progress: 14/34 requêtes
+2025-07-08 07:52:10,839 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:52:12,844 - INFO - 
+==================================================
+2025-07-08 07:52:12,845 - INFO - 📊 PÉRIODE 8/17: 2024-08-01 -> 2024-08-31
+2025-07-08 07:52:12,845 - INFO - ==================================================
+2025-07-08 07:52:12,845 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:52:12,845 - INFO - Requête: ventes du 2024-08-01 au 2024-08-31
+2025-07-08 07:52:14,763 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 07:52:14,763 - INFO - ✅ ventes 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 07:52:14,840 - INFO - 🔍 TVA cette période: 69100 lignes, 9265 produits
+2025-07-08 07:52:24,355 - INFO - 📊 Server response: 200
+2025-07-08 07:52:24,356 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:52:24,356 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:52:24,358 - INFO - ✅ Ventes 2024-08-01-2024-08-31 traitées
+2025-07-08 07:52:24,358 - INFO - Progress: 15/34 requêtes
+2025-07-08 07:52:24,358 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:52:24,358 - INFO - Requête: achats du 2024-08-01 au 2024-08-31
+2025-07-08 07:52:25,466 - INFO - ✅ achats 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 07:52:34,278 - INFO - 📊 Server response: 200
+2025-07-08 07:52:34,281 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:52:34,282 - INFO - ✅ Achats 2024-08-01-2024-08-31 traités
+2025-07-08 07:52:34,282 - INFO - Progress: 16/34 requêtes
+2025-07-08 07:52:34,282 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:52:36,287 - INFO - 
+==================================================
+2025-07-08 07:52:36,288 - INFO - 📊 PÉRIODE 9/17: 2024-09-01 -> 2024-09-30
+2025-07-08 07:52:36,288 - INFO - ==================================================
+2025-07-08 07:52:36,288 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:52:36,288 - INFO - Requête: ventes du 2024-09-01 au 2024-09-30
+2025-07-08 07:52:38,002 - INFO - 🔍 TVA présente dans 8/8 lignes (100.0%)
+2025-07-08 07:52:38,002 - INFO - ✅ ventes 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 07:52:38,077 - INFO - 🔍 TVA cette période: 66869 lignes, 9301 produits
+2025-07-08 07:52:47,908 - INFO - 📊 Server response: 200
+2025-07-08 07:52:47,910 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:52:47,910 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:52:47,914 - INFO - ✅ Ventes 2024-09-01-2024-09-30 traitées
+2025-07-08 07:52:47,914 - INFO - Progress: 17/34 requêtes
+2025-07-08 07:52:47,914 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:52:47,914 - INFO - Requête: achats du 2024-09-01 au 2024-09-30
+2025-07-08 07:52:48,900 - INFO - ✅ achats 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 07:52:58,631 - INFO - 📊 Server response: 200
+2025-07-08 07:52:58,634 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:52:58,636 - INFO - ✅ Achats 2024-09-01-2024-09-30 traités
+2025-07-08 07:52:58,636 - INFO - Progress: 18/34 requêtes
+2025-07-08 07:52:58,636 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:53:00,637 - INFO - 
+==================================================
+2025-07-08 07:53:00,637 - INFO - 📊 PÉRIODE 10/17: 2024-10-01 -> 2024-10-31
+2025-07-08 07:53:00,637 - INFO - ==================================================
+2025-07-08 07:53:00,638 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:53:00,638 - INFO - Requête: ventes du 2024-10-01 au 2024-10-31
+2025-07-08 07:53:02,684 - INFO - 🔍 TVA présente dans 14/14 lignes (100.0%)
+2025-07-08 07:53:02,684 - INFO - ✅ ventes 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 07:53:02,777 - INFO - 🔍 TVA cette période: 75382 lignes, 9519 produits
+2025-07-08 07:53:13,292 - INFO - 📊 Server response: 200
+2025-07-08 07:53:13,294 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:53:13,294 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:53:13,297 - INFO - ✅ Ventes 2024-10-01-2024-10-31 traitées
+2025-07-08 07:53:13,297 - INFO - Progress: 19/34 requêtes
+2025-07-08 07:53:13,298 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:53:13,298 - INFO - Requête: achats du 2024-10-01 au 2024-10-31
+2025-07-08 07:53:14,359 - INFO - ✅ achats 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 07:53:24,739 - INFO - 📊 Server response: 200
+2025-07-08 07:53:24,740 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:53:24,744 - INFO - ✅ Achats 2024-10-01-2024-10-31 traités
+2025-07-08 07:53:24,744 - INFO - Progress: 20/34 requêtes
+2025-07-08 07:53:24,744 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:53:26,749 - INFO - 
+==================================================
+2025-07-08 07:53:26,750 - INFO - 📊 PÉRIODE 11/17: 2024-11-01 -> 2024-11-30
+2025-07-08 07:53:26,750 - INFO - ==================================================
+2025-07-08 07:53:26,750 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:53:26,751 - INFO - Requête: ventes du 2024-11-01 au 2024-11-30
+2025-07-08 07:53:28,911 - INFO - 🔍 TVA présente dans 7/7 lignes (100.0%)
+2025-07-08 07:53:28,911 - INFO - ✅ ventes 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 07:53:28,989 - INFO - 🔍 TVA cette période: 67906 lignes, 9220 produits
+2025-07-08 07:53:38,397 - INFO - 📊 Server response: 200
+2025-07-08 07:53:38,398 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:53:38,398 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:53:38,401 - INFO - ✅ Ventes 2024-11-01-2024-11-30 traitées
+2025-07-08 07:53:38,401 - INFO - Progress: 21/34 requêtes
+2025-07-08 07:53:38,401 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:53:38,401 - INFO - Requête: achats du 2024-11-01 au 2024-11-30
+2025-07-08 07:53:39,508 - INFO - ✅ achats 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 07:53:50,095 - INFO - 📊 Server response: 200
+2025-07-08 07:53:50,096 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:53:50,097 - INFO - ✅ Achats 2024-11-01-2024-11-30 traités
+2025-07-08 07:53:50,097 - INFO - Progress: 22/34 requêtes
+2025-07-08 07:53:50,097 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:53:52,102 - INFO - 
+==================================================
+2025-07-08 07:53:52,103 - INFO - 📊 PÉRIODE 12/17: 2024-12-01 -> 2024-12-31
+2025-07-08 07:53:52,103 - INFO - ==================================================
+2025-07-08 07:53:52,103 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:53:52,103 - INFO - Requête: ventes du 2024-12-01 au 2024-12-31
+2025-07-08 07:53:54,156 - INFO - 🔍 TVA présente dans 8/8 lignes (100.0%)
+2025-07-08 07:53:54,156 - INFO - ✅ ventes 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 07:53:54,237 - INFO - 🔍 TVA cette période: 74813 lignes, 9543 produits
+2025-07-08 07:54:04,502 - INFO - 📊 Server response: 200
+2025-07-08 07:54:04,503 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:54:04,503 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:54:04,505 - INFO - ✅ Ventes 2024-12-01-2024-12-31 traitées
+2025-07-08 07:54:04,505 - INFO - Progress: 23/34 requêtes
+2025-07-08 07:54:04,506 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:54:04,506 - INFO - Requête: achats du 2024-12-01 au 2024-12-31
+2025-07-08 07:54:05,266 - INFO - ✅ achats 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 07:54:11,425 - INFO - 📊 Server response: 200
+2025-07-08 07:54:11,425 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:54:11,427 - INFO - ✅ Achats 2024-12-01-2024-12-31 traités
+2025-07-08 07:54:11,428 - INFO - Progress: 24/34 requêtes
+2025-07-08 07:54:11,428 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:54:13,432 - INFO - 
+==================================================
+2025-07-08 07:54:13,432 - INFO - 📊 PÉRIODE 13/17: 2025-01-01 -> 2025-01-31
+2025-07-08 07:54:13,433 - INFO - ==================================================
+2025-07-08 07:54:13,433 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:54:13,433 - INFO - Requête: ventes du 2025-01-01 au 2025-01-31
+2025-07-08 07:54:15,690 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 07:54:15,691 - INFO - ✅ ventes 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 07:54:15,773 - INFO - 🔍 TVA cette période: 77735 lignes, 9527 produits
+2025-07-08 07:54:26,949 - INFO - 📊 Server response: 200
+2025-07-08 07:54:26,950 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:54:26,951 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:54:26,953 - INFO - ✅ Ventes 2025-01-01-2025-01-31 traitées
+2025-07-08 07:54:26,953 - INFO - Progress: 25/34 requêtes
+2025-07-08 07:54:26,953 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:54:26,954 - INFO - Requête: achats du 2025-01-01 au 2025-01-31
+2025-07-08 07:54:27,686 - INFO - ✅ achats 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 07:54:34,471 - INFO - 📊 Server response: 200
+2025-07-08 07:54:34,472 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:54:34,473 - INFO - ✅ Achats 2025-01-01-2025-01-31 traités
+2025-07-08 07:54:34,473 - INFO - Progress: 26/34 requêtes
+2025-07-08 07:54:34,473 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:54:36,478 - INFO - 
+==================================================
+2025-07-08 07:54:36,479 - INFO - 📊 PÉRIODE 14/17: 2025-02-01 -> 2025-02-28
+2025-07-08 07:54:36,479 - INFO - ==================================================
+2025-07-08 07:54:36,479 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:54:36,479 - INFO - Requête: ventes du 2025-02-01 au 2025-02-28
+2025-07-08 07:54:38,292 - INFO - 🔍 TVA présente dans 14/14 lignes (100.0%)
+2025-07-08 07:54:38,292 - INFO - ✅ ventes 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 07:54:38,351 - INFO - 🔍 TVA cette période: 66565 lignes, 9309 produits
+2025-07-08 07:54:48,076 - INFO - 📊 Server response: 200
+2025-07-08 07:54:48,076 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:54:48,077 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:54:48,079 - INFO - ✅ Ventes 2025-02-01-2025-02-28 traitées
+2025-07-08 07:54:48,079 - INFO - Progress: 27/34 requêtes
+2025-07-08 07:54:48,079 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:54:48,079 - INFO - Requête: achats du 2025-02-01 au 2025-02-28
+2025-07-08 07:54:48,901 - INFO - ✅ achats 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 07:54:55,860 - INFO - 📊 Server response: 200
+2025-07-08 07:54:55,862 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:54:55,863 - INFO - ✅ Achats 2025-02-01-2025-02-28 traités
+2025-07-08 07:54:55,864 - INFO - Progress: 28/34 requêtes
+2025-07-08 07:54:55,865 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:54:57,868 - INFO - 
+==================================================
+2025-07-08 07:54:57,870 - INFO - 📊 PÉRIODE 15/17: 2025-03-01 -> 2025-03-31
+2025-07-08 07:54:57,870 - INFO - ==================================================
+2025-07-08 07:54:57,870 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:54:57,870 - INFO - Requête: ventes du 2025-03-01 au 2025-03-31
+2025-07-08 07:55:00,319 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 07:55:00,320 - INFO - ✅ ventes 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 07:55:00,386 - INFO - 🔍 TVA cette période: 72732 lignes, 9911 produits
+2025-07-08 07:55:11,290 - INFO - 📊 Server response: 200
+2025-07-08 07:55:11,290 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:55:11,291 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:55:11,295 - INFO - ✅ Ventes 2025-03-01-2025-03-31 traitées
+2025-07-08 07:55:11,295 - INFO - Progress: 29/34 requêtes
+2025-07-08 07:55:11,295 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:55:11,295 - INFO - Requête: achats du 2025-03-01 au 2025-03-31
+2025-07-08 07:55:12,057 - INFO - ✅ achats 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 07:55:19,479 - INFO - 📊 Server response: 200
+2025-07-08 07:55:19,481 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:55:19,482 - INFO - ✅ Achats 2025-03-01-2025-03-31 traités
+2025-07-08 07:55:19,482 - INFO - Progress: 30/34 requêtes
+2025-07-08 07:55:19,483 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:55:21,488 - INFO - 
+==================================================
+2025-07-08 07:55:21,488 - INFO - 📊 PÉRIODE 16/17: 2025-04-01 -> 2025-04-30
+2025-07-08 07:55:21,488 - INFO - ==================================================
+2025-07-08 07:55:21,489 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:55:21,489 - INFO - Requête: ventes du 2025-04-01 au 2025-04-30
+2025-07-08 07:55:24,147 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 07:55:24,147 - INFO - ✅ ventes 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 07:55:24,226 - INFO - 🔍 TVA cette période: 71122 lignes, 9903 produits
+2025-07-08 07:55:34,841 - INFO - 📊 Server response: 200
+2025-07-08 07:55:34,841 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:55:34,841 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:55:34,846 - INFO - ✅ Ventes 2025-04-01-2025-04-30 traitées
+2025-07-08 07:55:34,846 - INFO - Progress: 31/34 requêtes
+2025-07-08 07:55:34,846 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:55:34,846 - INFO - Requête: achats du 2025-04-01 au 2025-04-30
+2025-07-08 07:55:35,590 - INFO - ✅ achats 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 07:55:44,289 - INFO - 📊 Server response: 200
+2025-07-08 07:55:44,290 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:55:44,294 - INFO - ✅ Achats 2025-04-01-2025-04-30 traités
+2025-07-08 07:55:44,294 - INFO - Progress: 32/34 requêtes
+2025-07-08 07:55:44,294 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 07:55:46,299 - INFO - 
+==================================================
+2025-07-08 07:55:46,300 - INFO - 📊 PÉRIODE 17/17: 2025-05-01 -> 2025-05-31
+2025-07-08 07:55:46,300 - INFO - ==================================================
+2025-07-08 07:55:46,301 - INFO - 💰 Récupération des ventes...
+2025-07-08 07:55:46,301 - INFO - Requête: ventes du 2025-05-01 au 2025-05-31
+2025-07-08 07:55:48,236 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 07:55:48,236 - INFO - ✅ ventes 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 07:55:48,317 - INFO - 🔍 TVA cette période: 68267 lignes, 9714 produits
+2025-07-08 07:55:59,152 - INFO - 📊 Server response: 200
+2025-07-08 07:55:59,152 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 07:55:59,152 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 07:55:59,154 - INFO - ✅ Ventes 2025-05-01-2025-05-31 traitées
+2025-07-08 07:55:59,154 - INFO - Progress: 33/34 requêtes
+2025-07-08 07:55:59,154 - INFO - 🛒 Récupération des achats...
+2025-07-08 07:55:59,154 - INFO - Requête: achats du 2025-05-01 au 2025-05-31
+2025-07-08 07:56:00,472 - INFO - ✅ achats 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 07:56:07,443 - INFO - 📊 Server response: 200
+2025-07-08 07:56:07,444 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 07:56:07,445 - INFO - ✅ Achats 2025-05-01-2025-05-31 traités
+2025-07-08 07:56:07,445 - INFO - Progress: 34/34 requêtes
+2025-07-08 07:56:07,445 - INFO - 
+==================================================
+2025-07-08 07:56:07,445 - INFO - 📊 STATISTIQUES FINALES
+2025-07-08 07:56:07,445 - INFO - ==================================================
+2025-07-08 07:56:07,446 - INFO - PRODUCTS: 1/1 succès (100.0%)
+2025-07-08 07:56:07,446 - INFO - SALES: 17/17 succès (100.0%)
+2025-07-08 07:56:07,446 - INFO - ORDERS: 17/17 succès (100.0%)
+2025-07-08 07:56:07,446 - INFO - ✅ 34 requêtes effectuées
+2025-07-08 07:56:07,446 - INFO - 
+📊 STATISTIQUES TVA GLOBALES:
+2025-07-08 07:56:07,446 - INFO -    - Périodes avec TVA: 17/17
+2025-07-08 07:56:07,447 - INFO -    - Produits uniques avec TVA: 20027
+2025-07-08 07:56:07,447 - INFO -    - Valeurs TVA trouvées: 5
+2025-07-08 07:56:07,447 - INFO -    📋 Top 10 des TVA les plus fréquentes:
+2025-07-08 07:56:07,447 - INFO -      TVA 2.1%: 613568 occurrences
+2025-07-08 07:56:07,447 - INFO -      TVA 20.0%: 342729 occurrences
+2025-07-08 07:56:07,447 - INFO -      TVA 5.5%: 141665 occurrences
+2025-07-08 07:56:07,447 - INFO -      TVA 10.0%: 114083 occurrences
+2025-07-08 07:56:07,447 - INFO -      TVA 0.0%: 5099 occurrences

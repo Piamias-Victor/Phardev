@@ -10,7 +10,7 @@ load_dotenv()
 # Configuration pour nouvelle API WinPharma
 API_URL = os.environ.get('API_URL')  # ex: YXBvdGhpY2Fs
 API_PASSWORD = os.environ.get('API_PASSWORD')  # ex: cGFzczE  
-PHARMACY_ID = os.environ.get('PHARMACY_ID')  # ex: 832011373
+PHARMACY_ID = os.environ.get('PHARMACY_ID')  # ex: 832002810
 SERVER_URL = os.environ.get('SERVER_URL')
 BASE_URL = "https://grpstat.winpharma.com/ApiWp"
 

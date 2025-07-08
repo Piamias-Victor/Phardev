@@ -19,7 +19,7 @@ def process_product(pharmacy, data):
     Identical to winpharma_new.py since products don't have date aggregation issues.
     
     Expected data format from new API:
-    [{"cip_pharma": "922017215", "produits": [{"ProdId": 123, "Nom": "...", "Code13Ref": "...", "Stock": 5, "PrixTTC": 10.50, "PrixMP": 9.20}]}]
+    [{"cip_pharma": "062044623", "produits": [{"ProdId": 123, "Nom": "...", "Code13Ref": "...", "Stock": 5, "PrixTTC": 10.50, "PrixMP": 9.20}]}]
     """
     # Extract products from the new API wrapper structure
     if not data or not isinstance(data, list) or len(data) == 0:
@@ -414,7 +414,7 @@ def process_sales(pharmacy, data):
     🆕 NOUVEAUTÉ: Récupération de la TVA depuis les données de ventes
     
     Expected data format from new API:
-    [{"cip_pharma": "922017215", "ventes": [{"id": 123, "heure": "2025-05-20T08:32:29", 
+    [{"cip_pharma": "062044623", "ventes": [{"id": 123, "heure": "2025-05-20T08:32:29", 
       "lignes": [{"prodId": 123, "qte": 1, "tva": 2.10, "prix": 4.03}]}]}]
     """
     # Extract sales from the new API wrapper structure

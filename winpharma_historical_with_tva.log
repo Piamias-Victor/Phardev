@@ -1,9 +1,9 @@
 2025-07-08 06:50:25,152 - INFO - 🔧 Configuration chargée:
 2025-07-08 06:50:25,152 - INFO -    - API_URL: YXBvdGhpY2Fs
-2025-07-08 06:50:25,152 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 06:50:25,152 - INFO -    - PHARMACY_ID: 692037567
 2025-07-08 06:50:25,152 - INFO -    - SERVER_URL: https://api.phardev.fr
 2025-07-08 06:50:25,152 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
-2025-07-08 06:50:25,152 - INFO - Pharmacie: 832002810
+2025-07-08 06:50:25,152 - INFO - Pharmacie: 692037567
 2025-07-08 06:50:25,152 - INFO - Période: 2024-01-01 -> 2025-05-31
 2025-07-08 06:50:31,776 - INFO - Période générée: 2024-01-01 -> 2024-01-31
 2025-07-08 06:50:31,777 - INFO - Période générée: 2024-02-01 -> 2024-02-29
@@ -426,10 +426,10 @@
 2025-07-08 06:59:18,713 - INFO -      TVA 0.0%: 5099 occurrences
 2025-07-08 07:17:14,655 - INFO - 🔧 Configuration chargée:
 2025-07-08 07:17:14,655 - INFO -    - API_URL: YXBvdGhpY2Fs
-2025-07-08 07:17:14,656 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 07:17:14,656 - INFO -    - PHARMACY_ID: 692037567
 2025-07-08 07:17:14,656 - INFO -    - SERVER_URL: https://api.phardev.fr
 2025-07-08 07:17:14,656 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
-2025-07-08 07:17:14,656 - INFO - Pharmacie: 832002810
+2025-07-08 07:17:14,656 - INFO - Pharmacie: 692037567
 2025-07-08 07:17:14,656 - INFO - Période: 2024-01-01 -> 2025-05-31
 2025-07-08 07:17:17,082 - INFO - Période générée: 2024-01-01 -> 2024-01-31
 2025-07-08 07:17:17,082 - INFO - Période générée: 2024-02-01 -> 2024-02-29
@@ -852,10 +852,10 @@
 2025-07-08 07:24:47,165 - INFO -      TVA 0.0%: 5099 occurrences
 2025-07-08 07:48:15,563 - INFO - 🔧 Configuration chargée:
 2025-07-08 07:48:15,564 - INFO -    - API_URL: YXBvdGhpY2Fs
-2025-07-08 07:48:15,564 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 07:48:15,564 - INFO -    - PHARMACY_ID: 692037567
 2025-07-08 07:48:15,564 - INFO -    - SERVER_URL: https://api.phardev.fr
 2025-07-08 07:48:15,564 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
-2025-07-08 07:48:15,564 - INFO - Pharmacie: 832002810
+2025-07-08 07:48:15,564 - INFO - Pharmacie: 692037567
 2025-07-08 07:48:15,564 - INFO - Période: 2024-01-01 -> 2025-05-31
 2025-07-08 07:48:18,181 - INFO - Période générée: 2024-01-01 -> 2024-01-31
 2025-07-08 07:48:18,182 - INFO - Période générée: 2024-02-01 -> 2024-02-29
@@ -1276,3 +1276,889 @@
 2025-07-08 07:56:07,447 - INFO -      TVA 5.5%: 141665 occurrences
 2025-07-08 07:56:07,447 - INFO -      TVA 10.0%: 114083 occurrences
 2025-07-08 07:56:07,447 - INFO -      TVA 0.0%: 5099 occurrences
+2025-07-08 08:10:59,003 - INFO - 🔧 Configuration chargée:
+2025-07-08 08:10:59,004 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 08:10:59,004 - INFO -    - PHARMACY_ID: 692037567
+2025-07-08 08:10:59,004 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 08:10:59,004 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 08:10:59,004 - INFO - Pharmacie: 692037567
+2025-07-08 08:10:59,004 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 08:11:59,873 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 08:11:59,874 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 08:11:59,874 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 08:11:59,874 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 08:11:59,874 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 08:11:59,875 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 08:11:59,875 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 08:11:59,875 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 08:11:59,875 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 08:11:59,875 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 08:11:59,875 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 08:11:59,875 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 08:11:59,875 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 08:11:59,876 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 08:11:59,876 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 08:11:59,876 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 08:11:59,876 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 08:11:59,876 - INFO - 📅 17 périodes à traiter
+2025-07-08 08:11:59,876 - INFO - 
+==================================================
+2025-07-08 08:11:59,876 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 08:11:59,876 - INFO - ==================================================
+2025-07-08 08:11:59,876 - INFO - Requête: produits du  au 
+2025-07-08 08:12:04,460 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 08:12:51,151 - INFO - 📊 Server response: 200
+2025-07-08 08:12:51,152 - INFO - ✅ Données products envoyées avec succès
+2025-07-08 08:12:51,153 - INFO - ✅ Produits traités avec succès
+2025-07-08 08:12:51,153 - INFO - 
+==================================================
+2025-07-08 08:12:51,153 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 08:12:51,153 - INFO - ==================================================
+2025-07-08 08:12:51,153 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:12:51,154 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 08:12:57,053 - INFO - 🔍 TVA présente dans 11/11 lignes (100.0%)
+2025-07-08 08:12:57,054 - INFO - ✅ ventes 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 08:12:57,096 - INFO - 🔍 TVA cette période: 75322 lignes, 9516 produits
+2025-07-08 08:13:09,585 - INFO - 📊 Server response: 200
+2025-07-08 08:13:09,586 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:13:09,586 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:13:09,588 - INFO - ✅ Ventes 2024-01-01-2024-01-31 traitées
+2025-07-08 08:13:09,588 - INFO - Progress: 1/34 requêtes
+2025-07-08 08:13:09,589 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:13:09,589 - INFO - Requête: achats du 2024-01-01 au 2024-01-31
+2025-07-08 08:13:12,315 - INFO - ✅ achats 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 08:13:21,674 - INFO - 📊 Server response: 200
+2025-07-08 08:13:21,675 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:13:21,676 - INFO - ✅ Achats 2024-01-01-2024-01-31 traités
+2025-07-08 08:13:21,676 - INFO - Progress: 2/34 requêtes
+2025-07-08 08:13:21,676 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:13:23,677 - INFO - 
+==================================================
+2025-07-08 08:13:23,678 - INFO - 📊 PÉRIODE 2/17: 2024-02-01 -> 2024-02-29
+2025-07-08 08:13:23,678 - INFO - ==================================================
+2025-07-08 08:13:23,678 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:13:23,678 - INFO - Requête: ventes du 2024-02-01 au 2024-02-29
+2025-07-08 08:13:27,098 - INFO - 🔍 TVA présente dans 15/15 lignes (100.0%)
+2025-07-08 08:13:27,099 - INFO - ✅ ventes 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 08:13:27,156 - INFO - 🔍 TVA cette période: 73574 lignes, 9656 produits
+2025-07-08 08:13:38,341 - INFO - 📊 Server response: 200
+2025-07-08 08:13:38,343 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:13:38,343 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:13:38,345 - INFO - ✅ Ventes 2024-02-01-2024-02-29 traitées
+2025-07-08 08:13:38,345 - INFO - Progress: 3/34 requêtes
+2025-07-08 08:13:38,345 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:13:38,345 - INFO - Requête: achats du 2024-02-01 au 2024-02-29
+2025-07-08 08:13:39,373 - INFO - ✅ achats 2024-02-01-2024-02-29: 1 enregistrements
+2025-07-08 08:13:49,265 - INFO - 📊 Server response: 200
+2025-07-08 08:13:49,265 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:13:49,266 - INFO - ✅ Achats 2024-02-01-2024-02-29 traités
+2025-07-08 08:13:49,266 - INFO - Progress: 4/34 requêtes
+2025-07-08 08:13:49,266 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:13:51,271 - INFO - 
+==================================================
+2025-07-08 08:13:51,272 - INFO - 📊 PÉRIODE 3/17: 2024-03-01 -> 2024-03-31
+2025-07-08 08:13:51,272 - INFO - ==================================================
+2025-07-08 08:13:51,273 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:13:51,273 - INFO - Requête: ventes du 2024-03-01 au 2024-03-31
+2025-07-08 08:13:53,240 - INFO - 🔍 TVA présente dans 18/18 lignes (100.0%)
+2025-07-08 08:13:53,240 - INFO - ✅ ventes 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 08:13:53,297 - INFO - 🔍 TVA cette période: 71945 lignes, 9688 produits
+2025-07-08 08:14:04,559 - INFO - 📊 Server response: 200
+2025-07-08 08:14:04,560 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:14:04,561 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:14:04,563 - INFO - ✅ Ventes 2024-03-01-2024-03-31 traitées
+2025-07-08 08:14:04,563 - INFO - Progress: 5/34 requêtes
+2025-07-08 08:14:04,563 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:14:04,563 - INFO - Requête: achats du 2024-03-01 au 2024-03-31
+2025-07-08 08:14:05,727 - INFO - ✅ achats 2024-03-01-2024-03-31: 1 enregistrements
+2025-07-08 08:14:15,447 - INFO - 📊 Server response: 200
+2025-07-08 08:14:15,448 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:14:15,449 - INFO - ✅ Achats 2024-03-01-2024-03-31 traités
+2025-07-08 08:14:15,449 - INFO - Progress: 6/34 requêtes
+2025-07-08 08:14:15,449 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:14:17,453 - INFO - 
+==================================================
+2025-07-08 08:14:17,454 - INFO - 📊 PÉRIODE 4/17: 2024-04-01 -> 2024-04-30
+2025-07-08 08:14:17,454 - INFO - ==================================================
+2025-07-08 08:14:17,454 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:14:17,454 - INFO - Requête: ventes du 2024-04-01 au 2024-04-30
+2025-07-08 08:14:19,859 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 08:14:19,860 - INFO - ✅ ventes 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 08:14:19,917 - INFO - 🔍 TVA cette période: 72752 lignes, 9725 produits
+2025-07-08 08:14:31,300 - INFO - 📊 Server response: 200
+2025-07-08 08:14:31,301 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:14:31,301 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:14:31,303 - INFO - ✅ Ventes 2024-04-01-2024-04-30 traitées
+2025-07-08 08:14:31,303 - INFO - Progress: 7/34 requêtes
+2025-07-08 08:14:31,303 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:14:31,303 - INFO - Requête: achats du 2024-04-01 au 2024-04-30
+2025-07-08 08:14:32,339 - INFO - ✅ achats 2024-04-01-2024-04-30: 1 enregistrements
+2025-07-08 08:14:44,118 - INFO - 📊 Server response: 200
+2025-07-08 08:14:44,119 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:14:44,121 - INFO - ✅ Achats 2024-04-01-2024-04-30 traités
+2025-07-08 08:14:44,121 - INFO - Progress: 8/34 requêtes
+2025-07-08 08:14:44,121 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:14:46,124 - INFO - 
+==================================================
+2025-07-08 08:14:46,124 - INFO - 📊 PÉRIODE 5/17: 2024-05-01 -> 2024-05-31
+2025-07-08 08:14:46,125 - INFO - ==================================================
+2025-07-08 08:14:46,125 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:14:46,125 - INFO - Requête: ventes du 2024-05-01 au 2024-05-31
+2025-07-08 08:14:48,006 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 08:14:48,006 - INFO - ✅ ventes 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 08:14:48,063 - INFO - 🔍 TVA cette période: 68277 lignes, 9582 produits
+2025-07-08 08:14:58,613 - INFO - 📊 Server response: 200
+2025-07-08 08:14:58,614 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:14:58,614 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:14:58,616 - INFO - ✅ Ventes 2024-05-01-2024-05-31 traitées
+2025-07-08 08:14:58,616 - INFO - Progress: 9/34 requêtes
+2025-07-08 08:14:58,616 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:14:58,616 - INFO - Requête: achats du 2024-05-01 au 2024-05-31
+2025-07-08 08:14:59,679 - INFO - ✅ achats 2024-05-01-2024-05-31: 1 enregistrements
+2025-07-08 08:15:09,891 - INFO - 📊 Server response: 200
+2025-07-08 08:15:09,892 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:15:09,893 - INFO - ✅ Achats 2024-05-01-2024-05-31 traités
+2025-07-08 08:15:09,893 - INFO - Progress: 10/34 requêtes
+2025-07-08 08:15:09,893 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:15:11,896 - INFO - 
+==================================================
+2025-07-08 08:15:11,896 - INFO - 📊 PÉRIODE 6/17: 2024-06-01 -> 2024-06-30
+2025-07-08 08:15:11,896 - INFO - ==================================================
+2025-07-08 08:15:11,896 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:15:11,897 - INFO - Requête: ventes du 2024-06-01 au 2024-06-30
+2025-07-08 08:15:13,922 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 08:15:13,922 - INFO - ✅ ventes 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 08:15:13,979 - INFO - 🔍 TVA cette période: 68938 lignes, 9654 produits
+2025-07-08 08:15:25,100 - INFO - 📊 Server response: 200
+2025-07-08 08:15:25,101 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:15:25,102 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:15:25,104 - INFO - ✅ Ventes 2024-06-01-2024-06-30 traitées
+2025-07-08 08:15:25,104 - INFO - Progress: 11/34 requêtes
+2025-07-08 08:15:25,104 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:15:25,104 - INFO - Requête: achats du 2024-06-01 au 2024-06-30
+2025-07-08 08:15:26,415 - INFO - ✅ achats 2024-06-01-2024-06-30: 1 enregistrements
+2025-07-08 08:15:37,060 - INFO - 📊 Server response: 200
+2025-07-08 08:15:37,061 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:15:37,062 - INFO - ✅ Achats 2024-06-01-2024-06-30 traités
+2025-07-08 08:15:37,062 - INFO - Progress: 12/34 requêtes
+2025-07-08 08:15:37,062 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:15:39,067 - INFO - 
+==================================================
+2025-07-08 08:15:39,068 - INFO - 📊 PÉRIODE 7/17: 2024-07-01 -> 2024-07-31
+2025-07-08 08:15:39,068 - INFO - ==================================================
+2025-07-08 08:15:39,068 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:15:39,068 - INFO - Requête: ventes du 2024-07-01 au 2024-07-31
+2025-07-08 08:15:41,190 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 08:15:41,190 - INFO - ✅ ventes 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 08:15:41,250 - INFO - 🔍 TVA cette période: 75845 lignes, 9675 produits
+2025-07-08 08:15:53,075 - INFO - 📊 Server response: 200
+2025-07-08 08:15:53,076 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:15:53,076 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:15:53,078 - INFO - ✅ Ventes 2024-07-01-2024-07-31 traitées
+2025-07-08 08:15:53,079 - INFO - Progress: 13/34 requêtes
+2025-07-08 08:15:53,079 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:15:53,079 - INFO - Requête: achats du 2024-07-01 au 2024-07-31
+2025-07-08 08:15:54,196 - INFO - ✅ achats 2024-07-01-2024-07-31: 1 enregistrements
+2025-07-08 08:16:05,789 - INFO - 📊 Server response: 200
+2025-07-08 08:16:05,791 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:16:05,792 - INFO - ✅ Achats 2024-07-01-2024-07-31 traités
+2025-07-08 08:16:05,792 - INFO - Progress: 14/34 requêtes
+2025-07-08 08:16:05,792 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:16:07,796 - INFO - 
+==================================================
+2025-07-08 08:16:07,797 - INFO - 📊 PÉRIODE 8/17: 2024-08-01 -> 2024-08-31
+2025-07-08 08:16:07,797 - INFO - ==================================================
+2025-07-08 08:16:07,797 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:16:07,797 - INFO - Requête: ventes du 2024-08-01 au 2024-08-31
+2025-07-08 08:16:09,783 - INFO - 🔍 TVA présente dans 10/10 lignes (100.0%)
+2025-07-08 08:16:09,784 - INFO - ✅ ventes 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 08:16:09,846 - INFO - 🔍 TVA cette période: 69100 lignes, 9265 produits
+2025-07-08 08:16:21,117 - INFO - 📊 Server response: 200
+2025-07-08 08:16:21,118 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:16:21,118 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:16:21,120 - INFO - ✅ Ventes 2024-08-01-2024-08-31 traitées
+2025-07-08 08:16:21,120 - INFO - Progress: 15/34 requêtes
+2025-07-08 08:16:21,120 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:16:21,120 - INFO - Requête: achats du 2024-08-01 au 2024-08-31
+2025-07-08 08:16:22,109 - INFO - ✅ achats 2024-08-01-2024-08-31: 1 enregistrements
+2025-07-08 08:16:30,957 - INFO - 📊 Server response: 200
+2025-07-08 08:16:30,958 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:16:30,959 - INFO - ✅ Achats 2024-08-01-2024-08-31 traités
+2025-07-08 08:16:30,959 - INFO - Progress: 16/34 requêtes
+2025-07-08 08:16:30,959 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:16:32,961 - INFO - 
+==================================================
+2025-07-08 08:16:32,962 - INFO - 📊 PÉRIODE 9/17: 2024-09-01 -> 2024-09-30
+2025-07-08 08:16:32,962 - INFO - ==================================================
+2025-07-08 08:16:32,962 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:16:32,962 - INFO - Requête: ventes du 2024-09-01 au 2024-09-30
+2025-07-08 08:16:35,438 - INFO - 🔍 TVA présente dans 17/17 lignes (100.0%)
+2025-07-08 08:16:35,439 - INFO - ✅ ventes 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 08:16:35,552 - INFO - 🔍 TVA cette période: 66869 lignes, 9301 produits
+2025-07-08 08:16:47,020 - INFO - 📊 Server response: 200
+2025-07-08 08:16:47,021 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:16:47,021 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:16:47,025 - INFO - ✅ Ventes 2024-09-01-2024-09-30 traitées
+2025-07-08 08:16:47,025 - INFO - Progress: 17/34 requêtes
+2025-07-08 08:16:47,026 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:16:47,026 - INFO - Requête: achats du 2024-09-01 au 2024-09-30
+2025-07-08 08:16:48,070 - INFO - ✅ achats 2024-09-01-2024-09-30: 1 enregistrements
+2025-07-08 08:16:58,296 - INFO - 📊 Server response: 200
+2025-07-08 08:16:58,296 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:16:58,303 - INFO - ✅ Achats 2024-09-01-2024-09-30 traités
+2025-07-08 08:16:58,304 - INFO - Progress: 18/34 requêtes
+2025-07-08 08:16:58,304 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:17:00,307 - INFO - 
+==================================================
+2025-07-08 08:17:00,307 - INFO - 📊 PÉRIODE 10/17: 2024-10-01 -> 2024-10-31
+2025-07-08 08:17:00,307 - INFO - ==================================================
+2025-07-08 08:17:00,307 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:17:00,307 - INFO - Requête: ventes du 2024-10-01 au 2024-10-31
+2025-07-08 08:17:02,666 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 08:17:02,666 - INFO - ✅ ventes 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 08:17:02,751 - INFO - 🔍 TVA cette période: 75382 lignes, 9519 produits
+2025-07-08 08:17:14,814 - INFO - 📊 Server response: 200
+2025-07-08 08:17:14,817 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:17:14,818 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:17:14,825 - INFO - ✅ Ventes 2024-10-01-2024-10-31 traitées
+2025-07-08 08:17:14,826 - INFO - Progress: 19/34 requêtes
+2025-07-08 08:17:14,826 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:17:14,826 - INFO - Requête: achats du 2024-10-01 au 2024-10-31
+2025-07-08 08:17:15,829 - INFO - ✅ achats 2024-10-01-2024-10-31: 1 enregistrements
+2025-07-08 08:17:26,215 - INFO - 📊 Server response: 200
+2025-07-08 08:17:26,216 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:17:26,218 - INFO - ✅ Achats 2024-10-01-2024-10-31 traités
+2025-07-08 08:17:26,218 - INFO - Progress: 20/34 requêtes
+2025-07-08 08:17:26,218 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:17:28,223 - INFO - 
+==================================================
+2025-07-08 08:17:28,224 - INFO - 📊 PÉRIODE 11/17: 2024-11-01 -> 2024-11-30
+2025-07-08 08:17:28,224 - INFO - ==================================================
+2025-07-08 08:17:28,224 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:17:28,225 - INFO - Requête: ventes du 2024-11-01 au 2024-11-30
+2025-07-08 08:17:30,232 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 08:17:30,232 - INFO - ✅ ventes 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 08:17:30,315 - INFO - 🔍 TVA cette période: 67906 lignes, 9220 produits
+2025-07-08 08:17:41,093 - INFO - 📊 Server response: 200
+2025-07-08 08:17:41,095 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:17:41,095 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:17:41,097 - INFO - ✅ Ventes 2024-11-01-2024-11-30 traitées
+2025-07-08 08:17:41,098 - INFO - Progress: 21/34 requêtes
+2025-07-08 08:17:41,098 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:17:41,098 - INFO - Requête: achats du 2024-11-01 au 2024-11-30
+2025-07-08 08:17:42,405 - INFO - ✅ achats 2024-11-01-2024-11-30: 1 enregistrements
+2025-07-08 08:17:53,293 - INFO - 📊 Server response: 200
+2025-07-08 08:17:53,294 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:17:53,295 - INFO - ✅ Achats 2024-11-01-2024-11-30 traités
+2025-07-08 08:17:53,295 - INFO - Progress: 22/34 requêtes
+2025-07-08 08:17:53,295 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:17:55,301 - INFO - 
+==================================================
+2025-07-08 08:17:55,301 - INFO - 📊 PÉRIODE 12/17: 2024-12-01 -> 2024-12-31
+2025-07-08 08:17:55,301 - INFO - ==================================================
+2025-07-08 08:17:55,301 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:17:55,302 - INFO - Requête: ventes du 2024-12-01 au 2024-12-31
+2025-07-08 08:17:57,349 - INFO - 🔍 TVA présente dans 14/14 lignes (100.0%)
+2025-07-08 08:17:57,349 - INFO - ✅ ventes 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 08:17:57,419 - INFO - 🔍 TVA cette période: 74813 lignes, 9543 produits
+2025-07-08 08:18:09,184 - INFO - 📊 Server response: 200
+2025-07-08 08:18:09,186 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:18:09,186 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:18:09,189 - INFO - ✅ Ventes 2024-12-01-2024-12-31 traitées
+2025-07-08 08:18:09,189 - INFO - Progress: 23/34 requêtes
+2025-07-08 08:18:09,189 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:18:09,189 - INFO - Requête: achats du 2024-12-01 au 2024-12-31
+2025-07-08 08:18:10,224 - INFO - ✅ achats 2024-12-01-2024-12-31: 1 enregistrements
+2025-07-08 08:18:16,441 - INFO - 📊 Server response: 200
+2025-07-08 08:18:16,442 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:18:16,443 - INFO - ✅ Achats 2024-12-01-2024-12-31 traités
+2025-07-08 08:18:16,443 - INFO - Progress: 24/34 requêtes
+2025-07-08 08:18:16,443 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:18:18,448 - INFO - 
+==================================================
+2025-07-08 08:18:18,449 - INFO - 📊 PÉRIODE 13/17: 2025-01-01 -> 2025-01-31
+2025-07-08 08:18:18,449 - INFO - ==================================================
+2025-07-08 08:18:18,449 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:18:18,449 - INFO - Requête: ventes du 2025-01-01 au 2025-01-31
+2025-07-08 08:18:20,547 - INFO - 🔍 TVA présente dans 8/8 lignes (100.0%)
+2025-07-08 08:18:20,547 - INFO - ✅ ventes 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 08:18:20,631 - INFO - 🔍 TVA cette période: 77735 lignes, 9527 produits
+2025-07-08 08:18:32,883 - INFO - 📊 Server response: 200
+2025-07-08 08:18:32,885 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:18:32,885 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:18:32,887 - INFO - ✅ Ventes 2025-01-01-2025-01-31 traitées
+2025-07-08 08:18:32,888 - INFO - Progress: 25/34 requêtes
+2025-07-08 08:18:32,888 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:18:32,888 - INFO - Requête: achats du 2025-01-01 au 2025-01-31
+2025-07-08 08:18:33,649 - INFO - ✅ achats 2025-01-01-2025-01-31: 1 enregistrements
+2025-07-08 08:18:39,497 - INFO - 📊 Server response: 200
+2025-07-08 08:18:39,498 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:18:39,499 - INFO - ✅ Achats 2025-01-01-2025-01-31 traités
+2025-07-08 08:18:39,499 - INFO - Progress: 26/34 requêtes
+2025-07-08 08:18:39,499 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:18:41,503 - INFO - 
+==================================================
+2025-07-08 08:18:41,503 - INFO - 📊 PÉRIODE 14/17: 2025-02-01 -> 2025-02-28
+2025-07-08 08:18:41,503 - INFO - ==================================================
+2025-07-08 08:18:41,504 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:18:41,504 - INFO - Requête: ventes du 2025-02-01 au 2025-02-28
+2025-07-08 08:18:43,356 - INFO - 🔍 TVA présente dans 9/9 lignes (100.0%)
+2025-07-08 08:18:43,357 - INFO - ✅ ventes 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 08:18:43,441 - INFO - 🔍 TVA cette période: 66565 lignes, 9309 produits
+2025-07-08 08:18:54,522 - INFO - 📊 Server response: 200
+2025-07-08 08:18:54,523 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:18:54,523 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:18:54,525 - INFO - ✅ Ventes 2025-02-01-2025-02-28 traitées
+2025-07-08 08:18:54,525 - INFO - Progress: 27/34 requêtes
+2025-07-08 08:18:54,525 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:18:54,525 - INFO - Requête: achats du 2025-02-01 au 2025-02-28
+2025-07-08 08:18:55,481 - INFO - ✅ achats 2025-02-01-2025-02-28: 1 enregistrements
+2025-07-08 08:19:01,705 - INFO - 📊 Server response: 200
+2025-07-08 08:19:01,705 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:19:01,706 - INFO - ✅ Achats 2025-02-01-2025-02-28 traités
+2025-07-08 08:19:01,706 - INFO - Progress: 28/34 requêtes
+2025-07-08 08:19:01,706 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:19:03,708 - INFO - 
+==================================================
+2025-07-08 08:19:03,708 - INFO - 📊 PÉRIODE 15/17: 2025-03-01 -> 2025-03-31
+2025-07-08 08:19:03,708 - INFO - ==================================================
+2025-07-08 08:19:03,708 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:19:03,708 - INFO - Requête: ventes du 2025-03-01 au 2025-03-31
+2025-07-08 08:19:06,125 - INFO - 🔍 TVA présente dans 6/6 lignes (100.0%)
+2025-07-08 08:19:06,125 - INFO - ✅ ventes 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 08:19:06,183 - INFO - 🔍 TVA cette période: 72732 lignes, 9911 produits
+2025-07-08 08:19:18,388 - INFO - 📊 Server response: 200
+2025-07-08 08:19:18,390 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:19:18,390 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:19:18,392 - INFO - ✅ Ventes 2025-03-01-2025-03-31 traitées
+2025-07-08 08:19:18,392 - INFO - Progress: 29/34 requêtes
+2025-07-08 08:19:18,392 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:19:18,392 - INFO - Requête: achats du 2025-03-01 au 2025-03-31
+2025-07-08 08:19:19,166 - INFO - ✅ achats 2025-03-01-2025-03-31: 1 enregistrements
+2025-07-08 08:19:26,729 - INFO - 📊 Server response: 200
+2025-07-08 08:19:26,730 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:19:26,731 - INFO - ✅ Achats 2025-03-01-2025-03-31 traités
+2025-07-08 08:19:26,731 - INFO - Progress: 30/34 requêtes
+2025-07-08 08:19:26,731 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:19:28,734 - INFO - 
+==================================================
+2025-07-08 08:19:28,735 - INFO - 📊 PÉRIODE 16/17: 2025-04-01 -> 2025-04-30
+2025-07-08 08:19:28,735 - INFO - ==================================================
+2025-07-08 08:19:28,735 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:19:28,735 - INFO - Requête: ventes du 2025-04-01 au 2025-04-30
+2025-07-08 08:19:30,981 - INFO - 🔍 TVA présente dans 12/12 lignes (100.0%)
+2025-07-08 08:19:30,981 - INFO - ✅ ventes 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 08:19:31,046 - INFO - 🔍 TVA cette période: 71122 lignes, 9903 produits
+2025-07-08 08:19:43,718 - INFO - 📊 Server response: 200
+2025-07-08 08:19:43,718 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:19:43,719 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:19:43,721 - INFO - ✅ Ventes 2025-04-01-2025-04-30 traitées
+2025-07-08 08:19:43,721 - INFO - Progress: 31/34 requêtes
+2025-07-08 08:19:43,721 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:19:43,721 - INFO - Requête: achats du 2025-04-01 au 2025-04-30
+2025-07-08 08:19:44,511 - INFO - ✅ achats 2025-04-01-2025-04-30: 1 enregistrements
+2025-07-08 08:19:53,082 - INFO - 📊 Server response: 200
+2025-07-08 08:19:53,083 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:19:53,084 - INFO - ✅ Achats 2025-04-01-2025-04-30 traités
+2025-07-08 08:19:53,084 - INFO - Progress: 32/34 requêtes
+2025-07-08 08:19:53,084 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 08:19:55,090 - INFO - 
+==================================================
+2025-07-08 08:19:55,090 - INFO - 📊 PÉRIODE 17/17: 2025-05-01 -> 2025-05-31
+2025-07-08 08:19:55,090 - INFO - ==================================================
+2025-07-08 08:19:55,090 - INFO - 💰 Récupération des ventes...
+2025-07-08 08:19:55,090 - INFO - Requête: ventes du 2025-05-01 au 2025-05-31
+2025-07-08 08:19:56,968 - INFO - 🔍 TVA présente dans 8/8 lignes (100.0%)
+2025-07-08 08:19:56,968 - INFO - ✅ ventes 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 08:19:57,046 - INFO - 🔍 TVA cette période: 68267 lignes, 9714 produits
+2025-07-08 08:20:09,375 - INFO - 📊 Server response: 200
+2025-07-08 08:20:09,376 - INFO - ✅ Données sales envoyées avec succès
+2025-07-08 08:20:09,376 - INFO - 📋 Réponse serveur: Processing completed
+2025-07-08 08:20:09,379 - INFO - ✅ Ventes 2025-05-01-2025-05-31 traitées
+2025-07-08 08:20:09,379 - INFO - Progress: 33/34 requêtes
+2025-07-08 08:20:09,379 - INFO - 🛒 Récupération des achats...
+2025-07-08 08:20:09,379 - INFO - Requête: achats du 2025-05-01 au 2025-05-31
+2025-07-08 08:20:10,413 - INFO - ✅ achats 2025-05-01-2025-05-31: 1 enregistrements
+2025-07-08 08:20:17,629 - INFO - 📊 Server response: 200
+2025-07-08 08:20:17,629 - INFO - ✅ Données orders envoyées avec succès
+2025-07-08 08:20:17,632 - INFO - ✅ Achats 2025-05-01-2025-05-31 traités
+2025-07-08 08:20:17,632 - INFO - Progress: 34/34 requêtes
+2025-07-08 08:20:17,633 - INFO - 
+==================================================
+2025-07-08 08:20:17,633 - INFO - 📊 STATISTIQUES FINALES
+2025-07-08 08:20:17,633 - INFO - ==================================================
+2025-07-08 08:20:17,633 - INFO - PRODUCTS: 1/1 succès (100.0%)
+2025-07-08 08:20:17,633 - INFO - SALES: 17/17 succès (100.0%)
+2025-07-08 08:20:17,633 - INFO - ORDERS: 17/17 succès (100.0%)
+2025-07-08 08:20:17,633 - INFO - ✅ 34 requêtes effectuées
+2025-07-08 08:20:17,633 - INFO - 
+📊 STATISTIQUES TVA GLOBALES:
+2025-07-08 08:20:17,633 - INFO -    - Périodes avec TVA: 17/17
+2025-07-08 08:20:17,633 - INFO -    - Produits uniques avec TVA: 20027
+2025-07-08 08:20:17,633 - INFO -    - Valeurs TVA trouvées: 5
+2025-07-08 08:20:17,633 - INFO -    📋 Top 10 des TVA les plus fréquentes:
+2025-07-08 08:20:17,634 - INFO -      TVA 2.1%: 613568 occurrences
+2025-07-08 08:20:17,634 - INFO -      TVA 20.0%: 342729 occurrences
+2025-07-08 08:20:17,634 - INFO -      TVA 5.5%: 141665 occurrences
+2025-07-08 08:20:17,634 - INFO -      TVA 10.0%: 114083 occurrences
+2025-07-08 08:20:17,634 - INFO -      TVA 0.0%: 5099 occurrences
+2025-07-08 09:23:11,096 - INFO - 🔧 Configuration chargée:
+2025-07-08 09:23:11,096 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 09:23:11,096 - INFO -    - PHARMACY_ID: 692037567
+2025-07-08 09:23:11,096 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 09:23:11,096 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 09:23:11,096 - INFO - Pharmacie: 692037567
+2025-07-08 09:23:11,096 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 09:23:13,419 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 09:23:13,419 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 09:23:13,419 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 09:23:13,419 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 09:23:13,419 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 09:23:13,419 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 09:23:13,419 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 09:23:13,420 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 09:23:13,420 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 09:23:13,420 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 09:23:13,420 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 09:23:13,420 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 09:23:13,420 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 09:23:13,420 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 09:23:13,420 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 09:23:13,420 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 09:23:13,420 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 09:23:13,420 - INFO - 📅 17 périodes à traiter
+2025-07-08 09:23:13,420 - INFO - 
+==================================================
+2025-07-08 09:23:13,420 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 09:23:13,420 - INFO - ==================================================
+2025-07-08 09:23:13,420 - INFO - Requête: produits du  au 
+2025-07-08 09:23:13,609 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-6b9e49749beca74323da19f32bcb1464-6a64f6ac9dffcc8a-00"}
+2025-07-08 09:23:13,609 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:14,774 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-565a35ec065bd214135b1d10bc9a02ca-9d36b701c2a873b2-00"}
+2025-07-08 09:23:14,775 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:16,948 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-daefb28ad5222fe431582e1a9f54d166-6212d4693c2d4779-00"}
+2025-07-08 09:23:16,949 - ERROR - ❌ Échec récupération produits
+2025-07-08 09:23:16,949 - INFO - 
+==================================================
+2025-07-08 09:23:16,950 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 09:23:16,950 - INFO - ==================================================
+2025-07-08 09:23:16,950 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:23:16,950 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 09:23:17,122 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-58a8658492f35c53be88c198801117a2-c492daf8ab24f3b0-00"}
+2025-07-08 09:23:17,122 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:18,284 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-7539760e04acff443739203470137167-60beed890bb2c82f-00"}
+2025-07-08 09:23:18,285 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:20,448 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-b1c83c825d7f1f17e2875b908f8e303f-4c0779a9eecfe03e-00"}
+2025-07-08 09:23:20,449 - ERROR - ❌ Échec récupération ventes 2024-01-01-2024-01-31
+2025-07-08 09:23:20,449 - INFO - Progress: 1/34 requêtes
+2025-07-08 09:23:20,449 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:23:20,449 - INFO - Requête: achats du 2024-01-01 au 2024-01-31
+2025-07-08 09:23:20,605 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-be5c6144abee8a03b9bfaf55247283cd-98e992b20473793c-00"}
+2025-07-08 09:23:20,605 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:21,778 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-f9703c5dc9063140589aac2326704d6a-3a1f6588531a9a43-00"}
+2025-07-08 09:23:21,778 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:23,965 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-45409ba468980b8c5d427a88db9fd7e7-d4910250233c27f4-00"}
+2025-07-08 09:23:23,965 - ERROR - ❌ Échec récupération achats 2024-01-01-2024-01-31
+2025-07-08 09:23:23,965 - INFO - Progress: 2/34 requêtes
+2025-07-08 09:23:23,966 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:23:25,968 - INFO - 
+==================================================
+2025-07-08 09:23:25,969 - INFO - 📊 PÉRIODE 2/17: 2024-02-01 -> 2024-02-29
+2025-07-08 09:23:25,969 - INFO - ==================================================
+2025-07-08 09:23:25,969 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:23:25,969 - INFO - Requête: ventes du 2024-02-01 au 2024-02-29
+2025-07-08 09:23:26,120 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-0e5d7dd5b90fa34f1b0ab5125454537d-fa22a73026731c4e-00"}
+2025-07-08 09:23:26,120 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:27,280 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-f1b11aed1941042b794bd306d5434915-8ecaf3faaf00917f-00"}
+2025-07-08 09:23:27,280 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:29,457 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-4a373297d2c1501556184f1cca46c0de-fffec68b0942f9e5-00"}
+2025-07-08 09:23:29,457 - ERROR - ❌ Échec récupération ventes 2024-02-01-2024-02-29
+2025-07-08 09:23:29,457 - INFO - Progress: 3/34 requêtes
+2025-07-08 09:23:29,457 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:23:29,457 - INFO - Requête: achats du 2024-02-01 au 2024-02-29
+2025-07-08 09:23:29,615 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-6c64383a8d375cc05f410530e19f8dfc-fd8637d22a55d8be-00"}
+2025-07-08 09:23:29,615 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:30,781 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-f2df4e6b0916f20ecc160cc23d2ff6db-a654e735150d79a4-00"}
+2025-07-08 09:23:30,781 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:32,957 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-1554c47301587c25d177c7b49b2d82e7-a83fb658e306ee7c-00"}
+2025-07-08 09:23:32,958 - ERROR - ❌ Échec récupération achats 2024-02-01-2024-02-29
+2025-07-08 09:23:32,958 - INFO - Progress: 4/34 requêtes
+2025-07-08 09:23:32,958 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:23:34,959 - INFO - 
+==================================================
+2025-07-08 09:23:34,959 - INFO - 📊 PÉRIODE 3/17: 2024-03-01 -> 2024-03-31
+2025-07-08 09:23:34,959 - INFO - ==================================================
+2025-07-08 09:23:34,960 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:23:34,960 - INFO - Requête: ventes du 2024-03-01 au 2024-03-31
+2025-07-08 09:23:35,122 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-ef3506d80871c14bfbb7bb24b6a530a5-5719f8c7361891b2-00"}
+2025-07-08 09:23:35,122 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:36,284 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-6286f626abe10d8778c23b189aa5982b-eeefc88f6d3718e5-00"}
+2025-07-08 09:23:36,285 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:38,462 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-9ab28216bd1159fc4c4969117358c32c-c6cc6a8cfd9962d6-00"}
+2025-07-08 09:23:38,462 - ERROR - ❌ Échec récupération ventes 2024-03-01-2024-03-31
+2025-07-08 09:23:38,462 - INFO - Progress: 5/34 requêtes
+2025-07-08 09:23:38,463 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:23:38,463 - INFO - Requête: achats du 2024-03-01 au 2024-03-31
+2025-07-08 09:23:38,614 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-c6445129cb04cfa29f6a79c1757022a3-2a39733f82531e3d-00"}
+2025-07-08 09:23:38,615 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:39,782 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-9f69388763f1688da0e33415c493e670-8db2bdb3b1f34f83-00"}
+2025-07-08 09:23:39,782 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:41,956 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-e7610433fe0b6eed7bd7b241d0c145cd-602040420cbd7788-00"}
+2025-07-08 09:23:41,957 - ERROR - ❌ Échec récupération achats 2024-03-01-2024-03-31
+2025-07-08 09:23:41,957 - INFO - Progress: 6/34 requêtes
+2025-07-08 09:23:41,957 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:23:43,960 - INFO - 
+==================================================
+2025-07-08 09:23:43,961 - INFO - 📊 PÉRIODE 4/17: 2024-04-01 -> 2024-04-30
+2025-07-08 09:23:43,962 - INFO - ==================================================
+2025-07-08 09:23:43,962 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:23:43,962 - INFO - Requête: ventes du 2024-04-01 au 2024-04-30
+2025-07-08 09:23:44,127 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-ddc0ae42e45f5ea28b38c7cc86e4a818-95719dbdec8d90e6-00"}
+2025-07-08 09:23:44,127 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:45,285 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-35d83200e114a554c890379c0e36c843-fb024907e95ee334-00"}
+2025-07-08 09:23:45,285 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:47,448 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-88f089e1a75c2675d0effd50d541e1e3-7ea975832db89499-00"}
+2025-07-08 09:23:47,449 - ERROR - ❌ Échec récupération ventes 2024-04-01-2024-04-30
+2025-07-08 09:23:47,449 - INFO - Progress: 7/34 requêtes
+2025-07-08 09:23:47,449 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:23:47,449 - INFO - Requête: achats du 2024-04-01 au 2024-04-30
+2025-07-08 09:23:47,611 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-7873973039f6ddb1cd2908b918631548-2acb8a35a941ae35-00"}
+2025-07-08 09:23:47,611 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:48,777 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-36796e5ded85e6174bb909c61835d750-00521c1bcff4938f-00"}
+2025-07-08 09:23:48,777 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:50,941 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-2249c6d75dd70231143d574cbbed8454-eb5ea8ee5de076bf-00"}
+2025-07-08 09:23:50,943 - ERROR - ❌ Échec récupération achats 2024-04-01-2024-04-30
+2025-07-08 09:23:50,943 - INFO - Progress: 8/34 requêtes
+2025-07-08 09:23:50,943 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:23:52,944 - INFO - 
+==================================================
+2025-07-08 09:23:52,945 - INFO - 📊 PÉRIODE 5/17: 2024-05-01 -> 2024-05-31
+2025-07-08 09:23:52,945 - INFO - ==================================================
+2025-07-08 09:23:52,945 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:23:52,945 - INFO - Requête: ventes du 2024-05-01 au 2024-05-31
+2025-07-08 09:23:53,108 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-57d4b0d0a5d607c4ae87a8ac604ae621-f84efe5a5e48b963-00"}
+2025-07-08 09:23:53,108 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:54,271 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-6515cd8870b70a9c33855d7a41617aa4-507be3b5a76991c2-00"}
+2025-07-08 09:23:54,272 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:56,440 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-04250c57d05f1d46fcebc6f149943d69-ece102be7515d72d-00"}
+2025-07-08 09:23:56,441 - ERROR - ❌ Échec récupération ventes 2024-05-01-2024-05-31
+2025-07-08 09:23:56,441 - INFO - Progress: 9/34 requêtes
+2025-07-08 09:23:56,442 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:23:56,442 - INFO - Requête: achats du 2024-05-01 au 2024-05-31
+2025-07-08 09:23:56,597 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-ccc5872e06d429739864d3b587dd5eab-0e9cb7fe19ba1933-00"}
+2025-07-08 09:23:56,597 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:23:57,764 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-57327a0052449c1c459d0b5b920973ea-3b1e066a39351912-00"}
+2025-07-08 09:23:57,765 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:23:59,926 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-fe289f0a9d3e79fc2958078e0294a239-85b744264ec2e8ee-00"}
+2025-07-08 09:23:59,926 - ERROR - ❌ Échec récupération achats 2024-05-01-2024-05-31
+2025-07-08 09:23:59,926 - INFO - Progress: 10/34 requêtes
+2025-07-08 09:23:59,927 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:24:01,933 - INFO - 
+==================================================
+2025-07-08 09:24:01,934 - INFO - 📊 PÉRIODE 6/17: 2024-06-01 -> 2024-06-30
+2025-07-08 09:24:01,934 - INFO - ==================================================
+2025-07-08 09:24:01,934 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:24:01,934 - INFO - Requête: ventes du 2024-06-01 au 2024-06-30
+2025-07-08 09:24:02,096 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-dd5ea0e8aab4fc20b7a170eda5633c19-5e23b59d00db8c23-00"}
+2025-07-08 09:24:02,096 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:03,265 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-aaa10bec5ef24f45825aea857db7e76f-1ffc76e94eac5d57-00"}
+2025-07-08 09:24:03,266 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:05,429 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-a3b5696d8cc4dc6dd9d96c2159d23e44-d87b39e8ebe0f207-00"}
+2025-07-08 09:24:05,429 - ERROR - ❌ Échec récupération ventes 2024-06-01-2024-06-30
+2025-07-08 09:24:05,429 - INFO - Progress: 11/34 requêtes
+2025-07-08 09:24:05,429 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:24:05,429 - INFO - Requête: achats du 2024-06-01 au 2024-06-30
+2025-07-08 09:24:05,586 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-698bd3442d51ca33e7b63886219d220f-baeafdbd8fc55013-00"}
+2025-07-08 09:24:05,587 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:06,762 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-13d4f0bbd22ae5963f57021282c21902-b85135962733fa51-00"}
+2025-07-08 09:24:06,762 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:08,922 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-0496708bf4370bf7e4cbb9c3e6d70425-4bde40342eb46857-00"}
+2025-07-08 09:24:08,922 - ERROR - ❌ Échec récupération achats 2024-06-01-2024-06-30
+2025-07-08 09:24:08,923 - INFO - Progress: 12/34 requêtes
+2025-07-08 09:24:08,923 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:24:10,925 - INFO - 
+==================================================
+2025-07-08 09:24:10,926 - INFO - 📊 PÉRIODE 7/17: 2024-07-01 -> 2024-07-31
+2025-07-08 09:24:10,926 - INFO - ==================================================
+2025-07-08 09:24:10,926 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:24:10,926 - INFO - Requête: ventes du 2024-07-01 au 2024-07-31
+2025-07-08 09:24:11,086 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-21bea0a899dc728d764f6f9707eb45df-90fa1dff00639883-00"}
+2025-07-08 09:24:11,086 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:12,254 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-0deacc90d4f23ab3ac5b544b51372bb0-a6bdc6655be26f46-00"}
+2025-07-08 09:24:12,255 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:14,415 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-bf542b0a6b41605050d72db2d4708a87-c4ad6bb79d29be0f-00"}
+2025-07-08 09:24:14,416 - ERROR - ❌ Échec récupération ventes 2024-07-01-2024-07-31
+2025-07-08 09:24:14,416 - INFO - Progress: 13/34 requêtes
+2025-07-08 09:24:14,417 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:24:14,417 - INFO - Requête: achats du 2024-07-01 au 2024-07-31
+2025-07-08 09:24:14,577 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-f946c81ac08e8f7edd83c183f26f4134-2fd3bdf3c3ed0bc7-00"}
+2025-07-08 09:24:14,577 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:15,747 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-83f33d9b6c20a60edd279ca3be3b47bb-cc8d94d340af0a36-00"}
+2025-07-08 09:24:15,748 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:17,915 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-5f219a0a7d621984f1b7a22985c8f95a-c8debb15633b704f-00"}
+2025-07-08 09:24:17,916 - ERROR - ❌ Échec récupération achats 2024-07-01-2024-07-31
+2025-07-08 09:24:17,916 - INFO - Progress: 14/34 requêtes
+2025-07-08 09:24:17,917 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:24:19,919 - INFO - 
+==================================================
+2025-07-08 09:24:19,919 - INFO - 📊 PÉRIODE 8/17: 2024-08-01 -> 2024-08-31
+2025-07-08 09:24:19,920 - INFO - ==================================================
+2025-07-08 09:24:19,920 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:24:19,920 - INFO - Requête: ventes du 2024-08-01 au 2024-08-31
+2025-07-08 09:24:20,080 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-789ec7aa6c810c040ef97731b53e5f3c-002c2ef476c16ac1-00"}
+2025-07-08 09:24:20,080 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:21,229 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-36170eca215af1eebc8cd341b25cf975-6c80f8b3972b7352-00"}
+2025-07-08 09:24:21,229 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:23,394 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-b451424ad94b495ee33654155c520c76-d0f5d6b70441d49a-00"}
+2025-07-08 09:24:23,395 - ERROR - ❌ Échec récupération ventes 2024-08-01-2024-08-31
+2025-07-08 09:24:23,395 - INFO - Progress: 15/34 requêtes
+2025-07-08 09:24:23,396 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:24:23,396 - INFO - Requête: achats du 2024-08-01 au 2024-08-31
+2025-07-08 09:24:23,549 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-cb68b1dd66b12dcd5a10b1bd193cbf0f-8c3ac6b227b8cdd3-00"}
+2025-07-08 09:24:23,550 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:24,716 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-1650c2587957b932e8411b2d9f93fd94-8a4b865de2753fde-00"}
+2025-07-08 09:24:24,716 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:26,889 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-725dd0bdf6d48fc63b59c3f5387e0f44-bd9c68667b297cd0-00"}
+2025-07-08 09:24:26,890 - ERROR - ❌ Échec récupération achats 2024-08-01-2024-08-31
+2025-07-08 09:24:26,890 - INFO - Progress: 16/34 requêtes
+2025-07-08 09:24:26,890 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:24:28,892 - INFO - 
+==================================================
+2025-07-08 09:24:28,893 - INFO - 📊 PÉRIODE 9/17: 2024-09-01 -> 2024-09-30
+2025-07-08 09:24:28,893 - INFO - ==================================================
+2025-07-08 09:24:28,893 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:24:28,893 - INFO - Requête: ventes du 2024-09-01 au 2024-09-30
+2025-07-08 09:24:29,058 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-56b3cb493c3b085dbfd2f33cf40b6ede-dae52ce6a78f65f3-00"}
+2025-07-08 09:24:29,059 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:30,225 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-2e6d0efd8fcc729ee3616c353ed6eb2d-2b01d4fca33ba017-00"}
+2025-07-08 09:24:30,226 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:32,392 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-96ae9bd5df6502c1cfee3b1d4d253ab4-9edbd15cd08bb62d-00"}
+2025-07-08 09:24:32,393 - ERROR - ❌ Échec récupération ventes 2024-09-01-2024-09-30
+2025-07-08 09:24:32,393 - INFO - Progress: 17/34 requêtes
+2025-07-08 09:24:32,393 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:24:32,393 - INFO - Requête: achats du 2024-09-01 au 2024-09-30
+2025-07-08 09:24:32,551 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-d66522e20f043e250ae86ad5daa94a4f-5ba73edc34e1f138-00"}
+2025-07-08 09:24:32,551 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:33,731 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-1a1432bc2b15f80ea18d43c48b1d298e-3317c459acd66b4e-00"}
+2025-07-08 09:24:33,732 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:35,898 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-8eb370b9da257daeab18d0923751cce2-b0179309003fbc70-00"}
+2025-07-08 09:24:35,898 - ERROR - ❌ Échec récupération achats 2024-09-01-2024-09-30
+2025-07-08 09:24:35,899 - INFO - Progress: 18/34 requêtes
+2025-07-08 09:24:35,899 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:24:37,901 - INFO - 
+==================================================
+2025-07-08 09:24:37,902 - INFO - 📊 PÉRIODE 10/17: 2024-10-01 -> 2024-10-31
+2025-07-08 09:24:37,902 - INFO - ==================================================
+2025-07-08 09:24:37,902 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:24:37,902 - INFO - Requête: ventes du 2024-10-01 au 2024-10-31
+2025-07-08 09:24:38,073 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-1b368fa4cd78d5007cad12f49a82d48a-a78ba4c9d3776b56-00"}
+2025-07-08 09:24:38,073 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:39,245 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-3af9046773dc64b8448f79ab18a0e8f3-7b506ca059682199-00"}
+2025-07-08 09:24:39,246 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:41,414 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-68e551aa7d259477ba332c1eb27488b1-01ec31ca15d09a69-00"}
+2025-07-08 09:24:41,415 - ERROR - ❌ Échec récupération ventes 2024-10-01-2024-10-31
+2025-07-08 09:24:41,416 - INFO - Progress: 19/34 requêtes
+2025-07-08 09:24:41,416 - INFO - 🛒 Récupération des achats...
+2025-07-08 09:24:41,416 - INFO - Requête: achats du 2024-10-01 au 2024-10-31
+2025-07-08 09:24:41,577 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-840e74cf59b2399dbfe33d4cb28e325a-b51d2b21b029eb12-00"}
+2025-07-08 09:24:41,577 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:24:42,733 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-8db020e305834122372a89801b45d026-d29ea1bf935ebcde-00"}
+2025-07-08 09:24:42,734 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:24:44,901 - ERROR - ❌ Erreur HTTP 401 pour achats: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-e10c2ede058737145798adadfacd7b26-ae4e8af139dc4056-00"}
+2025-07-08 09:24:44,902 - ERROR - ❌ Échec récupération achats 2024-10-01-2024-10-31
+2025-07-08 09:24:44,902 - INFO - Progress: 20/34 requêtes
+2025-07-08 09:24:44,902 - INFO - ⏸️  Pause de 2 secondes...
+2025-07-08 09:24:46,573 - INFO - 
+⚠️  Script interrompu par l'utilisateur
+2025-07-08 09:24:48,641 - INFO - 🔧 Configuration chargée:
+2025-07-08 09:24:48,641 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 09:24:48,641 - INFO -    - PHARMACY_ID: 922017215
+2025-07-08 09:24:48,641 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 09:24:48,641 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 09:24:48,641 - INFO - Pharmacie: 922017215
+2025-07-08 09:24:48,641 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 09:24:51,926 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 09:24:51,927 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 09:24:51,927 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 09:24:51,927 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 09:24:51,927 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 09:24:51,927 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 09:24:51,927 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 09:24:51,927 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 09:24:51,928 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 09:24:51,928 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 09:24:51,928 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 09:24:51,928 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 09:24:51,928 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 09:24:51,928 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 09:24:51,928 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 09:24:51,928 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 09:24:51,928 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 09:24:51,928 - INFO - 📅 17 périodes à traiter
+2025-07-08 09:24:51,928 - INFO - 
+==================================================
+2025-07-08 09:24:51,928 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 09:24:51,928 - INFO - ==================================================
+2025-07-08 09:24:51,928 - INFO - Requête: produits du  au 
+2025-07-08 09:24:53,545 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 09:25:13,122 - INFO - 
+⚠️  Script interrompu par l'utilisateur
+2025-07-08 09:25:22,089 - INFO - 🔧 Configuration chargée:
+2025-07-08 09:25:22,089 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 09:25:22,090 - INFO -    - PHARMACY_ID: 062044623
+2025-07-08 09:25:22,090 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 09:25:22,090 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 09:25:22,090 - INFO - Pharmacie: 062044623
+2025-07-08 09:25:22,090 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 09:25:27,258 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 09:25:27,259 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 09:25:27,259 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 09:25:27,259 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 09:25:27,259 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 09:25:27,259 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 09:25:27,260 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 09:25:27,260 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 09:25:27,260 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 09:25:27,260 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 09:25:27,260 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 09:25:27,260 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 09:25:27,260 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 09:25:27,260 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 09:25:27,260 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 09:25:27,260 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 09:25:27,260 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 09:25:27,260 - INFO - 📅 17 périodes à traiter
+2025-07-08 09:25:27,260 - INFO - 
+==================================================
+2025-07-08 09:25:27,260 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 09:25:27,261 - INFO - ==================================================
+2025-07-08 09:25:27,261 - INFO - Requête: produits du  au 
+2025-07-08 09:25:27,608 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 09:25:34,315 - INFO - 
+⚠️  Script interrompu par l'utilisateur
+2025-07-08 09:25:58,046 - INFO - 🔧 Configuration chargée:
+2025-07-08 09:25:58,046 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 09:25:58,046 - INFO -    - PHARMACY_ID: 062044623
+2025-07-08 09:25:58,046 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 09:25:58,046 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 09:25:58,046 - INFO - Pharmacie: 062044623
+2025-07-08 09:25:58,047 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 09:26:00,762 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 09:26:00,763 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 09:26:00,763 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 09:26:00,763 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 09:26:00,763 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 09:26:00,764 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 09:26:00,764 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 09:26:00,764 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 09:26:00,764 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 09:26:00,764 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 09:26:00,764 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 09:26:00,764 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 09:26:00,765 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 09:26:00,765 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 09:26:00,765 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 09:26:00,765 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 09:26:00,765 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 09:26:00,765 - INFO - 📅 17 périodes à traiter
+2025-07-08 09:26:00,766 - INFO - 
+==================================================
+2025-07-08 09:26:00,766 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 09:26:00,766 - INFO - ==================================================
+2025-07-08 09:26:00,766 - INFO - Requête: produits du  au 
+2025-07-08 09:26:04,361 - INFO - ✅ produits -: 1 enregistrements
+2025-07-08 09:27:04,679 - ERROR - ❌ Erreur envoi products: HTTPSConnectionPool(host='api.phardev.fr', port=443): Read timed out. (read timeout=60)
+2025-07-08 09:27:04,681 - ERROR - ❌ Échec envoi produits - Continuer quand même...
+2025-07-08 09:27:04,681 - INFO - 
+==================================================
+2025-07-08 09:27:04,681 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 09:27:04,681 - INFO - ==================================================
+2025-07-08 09:27:04,681 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:27:04,681 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 09:27:08,294 - INFO - 🔍 TVA présente dans 13/13 lignes (100.0%)
+2025-07-08 09:27:08,294 - INFO - ✅ ventes 2024-01-01-2024-01-31: 1 enregistrements
+2025-07-08 09:27:08,351 - INFO - 🔍 TVA cette période: 110348 lignes, 14441 produits
+2025-07-08 09:27:44,023 - INFO - 
+⚠️  Script interrompu par l'utilisateur
+2025-07-08 09:27:46,060 - INFO - 🔧 Configuration chargée:
+2025-07-08 09:27:46,060 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 09:27:46,060 - INFO -    - PHARMACY_ID: 062044623
+2025-07-08 09:27:46,060 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 09:27:46,060 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 09:27:46,060 - INFO - Pharmacie: 062044623
+2025-07-08 09:27:46,060 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 09:27:47,950 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 09:27:47,951 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 09:27:47,951 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 09:27:47,951 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 09:27:47,951 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 09:27:47,952 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 09:27:47,952 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 09:27:47,952 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 09:27:47,952 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 09:27:47,952 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 09:27:47,952 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 09:27:47,952 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 09:27:47,952 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 09:27:47,952 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 09:27:47,953 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 09:27:47,953 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 09:27:47,953 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 09:27:47,953 - INFO - 📅 17 périodes à traiter
+2025-07-08 09:27:47,953 - INFO - 
+==================================================
+2025-07-08 09:27:47,953 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 09:27:47,953 - INFO - ==================================================
+2025-07-08 09:27:47,953 - INFO - Requête: produits du  au 
+2025-07-08 09:27:48,136 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-e40146875e89d30b06531db355b918d4-50fb753cdfd2f20a-00"}
+2025-07-08 09:27:48,137 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:27:49,298 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-868432577a37f17770800f403a5bfbd2-dfc627bbd15d6156-00"}
+2025-07-08 09:27:49,298 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:27:50,400 - INFO - 
+⚠️  Script interrompu par l'utilisateur
+2025-07-08 09:45:20,495 - INFO - 🔧 Configuration chargée:
+2025-07-08 09:45:20,495 - INFO -    - API_URL: YXBvdGhpY2Fs
+2025-07-08 09:45:20,495 - INFO -    - PHARMACY_ID: 062044623
+2025-07-08 09:45:20,495 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-07-08 09:45:20,495 - INFO - 🚀 Début de la récupération historique Winpharma AVEC TVA
+2025-07-08 09:45:20,495 - INFO - Pharmacie: 062044623
+2025-07-08 09:45:20,495 - INFO - Période: 2024-01-01 -> 2025-05-31
+2025-07-08 09:45:22,782 - INFO - Période générée: 2024-01-01 -> 2024-01-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-02-01 -> 2024-02-29
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-03-01 -> 2024-03-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-04-01 -> 2024-04-30
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-05-01 -> 2024-05-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-06-01 -> 2024-06-30
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-07-01 -> 2024-07-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-08-01 -> 2024-08-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-09-01 -> 2024-09-30
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-10-01 -> 2024-10-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-11-01 -> 2024-11-30
+2025-07-08 09:45:22,783 - INFO - Période générée: 2024-12-01 -> 2024-12-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2025-01-01 -> 2025-01-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2025-02-01 -> 2025-02-28
+2025-07-08 09:45:22,783 - INFO - Période générée: 2025-03-01 -> 2025-03-31
+2025-07-08 09:45:22,783 - INFO - Période générée: 2025-04-01 -> 2025-04-30
+2025-07-08 09:45:22,783 - INFO - Période générée: 2025-05-01 -> 2025-05-31
+2025-07-08 09:45:22,783 - INFO - 📅 17 périodes à traiter
+2025-07-08 09:45:22,783 - INFO - 
+==================================================
+2025-07-08 09:45:22,783 - INFO - 📦 RÉCUPÉRATION DES PRODUITS
+2025-07-08 09:45:22,783 - INFO - ==================================================
+2025-07-08 09:45:22,784 - INFO - Requête: produits du  au 
+2025-07-08 09:45:23,019 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-b6fa80f9c11c84b911434d1d228c0b03-7e48bb64b4ae9762-00"}
+2025-07-08 09:45:23,019 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:45:24,187 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-4ccbc68060e3a480b4e95a2560cbce72-e70f021de1afb1eb-00"}
+2025-07-08 09:45:24,188 - INFO - ⏸️ Retry dans 2s...
+2025-07-08 09:45:26,362 - ERROR - ❌ Erreur HTTP 401 pour produits: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-475b28ad67e2b0cc6fb9cdeb61c86475-ca12ad82a6f79733-00"}
+2025-07-08 09:45:26,363 - ERROR - ❌ Échec récupération produits
+2025-07-08 09:45:26,363 - INFO - 
+==================================================
+2025-07-08 09:45:26,363 - INFO - 📊 PÉRIODE 1/17: 2024-01-01 -> 2024-01-31
+2025-07-08 09:45:26,363 - INFO - ==================================================
+2025-07-08 09:45:26,364 - INFO - 💰 Récupération des ventes...
+2025-07-08 09:45:26,364 - INFO - Requête: ventes du 2024-01-01 au 2024-01-31
+2025-07-08 09:45:26,517 - ERROR - ❌ Erreur HTTP 401 pour ventes: {"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401,"traceId":"00-2471224c010f0e5d01b894e5e6935f3b-b10fb435e09aff6a-00"}
+2025-07-08 09:45:26,517 - INFO - ⏸️ Retry dans 1s...
+2025-07-08 09:45:27,169 - INFO - 
+⚠️  Script interrompu par l'utilisateur

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Analyse comparative des pharmacies 832002810 vs 692020472
+Analyse comparative des pharmacies 062044623 vs 692020472
 pour identifier pourquoi les achats n'apparaissent pas dans le dashboard
 """
 
@@ -27,7 +27,7 @@ def analyze_pharmacy_data():
     """Analyse comparative des deux pharmacies"""
     
     pharmacy_ids = {
-        "problematic": "832002810",  # Pharmacie avec problème
+        "problematic": "062044623",  # Pharmacie avec problème
         "working": "692020472"       # Pharmacie qui fonctionne
     }
     
@@ -103,7 +103,7 @@ def analyze_recent_orders():
     
     print_separator("ANALYSE DES COMMANDES RÉCENTES")
     
-    pharmacy_ids = ["832002810", "692020472"]
+    pharmacy_ids = ["062044623", "692020472"]
     
     for id_nat in pharmacy_ids:
         try:
@@ -134,7 +134,7 @@ def analyze_suppliers():
     
     print_separator("ANALYSE DES FOURNISSEURS")
     
-    pharmacy_ids = ["832002810", "692020472"]
+    pharmacy_ids = ["062044623", "692020472"]
     
     for id_nat in pharmacy_ids:
         try:
@@ -167,7 +167,7 @@ def check_data_integrity():
     print("\n🔍 Commandes sans fournisseur:")
     orders_without_supplier = Order.objects.filter(
         supplier__isnull=True,
-        pharmacy__id_nat__in=["832002810", "692020472"]
+        pharmacy__id_nat__in=["062044623", "692020472"]
     ).select_related('pharmacy')
     
     for order in orders_without_supplier[:10]:
@@ -206,7 +206,7 @@ def analyze_dashboard_query_simulation():
     
     print_separator("SIMULATION DES REQUÊTES DASHBOARD")
     
-    pharmacy_ids = ["832002810", "692020472"]
+    pharmacy_ids = ["062044623", "692020472"]
     
     for id_nat in pharmacy_ids:
         try:
@@ -261,7 +261,7 @@ def compare_data_structures():
     print_separator("COMPARAISON DES STRUCTURES DE DONNÉES")
     
     try:
-        pharmacy_problem = Pharmacy.objects.get(id_nat="832002810")
+        pharmacy_problem = Pharmacy.objects.get(id_nat="062044623")
         pharmacy_working = Pharmacy.objects.get(id_nat="692020472")
         
         # Échantillon de commandes récentes de chaque pharmacie
@@ -291,7 +291,7 @@ def main():
     """Fonction principale d'analyse"""
     
     print("🔍 ANALYSE COMPARATIVE DES PHARMACIES")
-    print("Pharmacie problématique: 832002810")
+    print("Pharmacie problématique: 062044623")
     print("Pharmacie fonctionnelle: 692020472")
     
     # 1. Analyse générale des données

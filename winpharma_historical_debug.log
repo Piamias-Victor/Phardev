@@ -1,16 +1,16 @@
 2025-07-08 05:59:30,272 - INFO - 🔧 Configuration chargée:
 2025-07-08 05:59:30,273 - INFO -    - API_URL: YXBvdGhpY2Fs
-2025-07-08 05:59:30,273 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 05:59:30,273 - INFO -    - PHARMACY_ID: 062044623
 2025-07-08 05:59:30,273 - INFO -    - SERVER_URL: https://api.phardev.fr
 2025-07-08 05:59:30,273 - INFO - 🚀 Début de la récupération historique Winpharma
-2025-07-08 05:59:30,273 - INFO - Pharmacie: 832002810
+2025-07-08 05:59:30,273 - INFO - Pharmacie: 062044623
 2025-07-08 05:59:30,273 - INFO - Période: 2024-01-01 -> 2025-05-31
 2025-07-08 05:59:32,738 - INFO - 🧪 MODE TEST - Diagnostic des endpoints
 2025-07-08 05:59:32,739 - INFO - 
 ==================================================
 2025-07-08 05:59:32,739 - INFO - 🔍 TEST: produits
 2025-07-08 05:59:32,739 - INFO - ==================================================
-2025-07-08 05:59:32,739 - INFO - 🔍 TEST: produits - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/produits?password=cGFzczE&Idnats=832002810
+2025-07-08 05:59:32,739 - INFO - 🔍 TEST: produits - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/produits?password=cGFzczE&Idnats=062044623
 2025-07-08 05:59:37,656 - INFO - 📊 Status Code: 200
 2025-07-08 05:59:37,658 - INFO - 📋 Headers: {'Transfer-Encoding': 'chunked', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Encoding': 'gzip', 'Vary': 'Accept-Encoding', 'Server': 'Microsoft-IIS/10.0', 'X-Powered-By': 'ASP.NET', 'Date': 'Tue, 08 Jul 2025 03:59:37 GMT'}
 2025-07-08 05:59:37,686 - INFO - ✅ JSON parsé avec succès
@@ -20,7 +20,7 @@
 2025-07-08 05:59:37,687 - INFO - 🚀 Test envoi vers Django: products
 2025-07-08 05:59:37,687 - INFO - 🔍 DIAGNOSTIC ENVOI:
 2025-07-08 05:59:37,687 - INFO -    URL: https://api.phardev.fr/winpharma_historical/create/products
-2025-07-08 05:59:37,687 - INFO -    Headers: {'Pharmacy-id': '832002810', 'Content-Type': 'application/json'}
+2025-07-08 05:59:37,687 - INFO -    Headers: {'Pharmacy-id': '062044623', 'Content-Type': 'application/json'}
 2025-07-08 05:59:37,687 - INFO -    Data type: <class 'list'>
 2025-07-08 05:59:37,710 - INFO -    Data size: 2717598 chars
 2025-07-08 05:59:37,710 - INFO -    Structure: ['cip_pharma', 'produits', 'status', 'status_detail']
@@ -31,7 +31,7 @@
 ==================================================
 2025-07-08 05:59:59,304 - INFO - 🔍 TEST: ventes
 2025-07-08 05:59:59,304 - INFO - ==================================================
-2025-07-08 05:59:59,304 - INFO - 🔍 TEST: ventes - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/ventes?password=cGFzczE&Idnats=832002810&dt1=2025-05-20&dt2=2025-05-24
+2025-07-08 05:59:59,304 - INFO - 🔍 TEST: ventes - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/ventes?password=cGFzczE&Idnats=062044623&dt1=2025-05-20&dt2=2025-05-24
 2025-07-08 06:00:01,044 - INFO - 📊 Status Code: 200
 2025-07-08 06:00:01,045 - INFO - 📋 Headers: {'Transfer-Encoding': 'chunked', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Encoding': 'gzip', 'Vary': 'Accept-Encoding', 'Server': 'Microsoft-IIS/10.0', 'X-Powered-By': 'ASP.NET', 'Date': 'Tue, 08 Jul 2025 04:00:00 GMT'}
 2025-07-08 06:00:01,097 - INFO - ✅ JSON parsé avec succès
@@ -41,7 +41,7 @@
 2025-07-08 06:00:01,102 - INFO - 🚀 Test envoi vers Django: sales
 2025-07-08 06:00:01,102 - INFO - 🔍 DIAGNOSTIC ENVOI:
 2025-07-08 06:00:01,102 - INFO -    URL: https://api.phardev.fr/winpharma_historical/create/sales
-2025-07-08 06:00:01,102 - INFO -    Headers: {'Pharmacy-id': '832002810', 'Content-Type': 'application/json'}
+2025-07-08 06:00:01,102 - INFO -    Headers: {'Pharmacy-id': '062044623', 'Content-Type': 'application/json'}
 2025-07-08 06:00:01,102 - INFO -    Data type: <class 'list'>
 2025-07-08 06:00:01,148 - INFO -    Data size: 5311015 chars
 2025-07-08 06:00:01,148 - INFO -    Structure: ['cip_pharma', 'ventes', 'status', 'status_detail']
@@ -52,7 +52,7 @@
 ==================================================
 2025-07-08 06:00:03,566 - INFO - 🔍 TEST: achats
 2025-07-08 06:00:03,566 - INFO - ==================================================
-2025-07-08 06:00:03,566 - INFO - 🔍 TEST: achats - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/achats?password=cGFzczE&Idnats=832002810&dt1=2025-05-20&dt2=2025-05-24
+2025-07-08 06:00:03,566 - INFO - 🔍 TEST: achats - URL: https://grpstat.winpharma.com/ApiWp/YXBvdGhpY2Fs/achats?password=cGFzczE&Idnats=062044623&dt1=2025-05-20&dt2=2025-05-24
 2025-07-08 06:00:05,006 - INFO - 📊 Status Code: 200
 2025-07-08 06:00:05,007 - INFO - 📋 Headers: {'Transfer-Encoding': 'chunked', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Encoding': 'gzip', 'Vary': 'Accept-Encoding', 'Server': 'Microsoft-IIS/10.0', 'X-Powered-By': 'ASP.NET', 'Date': 'Tue, 08 Jul 2025 04:00:04 GMT'}
 2025-07-08 06:00:05,012 - INFO - ✅ JSON parsé avec succès
@@ -62,7 +62,7 @@
 2025-07-08 06:00:05,022 - INFO - 🚀 Test envoi vers Django: orders
 2025-07-08 06:00:05,022 - INFO - 🔍 DIAGNOSTIC ENVOI:
 2025-07-08 06:00:05,022 - INFO -    URL: https://api.phardev.fr/winpharma_historical/create/orders
-2025-07-08 06:00:05,022 - INFO -    Headers: {'Pharmacy-id': '832002810', 'Content-Type': 'application/json'}
+2025-07-08 06:00:05,022 - INFO -    Headers: {'Pharmacy-id': '062044623', 'Content-Type': 'application/json'}
 2025-07-08 06:00:05,022 - INFO -    Data type: <class 'list'>
 2025-07-08 06:00:05,027 - INFO -    Data size: 470893 chars
 2025-07-08 06:00:05,027 - INFO -    Structure: ['cip_pharma', 'achats', 'status', 'status_detail']
@@ -71,10 +71,10 @@
 2025-07-08 06:00:06,974 - INFO - ✅ achats -> orders : OK
 2025-07-08 06:02:51,890 - INFO - 🔧 Configuration chargée:
 2025-07-08 06:02:51,891 - INFO -    - API_URL: YXBvdGhpY2Fs
-2025-07-08 06:02:51,891 - INFO -    - PHARMACY_ID: 832002810
+2025-07-08 06:02:51,891 - INFO -    - PHARMACY_ID: 062044623
 2025-07-08 06:02:51,891 - INFO -    - SERVER_URL: https://api.phardev.fr
 2025-07-08 06:02:51,891 - INFO - 🚀 Début de la récupération historique Winpharma
-2025-07-08 06:02:51,891 - INFO - Pharmacie: 832002810
+2025-07-08 06:02:51,891 - INFO - Pharmacie: 062044623
 2025-07-08 06:02:51,891 - INFO - Période: 2024-01-01 -> 2025-05-31
 2025-07-08 06:02:52,877 - INFO - Période générée: 2024-01-01 -> 2024-01-31
 2025-07-08 06:02:52,878 - INFO - Période générée: 2024-02-01 -> 2024-02-29

@@ -1,155 +1,198 @@
 #!/usr/bin/env python3
 """
-Test d'intégration complète Apothical
+Debug des réponses API Apothical pour comprendre pourquoi 0 données
 """
 
-import os
 import requests
 import json
-from datetime import datetime
+import os
+from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
-# Configuration
-SERVER_URL = "https://api.phardev.fr"  # ou "http://localhost:8000" pour le dev local
-FINESS_CODE = "712006733"  # Pharmacie Puig Léveilé
+load_dotenv()
 
-
-def test_endpoint(endpoint_name, description):
-    """Test un endpoint spécifique"""
-    url = f"{SERVER_URL}/apothical/create/{endpoint_name}"
-    headers = {
-        'Pharmacy-Finess': FINESS_CODE,
-        'Content-Type': 'application/json'
-    }
+class ApothicalDebugger:
+    def __init__(self):
+        self.base_url = "https://www.pharmanuage.fr/data-api/v2"
+        self.username = os.environ.get('APOTHICAL_USERNAME')
+        self.password = os.environ.get('APOTHICAL_PASSWORD')
+        self.token = None
+        self.finess = "712006733"
     
-    try:
-        print(f"🔄 Test {description}...")
+    def authenticate(self):
+        """Authentification"""
+        auth_url = f"{self.base_url}/auth"
+        payload = {
+            "username": self.username,
+            "password": self.password
+        }
         
-        # Appel à l'endpoint
-        response = requests.post(url, json={}, headers=headers, timeout=120)
-        
-        print(f"   Status: {response.status_code}")
+        response = requests.post(auth_url, json=payload, timeout=30)
         
         if response.status_code == 200:
             data = response.json()
-            print(f"   ✅ {data.get('message', 'OK')}")
-            
-            # Affichage des statistiques
-            stats = []
-            if 'products_count' in data:
-                stats.append(f"📦 {data['products_count']} produits")
-            if 'snapshots_count' in data:
-                stats.append(f"📊 {data['snapshots_count']} snapshots")
-            if 'orders_count' in data:
-                stats.append(f"📋 {data['orders_count']} commandes")
-            if 'suppliers_count' in data:
-                stats.append(f"🏢 {data['suppliers_count']} fournisseurs")
-            if 'product_orders_count' in data:
-                stats.append(f"🔗 {data['product_orders_count']} liens prod-cmd")
-                
-            if stats:
-                print(f"   📈 {' | '.join(stats)}")
-            
+            self.token = data['token']
+            print(f"✅ Token récupéré: {self.token[:20]}...")
             return True
-            
         else:
-            print(f"   ❌ Erreur {response.status_code}")
-            try:
-                error_data = response.json()
-                print(f"   💬 {error_data.get('message', 'Erreur inconnue')}")
-            except:
-                print(f"   📄 {response.text}")
+            print(f"❌ Authentification échouée: {response.status_code}")
             return False
+    
+    def debug_endpoint(self, endpoint, params=None, description=""):
+        """Debug d'un endpoint spécifique"""
+        if not self.token:
+            print("❌ Pas de token")
+            return None
+        
+        url = f"{self.base_url}/{self.finess}/{endpoint}"
+        headers = {
+            "Authorization": f"Bearer {self.token}",
+            "Content-Type": "application/json"
+        }
+        
+        print(f"\n🔍 Debug {endpoint} - {description}")
+        print("-" * 60)
+        print(f"🌐 URL: {url}")
+        print(f"📋 Params: {params}")
+        
+        try:
+            response = requests.get(url, headers=headers, params=params, timeout=60)
             
-    except requests.exceptions.Timeout:
-        print(f"   ⏱️ Timeout après 2 minutes")
-        return False
-    except requests.exceptions.ConnectionError:
-        print(f"   🚫 Impossible de se connecter à {SERVER_URL}")
-        return False
-    except Exception as e:
-        print(f"   ❌ Erreur: {e}")
-        return False
-
-
-def test_api_availability():
-    """Test la disponibilité de l'API"""
-    try:
-        response = requests.get(f"{SERVER_URL}/admin/", timeout=10)
-        if response.status_code in [200, 301, 302]:
-            print("✅ API Django accessible")
-            return True
-        else:
-            print(f"⚠️ API répond avec status {response.status_code}")
-            return True  # On continue quand même
-    except:
-        print("❌ API Django non accessible")
-        return False
-
-
-def main():
-    """Test complet de l'intégration Apothical"""
-    print("🧪 Test d'intégration Apothical")
-    print("=" * 60)
-    print(f"🌐 Serveur: {SERVER_URL}")
-    print(f"🏥 FINESS: {FINESS_CODE}")
-    print(f"⏰ Heure: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print()
+            print(f"📊 Status: {response.status_code}")
+            print(f"📏 Content-Length: {response.headers.get('content-length', 'N/A')}")
+            print(f"📝 Content-Type: {response.headers.get('content-type', 'N/A')}")
+            
+            if response.status_code == 200:
+                try:
+                    data = response.json()
+                    
+                    if isinstance(data, list):
+                        print(f"📦 Type: Liste avec {len(data)} éléments")
+                        
+                        if len(data) > 0:
+                            print(f"🔍 Premier élément:")
+                            first_item = data[0]
+                            
+                            # Afficher les clés principales
+                            if isinstance(first_item, dict):
+                                keys = list(first_item.keys())[:10]  # Max 10 clés
+                                print(f"   Clés: {keys}")
+                                
+                                # Afficher quelques valeurs importantes
+                                important_keys = ['productId', 'description', 'stockQuantity', 'orderNumber', 'saleNumber']
+                                for key in important_keys:
+                                    if key in first_item:
+                                        value = first_item[key]
+                                        print(f"   {key}: {value}")
+                            
+                            # Afficher le JSON complet du premier élément (limité)
+                            print(f"🔍 Premier élément (JSON):")
+                            print(json.dumps(first_item, indent=2, ensure_ascii=False)[:1000] + "...")
+                        else:
+                            print("📭 Liste vide")
+                            
+                    elif isinstance(data, dict):
+                        print(f"📦 Type: Dictionnaire")
+                        print(f"   Clés: {list(data.keys())}")
+                        print(f"🔍 Contenu:")
+                        print(json.dumps(data, indent=2, ensure_ascii=False)[:1000] + "...")
+                    else:
+                        print(f"📦 Type: {type(data)}")
+                        print(f"🔍 Contenu: {str(data)[:500]}...")
+                    
+                    return data
+                    
+                except json.JSONDecodeError:
+                    print("❌ Réponse non-JSON")
+                    print(f"🔍 Contenu brut: {response.text[:500]}...")
+                    return None
+            else:
+                print(f"❌ Erreur {response.status_code}")
+                try:
+                    error_data = response.json()
+                    print(f"🔍 Erreur: {json.dumps(error_data, indent=2)}")
+                except:
+                    print(f"🔍 Réponse brute: {response.text}")
+                return None
+                
+        except Exception as e:
+            print(f"💥 Exception: {e}")
+            return None
     
-    # Test de disponibilité de l'API
-    if not test_api_availability():
-        print("\n❌ Tests interrompus - API non accessible")
-        return
-    
-    # Tests des endpoints
-    endpoints = [
-        ("products", "Produits et stocks"),
-        ("orders", "Commandes"),
-        ("sales", "Ventes")
-    ]
-    
-    results = []
-    
-    for endpoint, description in endpoints:
-        success = test_endpoint(endpoint, description)
-        results.append((endpoint, success))
-        print()  # Ligne vide entre les tests
-    
-    # Résumé final
-    print("=" * 60)
-    print("📋 RÉSUMÉ DES TESTS")
-    print("-" * 30)
-    
-    success_count = 0
-    for endpoint, success in results:
-        status = "✅" if success else "❌"
-        print(f"{status} {endpoint.capitalize()}")
-        if success:
-            success_count += 1
-    
-    print()
-    print(f"📊 Score: {success_count}/{len(results)} endpoints fonctionnels")
-    
-    if success_count == len(results):
-        print("🎉 Intégration Apothical: PARFAITE")
-        print("✅ Prêt pour la mise en production")
-    elif success_count > 0:
-        print("⚠️ Intégration Apothical: PARTIELLE")
-        print("🔧 Certains endpoints nécessitent des ajustements")
-    else:
-        print("❌ Intégration Apothical: ÉCHEC")
-        print("🚨 Vérifier la configuration et les logs")
-    
-    print()
-    print("📝 Prochaines étapes:")
-    if success_count > 0:
-        print("1. ✅ Configurer la Lambda de synchronisation automatique")
-        print("2. ✅ Programmer l'exécution quotidienne")
-        print("3. ✅ Demander l'activation des 2 autres pharmacies")
-    else:
-        print("1. 🔧 Déboguer les erreurs de connexion")
-        print("2. 🔍 Vérifier les logs Django")
-        print("3. 📧 Contacter le support si nécessaire")
+    def run_full_debug(self):
+        """Debug complet de tous les endpoints"""
+        print("🐛 Debug complet API Apothical")
+        print("=" * 70)
+        print(f"🏥 FINESS: {self.finess}")
+        print(f"⏰ Timestamp: {datetime.now().isoformat()}")
+        
+        if not self.authenticate():
+            return
+        
+        # 1. Test produits - différents paramètres
+        print("\n" + "="*70)
+        print("🧪 TESTS PRODUITS")
+        
+        # Test basique
+        self.debug_endpoint("products", {"page": 0, "size": 5}, "Test basique (5 premiers)")
+        
+        # Test avec plus d'éléments
+        self.debug_endpoint("products", {"page": 0, "size": 50}, "Test étendu (50 premiers)")
+        
+        # Test sans pagination
+        self.debug_endpoint("products", {}, "Sans pagination")
+        
+        # Test avec filtres
+        self.debug_endpoint("products", {"active": True}, "Produits actifs seulement")
+        
+        # Test avec date
+        yesterday = (datetime.now() - timedelta(days=1)).isoformat()
+        self.debug_endpoint("products", {"from": yesterday}, "Modifiés depuis hier")
+        
+        # 2. Test commandes
+        print("\n" + "="*70)
+        print("🧪 TESTS COMMANDES")
+        
+        # Test basique
+        self.debug_endpoint("orders", {"page": 0, "size": 10}, "Test basique")
+        
+        # Test sans filtre de date
+        self.debug_endpoint("orders", {"page": 0, "size": 10}, "Sans filtre de date")
+        
+        # Test avec période plus large
+        last_month = (datetime.now() - timedelta(days=30)).isoformat()
+        self.debug_endpoint("orders", {"from": last_month, "page": 0, "size": 10}, "Dernier mois")
+        
+        # Test avec période encore plus large
+        last_year = (datetime.now() - timedelta(days=365)).isoformat()
+        self.debug_endpoint("orders", {"from": last_year, "page": 0, "size": 10}, "Dernière année")
+        
+        # 3. Test ventes
+        print("\n" + "="*70)
+        print("🧪 TESTS VENTES")
+        
+        # Test basique
+        self.debug_endpoint("sales", {"page": 0, "size": 10}, "Test basique")
+        
+        # Test sans filtre de date
+        self.debug_endpoint("sales", {"page": 0, "size": 10}, "Sans filtre de date")
+        
+        # Test avec période plus large
+        self.debug_endpoint("sales", {"from": last_month, "page": 0, "size": 10}, "Dernier mois")
+        
+        # Test avec période encore plus large
+        self.debug_endpoint("sales", {"from": last_year, "page": 0, "size": 10}, "Dernière année")
+        
+        print("\n" + "="*70)
+        print("🎯 ANALYSE")
+        print("Si tous les tests retournent 0 éléments:")
+        print("1. 🏥 La pharmacie n'a peut-être pas de données")
+        print("2. 🔐 L'accès est limité à certaines données")
+        print("3. 📅 Les données sont dans une période différente")
+        print("4. 🔧 L'API nécessite des paramètres spéciaux")
+        print("\n💡 Solution: Contacter Cédric FONTERAY avec ces logs")
 
 
 if __name__ == "__main__":
-    main()
+    debugger = ApothicalDebugger()
+    debugger.run_full_debug()

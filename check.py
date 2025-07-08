@@ -26,7 +26,7 @@ def print_separator(title):
     print(f"  {title}")
     print(f"{'='*60}")
 
-def analyze_database_state(pharmacy_id="832002810"):
+def analyze_database_state(pharmacy_id="062044623"):
     """Analyse l'état actuel de la base de données"""
     print_separator("ANALYSE DE L'ÉTAT DE LA BASE DE DONNÉES")
     
@@ -62,7 +62,7 @@ def analyze_database_state(pharmacy_id="832002810"):
     
     return pharmacy
 
-def test_with_real_data(pharmacy_id="832002810"):
+def test_with_real_data(pharmacy_id="062044623"):
     """Test avec les vraies données d'achats de l'API"""
     print_separator("TEST AVEC DONNÉES RÉELLES D'ACHATS")
     
@@ -169,7 +169,7 @@ def test_with_real_data(pharmacy_id="832002810"):
         traceback.print_exc()
         return False
 
-def analyze_existing_orders(pharmacy_id="832002810"):
+def analyze_existing_orders(pharmacy_id="062044623"):
     """Analyse les commandes existantes"""
     print_separator("ANALYSE DES COMMANDES EXISTANTES")
     
@@ -239,9 +239,9 @@ def main():
     """Fonction principale de diagnostic"""
     print_separator("🔍 DIAGNOSTIC DES PROBLÈMES D'ACHATS/ORDERS")
     
-    pharmacy_id = input("ID de la pharmacie à analyser (défaut: 832002810): ").strip()
+    pharmacy_id = input("ID de la pharmacie à analyser (défaut: 062044623): ").strip()
     if not pharmacy_id:
-        pharmacy_id = "832002810"
+        pharmacy_id = "062044623"
     
     # 1. Analyser l'état actuel de la base
     pharmacy = analyze_database_state(pharmacy_id)

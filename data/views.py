@@ -11,13 +11,15 @@ from data.services import dexter, winpharma, winpharma_2, winpharma_new_api
 
 from data.services import dexter, winpharma, winpharma_2, winpharma_historical
 
+from data.services import apothical
+
 
 logger = logging.getLogger(__name__)
 
 # Credentials de test pour nouvelle API
 API_URL = "YXBvdGhpY2Fs"
 API_PASSWORD = "cGFzczE"
-IDNAT_TEST = "832002810"
+IDNAT_TEST = "062044623"
 BASE_URL = "https://grpstat.winpharma.com/ApiWp"
 
 
@@ -586,7 +588,116 @@ def winpharma_historical_create_sales(request):
         "message": "Processing completed",
     }, status=200)
 
+# Ajouter ces imports en haut du fichier data/views.py
 
+# Ajouter ces vues à la fin du fichier data/views.py
+
+@api_view(['POST'])
+def apothical_create_product(request):
+    """
+    Endpoint pour créer/mettre à jour les produits Apothical
+    """
+    # Récupération du FINESS depuis les headers
+    finess = request.headers.get('Pharmacy-Finess')
+    if not finess:
+        return Response({
+            "message": "Header 'Pharmacy-Finess' requis",
+        }, status=400)
+    
+    # Récupération ou création de la pharmacie
+    pharmacy, created = Pharmacy.objects.get_or_create(
+        id_nat=finess,
+        defaults={'name': f'Pharmacie Apothical {finess}'}
+    )
+    
+    if created:
+        logger.info(f"Nouvelle pharmacie créée: {finess}")
+    
+    try:
+        result = apothical.process_products(pharmacy, finess)
+        
+        return Response({
+            "message": "Traitement produits Apothical terminé",
+            "products_count": len(result.get('products', [])),
+            "snapshots_count": len(result.get('snapshots', [])),
+        }, status=200)
+        
+    except Exception as e:
+        logger.error(f"Erreur traitement produits Apothical: {e}")
+        return Response({
+            "message": "Erreur lors du traitement des produits",
+            "error": str(e)
+        }, status=500)
+
+
+@api_view(['POST'])
+def apothical_create_order(request):
+    """
+    Endpoint pour créer/mettre à jour les commandes Apothical
+    """
+    # Récupération du FINESS depuis les headers
+    finess = request.headers.get('Pharmacy-Finess')
+    if not finess:
+        return Response({
+            "message": "Header 'Pharmacy-Finess' requis",
+        }, status=400)
+    
+    # Récupération ou création de la pharmacie
+    pharmacy, created = Pharmacy.objects.get_or_create(
+        id_nat=finess,
+        defaults={'name': f'Pharmacie Apothical {finess}'}
+    )
+    
+    try:
+        result = apothical.process_orders(pharmacy, finess)
+        
+        return Response({
+            "message": "Traitement commandes Apothical terminé",
+            "suppliers_count": len(result.get('suppliers', [])),
+            "products_count": len(result.get('products', [])),
+            "orders_count": len(result.get('orders', [])),
+            "product_orders_count": len(result.get('product_orders', [])),
+        }, status=200)
+        
+    except Exception as e:
+        logger.error(f"Erreur traitement commandes Apothical: {e}")
+        return Response({
+            "message": "Erreur lors du traitement des commandes",
+            "error": str(e)
+        }, status=500)
+
+
+@api_view(['POST'])
+def apothical_create_sales(request):
+    """
+    Endpoint pour créer/mettre à jour les ventes Apothical
+    """
+    # Récupération du FINESS depuis les headers
+    finess = request.headers.get('Pharmacy-Finess')
+    if not finess:
+        return Response({
+            "message": "Header 'Pharmacy-Finess' requis",
+        }, status=400)
+    
+    # Récupération ou création de la pharmacie
+    pharmacy, created = Pharmacy.objects.get_or_create(
+        id_nat=finess,
+        defaults={'name': f'Pharmacie Apothical {finess}'}
+    )
+    
+    try:
+        apothical.process_sales(pharmacy, finess)
+        
+        return Response({
+            "message": "Traitement ventes Apothical terminé",
+        }, status=200)
+        
+    except Exception as e:
+        logger.error(f"Erreur traitement ventes Apothical: {e}")
+        return Response({
+            "message": "Erreur lors du traitement des ventes",
+            "error": str(e)
+        }, status=500)
 # ========================================
 # AJOUT DANS data/urls.py 
 # ========================================

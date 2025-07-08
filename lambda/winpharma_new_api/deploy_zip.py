@@ -111,7 +111,7 @@ def deploy_lambda():
                     'Variables': {
                         'API_URL': 'YXBvdGhpY2Fs',
                         'API_PASSWORD': 'cGFzczE',
-                        'PHARMACY_ID': '832002810',
+                        'PHARMACY_ID': '062044623',
                         'SERVER_URL': 'https://api.phardev.fr'
                     }
                 }

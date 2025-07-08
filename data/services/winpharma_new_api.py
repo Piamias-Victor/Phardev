@@ -17,7 +17,7 @@ def process_product(pharmacy, data):
     Process WinPharma NEW API product data to create or update global products, internal products, and inventory snapshots.
     
     Expected data format from new API:
-    [{"cip_pharma": "922017215", "produits": [{"ProdId": 123, "Nom": "...", "Code13Ref": "...", "Stock": 5, "PrixTTC": 10.50, "PrixMP": 9.20}]}]
+    [{"cip_pharma": "062044623", "produits": [{"ProdId": 123, "Nom": "...", "Code13Ref": "...", "Stock": 5, "PrixTTC": 10.50, "PrixMP": 9.20}]}]
 
     Args:
         pharmacy: Pharmacy instance associated with the data.
@@ -174,7 +174,7 @@ def process_order(pharmacy, data):
     Process WinPharma NEW API order data to create or update suppliers, products, and orders in the database.
     
     Expected data format from new API:
-    [{"cip_pharma": "922017215", "achats": [{"id": 123, "codeFourn": "3", "nomFourn": "CERP", "dateLivraison": "2025-05-20T00:00:00", 
+    [{"cip_pharma": "062044623", "achats": [{"id": 123, "codeFourn": "3", "nomFourn": "CERP", "dateLivraison": "2025-05-20T00:00:00", 
       "dateEnvoi": "2021-10-25T00:00:00", "channel": "pml", "lignes": [{"prodId": 123, "qteC": 2, "qteR": 2, "qteUG": 0, "qteEC": 0}]}]}]
 
     Args:
@@ -426,7 +426,7 @@ def process_sales(pharmacy, data):
     Process sales records for a pharmacy and its products from NEW API.
     
     Expected data format from new API:
-    [{"cip_pharma": "922017215", "ventes": [{"id": 123, "heure": "2025-05-20T08:32:29", 
+    [{"cip_pharma": "062044623", "ventes": [{"id": 123, "heure": "2025-05-20T08:32:29", 
       "lignes": [{"prodId": 123, "qte": 1}]}]}]
 
     Args:

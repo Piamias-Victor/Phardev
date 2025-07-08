@@ -409,20 +409,13 @@ def process_order(pharmacy, data):
 
 def process_sales(pharmacy, data):
     """
-    Process sales records for a pharmacy from NEW API - OPTIMIZED FOR HISTORICAL IMPORTS.
+    Process sales records for a pharmacy from NEW API - VERSION AVEC RÉCUPÉRATION TVA.
     
-    🎯 KEY DIFFERENCE: Proper aggregation by (product_id, date) to handle multi-day data correctly.
+    🆕 NOUVEAUTÉ: Récupération de la TVA depuis les données de ventes
     
     Expected data format from new API:
     [{"cip_pharma": "922017215", "ventes": [{"id": 123, "heure": "2025-05-20T08:32:29", 
-      "lignes": [{"prodId": 123, "qte": 1}]}]}]
-
-    Args:
-        pharmacy: Pharmacy instance associated with the data.
-        data: Response from new API - list with pharmacy data wrapper.
-
-    Returns:
-        None
+      "lignes": [{"prodId": 123, "qte": 1, "tva": 2.10, "prix": 4.03}]}]}]
     """
     # Extract sales from the new API wrapper structure
     if not data or not isinstance(data, list) or len(data) == 0:
@@ -432,14 +425,17 @@ def process_sales(pharmacy, data):
     pharmacy_data = data[0]  # First element contains the pharmacy data
     sales_raw = pharmacy_data.get('ventes', [])
     
-    logger.info(f"[HISTORICAL] Processing {len(sales_raw)} sales records for pharmacy {pharmacy.id_nat}")
+    logger.info(f"[SALES] Processing {len(sales_raw)} sales records for pharmacy {pharmacy.id_nat}")
     
-    # 🔧 ÉTAPE 1: Préprocessing - Extraire toutes les lignes de vente avec leurs dates
+    # 🆕 ÉTAPE 1: Extraire les TVA depuis les lignes de ventes
+    product_tva_map = {}  # {product_id: tva_value}
+    
+    # 🔧 ÉTAPE 2: Préprocessing avec récupération TVA
     preprocessed_data = []
     for sale in sales_raw:
         try:
             sale_time = sale.get('heure')
-            sale_date = common.parse_date(sale_time, False)  # Parse en date directement
+            sale_date = common.parse_date(sale_time, False)
             
             if not sale_date:
                 logger.warning(f"Invalid sale date: {sale_time}")
@@ -449,11 +445,21 @@ def process_sales(pharmacy, data):
                 prod_id = line.get('prodId')
                 if not prod_id or int(prod_id) < 0:
                     continue
+                
+                product_id_str = str(prod_id)
+                
+                # 🆕 RÉCUPÉRER LA TVA de cette ligne de vente
+                tva_value = line.get('tva', 0)  # TVA en pourcentage (ex: 2.10 pour 2.1%)
+                
+                # Stocker la TVA pour ce produit (prendre la plus récente)
+                if product_id_str not in product_tva_map or tva_value > 0:
+                    product_tva_map[product_id_str] = tva_value
                     
                 preprocessed_data.append({
-                    'product_id': str(prod_id),
-                    'date': sale_date,  # Date parsée
-                    'qte': int(line.get('qte', 0))
+                    'product_id': product_id_str,
+                    'date': sale_date,
+                    'qte': int(line.get('qte', 0)),
+                    'tva': tva_value  # 🆕 Ajouter la TVA
                 })
                 
         except (ValueError, TypeError, KeyError) as e:
@@ -464,9 +470,47 @@ def process_sales(pharmacy, data):
         logger.info("No valid sales to process")
         return
 
-    logger.info(f"[HISTORICAL] Preprocessed {len(preprocessed_data)} sale lines")
+    logger.info(f"[SALES] Preprocessed {len(preprocessed_data)} sale lines")
+    logger.info(f"[SALES] Found TVA data for {len(product_tva_map)} products")
 
-    # 🔧 ÉTAPE 2: Récupérer les snapshots des produits
+    # 🆕 ÉTAPE 3: Mettre à jour les TVA des produits internes
+    if product_tva_map:
+        logger.info("[SALES] Updating product TVA values...")
+        
+        product_ids = list(product_tva_map.keys())
+        existing_products = InternalProduct.objects.filter(
+            pharmacy=pharmacy, 
+            internal_id__in=product_ids
+        )
+        
+        products_to_update = []
+        for product in existing_products:
+            product_id_str = str(product.internal_id)
+            if product_id_str in product_tva_map:
+                tva_from_sales = product_tva_map[product_id_str]
+                # Convertir la TVA de pourcentage vers décimal (2.10 -> 0.021)
+                tva_decimal = Decimal(tva_from_sales) / Decimal(100)
+                
+                # Mettre à jour seulement si différent et supérieur à 0
+                if tva_from_sales > 0 and product.TVA != tva_decimal:
+                    product.TVA = tva_decimal
+                    products_to_update.append(product)
+        
+        if products_to_update:
+            try:
+                InternalProduct.objects.bulk_update(products_to_update, ['TVA'])
+                logger.info(f"[SALES] Updated TVA for {len(products_to_update)} products")
+                
+                # Log quelques exemples pour debug
+                for product in products_to_update[:5]:
+                    logger.info(f"[SALES] Updated product {product.internal_id}: TVA = {product.TVA}")
+                    
+            except Exception as e:
+                logger.error(f"[SALES] Error updating product TVA: {e}")
+        else:
+            logger.info("[SALES] No products needed TVA update")
+
+    # 🔧 ÉTAPE 4: Traitement des ventes (reste identique)
     product_ids = {obj['product_id'] for obj in preprocessed_data}
 
     latest_snapshots = (
@@ -480,8 +524,7 @@ def process_sales(pharmacy, data):
     )
     internal_products_map = {str(product.internal_id): product.latest_snapshot_id for product in internal_products}
 
-    # 🎯 ÉTAPE 3: AGRÉGATION CORRECTE PAR (PRODUCT_ID, DATE)
-    # Clé unique = (product_id, date) pour éviter les collisions
+    # Agrégation des quantités par (product_id, date)
     aggregated_sales = {}
     
     for obj in preprocessed_data:
@@ -489,7 +532,6 @@ def process_sales(pharmacy, data):
         sale_date = obj['date']
         qte = obj['qte']
         
-        # Clé composite = (product_id, date)
         key = (product_id, sale_date)
         
         if key not in aggregated_sales:
@@ -497,9 +539,9 @@ def process_sales(pharmacy, data):
         else:
             aggregated_sales[key] += qte
 
-    logger.info(f"[HISTORICAL] Aggregated into {len(aggregated_sales)} unique (product, date) combinations")
+    logger.info(f"[SALES] Aggregated into {len(aggregated_sales)} unique (product, date) combinations")
 
-    # 🔧 ÉTAPE 4: Création des enregistrements Sales
+    # Construction des enregistrements Sales
     sales_data = []
     missing_snapshots = 0
     
@@ -512,13 +554,13 @@ def process_sales(pharmacy, data):
         sales_data.append({
             'product_id': snapshot_id,
             'quantity': common.clamp(total_qte, -32768, 32767),
-            'date': sale_date,  # Date correcte de la vente
+            'date': sale_date,
         })
 
     if missing_snapshots > 0:
-        logger.warning(f"[HISTORICAL] {missing_snapshots} sales skipped due to missing product snapshots")
+        logger.warning(f"[SALES] {missing_snapshots} sales skipped due to missing product snapshots")
 
-    # 🔧 ÉTAPE 5: Insertion en base
+    # Insertion en base
     if sales_data:
         try:
             result = common.bulk_process(
@@ -527,14 +569,8 @@ def process_sales(pharmacy, data):
                 unique_fields=['product_id', 'date'],
                 update_fields=['quantity']
             )
-            logger.info(f"[HISTORICAL] Successfully processed {len(sales_data)} sales records")
+            logger.info(f"[SALES] Successfully processed {len(sales_data)} sales records")
             
-            # 📊 Statistiques pour debug
-            dates_processed = set(sale['date'] for sale in sales_data)
-            logger.info(f"[HISTORICAL] Sales distributed across {len(dates_processed)} different dates")
-            if len(dates_processed) <= 10:  # Afficher les dates si pas trop nombreuses
-                logger.info(f"[HISTORICAL] Dates: {sorted(dates_processed)}")
-                
         except Exception as e:
             logger.error(f"Error processing sales: {e}")
             raise

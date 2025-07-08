@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script pour nettoyer toutes les données de test de la pharmacie 692037567
+Script pour nettoyer toutes les données de test de la pharmacie 832002810
 """
 
 import psycopg2
@@ -145,7 +145,7 @@ def clean_pharmacy_data(pharmacy_id_nat):
 
 def main():
     """Fonction principale"""
-    pharmacy_id = "692037567"
+    pharmacy_id = "832002810"
     
     print(f"⚠️  ATTENTION: Ce script va supprimer TOUTES les données de test !")
     print(f"🏥 Pharmacie: {pharmacy_id}")

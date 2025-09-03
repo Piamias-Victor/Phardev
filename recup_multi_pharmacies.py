@@ -2,7 +2,7 @@
 """
 Script de récupération historique MULTI-PHARMACIES avec TVA - VERSION CORRIGÉE
 Chaque pharmacie utilise ses propres credentials
-Période : Janvier 2024 -> Juin 2025
+Période : Janvier 2024 -> aout 2025
 """
 
 import requests
@@ -34,7 +34,7 @@ SERVER_URL = os.getenv('SERVER_URL')
 
 # Dates de début et fin
 START_DATE = datetime(2024, 1, 1)
-END_DATE = datetime(2025, 6, 30)
+END_DATE = datetime(2025, 8, 30)
 
 # 🆕 CONFIGURATION PHARMACIES AVEC LEURS CREDENTIALS
 # Structure: {PHARMACY_ID: {"name": "...", "api_url": "...", "api_password": "..."}}
@@ -43,36 +43,37 @@ END_DATE = datetime(2025, 6, 30)
 DEFAULT_API_URL = "YXBvdGhpY2Fs"
 DEFAULT_API_PASSWORD = "cGFzczE"
 
-# Liste complète des pharmacies
+# Liste complète des pharmacies MISE À JOUR
 ALL_PHARMACIES = {
-    "o62044623": "GIE Grande Pharmacie Cap 3000",
-    "062044623": "Grande Pharmacie de La Part DIEU", 
+    "712006733": "Pharmacie Puig Léveillé",
+    "062044623": "GIE Grande Pharmacie Cap 3000",
+    "692039340": "Grande Pharmacie de La Part DIEU", 
     "372006049": "Pharmacie Sirvin",
     "342030285": "Pharmacie du Centre",
     "132069444": "Pharmacie de la Montagnette",
     "132040585": "Pharmacie du Cours Mirabeau",
     "642013593": "Pharmacie BAB2",
-    "062044623": "Pharmacie Becker Monteux",
-    "062044623": "Pharmacie du 8 mai 1945",
-    "342026218": "Pharmacie Espace Bocaud",
+    "842004863": "Pharmacie Becker Monteux",
+    "132061276": "Pharmacie du 8 mai 1945",
+    "342026218": "Pharmacie Esouipace Bocaud",
     "772012522": "Pharmacie Val D'Europe",
     "422027524": "Pharmacie de Monthieu",
     "682020763": "Pharmacie de la Croisière",
     "262071004": "Pharmacie Valence 2",
-    "132046616": "Pharmacie Martinet",
-    "062044623": "Phamracie Mouysset",
+    "132086612": "Pharmacie Martinet",
+    "832002810": "Pharmacie Mouysset",
     "332018811": "Pharmacie du Chemin Long",
     "332022755": "Pharmacie de l'Etoile",
     "752040428": "Pharmacie de la Place de la République",
     "132066978": "Pharmacie Centrale",
     "832011373": "Pharmacie Varoise",
     "302003330": "Pharmacie de Castanet",
-    "342026655": "SELARL Pharmacie des Arceaux",
+    "342027828": "SELARL Pharmacie des Arceaux",
     "672033586": "Pharmacie du Printemps",
     "202041711": "Pharmacie Taddei Medori",
-    "o62037049": "Pharmacie Lingostière",
+    "062037049": "Pharmacie Lingostière",
     "132028473": "Pharmacie Saint Jean",
-    "302006531": "Pharmacie des Portes d'Uzès",
+    "302007638": "Pharmacie des Portes d'Uzès",
     "912015492": "Pharmacie Centrale Evry 2",
     "192005940": "Pharmacie Egletons",
     "302006192": "Pharmacie des Salicornes",
@@ -81,17 +82,17 @@ ALL_PHARMACIES = {
     "772011623": "Pharmacie du Centre Dammarie Les Lys",
     "332022219": "Pharmacie de l'Alliance",
     "852007137": "Pharmacie Ylium",
-    "422023671": "Pharmacie du Forez",
+    "422027854": "Pharmacie du Forez",
     "832011498": "Grande pharmacie hyéroise / Pharmacie Massillon",
     "732002811": "Pharmacie du Pradian",
     "422026542": "Pharmacie de l'Europe",
     "922020771": "Grande Pharmacie de la Station",
     "742005481": "Pharmacie du Leman",
-    "o52702370": "Pharmacie de Tokoro",
+    "052702370": "Pharmacie de Tokoro",
     "922021373": "Pharmacie des Quatres Chemins",
     "952701043": "Pharmacie de la Muette",
     "752043471": "Pharmacie Faubourg Bastille",
-    "912015369": "Grande Pharmacie de Fleury",
+    "912015948": "Grande Pharmacie de Fleury",
     "442002119": "Pharmacie de Beaulieu",
     "792020646": "Pharmacie du Bocage",
     "202040697": "Pharmacie de la Rocade",
@@ -99,7 +100,7 @@ ALL_PHARMACIES = {
     "692013469": "Pharmacie Jalles",
     "342027588": "Pharmacie de Capestang",
     "842005456": "Pharmacie de la Sorgue",
-    "842002008": "Pharmacie Becker Carpentras",
+    "842006751": "Pharmacie Becker Carpentras",
     "842003121": "Pharmacie de l'Ecluse",
     "202021648": "Pharmacie de Sarrola",
     "132081613": "Pharmacie des Ateliers",
@@ -113,8 +114,15 @@ ALL_PHARMACIES = {
     "342030137": "Pharmacie Montarnaud",
     "280003641": "Pharmacie du Géant Luce",
     "802006031": "Pharmacie Paque",
-    "842005472": "Pharmacie Cap sud"
+    "842005472": "Pharmacie Cap sud",
+    "132046384": "Pharmacie du Stade Vélodrome"
 }
+
+    # "202040697": "Pharmacie de la Rocade",
+            # "842004863": "Pharmacie Becker Monteux",
+
+
+
 
 # Générer la configuration automatiquement avec les mêmes credentials
 PHARMACIES_CONFIG = {
@@ -125,6 +133,15 @@ PHARMACIES_CONFIG = {
     }
     for pharmacy_id, pharmacy_name in ALL_PHARMACIES.items()
 }
+
+# # Dans le script, remplace PHARMACIES_CONFIG par :
+# PHARMACIES_CONFIG = {
+#     "062044623": {  # Pharmacie qui fonctionne bien selon tes logs
+#         "name": "GIE Grande Pharmacie Cap 3000",
+#         "api_url": DEFAULT_API_URL,
+#         "api_password": DEFAULT_API_PASSWORD
+#     }
+# }
 
 def generate_monthly_periods(start_date: datetime, end_date: datetime) -> List[Tuple[str, str]]:
     """Génère les périodes mensuelles"""
@@ -157,7 +174,7 @@ def test_pharmacy_credentials(pharmacy_id: str, api_url: str, api_password: str)
     }
     
     try:
-        response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, timeout=None)
         if response.status_code == 200:
             logger.info(f"✅ Credentials OK pour {pharmacy_id}")
             return True
@@ -183,7 +200,7 @@ def fetch_winpharma_data(endpoint: str, pharmacy_id: str, api_url: str, api_pass
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            response = requests.get(url, params=params, timeout=30)
+            response = requests.get(url, params=params, timeout=None)
             
             if response.status_code == 200:
                 data = response.json()
@@ -207,7 +224,7 @@ def fetch_winpharma_data(endpoint: str, pharmacy_id: str, api_url: str, api_pass
                         logger.info(f"🔄 Retry avec date max: {max_date}")
                         
                         params['dt2'] = max_date
-                        response = requests.get(url, params=params, timeout=30)
+                        response = requests.get(url, params=params, timeout=None)
                         if response.status_code == 200:
                             return response.json()
                 
@@ -273,7 +290,7 @@ def send_to_server(endpoint: str, pharmacy_id: str, data: dict) -> bool:
     headers = {'Pharmacy-id': pharmacy_id, 'Content-Type': 'application/json'}
     
     try:
-        response = requests.post(url, json=data, headers=headers, timeout=60)
+        response = requests.post(url, json=data, headers=headers, timeout=None)
         
         if response.status_code == 200:
             return True

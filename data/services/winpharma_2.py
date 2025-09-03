@@ -223,7 +223,16 @@ def process_order(pharmacy, data):
                         logger.info(f"Nom fournisseur: {supplier_name}")
 
                         # Autres champs
-                        step = achat.get("channel", "")
+                        step_raw = achat.get("channel", "")
+                        # Conversion string vers int avec mapping
+                        step_mapping = {
+                            'pml': 3,
+                            'channel1': 3, 
+                            'channel2': 3,
+                            # Ajoute d'autres mappings si nécessaire
+                            '': 0,  # valeur par défaut
+                        }
+                        step = step_mapping.get(step_raw, 0)  # 0 par défaut si non trouvé
                         sent_date = common.parse_date(achat.get("dateEnvoi"))
                         delivery_date = common.parse_date(achat.get("dateLivraison"), False)
                         
@@ -416,12 +425,21 @@ def process_order(pharmacy, data):
             })
 
         logger.info(f"Nombre de commandes à traiter: {len(order_rows)}")
-        orders = common.bulk_process(
-            model=Order,
-            data=order_rows,
-            unique_fields=["internal_id", "pharmacy_id"],
-            update_fields=["supplier_id", "step", "sent_date", "delivery_date"],
-        )
+        try:
+            orders = common.bulk_process(
+                model=Order,
+                data=order_rows,
+                unique_fields=["internal_id", "pharmacy_id"],
+                update_fields=["supplier_id", "step", "sent_date", "delivery_date"],
+            )
+        except Exception as e:
+            logger.error(f"Erreur bulk_process orders: {e}")
+            # Fallback : récupérer les commandes existantes
+            existing_order_ids = {(o["internal_id"], o["pharmacy_id"]) for o in order_rows}
+            orders = list(Order.objects.filter(
+                internal_id__in=[o["internal_id"] for o in order_rows],
+                pharmacy_id=order_rows[0]["pharmacy_id"]
+            ))
         logger.info(f"Nombre de commandes traitées: {len(orders)}")
         orders_map = {o.internal_id: o for o in orders}
 
@@ -490,6 +508,8 @@ def process_order(pharmacy, data):
 def process_sales(pharmacy, data):
     """
     Process sales records for a pharmacy and its products.
+    MODIFIÉ: Ajoute mise à jour TVA depuis les données de vente
+    CORRIGÉ: Agrégation par product_id + date au lieu de juste product_id
 
     Args:
         pharmacy: Pharmacy instance associated with the data.
@@ -499,9 +519,10 @@ def process_sales(pharmacy, data):
         None
     """
     # ------------------------------------------------------------------
-    # 1. Pré‑traitement --------------------------------------------------
+    # 1. Pré‑traitement avec TVA --------------------------------------
     # ------------------------------------------------------------------
     preprocessed: List[Dict[str, Any]] = []
+    tva_updates: Dict[str, Decimal] = {}  # Nouveau: stocker les TVA
 
     for block in data:
         for vente in block.get("ventes", []):
@@ -511,9 +532,24 @@ def process_sales(pharmacy, data):
                     prod_id = int(line.get("prodId"))
                     if prod_id < 0:
                         continue
+                    
+                    product_id_str = str(prod_id)
+                    
+                    # NOUVEAU: Extraction TVA
+                    tva_raw = line.get("tva")
+                    if tva_raw is not None:
+                        try:
+                            tva_decimal = Decimal(str(tva_raw))
+                            # Conversion si nécessaire (20% -> 0.20)
+                            if tva_decimal > 1:
+                                tva_decimal = tva_decimal / Decimal(100)
+                            tva_updates[product_id_str] = tva_decimal
+                        except (ValueError, TypeError):
+                            pass  # Ignorer les TVA invalides
+                    
                     preprocessed.append(
                         {
-                            "product_id": str(prod_id),
+                            "product_id": product_id_str,
                             "date": heure,
                             "qte": int(line.get("qte", 0)),
                         }
@@ -527,10 +563,10 @@ def process_sales(pharmacy, data):
                     continue
 
     if not preprocessed:
-        return  # rien à importer
+        return
 
     # ------------------------------------------------------------------
-    # 2. Récupération des snapshots -------------------------------------
+    # 2. Récupération des snapshots et produits -----------------------
     # ------------------------------------------------------------------
     product_ids = {obj["product_id"] for obj in preprocessed}
 
@@ -543,32 +579,53 @@ def process_sales(pharmacy, data):
         InternalProduct.objects.filter(pharmacy=pharmacy, internal_id__in=product_ids)
         .annotate(latest_snapshot_id=Subquery(latest_snapshot_sub))
     )
+    
     snapshot_map = {str(p.internal_id): p.latest_snapshot_id for p in products}
+    products_map = {str(p.internal_id): p for p in products}  # Nouveau: pour TVA
 
     # ------------------------------------------------------------------
-    # 3. Agrégation des quantités ---------------------------------------
+    # 3. NOUVELLE AGRÉGATION par product_id + date --------------------
     # ------------------------------------------------------------------
-    aggregated_qte: Dict[str, int] = {}
-    first_date: Dict[str, str] = {}
+    aggregated_sales: Dict[tuple, Dict[str, Any]] = {}  # Clé: (product_id, date)
 
     for obj in preprocessed:
         pid = obj["product_id"]
-        aggregated_qte[pid] = aggregated_qte.get(pid, 0) + obj["qte"]
-        first_date.setdefault(pid, obj["date"])
+        date_str = obj["date"]
+        
+        # Parse et normalise la date (garder seulement YYYY-MM-DD)
+        try:
+            parsed_date = common.parse_date(date_str, False)
+            if not parsed_date:
+                continue
+            date_key = str(parsed_date)  # Format YYYY-MM-DD
+        except:
+            continue
+        
+        # Clé composite: (product_id, date)
+        composite_key = (pid, date_key)
+        
+        if composite_key not in aggregated_sales:
+            aggregated_sales[composite_key] = {
+                "product_id": pid,
+                "date": date_key,
+                "total_qte": 0
+            }
+        
+        aggregated_sales[composite_key]["total_qte"] += obj["qte"]
 
     # ------------------------------------------------------------------
     # 4. Construction des lignes Sales ----------------------------------
     # ------------------------------------------------------------------
     sales_rows: List[Dict[str, Any]] = []
-    for pid, qty in aggregated_qte.items():
+    for (pid, date_str), sale_data in aggregated_sales.items():
         snapshot_id = snapshot_map.get(pid)
         if not snapshot_id:
-            continue  # produit sans snapshot : ignoré
+            continue
         sales_rows.append(
             {
                 "product_id": snapshot_id,
-                "quantity": common.clamp(qty, -32768, 32767),
-                "date": common.parse_date(first_date[pid], False),
+                "quantity": common.clamp(sale_data["total_qte"], -32768, 32767),
+                "date": sale_data["date"],  # Utilise la date parsée
             }
         )
 
@@ -576,15 +633,37 @@ def process_sales(pharmacy, data):
         return
 
     # ------------------------------------------------------------------
-    # 5. Insertion / mise à jour bulk -----------------------------------
+    # 5. Insertion ventes + Mise à jour TVA ----------------------------
     # ------------------------------------------------------------------
     try:
+        # Traitement des ventes (comme avant)
         common.bulk_process(
             model=Sales,
             data=sales_rows,
             unique_fields=["product_id", "date"],
             update_fields=["quantity"],
         )
+        
+        # NOUVEAU: Mise à jour des TVA
+        if tva_updates:
+            logger.info(f"Mise à jour TVA pour {len(tva_updates)} produits")
+            
+            products_to_update = []
+            for product_id, new_tva in tva_updates.items():
+                product = products_map.get(product_id)
+                if product and product.TVA != new_tva:
+                    product.TVA = new_tva
+                    products_to_update.append(product)
+            
+            if products_to_update:
+                # Mise à jour bulk des TVA
+                InternalProduct.objects.bulk_update(
+                    products_to_update, 
+                    ['TVA'], 
+                    batch_size=1000
+                )
+                logger.info(f"TVA mise à jour pour {len(products_to_update)} produits")
+                
     except Exception as err:
         logger.error("Error processing sales: %s", err)
         raise

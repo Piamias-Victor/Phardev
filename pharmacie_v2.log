@@ -1,0 +1,42 @@
+2025-09-03 11:36:53,675 - INFO - ================================================================================
+2025-09-03 11:36:53,675 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - VERSION SANS TIMEOUT
+2025-09-03 11:36:53,675 - INFO - ================================================================================
+2025-09-03 11:36:53,675 - INFO - 🔧 Configuration:
+2025-09-03 11:36:53,675 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 11:36:53,675 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 11:36:53,675 - INFO -    ID National: 832002810
+2025-09-03 11:36:53,675 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 11:36:53,724 - INFO - ✅ Serveur Django accessible
+2025-09-03 11:36:56,119 - INFO - 🚀 Début du traitement...
+2025-09-03 11:36:56,119 - INFO - 🎯 Option 3: Traitement combiné SANS TIMEOUT
+2025-09-03 11:36:56,119 - WARNING - ⚠️ Cette opération peut prendre plusieurs minutes
+2025-09-03 11:36:59,163 - INFO - 🚀 Traitement combiné SANS timeout: Pharmacie Mouysset V2
+2025-09-03 11:36:59,163 - INFO - 🔢 ID National: 832002810
+2025-09-03 11:36:59,163 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-and-fetch
+2025-09-03 11:36:59,163 - INFO - ⏰ ATTENTION: Pas de timeout - le traitement peut prendre plusieurs minutes
+2025-09-03 11:36:59,163 - INFO - 🔄 Envoi de la requête...
+2025-09-03 11:37:52,601 - INFO - 📊 Status Code: 200
+2025-09-03 11:37:52,602 - INFO - ✅ Traitement combiné terminé!
+2025-09-03 11:37:52,602 - INFO - 🏥 Pharmacie:
+2025-09-03 11:37:52,602 - INFO -    Message: Pharmacie 'Pharmacie Mouysset V2' créée avec succès
+2025-09-03 11:37:52,602 - INFO -    ID: a71196a1-eed5-4fd7-a486-a1611c2ab6c9
+2025-09-03 11:37:52,602 - INFO -    Status: created
+2025-09-03 11:37:52,602 - INFO - 📦 Produits:
+2025-09-03 11:37:52,602 - INFO -    Message: Produits traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 11:37:52,602 - INFO -    Status: success
+2025-09-03 11:37:52,602 - INFO -    Produits traités: 16010
+2025-09-03 11:37:52,602 - INFO -    Snapshots créés: 16010
+2025-09-03 11:37:52,602 - INFO -    Taille données: 2650619 caractères
+2025-09-03 11:37:52,602 - INFO - 
+================================================================================
+2025-09-03 11:37:52,602 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 11:37:52,602 - INFO - 📄 RÉSUMÉ FINAL:
+2025-09-03 11:37:52,602 - INFO -    Pharmacie: created
+2025-09-03 11:37:52,602 - INFO -    Produits: success
+2025-09-03 11:37:52,602 - INFO -    Status global: success
+2025-09-03 11:37:52,602 - INFO -    📊 Statistiques:
+2025-09-03 11:37:52,602 - INFO -       Produits traités: 16010
+2025-09-03 11:37:52,602 - INFO -       Snapshots créés: 16010
+2025-09-03 11:37:52,602 - INFO -       Données brutes: 2650619 caractères
+2025-09-03 11:37:52,602 - INFO - ================================================================================

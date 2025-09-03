@@ -1,0 +1,72 @@
+2025-09-03 10:22:40,758 - INFO - ================================================================================
+2025-09-03 10:22:40,758 - INFO - 🚀 SCRIPT COMPLET PHARMACIE MOUYSSET V2
+2025-09-03 10:22:40,758 - INFO - ================================================================================
+2025-09-03 10:22:40,758 - INFO - 🏥 Pharmacie source: Pharmacie Mouysset
+2025-09-03 10:22:40,758 - INFO - 🏥 Pharmacie destination: Pharmacie Mouysset V2
+2025-09-03 10:22:40,758 - INFO - 🔢 ID National: 832002810
+2025-09-03 10:22:40,758 - INFO - 🌐 Server: https://api.phardev.fr
+2025-09-03 10:22:40,758 - INFO - 
+--------------------------------------------------
+2025-09-03 10:22:40,758 - INFO - 🏥 ÉTAPE 1/3 - Création de la pharmacie
+2025-09-03 10:22:40,758 - INFO - 🏥 Création: Pharmacie Mouysset V2
+2025-09-03 10:22:40,758 - INFO - 🔢 ID National: 832002810
+2025-09-03 10:22:40,869 - INFO - 📊 Status: 201
+2025-09-03 10:22:40,870 - INFO - ✅ Pharmacie créée avec succès!
+2025-09-03 10:22:40,870 - INFO -    ID: ac57f4b3-0551-4f15-acae-dd726d9baeaf
+2025-09-03 10:22:40,870 - INFO -    Status: created
+2025-09-03 10:22:40,870 - INFO - 
+--------------------------------------------------
+2025-09-03 10:22:40,870 - INFO - 🔑 Test credentials WinPharma...
+2025-09-03 10:22:42,368 - INFO - ✅ Credentials WinPharma OK!
+2025-09-03 10:22:42,369 - INFO - 
+--------------------------------------------------
+2025-09-03 10:22:42,370 - INFO - 📦 ÉTAPE 2/3 - Récupération produits WinPharma
+2025-09-03 10:22:42,370 - INFO - 📦 Récupération des produits...
+2025-09-03 10:22:43,812 - INFO - ✅ Produits récupérés: 2,650,955 caractères
+2025-09-03 10:22:43,812 - INFO - 📊 Nombre de produits: 16010
+2025-09-03 10:22:43,812 - INFO - 
+--------------------------------------------------
+2025-09-03 10:22:43,812 - INFO - 💾 ÉTAPE 3/3 - Intégration en base de données
+2025-09-03 10:22:43,812 - INFO - 🌐 URL: https://api.phardev.fr/winpharma_historical/create/products
+2025-09-03 10:22:43,812 - INFO - 🏥 Header Pharmacy-Name: Pharmacie Mouysset V2
+2025-09-03 10:22:44,119 - INFO - 📊 Status: 500
+2025-09-03 10:22:44,119 - INFO - 📄 Response: {"message":"Processing error"}
+2025-09-03 10:22:44,119 - ERROR - ❌ Erreur serveur 500: {"message":"Processing error"}
+2025-09-03 10:22:44,120 - ERROR - ❌ Impossible d'intégrer en DB - ARRÊT
+2025-09-03 10:22:44,124 - ERROR - 💥 Script terminé avec des erreurs
+2025-09-03 10:23:09,989 - INFO - ================================================================================
+2025-09-03 10:23:09,989 - INFO - 🚀 SCRIPT COMPLET PHARMACIE MOUYSSET V2
+2025-09-03 10:23:09,989 - INFO - ================================================================================
+2025-09-03 10:23:09,989 - INFO - 🏥 Pharmacie source: Pharmacie Mouysset
+2025-09-03 10:23:09,989 - INFO - 🏥 Pharmacie destination: Pharmacie Mouysset V2
+2025-09-03 10:23:09,989 - INFO - 🔢 ID National: 832002810
+2025-09-03 10:23:09,989 - INFO - 🌐 Server: https://api.phardev.fr
+2025-09-03 10:23:09,990 - INFO - 
+--------------------------------------------------
+2025-09-03 10:23:09,990 - INFO - 🏥 ÉTAPE 1/3 - Création de la pharmacie
+2025-09-03 10:23:09,990 - INFO - 🏥 Création: Pharmacie Mouysset V2
+2025-09-03 10:23:09,990 - INFO - 🔢 ID National: 832002810
+2025-09-03 10:23:10,093 - INFO - 📊 Status: 200
+2025-09-03 10:23:10,093 - INFO - ✅ Pharmacie créée avec succès!
+2025-09-03 10:23:10,093 - INFO -    ID: ac57f4b3-0551-4f15-acae-dd726d9baeaf
+2025-09-03 10:23:10,093 - INFO -    Status: exists
+2025-09-03 10:23:10,093 - INFO - 
+--------------------------------------------------
+2025-09-03 10:23:10,093 - INFO - 🔑 Test credentials WinPharma...
+2025-09-03 10:23:11,753 - INFO - ✅ Credentials WinPharma OK!
+2025-09-03 10:23:11,754 - INFO - 
+--------------------------------------------------
+2025-09-03 10:23:11,754 - INFO - 📦 ÉTAPE 2/3 - Récupération produits WinPharma
+2025-09-03 10:23:11,754 - INFO - 📦 Récupération des produits...
+2025-09-03 10:23:13,206 - INFO - ✅ Produits récupérés: 2,650,955 caractères
+2025-09-03 10:23:13,206 - INFO - 📊 Nombre de produits: 16010
+2025-09-03 10:23:13,206 - INFO - 
+--------------------------------------------------
+2025-09-03 10:23:13,206 - INFO - 💾 ÉTAPE 3/3 - Intégration en base de données
+2025-09-03 10:23:13,206 - INFO - 🌐 URL: https://api.phardev.fr/winpharma_historical/create/products
+2025-09-03 10:23:13,206 - INFO - 🏥 Header Pharmacy-Name: Pharmacie Mouysset V2
+2025-09-03 10:23:13,500 - INFO - 📊 Status: 500
+2025-09-03 10:23:13,501 - INFO - 📄 Response: {"message":"Processing error"}
+2025-09-03 10:23:13,501 - ERROR - ❌ Erreur serveur 500: {"message":"Processing error"}
+2025-09-03 10:23:13,502 - ERROR - ❌ Impossible d'intégrer en DB - ARRÊT
+2025-09-03 10:23:13,505 - ERROR - 💥 Script terminé avec des erreurs

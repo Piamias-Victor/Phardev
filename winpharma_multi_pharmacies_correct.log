@@ -1,0 +1,35 @@
+2025-09-03 10:23:19,231 - INFO - 🔧 Configuration chargée:
+2025-09-03 10:23:19,231 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-09-03 10:23:19,231 - INFO -    - Pharmacies configurées: 1
+2025-09-03 10:23:19,231 - INFO - 🚀 RÉCUPÉRATION HISTORIQUE MULTI-PHARMACIES AVEC CREDENTIALS INDIVIDUELS
+2025-09-03 10:23:19,231 - INFO - 📅 Période: 2024-01-01 -> 2025-08-30
+2025-09-03 10:23:19,231 - INFO - 🏥 Nombre de pharmacies configurées: 1
+2025-09-03 10:23:19,231 - INFO - 📅 20 périodes à traiter par pharmacie
+2025-09-03 10:23:19,231 - INFO - 🔍 Pharmacies configurées:
+2025-09-03 10:23:19,231 - INFO -    - Pharmacie Mouysset (832002810)
+2025-09-03 10:23:19,231 - WARNING - ⚠️ IMPORTANT: Ce script ne traite que les pharmacies avec credentials configurés
+2025-09-03 10:23:19,231 - WARNING - ⚠️ Pour ajouter d'autres pharmacies, vous devez obtenir leurs credentials API
+2025-09-03 10:23:21,488 - INFO - 
+🏥 TRAITEMENT: Pharmacie Mouysset (832002810)
+2025-09-03 10:23:21,489 - INFO - ================================================================================
+2025-09-03 10:23:23,001 - INFO - ✅ Credentials OK pour 832002810
+2025-09-03 10:23:23,003 - INFO - 📦 Récupération des produits...
+2025-09-03 10:23:24,747 - INFO - ✅ produits 832002810 -: 2650955 caractères
+2025-09-03 10:23:25,054 - ERROR - ❌ Erreur serveur 500 pour 832002810: {"message":"Processing error"}
+2025-09-03 10:23:25,055 - ERROR - ❌ Échec envoi produits
+2025-09-03 10:23:25,055 - INFO - 📊 Période 1/20: 2024-01-01 -> 2024-01-31
+2025-09-03 10:23:28,567 - INFO - 
+⚠️ Script interrompu par l'utilisateur
+2025-09-03 10:28:05,859 - INFO - 🔧 Configuration chargée:
+2025-09-03 10:28:05,859 - INFO -    - SERVER_URL: https://api.phardev.fr
+2025-09-03 10:28:05,859 - INFO -    - Pharmacies configurées: 1
+2025-09-03 10:28:05,859 - INFO - 🚀 RÉCUPÉRATION HISTORIQUE MULTI-PHARMACIES AVEC CREDENTIALS INDIVIDUELS
+2025-09-03 10:28:05,859 - INFO - 📅 Période: 2024-01-01 -> 2025-08-30
+2025-09-03 10:28:05,859 - INFO - 🏥 Nombre de pharmacies configurées: 1
+2025-09-03 10:28:05,860 - INFO - 📅 20 périodes à traiter par pharmacie
+2025-09-03 10:28:05,860 - INFO - 🔍 Pharmacies configurées:
+2025-09-03 10:28:05,860 - INFO -    - Pharmacie Mouysset (832002810)
+2025-09-03 10:28:05,860 - WARNING - ⚠️ IMPORTANT: Ce script ne traite que les pharmacies avec credentials configurés
+2025-09-03 10:28:05,860 - WARNING - ⚠️ Pour ajouter d'autres pharmacies, vous devez obtenir leurs credentials API
+2025-09-03 10:28:08,062 - INFO - 
+⚠️ Script interrompu par l'utilisateur

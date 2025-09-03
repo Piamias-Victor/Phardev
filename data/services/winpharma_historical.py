@@ -172,20 +172,25 @@ def process_product(pharmacy, data):
 def process_order(pharmacy, data):
     """
     Process WinPharma NEW API order data for historical imports.
-    Identical to winpharma_new.py since orders don't have the same aggregation issues as sales.
+    CORRIGÉ: Traite maintenant TOUS les blocs et ignore les doublons
     """
     # Extract orders from the new API wrapper structure
     if not data or not isinstance(data, list) or len(data) == 0:
         logger.warning("No data or invalid data structure received")
         return {"suppliers": [], "products": [], "orders": [], "product_orders": []}
     
-    pharmacy_data = data[0]  # First element contains the pharmacy data
-    orders_raw = pharmacy_data.get('achats', [])
+    # 🔧 CORRECTION: Fusionner tous les achats de tous les blocs
+    all_orders = []
+    for bloc in data:
+        if isinstance(bloc, dict) and 'achats' in bloc:
+            bloc_orders = bloc['achats']
+            all_orders.extend(bloc_orders)
+            logger.info(f"[HISTORICAL] Bloc {bloc.get('cip_pharma', 'unknown')}: {len(bloc_orders)} commandes")
     
-    logger.info(f"[HISTORICAL] Processing {len(orders_raw)} orders for pharmacy {pharmacy.id_nat}")
+    logger.info(f"[HISTORICAL] Processing {len(all_orders)} orders total from {len(data)} blocs for pharmacy {pharmacy.id_nat}")
     
     preprocessed_data = []
-    for obj in orders_raw:
+    for obj in all_orders:  # 🔧 CORRECTION: utiliser all_orders au lieu de orders_raw
         try:
             # Map new API fields to our internal structure
             order_id = obj.get('id')
@@ -211,6 +216,12 @@ def process_order(pharmacy, data):
             
             sent_date = common.parse_date(obj.get('dateEnvoi'))
             delivery_date = common.parse_date(obj.get('dateLivraison'), False)
+            
+            # CORRECTION: Filtrer les dates invalides (année 0001)
+            if sent_date and sent_date.year == 1:
+                sent_date = None
+            if delivery_date and delivery_date.year == 1:
+                delivery_date = None
 
             products = []
             for line in obj.get('lignes', []):
@@ -333,31 +344,81 @@ def process_order(pharmacy, data):
     # Map InternalProduct instances by their internal_id for easy access
     internal_products_map = {str(product.internal_id): product for product in products}
 
-    # Prepare order data for bulk processing
-    order_data = [
-        {
+    # CORRECTION: Prepare order data avec logique correcte
+    order_data = []
+    
+    for obj in preprocessed_data:
+        if obj['supplier_id'] not in suppliers_map:
+            continue
+            
+        # Logique pour sent_date : sent_date original, sinon delivery_date, sinon None
+        final_sent_date = obj['sent_date']
+        if not final_sent_date:  # Si sent_date est None/invalide
+            final_sent_date = obj['delivery_date']  # Utilise delivery_date
+        
+        # Logique pour created_at : même logique que sent_date, avec fallback sur today()
+        created_at_value = obj['sent_date']
+        if not created_at_value:  # Si sent_date est None/invalide
+            created_at_value = obj['delivery_date']
+        if not created_at_value:  # Si delivery_date est aussi None/invalide
+            created_at_value = date.today()
+        
+        order_data.append({
             'internal_id': obj['order_id'],
             'pharmacy_id': pharmacy.id,
             'supplier_id': suppliers_map[obj['supplier_id']].id,
-            'step': obj['step'],  # Now contains channel value
-            'sent_date': obj['sent_date'],
-            'delivery_date': obj['delivery_date'],
-            'created_at': obj['sent_date'] or obj['delivery_date'] or date.today(),
-        }
-        for obj in preprocessed_data if obj['supplier_id'] in suppliers_map
-    ]
+            'step': obj['step'],
+            'sent_date': final_sent_date,      # sent_date → delivery_date → None
+            'delivery_date': obj['delivery_date'],  # Valeur originale
+            'created_at': created_at_value,    # sent_date → delivery_date → today()
+        })
 
-    # Create or update orders
-    try:
-        orders = common.bulk_process(
-            model=Order,
-            data=order_data,
-            unique_fields=['internal_id', 'pharmacy_id'],
-            update_fields=['supplier_id', 'step', 'sent_date', 'delivery_date']
-        )
-    except Exception as e:
-        logger.error(f"Error processing orders: {e}")
-        raise
+    # LOGS DE DEBUG pour vérifier les dates
+    from collections import defaultdict
+    months_count = defaultdict(int)
+    for order in order_data:
+        if order['sent_date']:
+            month_key = order['sent_date'].strftime('%Y-%m')
+            months_count[month_key] += 1
+        elif order['delivery_date']:
+            month_key = order['delivery_date'].strftime('%Y-%m')  
+            months_count[month_key] += 1
+    
+    logger.info(f"Répartition des commandes par mois:")
+    for month, count in sorted(months_count.items()):
+        logger.info(f"   {month}: {count} commandes")
+
+    # 🔧 NOUVELLE SECTION: Create or update orders - VERSION QUI IGNORE LES DOUBLONS
+    order_objects = []
+    skipped_duplicates = 0
+    existing_order_ids = set(Order.objects.filter(pharmacy_id=pharmacy.id).values_list('internal_id', flat=True))
+
+    filtered_order_data = []
+    for order in order_data:
+        order_id = order['internal_id']
+        if order_id not in existing_order_ids:
+            filtered_order_data.append(order)
+            existing_order_ids.add(order_id)  # Éviter les doublons dans le même batch
+        else:
+            skipped_duplicates += 1
+
+    logger.info(f"Commandes ignorées (doublons): {skipped_duplicates}")
+    logger.info(f"Nouvelles commandes à traiter: {len(filtered_order_data)}")
+
+    if filtered_order_data:
+        try:
+            orders = common.bulk_process(
+                model=Order,
+                data=filtered_order_data,
+                unique_fields=['internal_id', 'pharmacy_id'],
+                update_fields=['supplier_id', 'step', 'sent_date', 'delivery_date', 'created_at']
+            )
+        except Exception as e:
+            logger.error(f"Error processing orders: {e}")
+            raise
+    else:
+        # Récupérer les commandes existantes si aucune nouvelle
+        orders = list(Order.objects.filter(pharmacy_id=pharmacy.id))
 
     # Map Order instances by their internal_id for easy access
     order_map = {order.internal_id: order for order in orders}
@@ -406,7 +467,6 @@ def process_order(pharmacy, data):
         "orders": orders,
         "product_orders": product_order_data,
     }
-
 
 def process_sales(pharmacy, data):
     """

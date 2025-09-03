@@ -1,0 +1,669 @@
+2025-09-03 16:08:44,092 - INFO - ==========================================================================================
+2025-09-03 16:08:44,092 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:08:44,092 - INFO - ==========================================================================================
+2025-09-03 16:08:44,092 - INFO - 🔧 Configuration:
+2025-09-03 16:08:44,092 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:08:44,092 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:08:44,092 - INFO -    ID National: 832002810
+2025-09-03 16:08:44,092 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:08:44,092 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:08:44,092 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:08:44,098 - ERROR - ❌ Serveur Django inaccessible
+2025-09-03 16:08:44,098 - ERROR -    Vérifiez que le serveur tourne sur http://127.0.0.1:8000
+2025-09-03 16:08:44,098 - ERROR - 💥 ARRÊT: Serveur inaccessible
+2025-09-03 16:10:35,297 - INFO - ==========================================================================================
+2025-09-03 16:10:35,298 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:10:35,298 - INFO - ==========================================================================================
+2025-09-03 16:10:35,298 - INFO - 🔧 Configuration:
+2025-09-03 16:10:35,298 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:10:35,298 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:10:35,299 - INFO -    ID National: 832002810
+2025-09-03 16:10:35,299 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:10:35,299 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:10:35,299 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:10:35,338 - INFO - ✅ Serveur Django accessible
+2025-09-03 16:10:38,641 - INFO - 🚀 Début du traitement...
+2025-09-03 16:10:38,642 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 16:10:38,642 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 16:10:40,316 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 16:10:40,317 - INFO - 🔢 ID National: 832002810
+2025-09-03 16:10:40,317 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 16:10:40,317 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 16:10:40,317 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 16:10:40,317 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 16:11:12,138 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 16:11:12,138 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 16:11:12,138 - INFO - 🏥 Pharmacie:
+2025-09-03 16:11:12,138 - INFO -    Status: created
+2025-09-03 16:11:12,138 - INFO - 📦 Produits:
+2025-09-03 16:11:12,138 - INFO -    Status: success
+2025-09-03 16:11:12,138 - INFO - 💰 Ventes:
+2025-09-03 16:11:12,138 - INFO -    Status: success
+2025-09-03 16:11:12,138 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 16:11:12,138 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 16:11:12,139 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 16:11:12,139 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 16:11:12,571 - INFO - 📊 Status Code: 500
+2025-09-03 16:11:12,571 - ERROR - ❌ Erreur achats - Status: 500
+2025-09-03 16:11:12,571 - ERROR -    Response: {"error":"Erreur lors de la récupération des achats depuis l'API"}
+2025-09-03 16:11:12,572 - ERROR - ❌ Échec traitement achats
+2025-09-03 16:11:12,572 - INFO - 
+==========================================================================================
+2025-09-03 16:11:12,572 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 16:11:12,572 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 16:11:12,572 - INFO -    Pharmacie: created
+2025-09-03 16:11:12,573 - INFO -    Produits: success
+2025-09-03 16:11:12,573 - INFO -    Ventes: success
+2025-09-03 16:11:12,573 - INFO -    Achats: error
+2025-09-03 16:11:12,573 - INFO -    Status global: partial_success
+2025-09-03 16:11:12,573 - INFO -    📊 Statistiques détaillées:
+2025-09-03 16:11:12,573 - INFO -       Produits traités: 16010
+2025-09-03 16:11:12,573 - INFO -       Snapshots créés: 16010
+2025-09-03 16:11:12,573 - INFO -       Ventes traitées: 0
+2025-09-03 16:11:12,573 - INFO -       TVA mises à jour: 0
+2025-09-03 16:11:12,573 - INFO - ==========================================================================================
+2025-09-03 16:13:33,825 - INFO - ==========================================================================================
+2025-09-03 16:13:33,825 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:13:33,825 - INFO - ==========================================================================================
+2025-09-03 16:13:33,825 - INFO - 🔧 Configuration:
+2025-09-03 16:13:33,825 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:13:33,825 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:13:33,825 - INFO -    ID National: 832002810
+2025-09-03 16:13:33,825 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:13:33,825 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:13:33,826 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:13:33,880 - INFO - ✅ Serveur Django accessible
+2025-09-03 16:13:36,754 - INFO - 🚀 Début du traitement...
+2025-09-03 16:13:36,754 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 16:13:36,754 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 16:13:38,365 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 16:13:38,366 - INFO - 🔢 ID National: 832002810
+2025-09-03 16:13:38,366 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 16:13:38,366 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 16:13:38,366 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 16:13:38,366 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 16:14:06,788 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 16:14:06,788 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 16:14:06,788 - INFO - 🏥 Pharmacie:
+2025-09-03 16:14:06,788 - INFO -    Status: created
+2025-09-03 16:14:06,788 - INFO - 📦 Produits:
+2025-09-03 16:14:06,788 - INFO -    Status: success
+2025-09-03 16:14:06,789 - INFO - 💰 Ventes:
+2025-09-03 16:14:06,789 - INFO -    Status: success
+2025-09-03 16:14:06,789 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 16:14:06,789 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 16:14:06,789 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 16:14:06,789 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 16:14:18,629 - INFO - 📊 Status Code: 200
+2025-09-03 16:14:18,630 - INFO - ✅ Achats OK!
+2025-09-03 16:14:18,630 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 16:14:18,630 - INFO -    Stats: {'suppliers_processed': 0, 'products_processed': 0, 'orders_processed': 0, 'product_orders_processed': 0, 'raw_data_size': 10504816}
+2025-09-03 16:14:18,630 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 16:14:18,630 - INFO - 
+==========================================================================================
+2025-09-03 16:14:18,630 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 16:14:18,630 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 16:14:18,630 - INFO -    Pharmacie: created
+2025-09-03 16:14:18,630 - INFO -    Produits: success
+2025-09-03 16:14:18,630 - INFO -    Ventes: success
+2025-09-03 16:14:18,630 - INFO -    Achats: success
+2025-09-03 16:14:18,630 - INFO -    Status global: success
+2025-09-03 16:14:18,630 - INFO -    📊 Statistiques détaillées:
+2025-09-03 16:14:18,630 - INFO -       Produits traités: 16010
+2025-09-03 16:14:18,630 - INFO -       Snapshots créés: 16010
+2025-09-03 16:14:18,630 - INFO -       Ventes traitées: 0
+2025-09-03 16:14:18,630 - INFO -       TVA mises à jour: 0
+2025-09-03 16:14:18,630 - INFO -       Fournisseurs traités: 0
+2025-09-03 16:14:18,630 - INFO -       Commandes traitées: 0
+2025-09-03 16:14:18,630 - INFO - ==========================================================================================
+2025-09-03 16:16:42,435 - INFO - ==========================================================================================
+2025-09-03 16:16:42,436 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:16:42,436 - INFO - ==========================================================================================
+2025-09-03 16:16:42,436 - INFO - 🔧 Configuration:
+2025-09-03 16:16:42,436 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:16:42,436 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:16:42,436 - INFO -    ID National: 832002810
+2025-09-03 16:16:42,436 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:16:42,436 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:16:42,436 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:16:42,475 - INFO - ✅ Serveur Django accessible
+2025-09-03 16:16:44,592 - INFO - 🚀 Début du traitement...
+2025-09-03 16:16:44,593 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 16:16:44,593 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 16:16:46,007 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 16:16:46,008 - INFO - 🔢 ID National: 832002810
+2025-09-03 16:16:46,008 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 16:16:46,008 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 16:16:46,008 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 16:16:46,008 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 16:17:14,642 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 16:17:14,643 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 16:17:14,643 - INFO - 🏥 Pharmacie:
+2025-09-03 16:17:14,643 - INFO -    Status: created
+2025-09-03 16:17:14,643 - INFO - 📦 Produits:
+2025-09-03 16:17:14,643 - INFO -    Status: success
+2025-09-03 16:17:14,643 - INFO - 💰 Ventes:
+2025-09-03 16:17:14,643 - INFO -    Status: success
+2025-09-03 16:17:14,643 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 16:17:14,643 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 16:17:14,643 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 16:17:14,643 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 16:17:26,124 - INFO - 📊 Status Code: 200
+2025-09-03 16:17:26,125 - INFO - ✅ Achats OK!
+2025-09-03 16:17:26,125 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 16:17:26,125 - INFO -    Stats: {'suppliers_processed': 0, 'products_processed': 0, 'orders_processed': 0, 'product_orders_processed': 0, 'raw_data_size': 10504816}
+2025-09-03 16:17:26,125 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 16:17:26,125 - INFO - 
+==========================================================================================
+2025-09-03 16:17:26,125 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 16:17:26,125 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 16:17:26,125 - INFO -    Pharmacie: created
+2025-09-03 16:17:26,125 - INFO -    Produits: success
+2025-09-03 16:17:26,125 - INFO -    Ventes: success
+2025-09-03 16:17:26,125 - INFO -    Achats: success
+2025-09-03 16:17:26,125 - INFO -    Status global: success
+2025-09-03 16:17:26,125 - INFO -    📊 Statistiques détaillées:
+2025-09-03 16:17:26,125 - INFO -       Produits traités: 16010
+2025-09-03 16:17:26,125 - INFO -       Snapshots créés: 16010
+2025-09-03 16:17:26,125 - INFO -       Ventes traitées: 0
+2025-09-03 16:17:26,125 - INFO -       TVA mises à jour: 0
+2025-09-03 16:17:26,125 - INFO -       Fournisseurs traités: 0
+2025-09-03 16:17:26,125 - INFO -       Commandes traitées: 0
+2025-09-03 16:17:26,125 - INFO - ==========================================================================================
+2025-09-03 16:19:27,051 - INFO - ==========================================================================================
+2025-09-03 16:19:27,051 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:19:27,051 - INFO - ==========================================================================================
+2025-09-03 16:19:27,051 - INFO - 🔧 Configuration:
+2025-09-03 16:19:27,051 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:19:27,051 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:19:27,051 - INFO -    ID National: 832002810
+2025-09-03 16:19:27,051 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:19:27,051 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:19:27,052 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:19:27,090 - INFO - ✅ Serveur Django accessible
+2025-09-03 16:19:41,133 - INFO - 🚀 Début du traitement...
+2025-09-03 16:19:41,135 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 16:19:41,135 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 16:19:42,410 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 16:19:42,410 - INFO - 🔢 ID National: 832002810
+2025-09-03 16:19:42,410 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 16:19:42,410 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 16:19:42,410 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 16:19:42,410 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 16:20:10,245 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 16:20:10,245 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 16:20:10,245 - INFO - 🏥 Pharmacie:
+2025-09-03 16:20:10,245 - INFO -    Status: created
+2025-09-03 16:20:10,245 - INFO - 📦 Produits:
+2025-09-03 16:20:10,245 - INFO -    Status: success
+2025-09-03 16:20:10,245 - INFO - 💰 Ventes:
+2025-09-03 16:20:10,245 - INFO -    Status: success
+2025-09-03 16:20:10,245 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 16:20:10,245 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 16:20:10,245 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 16:20:10,245 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 16:20:24,092 - INFO - 📊 Status Code: 200
+2025-09-03 16:20:24,093 - INFO - ✅ Achats OK!
+2025-09-03 16:20:24,093 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 16:20:24,093 - INFO -    Stats: {'suppliers_processed': 272, 'products_processed': 20975, 'orders_processed': 1000, 'product_orders_processed': 746, 'raw_data_size': 10504816}
+2025-09-03 16:20:24,093 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 16:20:24,093 - INFO - 
+==========================================================================================
+2025-09-03 16:20:24,093 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 16:20:24,093 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 16:20:24,093 - INFO -    Pharmacie: created
+2025-09-03 16:20:24,093 - INFO -    Produits: success
+2025-09-03 16:20:24,093 - INFO -    Ventes: success
+2025-09-03 16:20:24,093 - INFO -    Achats: success
+2025-09-03 16:20:24,093 - INFO -    Status global: success
+2025-09-03 16:20:24,093 - INFO -    📊 Statistiques détaillées:
+2025-09-03 16:20:24,093 - INFO -       Produits traités: 16010
+2025-09-03 16:20:24,094 - INFO -       Snapshots créés: 16010
+2025-09-03 16:20:24,094 - INFO -       Ventes traitées: 0
+2025-09-03 16:20:24,094 - INFO -       TVA mises à jour: 0
+2025-09-03 16:20:24,094 - INFO -       Fournisseurs traités: 272
+2025-09-03 16:20:24,094 - INFO -       Commandes traitées: 1000
+2025-09-03 16:20:24,094 - INFO - ==========================================================================================
+2025-09-03 16:28:23,840 - INFO - ==========================================================================================
+2025-09-03 16:28:23,840 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:28:23,840 - INFO - ==========================================================================================
+2025-09-03 16:28:23,840 - INFO - 🔧 Configuration:
+2025-09-03 16:28:23,840 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:28:23,840 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:28:23,840 - INFO -    ID National: 832002810
+2025-09-03 16:28:23,840 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:28:23,840 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:28:23,840 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:28:23,881 - INFO - ✅ Serveur Django accessible
+2025-09-03 16:28:25,428 - INFO - 🚀 Début du traitement...
+2025-09-03 16:28:25,429 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 16:28:25,429 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 16:28:26,725 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 16:28:26,725 - INFO - 🔢 ID National: 832002810
+2025-09-03 16:28:26,725 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 16:28:26,725 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 16:28:26,725 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 16:28:26,725 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 16:28:56,371 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 16:28:56,372 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 16:28:56,372 - INFO - 🏥 Pharmacie:
+2025-09-03 16:28:56,372 - INFO -    Status: created
+2025-09-03 16:28:56,372 - INFO - 📦 Produits:
+2025-09-03 16:28:56,372 - INFO -    Status: success
+2025-09-03 16:28:56,372 - INFO - 💰 Ventes:
+2025-09-03 16:28:56,372 - INFO -    Status: success
+2025-09-03 16:28:56,372 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 16:28:56,372 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 16:28:56,372 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 16:28:56,372 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 16:29:12,770 - INFO - 📊 Status Code: 200
+2025-09-03 16:29:12,770 - INFO - ✅ Achats OK!
+2025-09-03 16:29:12,770 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 16:29:12,771 - INFO -    Stats: {'suppliers_processed': 206, 'products_processed': 10093, 'orders_processed': 738, 'product_orders_processed': 9692, 'raw_data_size': 10504816}
+2025-09-03 16:29:12,771 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 16:29:12,771 - INFO - 
+==========================================================================================
+2025-09-03 16:29:12,771 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 16:29:12,771 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 16:29:12,771 - INFO -    Pharmacie: created
+2025-09-03 16:29:12,771 - INFO -    Produits: success
+2025-09-03 16:29:12,771 - INFO -    Ventes: success
+2025-09-03 16:29:12,771 - INFO -    Achats: success
+2025-09-03 16:29:12,771 - INFO -    Status global: success
+2025-09-03 16:29:12,771 - INFO -    📊 Statistiques détaillées:
+2025-09-03 16:29:12,771 - INFO -       Produits traités: 16010
+2025-09-03 16:29:12,771 - INFO -       Snapshots créés: 16010
+2025-09-03 16:29:12,771 - INFO -       Ventes traitées: 0
+2025-09-03 16:29:12,771 - INFO -       TVA mises à jour: 0
+2025-09-03 16:29:12,771 - INFO -       Fournisseurs traités: 206
+2025-09-03 16:29:12,771 - INFO -       Commandes traitées: 738
+2025-09-03 16:29:12,771 - INFO - ==========================================================================================
+2025-09-03 16:48:49,743 - INFO - ==========================================================================================
+2025-09-03 16:48:49,743 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:48:49,743 - INFO - ==========================================================================================
+2025-09-03 16:48:49,743 - INFO - 🔧 Configuration:
+2025-09-03 16:48:49,743 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:48:49,743 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:48:49,743 - INFO -    ID National: 832002810
+2025-09-03 16:48:49,743 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:48:49,743 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:48:49,743 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:48:49,783 - INFO - ✅ Serveur Django accessible
+2025-09-03 16:48:51,521 - INFO - 🚀 Début du traitement...
+2025-09-03 16:48:51,522 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 16:48:51,522 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 16:48:52,775 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 16:48:52,776 - INFO - 🔢 ID National: 832002810
+2025-09-03 16:48:52,776 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 16:48:52,776 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 16:48:52,776 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 16:48:52,776 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 16:49:27,125 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 16:49:27,126 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 16:49:27,126 - INFO - 🏥 Pharmacie:
+2025-09-03 16:49:27,126 - INFO -    Status: created
+2025-09-03 16:49:27,126 - INFO - 📦 Produits:
+2025-09-03 16:49:27,126 - INFO -    Status: success
+2025-09-03 16:49:27,126 - INFO - 💰 Ventes:
+2025-09-03 16:49:27,126 - INFO -    Status: success
+2025-09-03 16:49:27,126 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 16:49:27,126 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 16:49:27,126 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 16:49:27,126 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 16:49:44,652 - INFO - 📊 Status Code: 200
+2025-09-03 16:49:44,653 - INFO - ✅ Achats OK!
+2025-09-03 16:49:44,653 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 16:49:44,653 - INFO -    Stats: {'suppliers_processed': 206, 'products_processed': 10093, 'orders_processed': 738, 'product_orders_processed': 9692, 'raw_data_size': 10504816}
+2025-09-03 16:49:44,653 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 16:49:44,653 - INFO - 
+==========================================================================================
+2025-09-03 16:49:44,653 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 16:49:44,653 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 16:49:44,653 - INFO -    Pharmacie: created
+2025-09-03 16:49:44,653 - INFO -    Produits: success
+2025-09-03 16:49:44,653 - INFO -    Ventes: success
+2025-09-03 16:49:44,653 - INFO -    Achats: success
+2025-09-03 16:49:44,653 - INFO -    Status global: success
+2025-09-03 16:49:44,653 - INFO -    📊 Statistiques détaillées:
+2025-09-03 16:49:44,653 - INFO -       Produits traités: 16010
+2025-09-03 16:49:44,653 - INFO -       Snapshots créés: 16010
+2025-09-03 16:49:44,653 - INFO -       Ventes traitées: 0
+2025-09-03 16:49:44,653 - INFO -       TVA mises à jour: 0
+2025-09-03 16:49:44,653 - INFO -       Fournisseurs traités: 206
+2025-09-03 16:49:44,653 - INFO -       Commandes traitées: 738
+2025-09-03 16:49:44,653 - INFO - ==========================================================================================
+2025-09-03 16:53:55,404 - INFO - ==========================================================================================
+2025-09-03 16:53:55,405 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 16:53:55,405 - INFO - ==========================================================================================
+2025-09-03 16:53:55,405 - INFO - 🔧 Configuration:
+2025-09-03 16:53:55,405 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 16:53:55,405 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 16:53:55,405 - INFO -    ID National: 832002810
+2025-09-03 16:53:55,405 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 16:53:55,405 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 16:53:55,405 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 16:53:55,450 - INFO - ✅ Serveur Django accessible
+2025-09-03 16:53:57,587 - INFO - 🚀 Début du traitement...
+2025-09-03 16:53:57,587 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 16:53:57,587 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 16:53:59,348 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 16:53:59,348 - INFO - 🔢 ID National: 832002810
+2025-09-03 16:53:59,348 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 16:53:59,348 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 16:53:59,348 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 16:53:59,348 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 16:54:35,082 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 16:54:35,083 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 16:54:35,083 - INFO - 🏥 Pharmacie:
+2025-09-03 16:54:35,083 - INFO -    Status: created
+2025-09-03 16:54:35,083 - INFO - 📦 Produits:
+2025-09-03 16:54:35,083 - INFO -    Status: success
+2025-09-03 16:54:35,083 - INFO - 💰 Ventes:
+2025-09-03 16:54:35,083 - INFO -    Status: success
+2025-09-03 16:54:35,083 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 16:54:35,083 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 16:54:35,083 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 16:54:35,083 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 16:54:49,396 - INFO - 📊 Status Code: 200
+2025-09-03 16:54:49,396 - INFO - ✅ Achats OK!
+2025-09-03 16:54:49,396 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 16:54:49,397 - INFO -    Stats: {'suppliers_processed': 206, 'products_processed': 10093, 'orders_processed': 738, 'product_orders_processed': 9692, 'raw_data_size': 10504816}
+2025-09-03 16:54:49,397 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 16:54:49,397 - INFO - 
+==========================================================================================
+2025-09-03 16:54:49,397 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 16:54:49,397 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 16:54:49,397 - INFO -    Pharmacie: created
+2025-09-03 16:54:49,397 - INFO -    Produits: success
+2025-09-03 16:54:49,397 - INFO -    Ventes: success
+2025-09-03 16:54:49,397 - INFO -    Achats: success
+2025-09-03 16:54:49,397 - INFO -    Status global: success
+2025-09-03 16:54:49,397 - INFO -    📊 Statistiques détaillées:
+2025-09-03 16:54:49,397 - INFO -       Produits traités: 16010
+2025-09-03 16:54:49,397 - INFO -       Snapshots créés: 16010
+2025-09-03 16:54:49,397 - INFO -       Ventes traitées: 0
+2025-09-03 16:54:49,397 - INFO -       TVA mises à jour: 0
+2025-09-03 16:54:49,397 - INFO -       Fournisseurs traités: 206
+2025-09-03 16:54:49,397 - INFO -       Commandes traitées: 738
+2025-09-03 16:54:49,397 - INFO - ==========================================================================================
+2025-09-03 17:01:14,882 - INFO - ==========================================================================================
+2025-09-03 17:01:14,883 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 17:01:14,883 - INFO - ==========================================================================================
+2025-09-03 17:01:14,883 - INFO - 🔧 Configuration:
+2025-09-03 17:01:14,883 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 17:01:14,883 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 17:01:14,883 - INFO -    ID National: 832002810
+2025-09-03 17:01:14,883 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 17:01:14,883 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 17:01:14,883 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 17:01:14,929 - INFO - ✅ Serveur Django accessible
+2025-09-03 17:01:16,847 - INFO - 🚀 Début du traitement...
+2025-09-03 17:01:16,847 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 17:01:16,847 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:01:18,124 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 17:01:18,124 - INFO - 🔢 ID National: 832002810
+2025-09-03 17:01:18,124 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 17:01:18,124 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 17:01:18,124 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 17:01:18,124 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:02:00,703 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 17:02:00,703 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 17:02:00,703 - INFO - 🏥 Pharmacie:
+2025-09-03 17:02:00,703 - INFO -    Status: created
+2025-09-03 17:02:00,703 - INFO - 📦 Produits:
+2025-09-03 17:02:00,703 - INFO -    Status: success
+2025-09-03 17:02:00,704 - INFO - 💰 Ventes:
+2025-09-03 17:02:00,704 - INFO -    Status: success
+2025-09-03 17:02:00,704 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 17:02:00,704 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 17:02:00,704 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 17:02:00,704 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 17:06:31,455 - INFO - ==========================================================================================
+2025-09-03 17:06:31,455 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 17:06:31,455 - INFO - ==========================================================================================
+2025-09-03 17:06:31,455 - INFO - 🔧 Configuration:
+2025-09-03 17:06:31,455 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 17:06:31,455 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 17:06:31,455 - INFO -    ID National: 832002810
+2025-09-03 17:06:31,455 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 17:06:31,455 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 17:06:31,455 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 17:06:31,509 - INFO - ✅ Serveur Django accessible
+2025-09-03 17:06:33,313 - INFO - 🚀 Début du traitement...
+2025-09-03 17:06:33,313 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 17:06:33,313 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:06:35,239 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 17:06:35,240 - INFO - 🔢 ID National: 832002810
+2025-09-03 17:06:35,240 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 17:06:35,240 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 17:06:35,240 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 17:06:35,240 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:07:13,766 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 17:07:13,766 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 17:07:13,766 - INFO - 🏥 Pharmacie:
+2025-09-03 17:07:13,766 - INFO -    Status: created
+2025-09-03 17:07:13,766 - INFO - 📦 Produits:
+2025-09-03 17:07:13,766 - INFO -    Status: success
+2025-09-03 17:07:13,766 - INFO - 💰 Ventes:
+2025-09-03 17:07:13,766 - INFO -    Status: success
+2025-09-03 17:07:13,766 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 17:07:13,766 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 17:07:13,766 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 17:07:13,766 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 17:07:29,874 - INFO - 📊 Status Code: 200
+2025-09-03 17:07:29,874 - INFO - ✅ Achats OK!
+2025-09-03 17:07:29,874 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 17:07:29,875 - INFO -    Stats: {'suppliers_processed': 206, 'products_processed': 10093, 'orders_processed': 738, 'product_orders_processed': 9692, 'raw_data_size': 10504816}
+2025-09-03 17:07:29,875 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 17:07:29,875 - INFO - 
+==========================================================================================
+2025-09-03 17:07:29,875 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 17:07:29,875 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 17:07:29,875 - INFO -    Pharmacie: created
+2025-09-03 17:07:29,875 - INFO -    Produits: success
+2025-09-03 17:07:29,875 - INFO -    Ventes: success
+2025-09-03 17:07:29,875 - INFO -    Achats: success
+2025-09-03 17:07:29,876 - INFO -    Status global: success
+2025-09-03 17:07:29,876 - INFO -    📊 Statistiques détaillées:
+2025-09-03 17:07:29,876 - INFO -       Produits traités: 16010
+2025-09-03 17:07:29,876 - INFO -       Snapshots créés: 16010
+2025-09-03 17:07:29,876 - INFO -       Ventes traitées: 0
+2025-09-03 17:07:29,876 - INFO -       TVA mises à jour: 0
+2025-09-03 17:07:29,876 - INFO -       Fournisseurs traités: 206
+2025-09-03 17:07:29,876 - INFO -       Commandes traitées: 738
+2025-09-03 17:07:29,876 - INFO - ==========================================================================================
+2025-09-03 17:09:58,304 - INFO - ==========================================================================================
+2025-09-03 17:09:58,305 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 17:09:58,305 - INFO - ==========================================================================================
+2025-09-03 17:09:58,305 - INFO - 🔧 Configuration:
+2025-09-03 17:09:58,305 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 17:09:58,305 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 17:09:58,305 - INFO -    ID National: 832002810
+2025-09-03 17:09:58,305 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 17:09:58,305 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 17:09:58,305 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 17:09:58,312 - ERROR - ❌ Serveur Django inaccessible
+2025-09-03 17:09:58,313 - ERROR -    Vérifiez que le serveur tourne sur http://127.0.0.1:8000
+2025-09-03 17:09:58,313 - ERROR - 💥 ARRÊT: Serveur inaccessible
+2025-09-03 17:11:38,152 - INFO - ==========================================================================================
+2025-09-03 17:11:38,152 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 17:11:38,152 - INFO - ==========================================================================================
+2025-09-03 17:11:38,152 - INFO - 🔧 Configuration:
+2025-09-03 17:11:38,152 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 17:11:38,152 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 17:11:38,152 - INFO -    ID National: 832002810
+2025-09-03 17:11:38,152 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 17:11:38,152 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 17:11:38,152 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 17:11:38,190 - INFO - ✅ Serveur Django accessible
+2025-09-03 17:11:40,043 - INFO - 🚀 Début du traitement...
+2025-09-03 17:11:40,044 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 17:11:40,044 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:11:43,373 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 17:11:43,373 - INFO - 🔢 ID National: 832002810
+2025-09-03 17:11:43,373 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 17:11:43,373 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 17:11:43,373 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 17:11:43,373 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:12:21,198 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 17:12:21,198 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 17:12:21,198 - INFO - 🏥 Pharmacie:
+2025-09-03 17:12:21,198 - INFO -    Status: created
+2025-09-03 17:12:21,198 - INFO - 📦 Produits:
+2025-09-03 17:12:21,198 - INFO -    Status: success
+2025-09-03 17:12:21,198 - INFO - 💰 Ventes:
+2025-09-03 17:12:21,198 - INFO -    Status: success
+2025-09-03 17:12:21,198 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 17:12:21,199 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 17:12:21,199 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 17:12:21,199 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 17:12:39,722 - INFO - 📊 Status Code: 200
+2025-09-03 17:12:39,723 - INFO - ✅ Achats OK!
+2025-09-03 17:12:39,723 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 17:12:39,723 - INFO -    Stats: {'suppliers_processed': 206, 'products_processed': 10093, 'orders_processed': 738, 'product_orders_processed': 9692, 'raw_data_size': 10504816}
+2025-09-03 17:12:39,723 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 17:12:39,724 - INFO - 
+==========================================================================================
+2025-09-03 17:12:39,724 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 17:12:39,724 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 17:12:39,724 - INFO -    Pharmacie: created
+2025-09-03 17:12:39,724 - INFO -    Produits: success
+2025-09-03 17:12:39,724 - INFO -    Ventes: success
+2025-09-03 17:12:39,724 - INFO -    Achats: success
+2025-09-03 17:12:39,724 - INFO -    Status global: success
+2025-09-03 17:12:39,724 - INFO -    📊 Statistiques détaillées:
+2025-09-03 17:12:39,724 - INFO -       Produits traités: 16010
+2025-09-03 17:12:39,725 - INFO -       Snapshots créés: 16010
+2025-09-03 17:12:39,725 - INFO -       Ventes traitées: 0
+2025-09-03 17:12:39,725 - INFO -       TVA mises à jour: 0
+2025-09-03 17:12:39,725 - INFO -       Fournisseurs traités: 206
+2025-09-03 17:12:39,725 - INFO -       Commandes traitées: 738
+2025-09-03 17:12:39,725 - INFO - ==========================================================================================
+2025-09-03 17:19:06,852 - INFO - ==========================================================================================
+2025-09-03 17:19:06,853 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 17:19:06,853 - INFO - ==========================================================================================
+2025-09-03 17:19:06,853 - INFO - 🔧 Configuration:
+2025-09-03 17:19:06,853 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 17:19:06,853 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 17:19:06,853 - INFO -    ID National: 832002810
+2025-09-03 17:19:06,853 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 17:19:06,853 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 17:19:06,853 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 17:19:06,902 - INFO - ✅ Serveur Django accessible
+2025-09-03 17:19:25,508 - INFO - ==========================================================================================
+2025-09-03 17:19:25,508 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 17:19:25,509 - INFO - ==========================================================================================
+2025-09-03 17:19:25,509 - INFO - 🔧 Configuration:
+2025-09-03 17:19:25,509 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 17:19:25,509 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 17:19:25,509 - INFO -    ID National: 832002810
+2025-09-03 17:19:25,509 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 17:19:25,509 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 17:19:25,509 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 17:19:25,530 - INFO - ✅ Serveur Django accessible
+2025-09-03 17:19:27,585 - INFO - 🚀 Début du traitement...
+2025-09-03 17:19:27,586 - INFO - 🎯 Option 6: TRAITEMENT ULTRA COMPLET (pharmacie + produits + ventes + achats)
+2025-09-03 17:19:27,586 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:19:29,045 - INFO - 🚀 Traitement ULTRA COMPLET: Pharmacie Mouysset V2
+2025-09-03 17:19:29,046 - INFO - 🔢 ID National: 832002810
+2025-09-03 17:19:29,046 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 17:19:29,046 - INFO - 🛒 Achats: 2025-04-01 -> 2025-08-31
+2025-09-03 17:19:29,046 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 17:19:29,046 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:20:04,932 - INFO - 📊 Status Code pharmacie+produits+ventes: 200
+2025-09-03 17:20:04,932 - INFO - ✅ Traitement pharmacie + produits + ventes terminé!
+2025-09-03 17:20:04,933 - INFO - 🏥 Pharmacie:
+2025-09-03 17:20:04,933 - INFO -    Status: created
+2025-09-03 17:20:04,933 - INFO - 📦 Produits:
+2025-09-03 17:20:04,933 - INFO -    Status: success
+2025-09-03 17:20:04,933 - INFO - 💰 Ventes:
+2025-09-03 17:20:04,933 - INFO -    Status: success
+2025-09-03 17:20:04,933 - INFO - 🛒 Démarrage récupération des achats...
+2025-09-03 17:20:04,933 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 17:20:04,933 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 17:20:04,933 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 17:20:19,760 - INFO - 📊 Status Code: 200
+2025-09-03 17:20:19,762 - INFO - ✅ Achats OK!
+2025-09-03 17:20:19,762 - INFO -    Message: Achats traités avec succès pour Pharmacie Mouysset V2
+2025-09-03 17:20:19,763 - INFO -    Stats: {'suppliers_processed': 206, 'products_processed': 10093, 'orders_processed': 738, 'product_orders_processed': 9692, 'raw_data_size': 10504816}
+2025-09-03 17:20:19,763 - INFO - ✅ Achats terminés avec succès!
+2025-09-03 17:20:19,763 - INFO - 
+==========================================================================================
+2025-09-03 17:20:19,763 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 17:20:19,763 - INFO - 📄 RÉSUMÉ FINAL ULTRA COMPLET:
+2025-09-03 17:20:19,763 - INFO -    Pharmacie: created
+2025-09-03 17:20:19,763 - INFO -    Produits: success
+2025-09-03 17:20:19,763 - INFO -    Ventes: success
+2025-09-03 17:20:19,763 - INFO -    Achats: success
+2025-09-03 17:20:19,763 - INFO -    Status global: success
+2025-09-03 17:20:19,763 - INFO -    📊 Statistiques détaillées:
+2025-09-03 17:20:19,763 - INFO -       Produits traités: 16010
+2025-09-03 17:20:19,763 - INFO -       Snapshots créés: 16010
+2025-09-03 17:20:19,763 - INFO -       Ventes traitées: 0
+2025-09-03 17:20:19,763 - INFO -       TVA mises à jour: 0
+2025-09-03 17:20:19,763 - INFO -       Fournisseurs traités: 206
+2025-09-03 17:20:19,763 - INFO -       Commandes traitées: 738
+2025-09-03 17:20:19,763 - INFO - ==========================================================================================
+2025-09-03 17:22:06,510 - INFO - ==========================================================================================
+2025-09-03 17:22:06,510 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - COMPLET (PRODUITS + VENTES + ACHATS)
+2025-09-03 17:22:06,510 - INFO - ==========================================================================================
+2025-09-03 17:22:06,510 - INFO - 🔧 Configuration:
+2025-09-03 17:22:06,510 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 17:22:06,510 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 17:22:06,510 - INFO -    ID National: 832002810
+2025-09-03 17:22:06,510 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 17:22:06,510 - INFO -    Achats avril-août: 2025-04-01 -> 2025-08-31
+2025-09-03 17:22:06,510 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 17:22:06,533 - INFO - ✅ Serveur Django accessible
+2025-09-03 17:22:23,590 - INFO - 🚀 Début du traitement...
+2025-09-03 17:22:23,592 - INFO - 🎯 Option 4: Récupération achats avril-août uniquement
+2025-09-03 17:22:23,592 - WARNING - ⚠️ Requires existing pharmacy!
+2025-09-03 17:22:23,592 - INFO - 🛒 Récupération des achats pour: 832002810
+2025-09-03 17:22:23,592 - INFO - 📅 Période: 2025-04-01 -> 2025-08-31
+2025-09-03 17:22:23,592 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/orders/fetch
+2025-09-03 17:25:25,601 - WARNING - ⚠️ Requires existing pharmacy!
+2025-09-03 17:29:23,751 - WARNING - ⚠️ Requires existing pharmacy!
+2025-09-03 17:31:04,150 - ERROR - ❌ Erreur requête achats: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-09-03 17:31:04,151 - ERROR - 💥 SCRIPT TERMINÉ AVEC ERREUR
+2025-09-03 17:31:04,151 - ERROR -    Consultez les logs ci-dessus pour plus de détails
+2025-09-03 17:31:27,283 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:31:28,630 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:32:08,536 - ERROR - ❌ Erreur achats - Status: 500
+2025-09-03 17:32:08,537 - ERROR -    Response: {"error":"Erreur lors du traitement des achats: name 'all_orders' is not defined","pharmacy_id":"17f78326-8499-4f83-b52d-84b8d1670775","pharmacy_name":"Pharmacie Mouysset V2"}
+2025-09-03 17:32:08,537 - ERROR - ❌ Échec traitement achats
+2025-09-03 17:35:15,933 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:35:18,062 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:35:59,059 - ERROR - ❌ Erreur achats - Status: 500
+2025-09-03 17:35:59,060 - ERROR -    Response: {"error":"Erreur lors du traitement des achats: duplicate key value violates unique constraint \"unique_order_constraint\"\nDETAIL:  Key (internal_id, pharmacy_id)=(268637969, 8d0e16de-2fe7-47f1-9e1e-786108d6f97a) already exists.","pharmacy_id":"8d0e16de-2fe7-47f1-9e1e-786108d6f97a","pharmacy_name":"Pharmacie Mouysset V2"}
+2025-09-03 17:35:59,060 - ERROR - ❌ Échec traitement achats
+2025-09-03 17:37:25,830 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:38:12,995 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:38:49,604 - ERROR - ❌ Erreur achats - Status: 500
+2025-09-03 17:38:49,605 - ERROR -    Response: {"error":"Erreur lors du traitement des achats: duplicate key value violates unique constraint \"unique_order_constraint\"\nDETAIL:  Key (internal_id, pharmacy_id)=(268637969, f815da6f-ea67-45ae-ba57-0e8a973e2ff1) already exists.","pharmacy_id":"f815da6f-ea67-45ae-ba57-0e8a973e2ff1","pharmacy_name":"Pharmacie Mouysset V2"}
+2025-09-03 17:38:49,605 - ERROR - ❌ Échec traitement achats
+2025-09-03 17:41:13,003 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:41:14,340 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:57:43,788 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 17:57:45,111 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 17:58:26,465 - ERROR - ❌ Erreur achats - Status: 500
+2025-09-03 17:58:26,465 - ERROR -    Response: {"error":"Erreur serveur interne"}
+2025-09-03 17:58:26,466 - ERROR - ❌ Échec traitement achats
+2025-09-03 18:03:09,468 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 18:03:11,403 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)
+2025-09-03 18:16:29,374 - WARNING - ⚠️ Traitement le plus long - peut prendre 10-15 minutes
+2025-09-03 18:16:30,157 - WARNING - ⏰ ATTENTION: Traitement très long (pharmacie + produits + ventes + achats)

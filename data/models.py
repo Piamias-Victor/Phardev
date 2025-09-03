@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 from django.db import models
 from django.db.models import UniqueConstraint
+from django.utils import timezone
 
 
 class Pharmacy(models.Model):
@@ -117,7 +118,7 @@ class InventorySnapshot(models.Model):
 
 class Order(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     internal_id = models.PositiveBigIntegerField()
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE, related_name="orders", null=True, blank=True)

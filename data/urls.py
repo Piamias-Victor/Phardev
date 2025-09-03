@@ -2,7 +2,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
+# Import des vues existantes
 from data import views
+from . import views2  # ← Ajouter cette ligne
+
+
+# Import des nouvelles vues V2 depuis views2.py
+from data.views2 import (
+    create_pharmacy_v2, 
+    fetch_and_process_products_v2, 
+    create_pharmacy_and_fetch_products_v2,
+    fetch_and_process_sales_v2,
+    create_pharmacy_products_and_sales_v2,
+    fetch_and_process_orders_v2
+    )
 
 urlpatterns = [
     # ============================================================================
@@ -42,19 +55,43 @@ urlpatterns = [
     path('test/new_api/orders', views.test_new_api_orders, name='test_new_api_orders'),
     path('test/new_api/sales', views.test_new_api_sales, name='test_new_api_sales'),
     path('test/new_api/summary', views.test_new_api_summary, name='test_new_api_summary'),
+    
     # Création de pharmacies
     path('api/pharmacy/create', views.create_pharmacy, name='create_pharmacy'),
+    
+    # ============================================================================
+    # ENDPOINTS V2 - AVEC VENTES
+    # ============================================================================
+    
+    # Création de pharmacie V2
+    path('api/v2/pharmacy/create', create_pharmacy_v2, name='create_pharmacy_v2'),
+    
+    # Récupération et traitement des produits V2
+    path('api/v2/pharmacy/products/fetch', fetch_and_process_products_v2, name='fetch_products_v2'),
+    
+    # Récupération et traitement des ventes V2
+    path('api/v2/pharmacy/sales/fetch', fetch_and_process_sales_v2, name='fetch_sales_v2'),
+    
+    # Endpoint combiné (créer pharmacie + récupérer produits)
+    path('api/v2/pharmacy/create-and-fetch', create_pharmacy_and_fetch_products_v2, name='create_and_fetch_v2'),
+    
+    # Endpoint combiné COMPLET (pharmacie + produits + ventes)
+    path('api/v2/pharmacy/create-products-sales', create_pharmacy_products_and_sales_v2, name='create_products_sales_v2'),
 
+    # Ajouter cette ligne dans urlpatterns
+    path('api/v2/pharmacy/orders/fetch', views2.fetch_and_process_orders_v2, name='fetch_orders_v2'),
 
-path('winpharma_historical/create/products', views.winpharma_historical_create_product, name='winpharma_historical_create_product'),
-path('winpharma_historical/create/orders', views.winpharma_historical_create_order, name='winpharma_historical_create_order'),
-path('winpharma_historical/create/sales', views.winpharma_historical_create_sales, name='winpharma_historical_create_sales'),
+    # ============================================================================
+    # ENDPOINTS HISTORIQUES ET AUTRES
+    # ============================================================================
 
-# Ajouter ces lignes dans data/urls.py après les autres URLs
+    path('winpharma_historical/create/products', views.winpharma_historical_create_product, name='winpharma_historical_create_product'),
+    path('winpharma_historical/create/orders', views.winpharma_historical_create_order, name='winpharma_historical_create_order'),
+    path('winpharma_historical/create/sales', views.winpharma_historical_create_sales, name='winpharma_historical_create_sales'),
 
-# URLs Apothical
-path('apothical/create/products', views.apothical_create_product, name='apothical_create_product'),
-path('apothical/create/orders', views.apothical_create_order, name='apothical_create_order'),
-path('apothical/create/sales', views.apothical_create_sales, name='apothical_create_sales'),
+    # URLs Apothical
+    path('apothical/create/products', views.apothical_create_product, name='apothical_create_product'),
+    path('apothical/create/orders', views.apothical_create_order, name='apothical_create_order'),
+    path('apothical/create/sales', views.apothical_create_sales, name='apothical_create_sales'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

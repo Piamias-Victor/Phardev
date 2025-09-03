@@ -1,0 +1,744 @@
+2025-09-03 11:54:20,690 - INFO - ================================================================================
+2025-09-03 11:54:20,690 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - AVEC VENTES AOÛT 2025
+2025-09-03 11:54:20,690 - INFO - ================================================================================
+2025-09-03 11:54:20,690 - INFO - 🔧 Configuration:
+2025-09-03 11:54:20,690 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 11:54:20,690 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 11:54:20,690 - INFO -    ID National: 832002810
+2025-09-03 11:54:20,690 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 11:54:20,690 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 11:54:20,728 - INFO - ✅ Serveur Django accessible
+2025-09-03 11:54:40,872 - INFO - 🚀 Début du traitement...
+2025-09-03 11:54:40,874 - INFO - 🎯 Option 5: TRAITEMENT COMPLET (pharmacie + produits + ventes)
+2025-09-03 11:54:40,874 - WARNING - ⚠️ Traitement le plus long - peut prendre 5-10 minutes
+2025-09-03 11:54:43,132 - INFO - 🚀 Traitement COMPLET: Pharmacie Mouysset V2
+2025-09-03 11:54:43,132 - INFO - 🔢 ID National: 832002810
+2025-09-03 11:54:43,132 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 11:54:43,132 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 11:54:43,133 - WARNING - ⏰ ATTENTION: Traitement long (pharmacie + produits + ventes)
+2025-09-03 11:54:43,161 - INFO - 📊 Status Code: 404
+2025-09-03 11:54:43,161 - ERROR - ❌ Erreur traitement complet - Status: 404
+2025-09-03 11:54:43,161 - ERROR -    Response text: <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Page not found at /api/v2/pharmacy/create-products-sales</title>
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <style>
+    html * { padding:0; margin:0; }
+    body * { padding:10px 20px; }
+    body * * { padding:0; }
+    body { font-family: sans-serif; background:#eee; color:#000; }
+    body > :where(header, main, footer) { border-bottom:1px solid #ddd; }
+    h1 { font-weight:normal; margin-bottom:.4em; }
+    h1 small { font-size:60%; color:#666; font-weight:normal; }
+    table { border:none; border-collapse: collapse; width:100%; }
+    td, th { vertical-align:top; padding:2px 3px; }
+    th { width:12em; text-align:right; color:#666; padding-right:.5em; }
+    #info { background:#f6f6f6; }
+    #info ol { margin: 0.5em 4em; }
+    #info ol li { font-family: monospace; }
+    #summary { background: #ffc; }
+    #explanation { background:#eee; border-bottom: 0px none; }
+    pre.exception_value { font-family: sans-serif; color: #575757; font-size: 1.5em; margin: 10px 0 10px 0; }
+  </style>
+</head>
+<body>
+  <header id="summary">
+    <h1>Page not found <small>(404)</small></h1>
+    
+    <table class="meta">
+      <tr>
+        <th scope="row">Request Method:</th>
+        <td>POST</td>
+      </tr>
+      <tr>
+        <th scope="row">Request URL:</th>
+        <td>http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales</td>
+      </tr>
+      
+    </table>
+  </header>
+
+  <main id="info">
+    
+      <p>
+      Using the URLconf defined in <code>Phardev.urls</code>,
+      Django tried these URL patterns, in this order:
+      </p>
+      <ol>
+        
+          <li>
+            
+              <code>
+                admin/
+                
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma/create/products
+                [name='winpharma_create_product']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma/create/orders
+                [name='winpharma_create_order']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma/create/sales
+                [name='winpharma_create_sales']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                dexter/create/stock
+                [name='dexter_create_stock']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                dexter/create/achat
+                [name='dexter_create_achat']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                dexter/create/vente
+                [name='dexter_create_vente']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_2/create/products
+                [name='winpharma_2_create_product']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_2/create/orders
+                [name='winpharma_2_create_order']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_2/create/sales
+                [name='winpharma_2_create_sales']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_new_api/create/products
+                [name='winpharma_new_api_create_product']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_new_api/create/orders
+                [name='winpharma_new_api_create_order']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_new_api/create/sales
+                [name='winpharma_new_api_create_sales']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                test/new_api/products
+                [name='test_new_api_products']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                test/new_api/orders
+                [name='test_new_api_orders']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                test/new_api/sales
+                [name='test_new_api_sales']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                test/new_api/summary
+                [name='test_new_api_summary']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                api/pharmacy/create
+                [name='create_pharmacy']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                api/v2/pharmacy/create
+                [name='create_pharmacy_v2']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                api/v2/pharmacy/products/fetch
+                [name='fetch_products_v2']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                api/v2/pharmacy/create-and-fetch
+                [name='create_and_fetch_v2']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_historical/create/products
+                [name='winpharma_historical_create_product']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_historical/create/orders
+                [name='winpharma_historical_create_order']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                winpharma_historical/create/sales
+                [name='winpharma_historical_create_sales']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                apothical/create/products
+                [name='apothical_create_product']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                apothical/create/orders
+                [name='apothical_create_order']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                
+                
+              </code>
+            
+              <code>
+                apothical/create/sales
+                [name='apothical_create_sales']
+              </code>
+            
+          </li>
+        
+          <li>
+            
+              <code>
+                ^staticfiles/(?P&lt;path&gt;.*)$
+                
+              </code>
+            
+          </li>
+        
+      </ol>
+      <p>
+        
+          The current path, <code>api/v2/pharmacy/create-products-sales</code>,
+        
+        didn’t match any of these.
+      </p>
+    
+  </main>
+
+  <footer id="explanation">
+    <p>
+      You’re seeing this error because you have <code>DEBUG = True</code> in
+      your Django settings file. Change that to <code>False</code>, and Django
+      will display a standard 404 page.
+    </p>
+  </footer>
+</body>
+</html>
+
+2025-09-03 11:54:43,161 - INFO - 
+================================================================================
+2025-09-03 11:54:43,161 - ERROR - 💥 SCRIPT TERMINÉ AVEC ERREUR
+2025-09-03 11:54:43,161 - ERROR -    Consultez les logs ci-dessus pour plus de détails
+2025-09-03 11:54:43,161 - INFO - ================================================================================
+2025-09-03 11:56:57,661 - INFO - ================================================================================
+2025-09-03 11:56:57,661 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - AVEC VENTES AOÛT 2025
+2025-09-03 11:56:57,661 - INFO - ================================================================================
+2025-09-03 11:56:57,661 - INFO - 🔧 Configuration:
+2025-09-03 11:56:57,661 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 11:56:57,661 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 11:56:57,661 - INFO -    ID National: 832002810
+2025-09-03 11:56:57,661 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 11:56:57,661 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 11:56:57,702 - INFO - ✅ Serveur Django accessible
+2025-09-03 11:56:59,736 - INFO - 🚀 Début du traitement...
+2025-09-03 11:56:59,736 - INFO - 🎯 Option 5: TRAITEMENT COMPLET (pharmacie + produits + ventes)
+2025-09-03 11:56:59,737 - WARNING - ⚠️ Traitement le plus long - peut prendre 5-10 minutes
+2025-09-03 11:57:01,290 - INFO - 🚀 Traitement COMPLET: Pharmacie Mouysset V2
+2025-09-03 11:57:01,291 - INFO - 🔢 ID National: 832002810
+2025-09-03 11:57:01,291 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 11:57:01,291 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 11:57:01,291 - WARNING - ⏰ ATTENTION: Traitement long (pharmacie + produits + ventes)
+2025-09-03 11:57:59,501 - INFO - 📊 Status Code: 200
+2025-09-03 11:57:59,502 - INFO - ✅ Traitement COMPLET terminé!
+2025-09-03 11:57:59,502 - INFO - 🏥 Pharmacie:
+2025-09-03 11:57:59,502 - INFO -    Message: Pharmacie 'Pharmacie Mouysset V2' créée avec succès
+2025-09-03 11:57:59,502 - INFO -    Status: created
+2025-09-03 11:57:59,502 - INFO - 📦 Produits:
+2025-09-03 11:57:59,502 - INFO -    Message: Produits traités avec succès
+2025-09-03 11:57:59,502 - INFO -    Status: success
+2025-09-03 11:57:59,502 - INFO -    Produits traités: 16010
+2025-09-03 11:57:59,502 - INFO -    Snapshots créés: 16010
+2025-09-03 11:57:59,502 - INFO - 💰 Ventes:
+2025-09-03 11:57:59,502 - INFO -    Message: Ventes traitées avec succès
+2025-09-03 11:57:59,502 - INFO -    Status: success
+2025-09-03 11:57:59,502 - INFO -    Ventes traitées: 51
+2025-09-03 11:57:59,502 - INFO -    TVA mises à jour: 51
+2025-09-03 11:57:59,502 - INFO - 📈 Status global: success
+2025-09-03 11:57:59,502 - INFO - 
+================================================================================
+2025-09-03 11:57:59,502 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 11:57:59,503 - INFO - 📄 RÉSUMÉ FINAL COMPLET:
+2025-09-03 11:57:59,503 - INFO -    Pharmacie: created
+2025-09-03 11:57:59,503 - INFO -    Produits: success
+2025-09-03 11:57:59,503 - INFO -    Ventes: success
+2025-09-03 11:57:59,503 - INFO -    Status global: success
+2025-09-03 11:57:59,503 - INFO -    📊 Statistiques détaillées:
+2025-09-03 11:57:59,503 - INFO -       Produits traités: 16010
+2025-09-03 11:57:59,503 - INFO -       Snapshots créés: 16010
+2025-09-03 11:57:59,503 - INFO -       Ventes traitées: 51
+2025-09-03 11:57:59,503 - INFO -       TVA mises à jour: 51
+2025-09-03 11:57:59,503 - INFO - ================================================================================
+2025-09-03 12:03:44,383 - INFO - ================================================================================
+2025-09-03 12:03:44,383 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - AVEC VENTES AOÛT 2025
+2025-09-03 12:03:44,383 - INFO - ================================================================================
+2025-09-03 12:03:44,383 - INFO - 🔧 Configuration:
+2025-09-03 12:03:44,383 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 12:03:44,383 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 12:03:44,383 - INFO -    ID National: 832002810
+2025-09-03 12:03:44,383 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 12:03:44,383 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 12:03:44,417 - INFO - ✅ Serveur Django accessible
+2025-09-03 12:03:46,342 - INFO - 🚀 Début du traitement...
+2025-09-03 12:03:46,342 - INFO - 🎯 Option 5: TRAITEMENT COMPLET (pharmacie + produits + ventes)
+2025-09-03 12:03:46,342 - WARNING - ⚠️ Traitement le plus long - peut prendre 5-10 minutes
+2025-09-03 12:03:47,519 - INFO - 🚀 Traitement COMPLET: Pharmacie Mouysset V2
+2025-09-03 12:03:47,519 - INFO - 🔢 ID National: 832002810
+2025-09-03 12:03:47,520 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 12:03:47,520 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 12:03:47,520 - WARNING - ⏰ ATTENTION: Traitement long (pharmacie + produits + ventes)
+2025-09-03 12:04:44,892 - INFO - 📊 Status Code: 200
+2025-09-03 12:04:44,893 - INFO - ✅ Traitement COMPLET terminé!
+2025-09-03 12:04:44,893 - INFO - 🏥 Pharmacie:
+2025-09-03 12:04:44,893 - INFO -    Message: Pharmacie 'Pharmacie Mouysset V2' créée avec succès
+2025-09-03 12:04:44,893 - INFO -    Status: created
+2025-09-03 12:04:44,893 - INFO - 📦 Produits:
+2025-09-03 12:04:44,893 - INFO -    Message: Produits traités avec succès
+2025-09-03 12:04:44,893 - INFO -    Status: success
+2025-09-03 12:04:44,893 - INFO -    Produits traités: 16010
+2025-09-03 12:04:44,893 - INFO -    Snapshots créés: 16010
+2025-09-03 12:04:44,893 - INFO - 💰 Ventes:
+2025-09-03 12:04:44,893 - INFO -    Message: Ventes traitées avec succès
+2025-09-03 12:04:44,893 - INFO -    Status: success
+2025-09-03 12:04:44,893 - INFO -    Ventes traitées: 101
+2025-09-03 12:04:44,893 - INFO -    TVA mises à jour: 101
+2025-09-03 12:04:44,893 - INFO - 📈 Status global: success
+2025-09-03 12:04:44,893 - INFO - 
+================================================================================
+2025-09-03 12:04:44,893 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 12:04:44,893 - INFO - 📄 RÉSUMÉ FINAL COMPLET:
+2025-09-03 12:04:44,893 - INFO -    Pharmacie: created
+2025-09-03 12:04:44,893 - INFO -    Produits: success
+2025-09-03 12:04:44,893 - INFO -    Ventes: success
+2025-09-03 12:04:44,893 - INFO -    Status global: success
+2025-09-03 12:04:44,893 - INFO -    📊 Statistiques détaillées:
+2025-09-03 12:04:44,893 - INFO -       Produits traités: 16010
+2025-09-03 12:04:44,893 - INFO -       Snapshots créés: 16010
+2025-09-03 12:04:44,893 - INFO -       Ventes traitées: 101
+2025-09-03 12:04:44,893 - INFO -       TVA mises à jour: 101
+2025-09-03 12:04:44,893 - INFO - ================================================================================
+2025-09-03 12:13:29,037 - INFO - ================================================================================
+2025-09-03 12:13:29,037 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - AVEC VENTES AOÛT 2025
+2025-09-03 12:13:29,038 - INFO - ================================================================================
+2025-09-03 12:13:29,038 - INFO - 🔧 Configuration:
+2025-09-03 12:13:29,038 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 12:13:29,038 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 12:13:29,038 - INFO -    ID National: 832002810
+2025-09-03 12:13:29,038 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 12:13:29,038 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 12:13:29,062 - INFO - ✅ Serveur Django accessible
+2025-09-03 12:13:30,310 - INFO - 🚀 Début du traitement...
+2025-09-03 12:13:30,311 - INFO - 🎯 Option 5: TRAITEMENT COMPLET (pharmacie + produits + ventes)
+2025-09-03 12:13:30,311 - WARNING - ⚠️ Traitement le plus long - peut prendre 5-10 minutes
+2025-09-03 12:13:32,767 - INFO - 🚀 Traitement COMPLET: Pharmacie Mouysset V2
+2025-09-03 12:13:32,767 - INFO - 🔢 ID National: 832002810
+2025-09-03 12:13:32,767 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 12:13:32,767 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 12:13:32,767 - WARNING - ⏰ ATTENTION: Traitement long (pharmacie + produits + ventes)
+2025-09-03 12:18:14,687 - ERROR - ❌ Erreur requête: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-09-03 12:18:14,687 - INFO - 
+================================================================================
+2025-09-03 12:18:14,687 - ERROR - 💥 SCRIPT TERMINÉ AVEC ERREUR
+2025-09-03 12:18:14,687 - ERROR -    Consultez les logs ci-dessus pour plus de détails
+2025-09-03 12:18:14,687 - INFO - ================================================================================
+2025-09-03 12:18:33,328 - INFO - ================================================================================
+2025-09-03 12:18:33,329 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - AVEC VENTES AOÛT 2025
+2025-09-03 12:18:33,329 - INFO - ================================================================================
+2025-09-03 12:18:33,329 - INFO - 🔧 Configuration:
+2025-09-03 12:18:33,329 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 12:18:33,329 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 12:18:33,329 - INFO -    ID National: 832002810
+2025-09-03 12:18:33,329 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 12:18:33,329 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 12:18:33,358 - INFO - ✅ Serveur Django accessible
+2025-09-03 12:18:35,003 - INFO - 🚀 Début du traitement...
+2025-09-03 12:18:35,004 - INFO - 🎯 Option 5: TRAITEMENT COMPLET (pharmacie + produits + ventes)
+2025-09-03 12:18:35,004 - WARNING - ⚠️ Traitement le plus long - peut prendre 5-10 minutes
+2025-09-03 12:18:36,332 - INFO - 🚀 Traitement COMPLET: Pharmacie Mouysset V2
+2025-09-03 12:18:36,332 - INFO - 🔢 ID National: 832002810
+2025-09-03 12:18:36,332 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 12:18:36,332 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 12:18:36,332 - WARNING - ⏰ ATTENTION: Traitement long (pharmacie + produits + ventes)
+2025-09-03 12:19:07,640 - INFO - 📊 Status Code: 200
+2025-09-03 12:19:07,641 - INFO - ✅ Traitement COMPLET terminé!
+2025-09-03 12:19:07,641 - INFO - 🏥 Pharmacie:
+2025-09-03 12:19:07,641 - INFO -    Message: Pharmacie 'Pharmacie Mouysset V2' créée avec succès
+2025-09-03 12:19:07,641 - INFO -    Status: created
+2025-09-03 12:19:07,641 - INFO - 📦 Produits:
+2025-09-03 12:19:07,641 - INFO -    Message: Produits traités avec succès
+2025-09-03 12:19:07,641 - INFO -    Status: success
+2025-09-03 12:19:07,641 - INFO -    Produits traités: 16010
+2025-09-03 12:19:07,641 - INFO -    Snapshots créés: 16010
+2025-09-03 12:19:07,641 - INFO - 💰 Ventes:
+2025-09-03 12:19:07,641 - INFO -    Message: Erreur lors du traitement des ventes
+2025-09-03 12:19:07,641 - INFO -    Status: error
+2025-09-03 12:19:07,641 - INFO - 📈 Status global: partial_success
+2025-09-03 12:19:07,641 - INFO - 
+================================================================================
+2025-09-03 12:19:07,641 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 12:19:07,641 - INFO - 📄 RÉSUMÉ FINAL COMPLET:
+2025-09-03 12:19:07,641 - INFO -    Pharmacie: created
+2025-09-03 12:19:07,641 - INFO -    Produits: success
+2025-09-03 12:19:07,641 - INFO -    Ventes: error
+2025-09-03 12:19:07,641 - INFO -    Status global: partial_success
+2025-09-03 12:19:07,641 - INFO -    📊 Statistiques détaillées:
+2025-09-03 12:19:07,641 - INFO -       Produits traités: 16010
+2025-09-03 12:19:07,641 - INFO -       Snapshots créés: 16010
+2025-09-03 12:19:07,641 - INFO - ================================================================================
+2025-09-03 12:21:14,482 - INFO - ================================================================================
+2025-09-03 12:21:14,483 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - AVEC VENTES AOÛT 2025
+2025-09-03 12:21:14,483 - INFO - ================================================================================
+2025-09-03 12:21:14,483 - INFO - 🔧 Configuration:
+2025-09-03 12:21:14,483 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 12:21:14,483 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 12:21:14,483 - INFO -    ID National: 832002810
+2025-09-03 12:21:14,483 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 12:21:14,483 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 12:21:14,513 - INFO - ✅ Serveur Django accessible
+2025-09-03 12:21:16,994 - INFO - 🚀 Début du traitement...
+2025-09-03 12:21:16,995 - INFO - 🎯 Option 5: TRAITEMENT COMPLET (pharmacie + produits + ventes)
+2025-09-03 12:21:16,995 - WARNING - ⚠️ Traitement le plus long - peut prendre 5-10 minutes
+2025-09-03 12:21:18,213 - INFO - 🚀 Traitement COMPLET: Pharmacie Mouysset V2
+2025-09-03 12:21:18,213 - INFO - 🔢 ID National: 832002810
+2025-09-03 12:21:18,213 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 12:21:18,213 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 12:21:18,213 - WARNING - ⏰ ATTENTION: Traitement long (pharmacie + produits + ventes)
+2025-09-03 12:22:01,359 - INFO - 📊 Status Code: 200
+2025-09-03 12:22:01,360 - INFO - ✅ Traitement COMPLET terminé!
+2025-09-03 12:22:01,360 - INFO - 🏥 Pharmacie:
+2025-09-03 12:22:01,360 - INFO -    Message: Pharmacie 'Pharmacie Mouysset V2' créée avec succès
+2025-09-03 12:22:01,360 - INFO -    Status: created
+2025-09-03 12:22:01,360 - INFO - 📦 Produits:
+2025-09-03 12:22:01,360 - INFO -    Message: Produits traités avec succès
+2025-09-03 12:22:01,360 - INFO -    Status: success
+2025-09-03 12:22:01,360 - INFO -    Produits traités: 16010
+2025-09-03 12:22:01,360 - INFO -    Snapshots créés: 16010
+2025-09-03 12:22:01,360 - INFO - 💰 Ventes:
+2025-09-03 12:22:01,360 - INFO -    Message: Ventes traitées avec succès
+2025-09-03 12:22:01,360 - INFO -    Status: success
+2025-09-03 12:22:01,360 - INFO -    Ventes traitées: 0
+2025-09-03 12:22:01,360 - INFO -    TVA mises à jour: 0
+2025-09-03 12:22:01,360 - INFO - 📈 Status global: success
+2025-09-03 12:22:01,360 - INFO - 
+================================================================================
+2025-09-03 12:22:01,360 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 12:22:01,360 - INFO - 📄 RÉSUMÉ FINAL COMPLET:
+2025-09-03 12:22:01,360 - INFO -    Pharmacie: created
+2025-09-03 12:22:01,360 - INFO -    Produits: success
+2025-09-03 12:22:01,360 - INFO -    Ventes: success
+2025-09-03 12:22:01,360 - INFO -    Status global: success
+2025-09-03 12:22:01,360 - INFO -    📊 Statistiques détaillées:
+2025-09-03 12:22:01,360 - INFO -       Produits traités: 16010
+2025-09-03 12:22:01,360 - INFO -       Snapshots créés: 16010
+2025-09-03 12:22:01,360 - INFO -       Ventes traitées: 0
+2025-09-03 12:22:01,360 - INFO -       TVA mises à jour: 0
+2025-09-03 12:22:01,360 - INFO - ================================================================================
+2025-09-03 15:57:14,510 - INFO - ================================================================================
+2025-09-03 15:57:14,510 - INFO - 🏥 SCRIPT PHARMACIE MOUYSSET V2 - AVEC VENTES AOÛT 2025
+2025-09-03 15:57:14,511 - INFO - ================================================================================
+2025-09-03 15:57:14,511 - INFO - 🔧 Configuration:
+2025-09-03 15:57:14,511 - INFO -    SERVER_URL: http://127.0.0.1:8000
+2025-09-03 15:57:14,511 - INFO -    Pharmacie: Pharmacie Mouysset V2
+2025-09-03 15:57:14,511 - INFO -    ID National: 832002810
+2025-09-03 15:57:14,511 - INFO -    Ventes août: 2025-08-01 -> 2025-08-31
+2025-09-03 15:57:14,511 - INFO - 
+🔍 Vérification du serveur...
+2025-09-03 15:57:14,553 - INFO - ✅ Serveur Django accessible
+2025-09-03 15:57:16,131 - INFO - 🚀 Début du traitement...
+2025-09-03 15:57:16,132 - INFO - 🎯 Option 5: TRAITEMENT COMPLET (pharmacie + produits + ventes)
+2025-09-03 15:57:16,132 - WARNING - ⚠️ Traitement le plus long - peut prendre 5-10 minutes
+2025-09-03 15:57:17,623 - INFO - 🚀 Traitement COMPLET: Pharmacie Mouysset V2
+2025-09-03 15:57:17,624 - INFO - 🔢 ID National: 832002810
+2025-09-03 15:57:17,624 - INFO - 📅 Ventes: 2025-08-01 -> 2025-08-31
+2025-09-03 15:57:17,624 - INFO - 🌐 URL: http://127.0.0.1:8000/api/v2/pharmacy/create-products-sales
+2025-09-03 15:57:17,624 - WARNING - ⏰ ATTENTION: Traitement long (pharmacie + produits + ventes)
+2025-09-03 15:57:50,717 - INFO - 📊 Status Code: 200
+2025-09-03 15:57:50,719 - INFO - ✅ Traitement COMPLET terminé!
+2025-09-03 15:57:50,719 - INFO - 🏥 Pharmacie:
+2025-09-03 15:57:50,719 - INFO -    Message: Pharmacie 'Pharmacie Mouysset V2' créée avec succès
+2025-09-03 15:57:50,719 - INFO -    Status: created
+2025-09-03 15:57:50,719 - INFO - 📦 Produits:
+2025-09-03 15:57:50,719 - INFO -    Message: Produits traités avec succès
+2025-09-03 15:57:50,719 - INFO -    Status: success
+2025-09-03 15:57:50,719 - INFO -    Produits traités: 16010
+2025-09-03 15:57:50,719 - INFO -    Snapshots créés: 16010
+2025-09-03 15:57:50,719 - INFO - 💰 Ventes:
+2025-09-03 15:57:50,719 - INFO -    Message: Ventes traitées avec succès
+2025-09-03 15:57:50,719 - INFO -    Status: success
+2025-09-03 15:57:50,719 - INFO -    Ventes traitées: 0
+2025-09-03 15:57:50,719 - INFO -    TVA mises à jour: 0
+2025-09-03 15:57:50,719 - INFO - 📈 Status global: success
+2025-09-03 15:57:50,719 - INFO - 
+================================================================================
+2025-09-03 15:57:50,719 - INFO - 🎉 SCRIPT TERMINÉ AVEC SUCCÈS
+2025-09-03 15:57:50,719 - INFO - 📄 RÉSUMÉ FINAL COMPLET:
+2025-09-03 15:57:50,719 - INFO -    Pharmacie: created
+2025-09-03 15:57:50,719 - INFO -    Produits: success
+2025-09-03 15:57:50,719 - INFO -    Ventes: success
+2025-09-03 15:57:50,719 - INFO -    Status global: success
+2025-09-03 15:57:50,720 - INFO -    📊 Statistiques détaillées:
+2025-09-03 15:57:50,720 - INFO -       Produits traités: 16010
+2025-09-03 15:57:50,720 - INFO -       Snapshots créés: 16010
+2025-09-03 15:57:50,720 - INFO -       Ventes traitées: 0
+2025-09-03 15:57:50,720 - INFO -       TVA mises à jour: 0
+2025-09-03 15:57:50,720 - INFO - ================================================================================

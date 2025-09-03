@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print(f"DEBUG: AWS_SECRET_ACCESS_KEY = {os.environ.get('AWS_SECRET_ACCESS_KEY', 'VIDE')}")
+SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
 # Load environment variables from .env
 load_dotenv()
 

@@ -342,6 +342,7 @@ def process_order(pharmacy, data):
             'step': obj['step'],  # Now contains channel value
             'sent_date': obj['sent_date'],
             'delivery_date': obj['delivery_date'],
+            'created_at': obj['sent_date'] or obj['delivery_date'] or date.today(),
         }
         for obj in preprocessed_data if obj['supplier_id'] in suppliers_map
     ]

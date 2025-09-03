@@ -1,166 +1,153 @@
 #!/usr/bin/env python3
-"""
-Script pour nettoyer toutes les données de test de la pharmacie 062044623
-"""
+"""Script de nettoyage SQL direct"""
 
-import psycopg2
+import os
+from dotenv import load_dotenv
 
-def clean_pharmacy_data(pharmacy_id_nat):
-    """Supprime toutes les données d'une pharmacie"""
-    try:
-        print(f"🧹 NETTOYAGE DES DONNÉES DE TEST")
-        print(f"🏥 Pharmacie ID: {pharmacy_id_nat}")
-        print(f"=" * 50)
-        
-        # Connection DB
-        conn = psycopg2.connect(
-            host="phardev.cts8s2sgms8l.eu-west-3.rds.amazonaws.com",
-            database="postgres",
-            user="postgres",
-            password="NNPwUUstdTonFYZwfisO",
-            port=5432
-        )
-        
-        cursor = conn.cursor()
-        
-        # 1. Trouver l'UUID de la pharmacie
-        cursor.execute("SELECT id FROM data_pharmacy WHERE id_nat = %s", (pharmacy_id_nat,))
-        result = cursor.fetchone()
-        
-        if not result:
-            print(f"❌ Pharmacie {pharmacy_id_nat} introuvable")
-            return False
-            
-        pharmacy_uuid = result[0]
-        print(f"📋 Pharmacie UUID: {pharmacy_uuid}")
-        
-        # 2. Compter avant suppression
-        print(f"\n📊 DONNÉES AVANT SUPPRESSION:")
-        
-        # Compter sales
-        cursor.execute("""
-            SELECT COUNT(*) FROM data_sales s
-            JOIN data_inventorysnapshot inv ON s.product_id = inv.id
-            JOIN data_internalproduct ip ON inv.product_id = ip.id  
-            WHERE ip.pharmacy_id = %s
-        """, (pharmacy_uuid,))
-        sales_count = cursor.fetchone()[0]
-        print(f"   💰 Ventes: {sales_count}")
-        
-        # Compter orders
-        cursor.execute("SELECT COUNT(*) FROM data_order WHERE pharmacy_id = %s", (pharmacy_uuid,))
-        orders_count = cursor.fetchone()[0]
-        print(f"   📦 Commandes: {orders_count}")
-        
-        # Compter product orders
-        cursor.execute("""
-            SELECT COUNT(*) FROM data_productorder po
-            JOIN data_order o ON po.order_id = o.id
-            WHERE o.pharmacy_id = %s
-        """, (pharmacy_uuid,))
-        product_orders_count = cursor.fetchone()[0]
-        print(f"   📋 Lignes commandes: {product_orders_count}")
-        
-        # Compter snapshots
-        cursor.execute("""
-            SELECT COUNT(*) FROM data_inventorysnapshot inv
-            JOIN data_internalproduct ip ON inv.product_id = ip.id  
-            WHERE ip.pharmacy_id = %s
-        """, (pharmacy_uuid,))
-        snapshots_count = cursor.fetchone()[0]
-        print(f"   📸 Snapshots: {snapshots_count}")
-        
-        # Compter products
-        cursor.execute("SELECT COUNT(*) FROM data_internalproduct WHERE pharmacy_id = %s", (pharmacy_uuid,))
-        products_count = cursor.fetchone()[0]
-        print(f"   🏷️ Produits: {products_count}")
-        
-        # Compter suppliers
-        cursor.execute("SELECT COUNT(*) FROM data_supplier WHERE pharmacy_id = %s", (pharmacy_uuid,))
-        suppliers_count = cursor.fetchone()[0]
-        print(f"   🏢 Fournisseurs: {suppliers_count}")
-        
-        # 3. Supprimer dans l'ordre des dépendances
-        print(f"\n🗑️ SUPPRESSION EN COURS...")
-        
-        # Sales (dépend de snapshots)
-        cursor.execute("""
-            DELETE FROM data_sales 
-            WHERE product_id IN (
-                SELECT inv.id FROM data_inventorysnapshot inv
-                JOIN data_internalproduct ip ON inv.product_id = ip.id  
-                WHERE ip.pharmacy_id = %s
-            )
-        """, (pharmacy_uuid,))
-        print(f"   ✅ Sales supprimées: {cursor.rowcount}")
-        
-        # ProductOrder (dépend de orders et products)
-        cursor.execute("""
-            DELETE FROM data_productorder 
-            WHERE order_id IN (
-                SELECT id FROM data_order WHERE pharmacy_id = %s
-            )
-        """, (pharmacy_uuid,))
-        print(f"   ✅ ProductOrders supprimées: {cursor.rowcount}")
-        
-        # Orders
-        cursor.execute("DELETE FROM data_order WHERE pharmacy_id = %s", (pharmacy_uuid,))
-        print(f"   ✅ Orders supprimées: {cursor.rowcount}")
-        
-        # Inventory snapshots
-        cursor.execute("""
-            DELETE FROM data_inventorysnapshot 
-            WHERE product_id IN (
-                SELECT id FROM data_internalproduct WHERE pharmacy_id = %s
-            )
-        """, (pharmacy_uuid,))
-        print(f"   ✅ Snapshots supprimés: {cursor.rowcount}")
-        
-        # Internal products
-        cursor.execute("DELETE FROM data_internalproduct WHERE pharmacy_id = %s", (pharmacy_uuid,))
-        print(f"   ✅ Products supprimés: {cursor.rowcount}")
-        
-        # Suppliers
-        cursor.execute("DELETE FROM data_supplier WHERE pharmacy_id = %s", (pharmacy_uuid,))
-        print(f"   ✅ Suppliers supprimés: {cursor.rowcount}")
-        
-        # Pharmacy (en dernier)
-        cursor.execute("DELETE FROM data_pharmacy WHERE id = %s", (pharmacy_uuid,))
-        print(f"   ✅ Pharmacy supprimée: {cursor.rowcount}")
-        
-        # 4. Commit les changements
-        conn.commit()
-        
-        print(f"\n🎉 NETTOYAGE TERMINÉ !")
-        print(f"✅ Toutes les données de la pharmacie {pharmacy_id_nat} ont été supprimées")
-        
-        cursor.close()
-        conn.close()
-        
-        return True
-        
-    except Exception as e:
-        print(f"❌ Erreur lors du nettoyage: {e}")
-        return False
+load_dotenv()
+
+# Liste complète des pharmacies à supprimer (extraite du script multi-pharmacies)
+PHARMACIES_TO_CLEAN = [
+    "712006733",  # Pharmacie Puig Léveillé
+    "062044623",  # GIE Grande Pharmacie Cap 3000
+    "692039340",  # Grande Pharmacie de La Part DIEU
+    "372006049",  # Pharmacie Sirvin
+    "342030285",  # Pharmacie du Centre
+    "132069444",  # Pharmacie de la Montagnette
+    "132040585",  # Pharmacie du Cours Mirabeau
+    "642013593",  # Pharmacie BAB2
+    "842004863",  # Pharmacie Becker Monteux
+    "132061276",  # Pharmacie du 8 mai 1945
+    "342026218",  # Pharmacie Espace Bocaud
+    "772012522",  # Pharmacie Val D'Europe
+    "422027524",  # Pharmacie de Monthieu
+    "682020763",  # Pharmacie de la Croisière
+    "262071004",  # Pharmacie Valence 2
+    "132086612",  # Pharmacie Martinet
+    "832002810",  # Pharmacie Mouysset
+    "332018811",  # Pharmacie du Chemin Long
+    "332022755",  # Pharmacie de l'Etoile
+    "752040428",  # Pharmacie de la Place de la République
+    "132066978",  # Pharmacie Centrale
+    "832011373",  # Pharmacie Varoise
+    "302003330",  # Pharmacie de Castanet
+    "342027828",  # SELARL Pharmacie des Arceaux
+    "672033586",  # Pharmacie du Printemps
+    "202041711",  # Pharmacie Taddei Medori
+    "o62037049",  # Pharmacie Lingostière
+    "132028473",  # Pharmacie Saint Jean
+    "302007638",  # Pharmacie des Portes d'Uzès
+    "912015492",  # Pharmacie Centrale Evry 2
+    "192005940",  # Pharmacie Egletons
+    "302006192",  # Pharmacie des Salicornes
+    "952700268",  # Pharmacie Coté Seine
+    "202021481",  # Pharmacie du Valinco
+    "772011623",  # Pharmacie du Centre Dammarie Les Lys
+    "332022219",  # Pharmacie de l'Alliance
+    "852007137",  # Pharmacie Ylium
+    "422027854",  # Pharmacie du Forez
+    "832011498",  # Grande pharmacie hyéroise / Pharmacie Massillon
+    "732002811",  # Pharmacie du Pradian
+    "422026542",  # Pharmacie de l'Europe
+    "922020771",  # Grande Pharmacie de la Station
+    "742005481",  # Pharmacie du Leman
+    "o52702370",  # Pharmacie de Tokoro
+    "922021373",  # Pharmacie des Quatres Chemins
+    "952701043",  # Pharmacie de la Muette
+    "752043471",  # Pharmacie Faubourg Bastille
+    "912015948",  # Grande Pharmacie de Fleury
+    "442002119",  # Pharmacie de Beaulieu
+    "792020646",  # Pharmacie du Bocage
+    "202040697",  # Pharmacie de la Rocade
+    "312008915",  # Grande Pharmacie des Arcades
+    "692013469",  # Pharmacie Jalles
+    "342027588",  # Pharmacie de Capestang
+    "842005456",  # Pharmacie de la Sorgue
+    "842002008",  # Pharmacie Becker Carpentras
+    "842003121",  # Pharmacie de l'Ecluse
+    "202021648",  # Pharmacie de Sarrola
+    "132081613",  # Pharmacie des Ateliers
+    "842006348",  # Pharmacie de Caumont
+    "132048687",  # Pharmacie du Centre (Ventabren)
+    "732003132",  # Pharmacie des Cascades
+    "662004100",  # Pharmacie du Wahoo
+    "662004522",  # Pharmacie du Château
+    "782712756",  # Pharmacie de la Gare
+    "842006462",  # Grande Pharmacie des Ocres
+    "342030137",  # Pharmacie Montarnaud
+    "280003641",  # Pharmacie du Géant Luce
+    "802006031",  # Pharmacie Paque
+    "842005472",  # Pharmacie Cap sud
+    "132046384",  # Pharmacie du Stade Vélodrome
+]
+
+def clean_pharmacy_sql(pharmacy_id: str):
+    """Génère les requêtes SQL de suppression pour une pharmacie"""
+    sql_commands = f"""
+-- Suppression des ventes
+DELETE FROM data_sales 
+WHERE product_id IN (
+    SELECT ds.id FROM data_inventorysnapshot ds
+    JOIN data_internalproduct dp ON ds.product_id = dp.id
+    JOIN data_pharmacy ph ON dp.pharmacy_id = ph.id
+    WHERE ph.id_nat = '{pharmacy_id}'
+);
+
+-- Suppression des produits-commandes
+DELETE FROM data_productorder 
+WHERE order_id IN (
+    SELECT id FROM data_order 
+    WHERE pharmacy_id = (SELECT id FROM data_pharmacy WHERE id_nat = '{pharmacy_id}')
+);
+
+-- Suppression des commandes
+DELETE FROM data_order 
+WHERE pharmacy_id = (SELECT id FROM data_pharmacy WHERE id_nat = '{pharmacy_id}');
+
+-- Suppression des fournisseurs (AJOUTÉ)
+DELETE FROM data_supplier 
+WHERE pharmacy_id = (SELECT id FROM data_pharmacy WHERE id_nat = '{pharmacy_id}');
+
+-- Suppression des snapshots d'inventaire
+DELETE FROM data_inventorysnapshot 
+WHERE product_id IN (
+    SELECT id FROM data_internalproduct 
+    WHERE pharmacy_id = (SELECT id FROM data_pharmacy WHERE id_nat = '{pharmacy_id}')
+);
+
+-- Suppression des produits internes
+DELETE FROM data_internalproduct 
+WHERE pharmacy_id = (SELECT id FROM data_pharmacy WHERE id_nat = '{pharmacy_id}');
+
+-- Suppression de la pharmacie
+DELETE FROM data_pharmacy WHERE id_nat = '{pharmacy_id}';
+
+"""
+    return sql_commands
 
 def main():
-    """Fonction principale"""
-    pharmacy_id = "062044623"
+    print("Génération du script de nettoyage SQL...")
     
-    print(f"⚠️  ATTENTION: Ce script va supprimer TOUTES les données de test !")
-    print(f"🏥 Pharmacie: {pharmacy_id}")
+    with open('clean_pharmacies.sql', 'w', encoding='utf-8') as f:
+        f.write("-- Script de nettoyage des pharmacies multi-pharmacies\n")
+        f.write("-- Généré automatiquement - ATTENTION: Suppression définitive\n")
+        f.write(f"-- {len(PHARMACIES_TO_CLEAN)} pharmacies à supprimer\n\n")
+        
+        f.write("BEGIN;\n\n")
+        
+        for i, pharmacy_id in enumerate(PHARMACIES_TO_CLEAN, 1):
+            f.write(f"-- [{i}/{len(PHARMACIES_TO_CLEAN)}] Nettoyage pharmacie {pharmacy_id}\n")
+            f.write(clean_pharmacy_sql(pharmacy_id))
+            f.write("\n")
+        
+        f.write("COMMIT;\n")
     
-    confirm = input("\n❓ Confirmes-tu la suppression ? (oui/non): ").lower().strip()
-    
-    if confirm in ['oui', 'o', 'yes', 'y']:
-        success = clean_pharmacy_data(pharmacy_id)
-        if success:
-            print(f"\n🚀 PRÊT POUR UN NOUVEAU TEST PROPRE !")
-            print(f"📝 Prochaine étape: Lancer la Lambda pour le 20 juin uniquement")
-        else:
-            print(f"\n❌ Nettoyage échoué")
-    else:
-        print(f"\n⏹️ Nettoyage annulé")
+    print(f"Script SQL généré: clean_pharmacies.sql")
+    print(f"Pharmacies à supprimer: {len(PHARMACIES_TO_CLEAN)}")
+    print("\nPour exécuter sur le serveur:")
+    print("1. Copier le fichier sur le serveur AWS")
+    print("2. Exécuter: sudo docker exec -it django python manage.py dbshell < clean_pharmacies.sql")
+    print("\nATTENTION: Cette opération supprime définitivement toutes les données!")
 
 if __name__ == "__main__":
     main()

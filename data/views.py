@@ -13,6 +13,13 @@ from data.services import dexter, winpharma, winpharma_2, winpharma_historical
 
 from data.services import apothical
 
+from data.models import Pharmacy
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+import json
+import uuid
+from django.db import transaction
+
 
 logger = logging.getLogger(__name__)
 
@@ -531,62 +538,78 @@ def test_new_api_summary(request):
 
 # Ajouter ces 3 nouvelles vues à la fin du fichier
 
-@api_view(['POST'])
 def winpharma_historical_create_product(request):
     """
     Endpoint for creating or updating products linked to a pharmacy - HISTORICAL IMPORT VERSION.
+    Accepte Pharmacy-Name OU Pharmacy-id
     """
-    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+    pharmacy = get_pharmacy_from_request(request)
+    if not pharmacy:
+        return Response({
+            "message": "Header Pharmacy-Name ou Pharmacy-id requis",
+        }, status=400)
 
     try:
-        winpharma_historical.process_product(pharmacy, request.data)
+        result = winpharma_historical.process_product(pharmacy, request.data)
+        return Response({
+            "message": f"Products processed for {pharmacy.name}",
+            "pharmacy_id": str(pharmacy.id)
+        }, status=200)
     except Exception as e:
         print(traceback.format_exc())
         return Response({
             "message": "Processing error",
         }, status=500)
-
-    return Response({
-        "message": "Processing completed",
-    }, status=200)
 
 
 @api_view(['POST'])
 def winpharma_historical_create_order(request):
     """
     Endpoint for creating or updating orders linked to a pharmacy - HISTORICAL IMPORT VERSION.
+    Accepte Pharmacy-Name OU Pharmacy-id
     """
-    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+    pharmacy = get_pharmacy_from_request(request)
+    if not pharmacy:
+        return Response({
+            "message": "Header Pharmacy-Name ou Pharmacy-id requis",
+        }, status=400)
+    
     try:
-        winpharma_historical.process_order(pharmacy, request.data)
+        result = winpharma_historical.process_order(pharmacy, request.data)
+        return Response({
+            "message": f"Orders processed for {pharmacy.name}",
+            "pharmacy_id": str(pharmacy.id)
+        }, status=200)
     except Exception as e:
         print(traceback.format_exc())
         return Response({
             "message": "Processing error",
         }, status=500)
-
-    return Response({
-        "message": "Processing completed",
-    }, status=200)
 
 
 @api_view(['POST'])
 def winpharma_historical_create_sales(request):
     """
     Endpoint for creating or updating sales linked to a pharmacy - HISTORICAL IMPORT VERSION.
+    Accepte Pharmacy-Name OU Pharmacy-id
     """
-    pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=request.headers.get('Pharmacy-id'))
+    pharmacy = get_pharmacy_from_request(request)
+    if not pharmacy:
+        return Response({
+            "message": "Header Pharmacy-Name ou Pharmacy-id requis",
+        }, status=400)
+    
     try:
         winpharma_historical.process_sales(pharmacy, request.data)
+        return Response({
+            "message": f"Sales processed for {pharmacy.name}",
+            "pharmacy_id": str(pharmacy.id)
+        }, status=200)
     except Exception as e:
         print(traceback.format_exc())
         return Response({
             "message": "Processing error",
         }, status=500)
-
-    return Response({
-        "message": "Processing completed",
-    }, status=200)
 
 # Ajouter ces imports en haut du fichier data/views.py
 
@@ -703,3 +726,78 @@ def apothical_create_sales(request):
 # ========================================
 
 # Ajouter ces 3 nouvelles routes dans la liste urlpatterns
+
+# Ajouter cette fonction à la fin du fichier data/views.py
+@api_view(['POST'])
+def create_pharmacy(request):
+    """
+    Endpoint pour créer une nouvelle pharmacie
+    POST /api/pharmacy/create
+    Body: {"name": "Pharmacie Mouysset V2"}
+    """
+    try:
+        data = request.data
+        pharmacy_name = data.get('name')
+        
+        if not pharmacy_name:
+            return Response({
+                'error': 'Nom de pharmacie requis'
+            }, status=400)
+        
+        # Vérifier si la pharmacie existe déjà
+        if Pharmacy.objects.filter(name=pharmacy_name).exists():
+            existing_pharmacy = Pharmacy.objects.get(name=pharmacy_name)
+            return Response({
+                'message': f"Pharmacie '{pharmacy_name}' existe déjà",
+                'pharmacy_id': str(existing_pharmacy.id),
+                'status': 'exists'
+            }, status=200)
+        
+        # Créer la nouvelle pharmacie
+        with transaction.atomic():
+            pharmacy = Pharmacy.objects.create(
+                id=uuid.uuid4(),
+                name=pharmacy_name,
+                id_nat=f"TEMP_{uuid.uuid4().hex[:8].upper()}",
+                address="Adresse temporaire",
+                area="Région temporaire",
+                ca=0,
+                employees_count=1
+            )
+            
+        return Response({
+            'message': f"Pharmacie '{pharmacy_name}' créée avec succès",
+            'pharmacy_id': str(pharmacy.id),
+            'status': 'created'
+        }, status=201)
+        
+    except Exception as e:
+        logger.error(f"Erreur création pharmacie: {e}")
+        return Response({
+            'error': 'Erreur serveur interne'
+        }, status=500)
+
+# Fonction helper pour gérer les headers
+def get_pharmacy_from_request(request):
+    """
+    Récupère la pharmacie depuis le header Pharmacy-Name ou Pharmacy-id
+    """
+    # Priorité 1: Header Pharmacy-Name (pour pharmacies V2)
+    pharmacy_name = request.headers.get('Pharmacy-Name')
+    if pharmacy_name:
+        try:
+            pharmacy = Pharmacy.objects.get(name=pharmacy_name)
+            return pharmacy
+        except Pharmacy.DoesNotExist:
+            return None
+    
+    # Priorité 2: Header Pharmacy-id (ancien système)
+    pharmacy_id = request.headers.get('Pharmacy-id')
+    if pharmacy_id:
+        try:
+            pharmacy, _ = Pharmacy.objects.get_or_create(id_nat=pharmacy_id)
+            return pharmacy
+        except Exception:
+            return None
+    
+    return None

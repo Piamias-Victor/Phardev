@@ -42,6 +42,8 @@ urlpatterns = [
     path('test/new_api/orders', views.test_new_api_orders, name='test_new_api_orders'),
     path('test/new_api/sales', views.test_new_api_sales, name='test_new_api_sales'),
     path('test/new_api/summary', views.test_new_api_summary, name='test_new_api_summary'),
+    # Création de pharmacies
+    path('api/pharmacy/create', views.create_pharmacy, name='create_pharmacy'),
 
 
 path('winpharma_historical/create/products', views.winpharma_historical_create_product, name='winpharma_historical_create_product'),

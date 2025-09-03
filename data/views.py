@@ -8,14 +8,8 @@ from rest_framework.response import Response
 
 from data.models import Pharmacy
 from data.services import dexter, winpharma, winpharma_2, winpharma_new_api
-
-from data.services import dexter, winpharma, winpharma_2, winpharma_historical
-
 from data.services import apothical
 
-from data.models import Pharmacy
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 import json
 import uuid
 from django.db import transaction
@@ -537,7 +531,7 @@ def test_new_api_summary(request):
 # Ajouter cet import en haut du fichier
 
 # Ajouter ces 3 nouvelles vues à la fin du fichier
-
+@api_view(['POST'])
 def winpharma_historical_create_product(request):
     """
     Endpoint for creating or updating products linked to a pharmacy - HISTORICAL IMPORT VERSION.
@@ -727,29 +721,35 @@ def apothical_create_sales(request):
 
 # Ajouter ces 3 nouvelles routes dans la liste urlpatterns
 
-# Ajouter cette fonction à la fin du fichier data/views.py
 @api_view(['POST'])
 def create_pharmacy(request):
     """
     Endpoint pour créer une nouvelle pharmacie
     POST /api/pharmacy/create
-    Body: {"name": "Pharmacie Mouysset V2"}
+    Body: {"name": "Pharmacie Mouysset V2", "id_nat": "832002810"}
     """
     try:
         data = request.data
         pharmacy_name = data.get('name')
+        id_nat = data.get('id_nat')  # Nouveau paramètre
         
         if not pharmacy_name:
             return Response({
                 'error': 'Nom de pharmacie requis'
             }, status=400)
         
-        # Vérifier si la pharmacie existe déjà
+        # Vérifier si la pharmacie existe déjà (par nom OU par id_nat)
+        existing_pharmacy = None
         if Pharmacy.objects.filter(name=pharmacy_name).exists():
             existing_pharmacy = Pharmacy.objects.get(name=pharmacy_name)
+        elif id_nat and Pharmacy.objects.filter(id_nat=id_nat).exists():
+            existing_pharmacy = Pharmacy.objects.get(id_nat=id_nat)
+            
+        if existing_pharmacy:
             return Response({
                 'message': f"Pharmacie '{pharmacy_name}' existe déjà",
                 'pharmacy_id': str(existing_pharmacy.id),
+                'id_nat': existing_pharmacy.id_nat,
                 'status': 'exists'
             }, status=200)
         
@@ -758,9 +758,9 @@ def create_pharmacy(request):
             pharmacy = Pharmacy.objects.create(
                 id=uuid.uuid4(),
                 name=pharmacy_name,
-                id_nat=f"TEMP_{uuid.uuid4().hex[:8].upper()}",
-                address="Adresse temporaire",
-                area="Région temporaire",
+                id_nat=id_nat or f"IMPORT_{uuid.uuid4().hex[:8].upper()}",
+                address="Adresse import",
+                area="Région import",
                 ca=0,
                 employees_count=1
             )
@@ -768,6 +768,7 @@ def create_pharmacy(request):
         return Response({
             'message': f"Pharmacie '{pharmacy_name}' créée avec succès",
             'pharmacy_id': str(pharmacy.id),
+            'id_nat': pharmacy.id_nat,
             'status': 'created'
         }, status=201)
         

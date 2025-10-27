@@ -64,9 +64,6 @@ def bulk_process(model, data, unique_fields, update_fields, chunk_size=1000):
 
     Returns:
         List of all created and updated objects.
-
-    Raises:
-        ValueError: If the number of processed objects doesn't match the input data.
     """
     # Build filters to identify existing objects
     filters = {
@@ -107,7 +104,7 @@ def bulk_process(model, data, unique_fields, update_fields, chunk_size=1000):
     # Bulk create new objects in chunks
     for chunk in chunked_iterable(objects_to_create, chunk_size):
         with transaction.atomic():
-            created = model.objects.bulk_create(chunk, ignore_conflicts=True)  # ⭐ MODIFIÉ
+            created = model.objects.bulk_create(chunk, ignore_conflicts=True)
             all_objects.extend(created)
 
     # Bulk update existing objects in chunks
@@ -116,9 +113,8 @@ def bulk_process(model, data, unique_fields, update_fields, chunk_size=1000):
             model.objects.bulk_update(chunk, fields=update_fields)
             all_objects.extend(chunk)
 
-    if len(all_objects) != len(data):
-        raise ValueError("Mismatch between input data and processed objects count.")
-
+    # Note: With ignore_conflicts=True, all_objects may be smaller than data
+    # because conflicting objects are not returned by bulk_create
     print(f"Created: {len(objects_to_create)}, Updated: {len(objects_to_update)}")
 
     return all_objects

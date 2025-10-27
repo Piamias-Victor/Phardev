@@ -24,7 +24,9 @@ endpoint_priority = {
 def handler(event, context):
     s3_client = boto3.client('s3')
     bucket_name = 'phardev'
-    subfolder_prefix = 'Dexter_history/'
+    
+    # ⭐ CORRECTION : Dexter dépose maintenant dans Dexter/ au lieu de Dexter_history/
+    subfolder_prefix = 'Dexter/'
 
     try:
         paginator = s3_client.get_paginator('list_objects_v2')
@@ -58,7 +60,6 @@ def handler(event, context):
                         print(f"Failed to parse file date for {obj['Key']}: {e}")
 
         # Trier les fichiers par pharmacie (CIP + GERS), puis par date d'extraction, puis par type (Stock, Achat, Vente)
-
         all_files.sort(key=lambda x: (x[0], x[1], x[2], endpoint_priority[x[3]]))
 
         # Traitement des fichiers triés
@@ -96,5 +97,11 @@ def handler(event, context):
             'body': json.dumps('Error listing objects')
         }
 
+    return {
+        'statusCode': 200,
+        'body': json.dumps(f'Successfully processed files')
+    }
 
-handler(1, 1)
+
+if __name__ == "__main__":
+    handler(1, 1)

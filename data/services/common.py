@@ -107,7 +107,7 @@ def bulk_process(model, data, unique_fields, update_fields, chunk_size=1000):
     # Bulk create new objects in chunks
     for chunk in chunked_iterable(objects_to_create, chunk_size):
         with transaction.atomic():
-            created = model.objects.bulk_create(chunk)
+            created = model.objects.bulk_create(chunk, ignore_conflicts=True)  # ⭐ MODIFIÉ
             all_objects.extend(created)
 
     # Bulk update existing objects in chunks

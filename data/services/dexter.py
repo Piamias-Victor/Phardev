@@ -1,6 +1,7 @@
 from decimal import Decimal, ROUND_HALF_UP
 import logging
 import traceback
+from datetime import date
 
 from django.db import transaction
 from django.db.models import OuterRef, Subquery, F, Window
@@ -192,12 +193,14 @@ def process_achat(pharmacy, data):
                     qte_cde = int(line.get('qte_cde', 0))
                     total_recu = int(line.get('total_recu', 0))
                     total_ug_liv = int(line.get('total_ug_liv', 0))
+                    px_achat_pmp_ht = line.get('px_achat_PMP_HT')
 
                     products.append({
                         'product_id': product_id,
                         'qte_cde': qte_cde,
                         'total_recu': total_recu,
-                        'total_ug_liv': total_ug_liv
+                        'total_ug_liv': total_ug_liv,
+                        'px_achat_PMP_HT': px_achat_pmp_ht
                     })
                 except (ValueError, TypeError, KeyError) as e:
                     logger.warning(f"Error preprocessing product line in order {order_id}: {e}")
@@ -212,30 +215,32 @@ def process_achat(pharmacy, data):
                 'delivery_date': delivery_date,
                 'products': products
             })
+
         except (ValueError, TypeError, KeyError) as e:
             logger.warning(f"Error preprocessing order {obj.get('commande_id', 'unknown')}: {e}")
             continue
 
-    # Collect unique supplier codes and prepare supplier data
-    supplier_data = []
-    seen_suppliers = set()
+    # Prepare a set of supplier IDs
+    supplier_ids = {obj['supplier_id'] for obj in preprocessed_data}
 
-    for obj in preprocessed_data:
-        supplier_key = (pharmacy.id, obj['supplier_id'])
-        if supplier_key not in seen_suppliers:
-            supplier_data.append({
-                'pharmacy_id': pharmacy.id,
-                'code_supplier': obj['supplier_id'],
-                'name': obj['supplier_name']
-            })
-            seen_suppliers.add(supplier_key)
+    # Prepare data for bulk processing of suppliers
+    supplier_data = []
+    for supplier_id in supplier_ids:
+        # Find the first occurrence with supplier name
+        supplier_name = next(
+            (obj['supplier_name'] for obj in preprocessed_data if obj['supplier_id'] == supplier_id), ''
+        )
+        supplier_data.append({
+            'internal_id': supplier_id,
+            'name': supplier_name
+        })
 
     # Create or update suppliers
     try:
         suppliers = common.bulk_process(
             model=Supplier,
             data=supplier_data,
-            unique_fields=['pharmacy_id', 'code_supplier'],
+            unique_fields=['internal_id'],
             update_fields=['name']
         )
     except Exception as e:
@@ -243,15 +248,21 @@ def process_achat(pharmacy, data):
         raise
 
     # Map suppliers for quick lookup
-    suppliers_map = {supplier.code_supplier: supplier for supplier in suppliers}
+    suppliers_map = {supplier.internal_id: supplier for supplier in suppliers}
 
-    # Extract and prepare internal product data
-    product_ids = {line['product_id'] for obj in preprocessed_data for line in obj['products']}
+    # Prepare a set of product IDs
+    product_ids = set()
+    for obj in preprocessed_data:
+        for line in obj['products']:
+            product_ids.add(line['product_id'])
 
+    # Query existing InternalProduct instances to get their names
     existing_products = InternalProduct.objects.filter(
-        pharmacy_id=pharmacy.id,
+        pharmacy=pharmacy,
         internal_id__in=product_ids
-    )
+    ).only('internal_id', 'pharmacy_id', 'name')
+
+    # Prepare data for internal products, retaining existing names
     internal_product_data = [
         {
             'internal_id': product.internal_id,
@@ -380,6 +391,72 @@ def process_achat(pharmacy, data):
         logger.error(f"Error processing product-order associations: {e}")
         raise
 
+    # ✅ NOUVEAU : Créer snapshots avec PMP pour produits sans snapshot existant
+    snapshot_updates = []
+    product_ids_for_snapshot = []
+    
+    # Collecter les produits avec PMP disponible
+    for obj in preprocessed_data:
+        order = order_map.get(obj['order_id'])
+        if not order or not order.delivery_date:
+            continue
+            
+        for line in obj['products']:
+            product_id = line['product_id']
+            product = internal_products_map.get(product_id)
+            if not product:
+                continue
+            
+            pmp_value = line.get('px_achat_PMP_HT')
+            if pmp_value is None or pmp_value <= 0:
+                continue
+            
+            product_ids_for_snapshot.append({
+                'product': product,
+                'pmp': pmp_value,
+                'delivery_date': order.delivery_date
+            })
+    
+    if product_ids_for_snapshot:
+        # Récupérer les produits qui n'ont PAS de snapshot
+        products_with_ids = [p['product'].id for p in product_ids_for_snapshot]
+        products_without_snapshot = set(
+            InternalProduct.objects.filter(
+                id__in=products_with_ids
+            ).exclude(
+                id__in=InventorySnapshot.objects.filter(
+                    product_id__in=products_with_ids
+                ).values_list('product_id', flat=True)
+            ).values_list('id', flat=True)
+        )
+        
+        # Créer snapshots UNIQUEMENT pour produits sans snapshot
+        for item in product_ids_for_snapshot:
+            if item['product'].id in products_without_snapshot:
+                snapshot_updates.append({
+                    'product_id': item['product'].id,
+                    'stock': 0,
+                    'price_with_tax': Decimal('0.00'),
+                    'weighted_average_price': Decimal(str(item['pmp'])).quantize(
+                        Decimal('0.01'), 
+                        rounding=ROUND_HALF_UP
+                    ),
+                    'date': date.today()
+                })
+        
+        # Bulk create snapshots
+        if snapshot_updates:
+            try:
+                common.bulk_process(
+                    model=InventorySnapshot,
+                    data=snapshot_updates,
+                    unique_fields=['product_id', 'date'],
+                    update_fields=['weighted_average_price']
+                )
+                logger.info(f"Created {len(snapshot_updates)} snapshots with PMP from Achat")
+            except Exception as e:
+                logger.error(f"Error creating snapshots from Achat: {e}")
+
 
 def process_vente(pharmacy, data):
     """
@@ -402,10 +479,19 @@ def process_vente(pharmacy, data):
                     if not product_id:
                         continue
 
+                    quantite = int(line.get('quantite', 0))
+                    total_net_ttc = line.get('total_net_ttc')
+                    
+                    # Calculer le prix unitaire TTC
+                    unit_price = None
+                    if quantite > 0 and total_net_ttc is not None and total_net_ttc > 0:
+                        unit_price = Decimal(str(total_net_ttc)) / quantite
+
                     preprocessed_data.append({
                         'product_id': str(product_id),
-                        'qte': int(line.get('quantite', 0)),
+                        'qte': quantite,
                         'date': obj.get('date_acte'),
+                        'unit_price_ttc': unit_price
                     })
         except (ValueError, TypeError, KeyError) as e:
             logger.warning(f"Error preprocessing sales data for object {obj.get('commande_id', 'unknown')}: {e}")
@@ -424,27 +510,47 @@ def process_vente(pharmacy, data):
     )
     internal_products_map = {str(product.internal_id): product.latest_snapshot_id for product in internal_products}
 
+    # Agréger par (produit, date) avec calcul du prix moyen pondéré
     aggregated_sales = {}
     for obj in preprocessed_data:
         product_id = obj['product_id']
         day = common.parse_date(obj['date'], is_datetime=False)
         key = (product_id, day)
+        
         if key not in aggregated_sales:
-            aggregated_sales[key] = obj['qte']
+            aggregated_sales[key] = {
+                'qte': obj['qte'],
+                'total_montant': (obj['unit_price_ttc'] * obj['qte']) if obj['unit_price_ttc'] else Decimal('0'),
+                'has_price': obj['unit_price_ttc'] is not None
+            }
         else:
-            aggregated_sales[key] += obj['qte']
+            aggregated_sales[key]['qte'] += obj['qte']
+            if obj['unit_price_ttc']:
+                aggregated_sales[key]['total_montant'] += obj['unit_price_ttc'] * obj['qte']
+                aggregated_sales[key]['has_price'] = True
 
     sales_data = []
-    for (product_id, day), total_qte in aggregated_sales.items():
+    for (product_id, day), agg in aggregated_sales.items():
         snapshot_id = internal_products_map.get(product_id)
         if not snapshot_id:
             continue
-        if total_qte > 10000:
-            print(f"Quantité élevée le {day} pour produit {product_id}: {total_qte}")
+        
+        # Calculer le prix unitaire moyen
+        unit_price_ttc = None
+        if agg['has_price'] and agg['qte'] > 0:
+            unit_price_ttc = (agg['total_montant'] / agg['qte']).quantize(
+                Decimal('0.01'), 
+                rounding=ROUND_HALF_UP
+            )
+        
+        if agg['qte'] > 10000:
+            logger.warning(f"Quantité élevée le {day} pour produit {product_id}: {agg['qte']}")
+        
         sales_data.append({
             'product_id': snapshot_id,
-            'quantity': common.clamp(total_qte, -32768, 32767),
+            'quantity': common.clamp(agg['qte'], -32768, 32767),
             'date': day,
+            'unit_price_ttc': float(unit_price_ttc) if unit_price_ttc else None
         })
 
     # Process sales in bulk
@@ -453,7 +559,7 @@ def process_vente(pharmacy, data):
             model=Sales,
             data=sales_data,
             unique_fields=['product_id', 'date'],
-            update_fields=['quantity']
+            update_fields=['quantity', 'unit_price_ttc']
         )
     except Exception as e:
         logger.error(f"Error processing sales: {e}")

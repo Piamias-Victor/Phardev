@@ -193,14 +193,14 @@ def process_achat(pharmacy, data):
                     qte_cde = int(line.get('qte_cde', 0))
                     total_recu = int(line.get('total_recu', 0))
                     total_ug_liv = int(line.get('total_ug_liv', 0))
-                    px_achat_pmp_ht = line.get('px_achat_PMP_HT')
+                    px_achat_net_ht = line.get('px_achat_net_ht')
 
                     products.append({
                         'product_id': product_id,
                         'qte_cde': qte_cde,
                         'total_recu': total_recu,
                         'total_ug_liv': total_ug_liv,
-                        'px_achat_PMP_HT': px_achat_pmp_ht
+                        'px_achat_net_ht': px_achat_net_ht
                     })
                 except (ValueError, TypeError, KeyError) as e:
                     logger.warning(f"Error preprocessing product line in order {order_id}: {e}")
@@ -407,7 +407,7 @@ def process_achat(pharmacy, data):
             if not product:
                 continue
             
-            pmp_value = line.get('px_achat_PMP_HT')
+            pmp_value = line.get('px_achat_net_ht')
             if pmp_value is None or pmp_value <= 0:
                 continue
             

@@ -42,19 +42,21 @@ urlpatterns = [
     path('test/new_api/orders', views.test_new_api_orders, name='test_new_api_orders'),
     path('test/new_api/sales', views.test_new_api_sales, name='test_new_api_sales'),
     path('test/new_api/summary', views.test_new_api_summary, name='test_new_api_summary'),
+    
+    # ============================================================================
+    # ENDPOINTS UTILITAIRES
+    # ============================================================================
+    
     # Création de pharmacies
     path('api/pharmacy/create', views.create_pharmacy, name='create_pharmacy'),
 
-
-path('winpharma_historical/create/products', views.winpharma_historical_create_product, name='winpharma_historical_create_product'),
-path('winpharma_historical/create/orders', views.winpharma_historical_create_order, name='winpharma_historical_create_order'),
-path('winpharma_historical/create/sales', views.winpharma_historical_create_sales, name='winpharma_historical_create_sales'),
-
-# Ajouter ces lignes dans data/urls.py après les autres URLs
-
-# URLs Apothical
-path('apothical/create/products', views.apothical_create_product, name='apothical_create_product'),
-path('apothical/create/orders', views.apothical_create_order, name='apothical_create_order'),
-path('apothical/create/sales', views.apothical_create_sales, name='apothical_create_sales'),
+    # ============================================================================
+    # ENDPOINTS APOTHICAL
+    # ============================================================================
+    
+    # URLs Apothical
+    path('apothical/create/products', views.apothical_create_product, name='apothical_create_product'),
+    path('apothical/create/orders', views.apothical_create_order, name='apothical_create_order'),
+    path('apothical/create/sales', views.apothical_create_sales, name='apothical_create_sales'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -182,6 +182,13 @@ class Sales(models.Model):
 
     quantity = models.SmallIntegerField()
     date = models.DateField(db_index=True, verbose_name="Date")
+    unit_price_ttc = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2, 
+        null=True, 
+        blank=True,
+        verbose_name="Prix unitaire TTC avec promo"
+    )
 
     def __str__(self):
         return f"{self.quantity} Sales for {self.product} on {self.date}"

@@ -231,7 +231,8 @@ def process_achat(pharmacy, data):
             (obj['supplier_name'] for obj in preprocessed_data if obj['supplier_id'] == supplier_id), ''
         )
         supplier_data.append({
-            'internal_id': supplier_id,
+            'code_supplier': supplier_id,
+            'pharmacy_id': pharmacy.id,
             'name': supplier_name
         })
 
@@ -240,7 +241,7 @@ def process_achat(pharmacy, data):
         suppliers = common.bulk_process(
             model=Supplier,
             data=supplier_data,
-            unique_fields=['internal_id'],
+            unique_fields=['code_supplier', 'pharmacy_id'],
             update_fields=['name']
         )
     except Exception as e:
@@ -248,7 +249,7 @@ def process_achat(pharmacy, data):
         raise
 
     # Map suppliers for quick lookup
-    suppliers_map = {supplier.internal_id: supplier for supplier in suppliers}
+    suppliers_map = {supplier.code_supplier: supplier for supplier in suppliers}
 
     # Prepare a set of product IDs
     product_ids = set()
